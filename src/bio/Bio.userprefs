@@ -1,0 +1,47 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Source/Framework/Bio/IO/BAM/BAMParser.cs">
+    <Files>
+      <File FileName="Source/Framework/Bio/IO/BAM/BAMSequenceParser.cs" Line="1" Column="1" />
+      <File FileName="Source/Framework/Bio/IO/BAM/BAMParser.cs" Line="1499" Column="67" />
+      <File FileName="Source/Framework/Bio/IO/FastA/FastAFormatter.cs" Line="5" Column="1" />
+      <File FileName="Source/Framework/Bio/IO/SAM/SAMOptionalFieldCollection.cs" Line="10" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="Bio" expanded="True" selected="True">
+            <Node name="References" expanded="True" />
+            <Node name="IO" expanded="True">
+              <Node name="BAM" expanded="True" />
+              <Node name="FastA" expanded="True" />
+              <Node name="SAM" expanded="True" />
+            </Node>
+          </Node>
+          <Node name="Tools.VennToNodeXL" expanded="True" />
+        </State>
+      </Pad>
+      <Pad Id="ClassPad">
+        <State expanded="True">
+          <Node name="Bio" expanded="True" selected="True">
+            <Node name="Bio" expanded="True">
+              <Node name="IO" expanded="True">
+                <Node name="BAM" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+      <Pad Id="ConnectionManagerPad">
+        <State selected="True" />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

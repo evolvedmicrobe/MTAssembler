@@ -1,0 +1,12 @@
+D:\BioTFS\bio\bio\SimulateMitochondrialData\bin\Debug\SimulateMitochondrialData.exe.config
+D:\BioTFS\bio\bio\SimulateMitochondrialData\obj\Debug\SimulateMitochondrialData.csprojResolveAssemblyReference.cache
+D:\BioTFS\bio\bio\SimulateMitochondrialData\bin\Debug\SimulateMitochondrialData.exe
+D:\BioTFS\bio\bio\SimulateMitochondrialData\bin\Debug\SimulateMitochondrialData.pdb
+D:\BioTFS\bio\bio\SimulateMitochondrialData\bin\Debug\Bio.dll
+D:\BioTFS\bio\bio\SimulateMitochondrialData\bin\Debug\Bio.pdb
+D:\BioTFS\bio\bio\SimulateMitochondrialData\bin\Debug\Bio.xml
+D:\BioTFS\bio\bio\SimulateMitochondrialData\obj\Debug\SimulateMitochondrialData.exe
+D:\BioTFS\bio\bio\SimulateMitochondrialData\obj\Debug\SimulateMitochondrialData.pdb
+C:\Users\Delaney\SkyDrive\Software\MitochondrialPrograms\bio\SimulateMitochondrialData\bin\Debug\SimulateMitochondrialData.exe.config
+C:\Users\Delaney\SkyDrive\Software\MitochondrialPrograms\bio\SimulateMitochondrialData\obj\Debug\SimulateMitochondrialData.exe
+C:\Users\Delaney\SkyDrive\Software\MitochondrialPrograms\bio\SimulateMitochondrialData\obj\Debug\SimulateMitochondrialData.pdb

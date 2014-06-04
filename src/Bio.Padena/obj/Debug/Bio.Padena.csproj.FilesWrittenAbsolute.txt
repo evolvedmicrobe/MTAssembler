@@ -1,0 +1,6 @@
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/bio/Source/Framework/Add-ins/Bio.Padena/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/bio/Source/Framework/Add-ins/Bio.Padena/obj/Debug/Bio.Algorithms.Assembly.Padena.Properties.Resource.resources
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/bio/Build/Binaries/Debug/Bio.Padena.dll.mdb
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/bio/Build/Binaries/Debug/Bio.Padena.dll
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/bio/Source/Framework/Add-ins/Bio.Padena/obj/Debug/Bio.Padena.dll
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/bio/Source/Framework/Add-ins/Bio.Padena/obj/Debug/Bio.Padena.dll.mdb

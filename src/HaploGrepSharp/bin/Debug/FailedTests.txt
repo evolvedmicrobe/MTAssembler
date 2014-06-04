@@ -1,0 +1,1818 @@
+Haplogroup	Accession	ReasonFailed	InGenbankNotHaplogrep	InHaplogrepNotGenbank
+H2a2a1a	EU795361	MismatchedPolymorphisms	16195C	263G
+H2a2a1b	JQ702287	MismatchedPolymorphisms		263G
+H2a2a1d	JQ704842	MismatchedPolymorphisms		263G
+H2a2	GU122997	MismatchedPolymorphisms	3116T-3693A-8736C-11929C-14058T	8860G-15326G
+H2a2b	HQ914650	MismatchedPolymorphisms	16357C	
+H2a2b1	JQ705563	MismatchedPolymorphisms	5893T	
+H2a2b1a	HM991709	MismatchedPolymorphisms	16390A	16293G
+H2a2b3	AY339426	MismatchedPolymorphisms		16235G
+H2a	JQ704533	MismatchedPolymorphisms	1007A-16172C	750G
+H2a1a	FJ668389	MismatchedPolymorphisms	15932C-16157C-16209C	
+H2a1b	JQ703223	MismatchedPolymorphisms	72G-2195G-16256T	
+H2a1e1	JQ704189	MismatchedPolymorphisms	16176T	
+H2a1e1a	FJ842614	MismatchedPolymorphisms	6339G	
+H2a1e1b	JQ704847	MismatchedPolymorphisms	16075C	
+H2a1g	JQ705411	MismatchedPolymorphisms	3693A	
+H2a3	AM263180	MismatchedPolymorphisms	152C	
+H2a3a1	JQ704220	MismatchedPolymorphisms	146C	
+H2a3b	HQ659870	MismatchedPolymorphisms	199C	
+H2a4	AM263179	MismatchedPolymorphisms	5557C-6221C	
+H2c	JQ704503	MismatchedPolymorphisms	9090C-14560A	
+H2c1	JQ704496	MismatchedPolymorphisms	6018A	
+H1a1a	JQ704413	MismatchedPolymorphisms	5477T-11253C	
+H1a3a3	AY738972	MismatchedPolymorphisms	6320C-9921A	
+H1a7	GU797829	MismatchedPolymorphisms	12361G	
+H1b1c	JQ704159	MismatchedPolymorphisms	483T	
+H1b1g	JQ703357	MismatchedPolymorphisms	709A	
+H1b2	JQ702529	MismatchedPolymorphisms	146C	
+H1b3	JQ704139	MismatchedPolymorphisms	16218T	
+H1f+16093	JQ703322	MismatchedPolymorphisms	1957G	
+H1g2	JQ703948	MismatchedPolymorphisms	73G	
+H1k1	EU768844	MismatchedPolymorphisms	14298C	
+H1z	JQ703527	MismatchedPolymorphisms	6620C	
+H1z1	JQ704562	MismatchedPolymorphisms	15930A	16189C
+H1aa	JQ702057	MismatchedPolymorphisms	11914A	
+H1ab	JQ704715	MismatchedPolymorphisms	1896C-3795T	
+H1ac	JQ704994	MismatchedPolymorphisms	6560T	
+H1c1b	JQ702237	MismatchedPolymorphisms	5892C-8696C	
+H1c3	JQ703496	MismatchedPolymorphisms	16361A	
+H1c5a	JQ703745	MismatchedPolymorphisms	8864C	
+H1c9	JQ703810	MismatchedPolymorphisms	8723A	
+H1c10	JQ705468	MismatchedPolymorphisms	14198A	
+H1c14	JQ703342	MismatchedPolymorphisms	10801A-14180C	
+H1c16	HQ658607	MismatchedPolymorphisms	11839C-14050A	
+H1c20	JQ703383	MismatchedPolymorphisms	1038T-8108G	
+H1c22	FJ348214	MismatchedPolymorphisms	5530T-10335C	
+H1e	EF556181	MismatchedPolymorphisms	5746A	
+H1e1	JQ705256	MismatchedPolymorphisms	11914A-13938T	
+H1e1a2	JQ705496	MismatchedPolymorphisms	10323G-11623T-16250T	
+H1e1a3	HQ658480	MismatchedPolymorphisms	3290C-4092A	
+H1e1b	JQ702833	MismatchedPolymorphisms	10274C	
+H1e1b1	JQ705799	MismatchedPolymorphisms	13911G	
+H1e2a	JQ704343	MismatchedPolymorphisms	13368A	
+H1e+16129	EU555475	MismatchedPolymorphisms	256T-6365C	
+H1e5	EF660933	MismatchedPolymorphisms	1346G-4084A-6044C	
+H1e6	JQ705426	MismatchedPolymorphisms	146C-9007G-16290T	
+H1h1	HQ659703	MismatchedPolymorphisms	16111A	
+H1i	JQ703270	MismatchedPolymorphisms	252C-3652G-11204C	
+H1i2	JQ703251	MismatchedPolymorphisms	16300G-16344T	
+H1an1	JQ703403	MismatchedPolymorphisms	7930G-16188T	
+H1bb	AY495144	MismatchedPolymorphisms	15497A	
+H1j2	JQ703536	MismatchedPolymorphisms	13474C-15071C	
+H1j2a	JQ324660	MismatchedPolymorphisms	12771A	
+H1j4	JQ704398	MismatchedPolymorphisms	10325A	
+H1j8	EF177436	MismatchedPolymorphisms	152C-5471A	
+H1j9	EU372630	MismatchedPolymorphisms	593G-10455G	
+H1m	JQ705493	MismatchedPolymorphisms	150T-4136G-4204C	
+H1m1	JQ703995	MismatchedPolymorphisms	9655A	
+H1n1	JQ704655	MismatchedPolymorphisms	152C-215G-5196C	
+H1n1a	JQ704566	MismatchedPolymorphisms	16274A	
+H1n2	FJ348199	MismatchedPolymorphisms	8380C	
+H1n3	HQ658482	MismatchedPolymorphisms	6040G-15650A	
+H1n+146+195	HQ839859	MismatchedPolymorphisms	14274G-15804C-16153A	
+H1n6	JQ704613	MismatchedPolymorphisms	195C-5029C-8084G-8888C	
+H1o	JQ702360	MismatchedPolymorphisms	8349T	
+H1q	JQ704630	MismatchedPolymorphisms	204C	
+H1q1	JQ324843	MismatchedPolymorphisms	16256T	
+H1q2	JQ324535	MismatchedPolymorphisms	3290G-16129A	
+H1r	JQ705944	MismatchedPolymorphisms	10187C	
+H1t	JQ704194	MismatchedPolymorphisms	95C-195C-2141C-3447G-6167C-6293C-9911A-10680A	
+H1t1a1	JQ324800	MismatchedPolymorphisms	9482C	
+H1ae	JQ705436	MismatchedPolymorphisms	9316C-13452T-16038G-16316G	
+H1ae2	HQ400746	MismatchedPolymorphisms	8843C-15355A-16192T	
+H1af1	JQ703129	MismatchedPolymorphisms	2581G-16129A	
+H1af2	FJ656214	MismatchedPolymorphisms	16111T	
+H1ag1b	JQ704170	MismatchedPolymorphisms	16114T	
+H1ah	JQ703687	MismatchedPolymorphisms	6261A-16212G	
+H1ah1	JQ324708	MismatchedPolymorphisms	11260C	
+H1aj	JQ703262	MismatchedPolymorphisms	7984A-16111G	
+H1aj1	JQ703788	MismatchedPolymorphisms	207A-9621A-16172C-16456A	
+H1ak1	JQ324892	MismatchedPolymorphisms	15257A	
+H1ao1	JQ704235	MismatchedPolymorphisms	438T-16274A	
+H1ar	JQ324931	MismatchedPolymorphisms	182T-14344G-16311C	
+H1as1	JQ703561	MismatchedPolymorphisms	15924G-16297C	
+H1as1a	JQ704158	MismatchedPolymorphisms	417A-2836T	
+H1at	JQ324928	MismatchedPolymorphisms	239C-2501T	
+H1au	GU981676	MismatchedPolymorphisms	13404C-15619T	
+H1av	JQ705362	MismatchedPolymorphisms	16189C	
+H1aw	JQ324713	MismatchedPolymorphisms	7403G	
+H1ax	HM625711	MismatchedPolymorphisms	513A-10670T-16249C	
+H1ay	JQ703923	MismatchedPolymorphisms	146C-10410A-10646A-14971C-16189C	
+H1ba	JQ702799	MismatchedPolymorphisms	93G	
+H1bd	JQ704553	MismatchedPolymorphisms	200G-204C	
+H1bg	JQ703148	MismatchedPolymorphisms	1555G	
+H1bh	JQ703668	MismatchedPolymorphisms	6268T-8981G	
+H1bj	JQ704756	MismatchedPolymorphisms	14693G	
+H1bn	JQ703317	MismatchedPolymorphisms	6719C-6896C-12618A	
+H1bo	EF556177	MismatchedPolymorphisms	14053G	
+H1bp	AY738977	MismatchedPolymorphisms	368G-16291T	
+H1bq	JQ703346	MismatchedPolymorphisms	714G-4454C-8119C-16189C	
+H1bs	JQ324633	MismatchedPolymorphisms	15110A-16311C	
+H1bw	JQ704366	MismatchedPolymorphisms	3290C-14251G	
+H1by	JQ324820	MismatchedPolymorphisms	12141G	
+H1bz	JQ898578	MismatchedPolymorphisms	8720C	
+H3a	JQ704834	MismatchedPolymorphisms	12014T	
+H3a1	JQ704253	MismatchedPolymorphisms	10328G-10972G-16242A	
+H3g1a	JQ705694	MismatchedPolymorphisms	151T-9029G	
+H3g1b	JQ702329	MismatchedPolymorphisms	10652C	
+H3g2	JQ704542	MismatchedPolymorphisms	7001G	
+H3g3	JQ705080	MismatchedPolymorphisms	3398C-16390A	
+H3g4	JQ702762	MismatchedPolymorphisms	5483C-10685A-13933G-16242T	
+H3j	HQ696491	MismatchedPolymorphisms	16311C	
+H3k	JQ704704	MismatchedPolymorphisms	16145A	
+H3b	JQ705823	MismatchedPolymorphisms	195C-11662C-14769G-16362C	
+H3b1a	JQ704748	MismatchedPolymorphisms	9105T-15218C	
+H3b1b	JQ704932	MismatchedPolymorphisms	13984T	
+H3b1b1a	JQ704105	MismatchedPolymorphisms	6395T	
+H3b3	JQ703291	MismatchedPolymorphisms	4850T-12397G	
+H3c	JQ324618	MismatchedPolymorphisms	5063C	
+H3c1	AY738990	MismatchedPolymorphisms	72C-150T-10667C-14467G	
+H3c2	JQ705425	MismatchedPolymorphisms	3027C-4025T-8865A-14259A-15172A	
+H3c2a1	JQ324731	MismatchedPolymorphisms	15894A	
+H3c2b1	JQ705340	MismatchedPolymorphisms	16311C	
+H3+16311	JQ702652	MismatchedPolymorphisms	11147C-12127A	
+H3h	JQ324559	MismatchedPolymorphisms	4025T	
+H3h3	HM003111	MismatchedPolymorphisms	3915A-16172C	1438G
+H3q1	GU592027	MismatchedPolymorphisms	152C-13434G	
+H3r1	JQ705853	MismatchedPolymorphisms	8251A	
+H3u	DQ523647	MismatchedPolymorphisms	7571C-16240G-16269G	
+H3u1	AB626610	MismatchedPolymorphisms	13260C	
+H3v2	JQ704545	MismatchedPolymorphisms	16465T	
+H3w	JQ703544	MismatchedPolymorphisms	3360G-9081T	
+H3z	JQ705915	MismatchedPolymorphisms	152C	
+H3z1	JQ703690	MismatchedPolymorphisms	8937C-16209C	
+H3ac	HQ658608	MismatchedPolymorphisms	472G	
+H3ae	JQ705905	MismatchedPolymorphisms	12438C	
+H3ag	JQ705124	MismatchedPolymorphisms	10410C-15204C	
+H3ak	AY195746	MismatchedPolymorphisms	228A-3202C-7193C-7194T	
+H3am	JQ324634	MismatchedPolymorphisms	200G-14194T	
+H3an	JQ703304	MismatchedPolymorphisms	7976A-16311C	
+H3ao1	JQ704183	MismatchedPolymorphisms	12171G-13111C	
+H3ar	JQ702687	MismatchedPolymorphisms	13581C-14034C	
+H3at	JQ324640	MismatchedPolymorphisms	11167G	
+H3au	JQ704477	MismatchedPolymorphisms	2887C	
+H4	EU935460	MismatchedPolymorphisms	482C-4248C-7562G	
+H4a	JQ702936	MismatchedPolymorphisms	3624G-10376G-16235G	
+H4a1a1a2	JQ703532	MismatchedPolymorphisms	228T-4688C-5618C-8185C-8348G-11173T-13545T	
+H4a1a1a3	EU719211	MismatchedPolymorphisms	146C	
+H4a1a2a1	JQ704851	MismatchedPolymorphisms	3816G-16325C	
+H4a1a+195	JQ704883	MismatchedPolymorphisms	16189C	
+H4a1a3	JQ703398	MismatchedPolymorphisms	150T-6951A	
+H4a1a4a	JQ703134	MismatchedPolymorphisms	16356C	
+H4a1a4b1	JQ703000	MismatchedPolymorphisms	12406A-15613G	
+H4a1a5	JQ704039	MismatchedPolymorphisms	2789T-3394C	
+H4b	JQ702580	MismatchedPolymorphisms	10523T-16189C	
+H4c1	JQ705112	MismatchedPolymorphisms	11410C	
+H5'36	JQ324611	MismatchedPolymorphisms	16233G	
+H5a	GQ983068	MismatchedPolymorphisms	10172A	
+H5a1c2	JQ705790	MismatchedPolymorphisms	593C-7642A-16304G	16304C
+H5a1e	AY339431	MismatchedPolymorphisms	16344T	
+H5a1f	JQ703738	MismatchedPolymorphisms	4736C	
+H5a1k	AY495170	MismatchedPolymorphisms	6779G-10084C	
+H5a1m	JQ705998	MismatchedPolymorphisms	16179T	
+H5a3	GQ983105	MismatchedPolymorphisms	11147C-16312G	
+H5a3a	JQ704372	MismatchedPolymorphisms	4092A-5012T-5369T-14040A-15519C-15924G	
+H5a3a2	GQ983073	MismatchedPolymorphisms	13473G-13651G-14319C	
+H5a4	JQ703731	MismatchedPolymorphisms	4616T-7076G-8870C-16189C	
+H5a4a1	GQ983092	MismatchedPolymorphisms	152C-385G-11914A-16335G	
+H5a4a1a	JQ702083	MismatchedPolymorphisms	282C-8521G	
+H5a5	JQ703494	MismatchedPolymorphisms	16302G	
+H5a6a	JQ704237	MismatchedPolymorphisms	12007A	
+H5b	JQ704885	MismatchedPolymorphisms	6755A	
+H5b3	JQ702345	MismatchedPolymorphisms	199C-10490C-16171G	
+H5b4	JF795326	MismatchedPolymorphisms	7768G	
+H5c1	JQ705824	MismatchedPolymorphisms	377T-16311C	
+H5c2	JQ703627	MismatchedPolymorphisms	16216G	
+H5d	JQ703498	MismatchedPolymorphisms	9099T	
+H5e	JQ324661	MismatchedPolymorphisms	15287C-15805G	
+H5e1	GQ983082	MismatchedPolymorphisms	73G-7474G	
+H5g	JQ704716	MismatchedPolymorphisms	146C-16292T	
+H5h	JQ703405	MismatchedPolymorphisms	16311C	
+H5m	JQ702895	MismatchedPolymorphisms	2755G-7070G-15482G-15766G	
+H5n	GQ983109	MismatchedPolymorphisms	10454C-14893G	
+H5p	EF420250	MismatchedPolymorphisms	9145A	
+H5+16192	JQ703228	MismatchedPolymorphisms	3197C-9509C	
+H5+16311	JQ324596	MismatchedPolymorphisms	5492C-9111C-16266T	
+H5u	EF661003	MismatchedPolymorphisms	185A-5447T-11475A-11581T	
+H36	FJ348166	MismatchedPolymorphisms	2765G	
+H6a	HM765475	MismatchedPolymorphisms	6755A-16093C-16192T	16482G
+H6a1a1	JQ701925	MismatchedPolymorphisms	11923G	
+H6a1a2a	JQ702107	MismatchedPolymorphisms	297G-14970G	
+H6a1a2b	JQ324568	MismatchedPolymorphisms	146C	16482G
+H6a1a3a	JQ703205	MismatchedPolymorphisms	195C	
+H6a1a7	JQ324811	MismatchedPolymorphisms	16319A	
+H6a1a8a	JQ705660	MismatchedPolymorphisms	3397G	
+H6a1b	JQ704592	MismatchedPolymorphisms	5423G-16172C	
+H6a1b2	JQ704495	MismatchedPolymorphisms	979T-16286T	
+H6a1b2c	JQ704239	MismatchedPolymorphisms	709A-8939C-16093C	
+H6a1b3b	HQ659687	MismatchedPolymorphisms	207A-5417A	
+H6a2	JQ703232	MismatchedPolymorphisms	14662G-15784C	
+H6a2a	JQ704208	MismatchedPolymorphisms	152C	16482G
+H6b	FJ348203	MismatchedPolymorphisms	5459T-6467T-9100G-16325C	16482G
+H6b1	AY738956	MismatchedPolymorphisms	214G-6263T-8668C	
+H6c	FJ652065	MismatchedPolymorphisms	10373A	
+H7a1	EF177426	MismatchedPolymorphisms	5460A-10736T	
+H7a1a	JQ704518	MismatchedPolymorphisms	3613T-5417A-8022C-11016A-13896C-16304C	
+H7a2	JQ703233	MismatchedPolymorphisms	6947T	
+H7b1	EU600357	MismatchedPolymorphisms	16042A	
+H7b2a	JQ703275	MismatchedPolymorphisms	189G-194T-8817G	
+H7b4	JQ704850	MismatchedPolymorphisms	6185C	
+H7c	GQ422375	MismatchedPolymorphisms	10978G-11020G-11992C-13105G	
+H7c1	EU600355	MismatchedPolymorphisms	16093C	
+H7c3	JQ703177	MismatchedPolymorphisms	16093C	
+H7d	JQ704712	MismatchedPolymorphisms	16080G	
+H7d1	JQ705880	MismatchedPolymorphisms	16145A	
+H7d2	JQ704711	MismatchedPolymorphisms	15866G	
+H7d3	JQ324573	MismatchedPolymorphisms	16153A	
+H7d3a	JQ703288	MismatchedPolymorphisms	150T	
+H7d4	JF262142	MismatchedPolymorphisms	16234T	
+H7i	JF795008	MismatchedPolymorphisms	3873G	
+H2+195	JQ705163	MismatchedPolymorphisms	143A-8155A-13899C	
+H8a	AY738957	MismatchedPolymorphisms	16167T	
+H8b	FJ147310	MismatchedPolymorphisms	961C-7765G	
+H8+(114)+152	EF177429	MismatchedPolymorphisms	143A-14198A	
+H8c	JQ702865	MismatchedPolymorphisms	7705C-8864C-12765T-16224C	
+H8c1	JQ701943	MismatchedPolymorphisms	9052G-11494T	114T
+H31a	JQ028728	MismatchedPolymorphisms	16319A	
+H11	JQ703684	MismatchedPolymorphisms	7444A-9285G-15913T	
+H11a	HQ707396	MismatchedPolymorphisms	152C-5054A	
+H11a2	JQ704166	MismatchedPolymorphisms	152C-6854T	
+H11a2+16092	GU949563	MismatchedPolymorphisms	16261T	
+H11a4	HQ659686	MismatchedPolymorphisms	151T	
+H12	AY738994	MismatchedPolymorphisms	16287T	
+H2+152	JQ703798	MismatchedPolymorphisms	16092C	
+H9	AY713978	MismatchedPolymorphisms	146C-10166C-16256T	
+H9a	AY738969	MismatchedPolymorphisms	9148C	
+H32	DQ523619	MismatchedPolymorphisms	12358G-16145A	
+H69	AY495136	MismatchedPolymorphisms	4080C	
+H10a	EF491002	MismatchedPolymorphisms	8704G	
+H10b1	JQ704573	MismatchedPolymorphisms	3169T	
+H10c1	GU984044	MismatchedPolymorphisms	73G-3645C-16042A-16243C	
+H10d	JQ703504	MismatchedPolymorphisms	1462A-15884A	
+H10+(16093)	JQ703539	MismatchedPolymorphisms	204C	
+H10e1	JQ703002	MismatchedPolymorphisms	16124C	
+H13a1	AM263187	MismatchedPolymorphisms	152C-16209C-16234T	
+H13a1a1a	AY495129	MismatchedPolymorphisms	152C-13851T	
+H13a1a1b	JQ704234	MismatchedPolymorphisms	214G-16129A	
+H13a1a1c	AM263191	MismatchedPolymorphisms	16093C	
+H13a1a1d	JQ704841	MismatchedPolymorphisms	10101C	
+H13a1a2	AM263186	MismatchedPolymorphisms	709A	
+H13a1a2a	EU370982	MismatchedPolymorphisms	385G-11563T	
+H13a1a2b	EU600347	MismatchedPolymorphisms	16187T	
+H13a1a3	JQ701842	MismatchedPolymorphisms	4775G	
+H13a1a4	FJ560455	MismatchedPolymorphisms	6716G	
+H13a1a5	JQ705726	MismatchedPolymorphisms	182T-15758G	
+H13a2a	EF556150	MismatchedPolymorphisms	183G-7184G-11151T	
+H13a2b	HQ658464	MismatchedPolymorphisms	14863T-16278T	
+H13a2b2	JF828090	MismatchedPolymorphisms	14476A	
+H13a2b3	JQ705524	MismatchedPolymorphisms	2264G-11641G	
+H13a2c1	JQ703878	MismatchedPolymorphisms	152C-193G-215G-249G-4577T-15412C	
+	HM044302	MismatchedPolymorphisms	234G-2713T-10909C-15109C	
+H13b1	EF660956	MismatchedPolymorphisms	14182C	
+H13b1+200	GU228506	MismatchedPolymorphisms	152C-12015C-13327G-14757C-16362C	
+H13b1b	JQ704475	MismatchedPolymorphisms	16311C	
+H13c	HQ234355	MismatchedPolymorphisms	143A-8557A-10427A-11188A-14818G-16129A-16300G	
+H13c1	JQ703657	MismatchedPolymorphisms	971G-3622T-9389G-10601C-14189G-16192T-16201T	
+H14a	GQ983090	MismatchedPolymorphisms	11084G-13194A-16304C	
+H14a1	EF556163	MismatchedPolymorphisms	7864T-11002G	
+H14a2	JQ703871	MismatchedPolymorphisms	1462A-8227C	
+H14b	JQ702840	MismatchedPolymorphisms	189G-225A-5319G-15287C-16260T	
+H14b+152	AM263182	MismatchedPolymorphisms	16172C	
+H14b2	JQ704795	MismatchedPolymorphisms	14016A	
+H15a	AY495146	MismatchedPolymorphisms	11050C-14959T-16129A	
+H15a1b	JQ324533	MismatchedPolymorphisms	1243C-9181G-10653A-14070G	
+H15b	JQ704870	MismatchedPolymorphisms	16527T	
+H15b1	FJ384438	MismatchedPolymorphisms	55A-709A	55C-57C
+H16+152	EF609012	MismatchedPolymorphisms	6071C	
+H16c	JQ702103	MismatchedPolymorphisms	195C-709A	
+H17a	JQ324832	MismatchedPolymorphisms	709A	
+H17a1	JQ703188	MismatchedPolymorphisms	16301T	16129A
+H17a2	AY495154	MismatchedPolymorphisms	14869A	
+H20	JQ324684	MismatchedPolymorphisms	6891G-7334C-8300C-10248C-16217C	
+H20a	EF556187	MismatchedPolymorphisms	292C-16362C	
+H24a2	JQ705486	MismatchedPolymorphisms	513A	16293G
+H26	JQ703239	MismatchedPolymorphisms	10685A	
+H26a	JN415471	MismatchedPolymorphisms	210G-3700A	
+H26a1a	JQ703417	MismatchedPolymorphisms	196C-12651A	
+H26b	EU600338	MismatchedPolymorphisms	6221C-8251A-13899C-14198A	
+H26c	JQ704110	MismatchedPolymorphisms	16129A	
+H28	DQ523654	MismatchedPolymorphisms	2789T-4823C-16192T	
+H28a1	JQ704416	MismatchedPolymorphisms	6722A	
+H30	EF556162	MismatchedPolymorphisms	195C-504C-8638G-8817G-14241G-16192T	
+H30b	JQ704389	MismatchedPolymorphisms	7761G-12059C-16129A-16222T-16311C	
+H33b	EU600341	MismatchedPolymorphisms	14121T-16355T	
+H2+16291	JQ705818	MismatchedPolymorphisms	5673C-6821T-8033G-16093C	
+H64	JQ702918	MismatchedPolymorphisms	8065A-9211T-16195C	
+H85	JQ704251	MismatchedPolymorphisms	456T	
+H35a	AY495316	MismatchedPolymorphisms	513A-10481C-15924G-16298C	
+H40	JQ704876	MismatchedPolymorphisms	499A	
+H40a	FJ985851	MismatchedPolymorphisms	4386C	
+H41a	JQ702060	MismatchedPolymorphisms	14433T	
+H42	JQ704132	MismatchedPolymorphisms	7283C-12028C	
+H42a	JQ324628	MismatchedPolymorphisms	152C-8584A	
+H44a1	HM355887	MismatchedPolymorphisms	16234T	
+H44b	JQ705692	MismatchedPolymorphisms	150T-8632C	
+H47	GU123005	MismatchedPolymorphisms	131C-16246T-16362C	
+H48	HQ676807	MismatchedPolymorphisms	16356C	
+H49	HQ660082	MismatchedPolymorphisms	8565G-9368G	
+H49a	EU131366	MismatchedPolymorphisms	15077A	
+H49a2	JQ702889	MismatchedPolymorphisms	14893G	
+H49b	JQ701932	MismatchedPolymorphisms	64T-372C-3110T	
+H54	JQ704987	MismatchedPolymorphisms	182T-709A	
+H55	JQ702906	MismatchedPolymorphisms	153G-9482C	
+H55a	JQ703111	MismatchedPolymorphisms	16145A	
+H56b	JQ703350	MismatchedPolymorphisms	15412C-16255A	
+H57	JQ704677	MismatchedPolymorphisms	709A-8855T-15721C	
+H58	JQ703264	MismatchedPolymorphisms	146C-5807G-9461G	
+H58a	JQ324788	MismatchedPolymorphisms	11908G	
+H59	JQ701910	MismatchedPolymorphisms	15544T	
+H59a	JQ704027	MismatchedPolymorphisms	3434G	
+H60a	JQ705583	MismatchedPolymorphisms	185A-9102A-16189C	
+H61	AY495185	MismatchedPolymorphisms	73G	
+H62	EF609014	MismatchedPolymorphisms	194T	
+H63a	JQ704853	MismatchedPolymorphisms	64T	
+H65	HM625709	MismatchedPolymorphisms	4502C-9948A	
+H66	JN415472	MismatchedPolymorphisms	195C-2060G-14495G-16129A-16248T	
+H67	JQ704151	MismatchedPolymorphisms	4481A-11233C-16093C	
+H67a	JQ702448	MismatchedPolymorphisms	12549T	
+H70	JQ704792	MismatchedPolymorphisms	73G-16150T	
+H71	JQ704813	MismatchedPolymorphisms	10084C-16086C	
+H73	JQ702419	MismatchedPolymorphisms	16213A	
+H74	JQ324578	MismatchedPolymorphisms	249G	
+H78	EU600333	MismatchedPolymorphisms	146C-3411G-16240G	
+H79	JQ702218	MismatchedPolymorphisms	6347T-12123T	
+H79a	JQ705299	MismatchedPolymorphisms	14668T	
+H80	EF493867	MismatchedPolymorphisms	16254G	
+H82	JQ702080	MismatchedPolymorphisms	195C	
+H87	JQ705040	MismatchedPolymorphisms	150T	
+H100	HQ659700	MismatchedPolymorphisms	93G-200G-1391C-15110A	
+HV	JQ705953	MismatchedPolymorphisms		2706G-7028T
+HV0	JQ705599	MismatchedPolymorphisms	8473C-11518A	
+HV0a	JQ704188	MismatchedPolymorphisms	295T-3540C	
+V1a	JQ702026	MismatchedPolymorphisms	14016A	
+V1a1b	EF661005	MismatchedPolymorphisms	7055G-11403A	
+V1b	JQ702938	MismatchedPolymorphisms	16092C	
+V2	JQ705658	MismatchedPolymorphisms	14914G-15746G	
+V2a	AY713979	MismatchedPolymorphisms	16263C	
+V2a1	AY495322	MismatchedPolymorphisms	14798C	
+V2b	AY495313	MismatchedPolymorphisms	1018A	
+V2c	JQ705254	MismatchedPolymorphisms	11677T	
+V3	JQ703666	MismatchedPolymorphisms	15565C	
+V3a	JQ705789	MismatchedPolymorphisms	195C	
+V3a1	JQ702667	MismatchedPolymorphisms	4622C	
+V3c	EU567326	MismatchedPolymorphisms	8020A	
+V4	AY495312	MismatchedPolymorphisms	1657T-3849A-11287C	
+V5	AY339451	MismatchedPolymorphisms	93G	
+V6	FJ348207	MismatchedPolymorphisms	13143C	72C
+V7	JQ705798	MismatchedPolymorphisms	152C-9099T	
+V7a	JQ703830	MismatchedPolymorphisms	89C-195C-930A-7424G-12753G	
+V8	JQ702025	MismatchedPolymorphisms	6216C	
+V9	EF177445	MismatchedPolymorphisms	3316A-9935C	
+V10b	HM570048	MismatchedPolymorphisms	9098G	
+V11	JQ704405	MismatchedPolymorphisms	4254C	
+V12	AY495321	MismatchedPolymorphisms	8520G	
+V15	HQ645963	MismatchedPolymorphisms	16093C-16209C	
+V16	JQ704468	MismatchedPolymorphisms	4924A	
+V17	JQ703973	MismatchedPolymorphisms	7202G-16227G	
+V20	JQ705168	MismatchedPolymorphisms	152C-10065C-16316G	
+V+@72	JQ701938	MismatchedPolymorphisms	15849T	
+HV0b	EF556192	MismatchedPolymorphisms	8520G	
+HV0d	JN794568	MismatchedPolymorphisms	8736C	
+HV0e	JQ705967	MismatchedPolymorphisms	16092C	
+HV0f	JQ705127	MismatchedPolymorphisms	7419A	
+HV1	JF320654	MismatchedPolymorphisms	4766G-9548A	
+HV1a'b'c	AY738943	MismatchedPolymorphisms	7569G-8376C-9755A-13535G	750G
+HV1a1b	FJ210914	MismatchedPolymorphisms	4823C-6935T	
+HV1a2	JF260943	MismatchedPolymorphisms	3801C-14022G	
+HV1b	AY738942	MismatchedPolymorphisms	150T-3290C-5134G-6263T-9585T	
+HV1b1	EF556182	MismatchedPolymorphisms	3687T	
+HV1b1a	JF260951	MismatchedPolymorphisms	3591A-7912A-8027A	
+HV1b+152	JF260944	MismatchedPolymorphisms	14305A-16158G-16234T	
+HV1b3	HM998901	MismatchedPolymorphisms	151T-183G-7664A-15172A-15236G-15519C	
+HV1c	EF556190	MismatchedPolymorphisms	182T-15930A-16172C	
+HV1d	JF260933	MismatchedPolymorphisms	709A-8584A	
+H+73	EU935433	MismatchedPolymorphisms	1733T-3606G-8772C-13866G-14256C-16189C-16390A	
+HV2	AY713986	MismatchedPolymorphisms	72C-5153G-7861C-16325C	
+HV2a	EU567456	MismatchedPolymorphisms	151T-15164C	
+HV4	EF417833	MismatchedPolymorphisms	9355G	
+HV4a1	JN214428	MismatchedPolymorphisms	4212G-4277C-16319A	
+HV4a1+16291	JN214427	MismatchedPolymorphisms	64T-93G-204C-9977C	
+HV4a1a1	JN214392	MismatchedPolymorphisms	16302G	
+HV4a1a2	JN214397	MismatchedPolymorphisms	4314C	
+HV4a1a4	JN214410	MismatchedPolymorphisms	152C	
+HV4a2b	EU935457	MismatchedPolymorphisms	236C-8251A-9055A	
+HV4b	EF222234	MismatchedPolymorphisms	207A-709A-7278C-12950G-15777A-15910T	
+H+16311	EU545435	MismatchedPolymorphisms	14162A-16266T	
+HV6a	EU545454	MismatchedPolymorphisms	9630A	
+HV7	EU545443	MismatchedPolymorphisms	146C	
+HV9+152	EF222253	MismatchedPolymorphisms	15461C	
+HV9a1	FJ430150	MismatchedPolymorphisms	195C-930A-9947A-14182G	
+HV10	EF222245	MismatchedPolymorphisms	16129A	
+HV11	JQ702048	MismatchedPolymorphisms	146C-150T-4336C-16093C	
+HV15	JQ704184	MismatchedPolymorphisms	513A-4561C	15326G
+HV16	HQ658354	MismatchedPolymorphisms	4787G-9123A-12654G	
+HV17	EU545424	MismatchedPolymorphisms	146C	
+HV12a	HQ844516	MismatchedPolymorphisms	152C-3892G-4254C-14344G-15402G-16243C-16261T-16342C	
+HV13	JF700125	MismatchedPolymorphisms	152C-3290C-11002G-16184T-16209C	
+R0a1a	HM185216	MismatchedPolymorphisms	4722G	
+R0a1a1	HM185217	MismatchedPolymorphisms	5074C-6365C-13387T-13399A	
+R0a1a2	HM185258	MismatchedPolymorphisms	8567C	
+R0a1a3	HM185213	MismatchedPolymorphisms	5159G-13810A-16185T	
+R0a1a4	HM185245	MismatchedPolymorphisms	709A-6032A-9128C-16189C	
+R0a1+152	HM185256	MismatchedPolymorphisms	9632G-10057C-15904T-16291T	
+R0a1b	DQ904236	MismatchedPolymorphisms		58C
+R0a2	HM185266	MismatchedPolymorphisms	267C-3705A-4997T-9921A	58C
+R0a2a	EF556170	MismatchedPolymorphisms	11719A-12040G	58C
+R0a2a1	HM185257	MismatchedPolymorphisms		58C
+R0a2b	HM185261	MismatchedPolymorphisms		58C
+R0a2c	HM185215	MismatchedPolymorphisms	6366A-7083G-8842G	58C
+R0a2d	JF717359	MismatchedPolymorphisms	72G-5892C-12717T-13395G-16184T	58C
+R0a2e	DQ904242	MismatchedPolymorphisms		58C
+R0a2f	HM185225	MismatchedPolymorphisms	146C-16189C-16400T	58C
+R0a2f1a	HM185227	MismatchedPolymorphisms		58C
+R0a2f1b	HM185228	MismatchedPolymorphisms	15317A	58C
+R0a2g	HM185271	MismatchedPolymorphisms		58C
+R0a2h	HM185238	MismatchedPolymorphisms	769A-8764A-9389G	58C
+R0a2i	HM185242	MismatchedPolymorphisms	8134C	58C
+R0a2+195	HM185237	MismatchedPolymorphisms	3316A-5036G-11337G-12715G	58C
+R0a2j	HM185246	MismatchedPolymorphisms	1284C-3189T-3221G-6650G-8603C-12001G-16248T	58C
+R0a2k	JF717355	MismatchedPolymorphisms	13651G-16230G-16497G	58C
+R0a2k1	HM185254	MismatchedPolymorphisms		58C
+R0a2l	HM185250	MismatchedPolymorphisms	16163G	58C
+R0a2m	JQ705916	MismatchedPolymorphisms		58C
+R0a3	HM185265	MismatchedPolymorphisms	374G-10172A-10653A-12474T-16145A-16352C	58C
+R0a4	JQ702940	MismatchedPolymorphisms		58C
+R1	EU545445	MismatchedPolymorphisms	14162A-15497A-16278T	15326G
+R1a	HQ602771	MismatchedPolymorphisms	11176A	
+R1a1	JQ705561	MismatchedPolymorphisms		15326G
+R1a1a	EU545437	MismatchedPolymorphisms	574G-9425G	
+R1a1a1	EF222243	MismatchedPolymorphisms	14968C	
+R2a	JX155266	MismatchedPolymorphisms	5153G	
+R2b	EF556167	MismatchedPolymorphisms	8939C-16188T-16223T	
+J1b1a1c	AY495231	MismatchedPolymorphisms	63G-232T-253G-285T-452T-479C-740G-1428G-2148C-2696G-3000A-4206C-4759G-5450A-7018T-8259A-8547A-8850G-10388G-11241G-11709A-11997A-12602G-13698A-13869C-14756T-15316G-15442A-16059T-16116C-16135A-16162C-16212T-16251T	10C-73G-242T-263G-295T-462T-489C-750G-1438G-2158C-2706G-3010A-4216C-4769G-5460A-7028T-8269A-8557A-8860G-10398G-11251G-11719A-12007A-12612G-13708A-13879C-14766T-15326G-15452A-16069T-16126C-16145A-16172C-16222T-16261T
+J1b1a1d	AY495238	MismatchedPolymorphisms	1462A	
+J1b1a2b	JQ797763	MismatchedPolymorphisms	8412C-16497G	
+J1b1a3	EF660916	MismatchedPolymorphisms	16079T-16215G	
+J1b1b	AY714033	MismatchedPolymorphisms	8494G-13656C-15941C-16274A	
+J1b1b1	EF397558	MismatchedPolymorphisms	7270C-10245C-16311C	16222T
+J1b1b1b	JQ797769	MismatchedPolymorphisms	114G-146C-12880C	16222T-16261T
+J1b1b2	JQ703656	MismatchedPolymorphisms	9192A-16224C	
+J1b2	EF556169	MismatchedPolymorphisms	15978T	
+J1b2a	JQ702001	MismatchedPolymorphisms	3918A	
+J1b3a	HM594676	MismatchedPolymorphisms	12079T	
+J1b4	JQ797776	MismatchedPolymorphisms	447T-2757G-5336T-9739T-12406A-14757C-15649G	
+J1b5b	JQ797779	MismatchedPolymorphisms	153G-6116G-6212G-8853G-15673G-16526A	
+J1b6	JQ797782	MismatchedPolymorphisms	9587G-14769C-15883A	
+J1b6a	DQ282491	MismatchedPolymorphisms	6902G	
+J1b7	JQ797784	MismatchedPolymorphisms	16390A	
+J1c	AY495206	MismatchedPolymorphisms	8839A	
+J1c1	JQ702685	MismatchedPolymorphisms	16249C	
+J1c1a	AY495210	MismatchedPolymorphisms		185A
+J1c1b1	EF452293	MismatchedPolymorphisms	5411G-13368A-14200C-16271C	
+J1c1b1a	FJ502349	MismatchedPolymorphisms	234G-16235G	
+J1c1b2	JQ705141	MismatchedPolymorphisms		185A
+J1c1b2a	JQ702981	MismatchedPolymorphisms		185A
+J1c1c	JQ704867	MismatchedPolymorphisms	9377G	
+J1c1d	HM625690	MismatchedPolymorphisms	11884G	
+J1c1e	AY495208	MismatchedPolymorphisms	15769G	
+J1c1f	JQ705770	MismatchedPolymorphisms	5315G-13647T-16172C	
+J1c2a1	AY495229	MismatchedPolymorphisms	9181G-15909G	
+J1c2a2	DQ787109	MismatchedPolymorphisms	16136C	
+J1c2b2	HM776018	MismatchedPolymorphisms	7424G	1438G
+J1c2b3	JQ702706	MismatchedPolymorphisms	59C	
+J1c2c	GU949564	MismatchedPolymorphisms	16213A	
+J1c2k	JQ797804	MismatchedPolymorphisms	8513T	
+J1c2m1	JQ702724	MismatchedPolymorphisms	195C	
+J1c2n	AY339584	MismatchedPolymorphisms	8705C	228A
+J1c2o	JQ703789	MismatchedPolymorphisms	5000G	
+J1c2q	AY495226	MismatchedPolymorphisms	11083G-12557T-13557G	
+J1c3a1	AY495211	MismatchedPolymorphisms		185A
+J1c3a2	JQ703792	MismatchedPolymorphisms		185A
+J1c3b	JQ705085	MismatchedPolymorphisms	8905T	228A
+J1c3b1	JQ705447	MismatchedPolymorphisms		228A
+J1c3b1a	FJ445407	MismatchedPolymorphisms		228A
+J1c3b2	HM026752	MismatchedPolymorphisms		228A
+J1c3c2	JQ703602	MismatchedPolymorphisms	793T	
+J1c3e1	JQ705868	MismatchedPolymorphisms	11233C	
+J1c3e2	JQ705308	MismatchedPolymorphisms	13395G-14281T	
+J1c3g	JQ705212	MismatchedPolymorphisms		228A
+J1c3h	DQ523659	MismatchedPolymorphisms	4688C	
+J1c3i	JQ703753	MismatchedPolymorphisms	13326C	
+J1c3j	FJ603099	MismatchedPolymorphisms	1766C	228A
+J1c5a	JQ703803	MismatchedPolymorphisms	195C-15601C-16172C-16270T	
+J1c5b	JQ703604	MismatchedPolymorphisms	14106C	
+J1c5d	HQ287873	MismatchedPolymorphisms	146C	
+J1c5f	EF657710	MismatchedPolymorphisms	174G-862G-2130G-2434A-3640C-4193G-4622G-6105C-6452T-9822G-10511C-10630T-10675G-11143A-11663T-12036G-13132A-14190T-14222C-14750G-14876A-15348G	73G-185A-228A-263G-295T-462T-489C-750G-1438G-2706G-3010A-4216C-4769G-5198G-7028T-8860G-10398G-11087C-11251G-11719A-12612G-13708A-14766T-14798C-15326G-15452A-15924G-16069T-16126C-16311C
+J1c6	AY495209	MismatchedPolymorphisms	14502C	
+J1c+16261	FJ348153	MismatchedPolymorphisms	16145A	
+J1c+16261+189	JN415478	MismatchedPolymorphisms	3981G-8760C-14482A	
+J1c8b	JQ705449	MismatchedPolymorphisms	5306T	
+J1c9	AY495205	MismatchedPolymorphisms	12813T	
+J1c10	JQ704751	MismatchedPolymorphisms	7098T-14386C-16168T	185A
+J1c11a	HM765470	MismatchedPolymorphisms	9497C-10899G	
+J1c15a1	JQ797880	MismatchedPolymorphisms	4176G-11204C-16148T	
+J1c15b	JQ797877	MismatchedPolymorphisms	16075C-16290T	
+J1d	JQ797902	MismatchedPolymorphisms	57C-59C-182T-3523G-4655A-8392A-8473C-10203A-12823A-16212G-16368C	
+J1d1b	AF382001	MismatchedPolymorphisms	9380A-15924G	
+J1d2	DQ341088	MismatchedPolymorphisms	689C-9123A-11778A-14040A-14280G-16092C-16311C-16362C	
+J1d4	HM453206	MismatchedPolymorphisms	146C-153G-4508T-8538C	
+J2a1	JQ704041	MismatchedPolymorphisms	4688C-8843C-14929T	
+J2a1a1	JQ701807	MismatchedPolymorphisms	75A-16186T	513A
+J2a1a1a1	AY339579	MismatchedPolymorphisms	214G-12477C	215G
+J2a1a1a3	JQ703568	MismatchedPolymorphisms	16355T	
+J2a1a1e	JQ702605	MismatchedPolymorphisms	10604C-16249C	513A
+J2a1a2	DQ341089	MismatchedPolymorphisms	4991A-11704T-12501A-12705T-15055C	263G
+J2a1a2a	JQ764985	MismatchedPolymorphisms	11386C-11680G	
+J2a2a	EF660967	MismatchedPolymorphisms	564C-565C-567C-574C-10684G-11204C-14656G	13708A
+J2a2b1	FJ460543	MismatchedPolymorphisms	185A-8292A	
+J2a2d	FJ460559	MismatchedPolymorphisms	207A	
+J2b1	JQ702563	MismatchedPolymorphisms	8911C	
+J2b1a	JQ702196	MismatchedPolymorphisms	709A	
+J2b1a1a	FJ445408	MismatchedPolymorphisms	14405G	
+J2b1a2a	JF938916	MismatchedPolymorphisms	5460A	
+J2b1c	JQ797951	MismatchedPolymorphisms	513A-9254G	
+J2b1c1	EU807741	MismatchedPolymorphisms	3635A-8551C-10362T-12070A-16286T	
+J2b1d	FJ445409	MismatchedPolymorphisms	4655A-12239T-13683T-16261T	
+J2b1e	JQ701981	MismatchedPolymorphisms	8311C-14761T-16362C	
+J2b1h	JQ702424	MismatchedPolymorphisms	16357C-16496A	
+J2b2	FJ213765	MismatchedPolymorphisms	15001C-16320T	
+T1	JQ797976	MismatchedPolymorphisms	152C-4592C-5201C-16093C-16356C	
+T1a	EF177409	MismatchedPolymorphisms	3834A-8701G	
+T1a1a	JQ705982	MismatchedPolymorphisms	9948A	
+T1a1d	EU007876	MismatchedPolymorphisms	11518A-13708A	1438G
+T1a1e	FJ480957	MismatchedPolymorphisms	146C	
+T1a1g	JF833040	MismatchedPolymorphisms	12406A	
+T1a3	JQ798022	MismatchedPolymorphisms	140T-3338C-16192T-16234T	195C
+T1a2	JQ798012	MismatchedPolymorphisms	8059T-13879C-16169T	
+T1a2a	EF660961	MismatchedPolymorphisms	3335C	
+T1a2b	JQ798013	MismatchedPolymorphisms	14861A	16163G
+T1a4	EU979542	MismatchedPolymorphisms	6224T	750G
+T1a12	JQ798020	MismatchedPolymorphisms	146C	
+T1a13	JQ798007	MismatchedPolymorphisms	16172C	
+T1a5	JQ703724	MismatchedPolymorphisms	16129A-16192T	
+T1a6	JN104727	MismatchedPolymorphisms		16189C
+T1a7	EU935435	MismatchedPolymorphisms	199C-7784G	
+T1a8b	JQ798035	MismatchedPolymorphisms	8227C-9456G	
+T1a9	JQ798018	MismatchedPolymorphisms	11476T-11914A	1438G
+T1b1	JQ798037	MismatchedPolymorphisms	7299G	
+T1b2	JQ798039	MismatchedPolymorphisms	8730G	
+T1b4	JQ798050	MismatchedPolymorphisms		16294T
+T2	JQ798138	MismatchedPolymorphisms	13675G-13710G-16078G-16292T	
+T2a1	JQ798058	MismatchedPolymorphisms	6293C	
+T2a1a1	FJ348180	MismatchedPolymorphisms	8994A-13708A	
+T2a1a3	AY495300	MismatchedPolymorphisms	8435G-9371T	
+T2a1a6	JQ702036	MismatchedPolymorphisms	16256T	
+T2a1a8	JF958082	MismatchedPolymorphisms	7258C	
+T2a1b	JQ702344	MismatchedPolymorphisms	10005G-11020G-12481A	
+T2a1b1a	JQ046361	MismatchedPolymorphisms	5553C-11151T	
+T2a1b1a1	JQ702937	MismatchedPolymorphisms	5894G-13260C-14162A	
+T2a1b1a1a	JQ703700	MismatchedPolymorphisms	8975C-9948A	
+T2a1b1a1b	JN024624	MismatchedPolymorphisms	7041A-10589A	
+T2a1b2a	GU123001	MismatchedPolymorphisms	8607T-9827T-13134G-13884G	
+T2a1b2b	JQ798057	MismatchedPolymorphisms	4113A-9911A-11167G	
+T2a2	FJ238094	MismatchedPolymorphisms	16295T	
+T2b2	AY714016	MismatchedPolymorphisms	6182A	
+T2b2b	EU683970	MismatchedPolymorphisms	152C	
+T2b3+151	HQ384203	MismatchedPolymorphisms	6437G-7085C-15670C	
+T2b3a	DQ523649	MismatchedPolymorphisms	16093C	
+T2b3a1	JQ798060	MismatchedPolymorphisms	14926G-16209C	
+T2b3c	JQ705786	MismatchedPolymorphisms	3777C-13743C	
+T2b3e	JQ705199	MismatchedPolymorphisms	11047A	
+T2b4a	JF836084	MismatchedPolymorphisms	114T	
+T2b4e	JQ798064	MismatchedPolymorphisms	839G-4659A-9443C-9983G	
+T2b4f	JQ704596	MismatchedPolymorphisms	16359C	
+T2b4h	JQ798066	MismatchedPolymorphisms	16360T	
+T2b21	HQ917079	MismatchedPolymorphisms	195C-214G	
+T2b21a	JQ705895	MismatchedPolymorphisms	8622T-8919G	
+T2b31	JQ703715	MismatchedPolymorphisms	4907C-16327T	
+T2b6+146	JQ705357	MismatchedPolymorphisms	13641C	
+T2b7a1	JQ703294	MismatchedPolymorphisms	11197T	
+T2b7a2	JQ704997	MismatchedPolymorphisms	10777A	
+T2b7a3	JQ798079	MismatchedPolymorphisms	146C-1462A-13161C-14215C-14798C	16126C
+T2b8	GU122998	MismatchedPolymorphisms	9843G	
+T2b9	JQ703011	MismatchedPolymorphisms	12025T	
+T2b16	GU123025	MismatchedPolymorphisms		16304C
+T2b17	JF957699	MismatchedPolymorphisms		16296T
+T2b23	JQ798075	MismatchedPolymorphisms	64G-254G-700A-741G-921A-1429G-1879A-2697G-4158T-4207C-4760G-4908G-5138A-7019T-8688A-8851G-10454C-11242G-11710A-11803G-12432C-13359A-13990T-14224G-14757T-14896A-15317G-15443A-15598G-15919A-16117C-16138T-16285T-16288C-16295C	73G-263G-709A-750G-930A-1438G-1888A-2706G-4216C-4769G-4917G-5147A-7028T-8697A-8860G-10463C-11251G-11719A-11812G-12441C-13368A-14233G-14766T-14905A-15326G-15452A-15607G-15928A-16126C-16147T-16294T-16296T-16297C-16304C
+T2b23a	FJ348208	MismatchedPolymorphisms	5315G-14314G-16224C-16362C	11812G
+T2b24	JQ705038	MismatchedPolymorphisms	146C	
+T2b25	JQ704697	MismatchedPolymorphisms	16129A	
+T2b26	JQ702312	MismatchedPolymorphisms	14562T	263G
+T2b27	JQ705444	MismatchedPolymorphisms	16311C	
+T2b28	JQ701939	MismatchedPolymorphisms	12358G	
+T2c	JQ798090	MismatchedPolymorphisms	13818C-16148T-16218T-16248T-16527T	
+T2c1a	JN202494	MismatchedPolymorphisms	3498T-9612A-11800G	16296T
+T2c1a2	EF660941	MismatchedPolymorphisms	574C-16390A	16296T
+T2c1c	JQ798103	MismatchedPolymorphisms	3010A-5147A-9177G-13145A-14319C	
+T2c1c1	JQ798099	MismatchedPolymorphisms	4841A-7301G-12378T-14413T	16296T
+T2c1+146	JQ798091	MismatchedPolymorphisms	89C-11692T-14221C-14581C-16086C	
+T2c1d1	JQ704020	MismatchedPolymorphisms	114T-3212T-4639C-4967C-13056T-14544A-16124C-16319A	16296T
+T2c1d1a	JN580589	MismatchedPolymorphisms		16296T
+T2c1d+152	JQ798094	MismatchedPolymorphisms	7337A	16296T
+T2c1d2	JQ798096	MismatchedPolymorphisms		16296T
+T2c1d2a	DQ523629	MismatchedPolymorphisms		16296T
+T2c1e	JQ703823	MismatchedPolymorphisms	11440A-13239T-13650T	
+T2c1f	GU048747	MismatchedPolymorphisms	12678C-13977T	16296T
+T2d1a	AY714037	MismatchedPolymorphisms	606G-6221C-7680C-8859T	
+T2d1b	JQ798105	MismatchedPolymorphisms	9617G-11827C	16296T
+T2d2	JQ798108	MismatchedPolymorphisms	210G-4967C	
+T2e1	JQ798113	MismatchedPolymorphisms	16207T	16296T
+T2e1a	JQ705465	MismatchedPolymorphisms	3744G-7828G-16093C	16296T
+T2e2	AY714029	MismatchedPolymorphisms	204C-980C-2829T-11002G	
+T2e2a	JQ798114	MismatchedPolymorphisms	7861C-11419C	
+T2e6	JQ798118	MismatchedPolymorphisms	1120T-16172C	
+T2+16189	JQ798135	MismatchedPolymorphisms	195C-6662G-12528A-13135A	16296T
+T2f1	JQ798120	MismatchedPolymorphisms	10373A-12501A	
+T2f2	JQ798125	MismatchedPolymorphisms	5515G	
+T2f5	JQ702957	MismatchedPolymorphisms	1891T	
+T2g1	EU935442	MismatchedPolymorphisms	200G-1977C	
+T2g2	HM625693	MismatchedPolymorphisms	8812G	
+T2g2a	JQ702710	MismatchedPolymorphisms	235G	
+T2h	JN202724	MismatchedPolymorphisms	6260A-9234G	
+T2i1	JQ704055	MismatchedPolymorphisms	385G-7604A	16296T
+T2j	JQ704786	MismatchedPolymorphisms	8827G-11155T-12630A-14207A-16192T-16465T	
+T2j1	EF177442	MismatchedPolymorphisms	12172G-16325C	
+T2l	HQ912960	MismatchedPolymorphisms	207A	16296T
+R3	JQ703633	MismatchedPolymorphisms	146C-12753G-16037G-16319A	
+R5	AY713998	MismatchedPolymorphisms	64T-5875T-8188G-8446G-8622T-9296T-9503G-12507G-13958C-16526A	
+R5a1	FJ004837	MismatchedPolymorphisms	850C-1709A-4853A-8120T-11377A-16172C	
+R5a2	AY713993	MismatchedPolymorphisms	1095C-3894T-13708A-16189C-16256T-16271C	16524G
+R5a2a	AY713985	MismatchedPolymorphisms	979T-4511C-15479C	
+R5a2b	FJ004815	MismatchedPolymorphisms	15497A	
+R5a2b2	AY714002	MismatchedPolymorphisms	5102G-6353G-9083C-16124C-16362C	
+R5a2b3	FJ004833	MismatchedPolymorphisms	15106A	
+R6	AY713994	MismatchedPolymorphisms	246C-3531A-3644C-4991A-7364G-9254G-16093C-16179T-16227G-16245T-16278T	
+R6a	AY714028	MismatchedPolymorphisms	146C-459T-2386A-3637T-4012G-4739T-7202G-9142A-9449T-10084C-11332T-11620G-14470C-15115C-16172C-16216C	
+R6a1	AY714019	MismatchedPolymorphisms	217C-1291C-5894G-8889C-12133T-13391G-15067C-15100T-16213A-16319A-16390A	16266T
+R6a1a	FJ004819	MismatchedPolymorphisms	3338C	
+R7a	AY714030	MismatchedPolymorphisms	1462A-4129G-8485A-15885T-16234T-16304C	
+R7a1	FJ004835	MismatchedPolymorphisms		2706G
+R7a1a	FJ004823	MismatchedPolymorphisms	207A-11695G-16086C	
+R7b1	FJ004817	MismatchedPolymorphisms	3008G-6136C	
+R7b1a	AY714024	MismatchedPolymorphisms	13111C-14554G-16286T-16293G	7870C-15942C
+R7b1a1	FJ004811	MismatchedPolymorphisms	153G	
+R8a1a	FJ467953	MismatchedPolymorphisms	513A-10238C-14883T-15247T	
+R8a1a1	FJ467965	MismatchedPolymorphisms	257G-2222C-4216C-14521T-14753T	
+R8a1a1a	FJ467978	MismatchedPolymorphisms	243G-3483A-5298G-11050C-13711A	
+R8a1a1b	FJ467949	MismatchedPolymorphisms	9830T-14693G-16302G	
+R8a1a1c	FJ467942	MismatchedPolymorphisms	13563G-13708A	
+R8a1a1d	HM345949	MismatchedPolymorphisms	12346T	
+R8a1a2	FJ467952	MismatchedPolymorphisms	5978G-10143A	
+R8a1a2a	FJ467971	MismatchedPolymorphisms	8598C-13351T	
+R8a1a3	AY714011	MismatchedPolymorphisms	198T-4484T-11113C-16093C-16399G	
+R8a1+16093	FJ467972	MismatchedPolymorphisms	152C-2885C-10694G-12181T-16368C	
+R8a2	FJ467985	MismatchedPolymorphisms	345T-4706G-12448A-16221T-16278T	
+R8b1	FJ467941	MismatchedPolymorphisms	180C-8843C-10674C	
+R8b1a	FJ467940	MismatchedPolymorphisms	709A-5460A-8566G-8584A	
+R8b2	FJ467989	MismatchedPolymorphisms	456T	
+R9b1a1a	DQ981466	MismatchedPolymorphisms	5814C-13326C-16234T	
+R9b1a2	JN580298	MismatchedPolymorphisms	204C-4767G-6620C-15547T	
+R9b1a2a	DQ981471	MismatchedPolymorphisms	1462A-11077G	
+R9b1a3	DQ981469	MismatchedPolymorphisms	1790G	
+F1a1	AP008906	MismatchedPolymorphisms	10043T	
+F1a1a	HM357817	MismatchedPolymorphisms	150T	
+F1a1a1	AY963572	MismatchedPolymorphisms	14152G-16311C	
+F1a1c	AP008475	MismatchedPolymorphisms	15314A-15629C	
+F1a4	JF824826	MismatchedPolymorphisms	466C-8251A	
+F1a4a1	HM804484	MismatchedPolymorphisms	6719C	
+F1a2	DQ272124	MismatchedPolymorphisms	14110C-16465T	
+F1a3a1	AP008701	MismatchedPolymorphisms	146C-11869T	
+F1c	AP010738	MismatchedPolymorphisms	2308G-4232C-10256C-10649C-14364A-16093C-16325C	
+F1c1	AP008616	MismatchedPolymorphisms	279C-1766C-1978G-2887C-3816G-5178T-16086C-16265C	
+F1c1a	AY255177	MismatchedPolymorphisms	2746C-10790C-13105G-14587G-16266T	
+F1f	AP012346	MismatchedPolymorphisms	16172C	
+F1b1	AP008446	MismatchedPolymorphisms	153G-14368T-15459T	152C
+F1b1a	AP008498	MismatchedPolymorphisms	9092T-11404G	2706G
+F1b1a1	AP008591	MismatchedPolymorphisms	189G-207A-2079T-15884A	
+F1b1a1a	AP008421	MismatchedPolymorphisms	8994A	
+F1b1a1a1a	AP009474	MismatchedPolymorphisms	4820A	16344T
+F1d	AP008808	MismatchedPolymorphisms	152C	
+F1g	JN133516	MismatchedPolymorphisms	14484C	
+F1g1	GU392087	MismatchedPolymorphisms	5300T-5663T-12892C-16093C	3970T
+F2+16291	HM036555	MismatchedPolymorphisms	747G-6683T-6951A-7238C-16266G	
+F2b	AY255180	MismatchedPolymorphisms	146C-1709A-3290C-5417A-5846T-8636C-9137C-10801A-12609C-13500C-14016A-16266T	
+F2c1	JF824941	MismatchedPolymorphisms	6221C	
+F2d	GU392094	MismatchedPolymorphisms	146C-152C-709A-5705G-10527T-15529T-16158G-16319A	
+F3a	AY255167	MismatchedPolymorphisms	195C-3390G-7094C-16209C-16311C	
+F3a+207	JF824855	MismatchedPolymorphisms	4907C-15854G-16187T	
+F3b	AY972053	MismatchedPolymorphisms	151T-2392C-3535C-4802C-10398G-11914A-13044T-15910T-16227G	
+F4a1	AF346973	MismatchedPolymorphisms	317A-3316A-4512A-7561C-12134C-15110A-15803A-16126C	152C
+F4a1a	AP008744	MismatchedPolymorphisms	1520C	
+F4b	AY289095	MismatchedPolymorphisms	513A-10097C	
+R11a	AP010998	MismatchedPolymorphisms	4706G-5186C-5301G-9071T-12358G-14696G	
+R11b1a	JN857012	MismatchedPolymorphisms	5999C-7269A-15844G-16094C	
+R11b1b	AY255163	MismatchedPolymorphisms	150T-5846T-11206A-15924G-16259T	1438G
+B6a	AY255136	MismatchedPolymorphisms	1193C-8701G-10849T-16179T	
+B4a1a1	AY289076	MismatchedPolymorphisms	6083T-9103C	
+B4a1a1a3	JQ704922	MismatchedPolymorphisms	12164A	16189C
+B4a1a1a4	HQ873501	MismatchedPolymorphisms	6887T	
+B4a1a2	AJ842748	MismatchedPolymorphisms	3394C-16274A	
+B4a1a4	AJ842747	MismatchedPolymorphisms	16360A	
+B4a1a5	GQ119021	MismatchedPolymorphisms	324G-13191C	
+B4a1b	AP008595	MismatchedPolymorphisms	8251A-15936G	
+B4a1b1	AP008842	MismatchedPolymorphisms	5004C	
+B4a1c1	AP008650	MismatchedPolymorphisms	150T-4679C-7533T-8679G-14148G-14569A-15663C-16169T-16239T	
+B4a1c1a	AP008912	MismatchedPolymorphisms	73C-75A-89C-5252A	73G
+B4a1c+146	HQ873564	MismatchedPolymorphisms	281G-316A-11632T-12237T-15038G	
+B4a1c2	AY519495	MismatchedPolymorphisms	3202C	
+B4a1c3	AP008521	MismatchedPolymorphisms	150T-4218C-4907C	
+B4a1d	HQ873495	MismatchedPolymorphisms	4080C-16408T-16551A	
+B4a2b	JF824854	MismatchedPolymorphisms	5772A-10876G	
+B4a4	AP008384	MismatchedPolymorphisms	709A-5201C-13281C	
+B4g1a	GU810060	MismatchedPolymorphisms	195C-8723A-9111C-10042C-12372A-13053T-16181C	
+B4h	GU377090	MismatchedPolymorphisms	3395G-3736A-12007A-12130C-14122G-16291T-16311C-16362C	
+B4i	JF824906	MismatchedPolymorphisms	12654G-16246G-16360T	
+B4i1	HQ873565	MismatchedPolymorphisms	195C-4093G-5656G-6791G-14581C-16129A-16287T	
+B2	HQ012138	MismatchedPolymorphisms	2380T-8222C-11696A-12599C-15937G-16360T	
+B2a	AF347001	MismatchedPolymorphisms	189G-5987T-11884G-13221G-16278T	16217C
+B2a1	EU431083	MismatchedPolymorphisms	3339G-14225T-16274A	
+B2b	EU095532	MismatchedPolymorphisms	8877C-9287A-14215C	
+B2c2	HQ012143	MismatchedPolymorphisms	1117G-6380G-11914A	
+B2f	EU334872	MismatchedPolymorphisms	9212T	
+B2g	JQ702661	MismatchedPolymorphisms	64G-105G-141T-254G-270C-490A-741G-818G-1429G-2697G-3538G-3757C-4760G-4811A-4968C-6155T-6464T-7019T-7331A-8851G-9941C-11168T-11638T-11710A-11866C-13581A-14757T-15317G-15526T-16139T-16174C-16180C-16208C-16510C	73G-114G-263G-499A-750G-827G-1438G-2706G-3547G-3766C-4769G-4820A-4977C-6164T-6473T-7028T-8860G-9950C-11177T-11719A-13590A-14766T-15326G-15535T-16189C-16217C
+B2g1	HQ012185	MismatchedPolymorphisms	146C	
+B2h	EU095206	MismatchedPolymorphisms	14094C-14410A	
+B2i	JX174728	MismatchedPolymorphisms	207A-335G-470G-11611A-15077A-15778T	
+B2i1	EU095218	MismatchedPolymorphisms	15914C	
+B4b1a	AY519494	MismatchedPolymorphisms	146C-15007T-16086C	
+B4b1a2	JQ704075	MismatchedPolymorphisms	1313C-16465T	
+B4b1a2a	AY255170	MismatchedPolymorphisms	498T-7993C-9128C-15301A-16309G-16354T	
+B4b1a2e	JF824980	MismatchedPolymorphisms	14467G	
+B4b1a3a	JN857044	MismatchedPolymorphisms	4026T	
+B4b1b	AP008682	MismatchedPolymorphisms	146C	
+B4b1c	DQ272119	MismatchedPolymorphisms	185A-8343G-9065T-11053G-16240G	
+B4b1c1	HQ873567	MismatchedPolymorphisms	13748G	
+B4d	AP008492	MismatchedPolymorphisms	6040G-6836T-8074G-9212T-11314G-14053G-14687G-15470C-16155G-16269G-16278T	
+B4d1	AY255135	MismatchedPolymorphisms	316A-4092A-16527T	
+B4d3a	JF824975	MismatchedPolymorphisms	9804A-13759A-15763G	
+B4d3a1	AP010836	MismatchedPolymorphisms	1299G-16186T	16185T
+B4c1a1a1	AP008298	MismatchedPolymorphisms	348T-351C-368G-380C-382G-385T-506T-3963A-10972G	
+B4c1a1a1a	AP011003	MismatchedPolymorphisms	9604G-11296T	
+B4c1a1b	AP008281	MismatchedPolymorphisms	5379T-11770C-14001G-16287T	
+B4c1a1c	AP010704	MismatchedPolymorphisms	961C	
+B4c1b	AP008570	MismatchedPolymorphisms	4625T-4704C-7091G-12853T-13437C-14692G-16243C-16362C	
+B4c1b1	AP008899	MismatchedPolymorphisms	16452C	
+B4c1b+16335	AP008472	MismatchedPolymorphisms	210G-2380T-5246A-14180C-14502C-16310A	
+B4c1b2a	AY255149	MismatchedPolymorphisms	4232C-9621A-12882T-16311C	16335G
+B4c1b2a1	GQ161177	Genome assembly had no or multiple delta alignments with the reference, whereas only 1 is expected!
+B4c1b2a2	HM238215	MismatchedPolymorphisms	4937C	
+B4c1c	AP009461	MismatchedPolymorphisms	3169T-10310A-11716T-13934T-16295T	
+B4c1c+16311	AP009436	MismatchedPolymorphisms	5268G-9425C-11329G	
+B4c2	GU592216	MismatchedPolymorphisms	8823C-9053A	16184A-16189C
+B4c2a	AF347011	MismatchedPolymorphisms	14319C	16184A-16189C
+B4c2b	GU592219	MismatchedPolymorphisms	13488C	16184A-16189C
+B4f	AP008788	MismatchedPolymorphisms	153G-513A-5824A-6969G-8158G-9856C-13581C-13720T	
+B4f1	AP008262	MismatchedPolymorphisms	13928A-15325G	
+B5a1b	AY255145	MismatchedPolymorphisms	3540C-5773A	
+B5a1d	GU810075	MismatchedPolymorphisms	228A-3316A-5417A-16224C-16272T	
+B5a2a	DQ372869	MismatchedPolymorphisms	204C-8557A-8614C-15046G-15301A-16266G-16362C	16266T
+B5a2a1	EF114286	MismatchedPolymorphisms	9189T-13422G-14861A-16256T-16266G	16266T
+B5b1	AP010771	MismatchedPolymorphisms	5063C-14560A-15734A-16355T	204C
+B5b1a	JF824930	MismatchedPolymorphisms	217C-5581G-9128C	
+B5b1a1	AP008827	MismatchedPolymorphisms	6398T-7298G	
+B5b1a2	AP008273	MismatchedPolymorphisms	12408C	
+B5b1c	HM238201	MismatchedPolymorphisms	1275G-3396C	16140C
+B5b3	JN857015	MismatchedPolymorphisms	146C-3396C-4703C-7170T-9266A-15746G-16274A	
+B5b3a	AP008566	MismatchedPolymorphisms	199C-10907C-13477A-16194C-16195C-16256T	
+B5b2a	GU903056	MismatchedPolymorphisms	3305G-5964C-6737G-7211A-7990T-8994A-9152C	
+B5b2a1	AY519489	MismatchedPolymorphisms	55C-493G-1193C-1440A-4561C-6032A-7590G-10915C-10972G-16129A-16244A	8829T-15223T
+B5b2a1b	AP009425	MismatchedPolymorphisms	16265G	
+B5b2a1b1	AP008910	MismatchedPolymorphisms	8894T	
+B5b2c	AP008465	MismatchedPolymorphisms	866G-4200G-9299G-15766G	
+R24	GQ119037	MismatchedPolymorphisms	438T-8772C-10124C-13434G-14902T-16324C	16189C
+R12	DQ112752	MismatchedPolymorphisms	1003G-2271G-3576T-3765G-4260C-4268C-4334G-4982A-6593T-7592A-8425G-8471G-8951C-9209G-9446C-10969G-11284A-11737G-13273A-13324A-13870A-14331T-14554T-14891G-15127G-15449A	73G-263G-750G-1438G-2706G-4011T-4200G-4695C-4703C-4769G-5417A-7028T-8027A-8860G-8906G-9386C-9644G-9881C-10398G-11404G-11719A-12172G-13708A-13759A-14305A-14766T-14989T-15326G-15562G-15884A-16295T
+R21	AP012392	MismatchedPolymorphisms	12121C	
+R22	GQ301886	MismatchedPolymorphisms	2836T-3210T-3398C-4634C-4639C-8387A-8706G-9542G-12026G-15115C-16270A-16311C-16319A	
+R30	AY714006	MismatchedPolymorphisms	195C-214G-2331A-4025T-5074C-6125G-8508G-12603T-14374C-15799G-15924G-16186T-16192T-16288C-16291T-16311C-16390A	152C
+R30a	AY714001	MismatchedPolymorphisms	6164T-10688A-13474C	
+R30b	EF556148	MismatchedPolymorphisms	3335C-6290T-7280T-7843G-13539G-14000A-15148A-16292T-16497G	152C
+R30b1	FJ004827	MismatchedPolymorphisms	4951T-4977C-5099T-9277G-13857G-16092C	
+R31a	AY714021	MismatchedPolymorphisms	185A-12745T	
+R31a1	FJ004825	MismatchedPolymorphisms	15778T	
+R31b	AY714046	MismatchedPolymorphisms	204C-3533T-5461T-16438A	
+P1	AF347004	MismatchedPolymorphisms	152C-5330A-10790C-12850G-13722G-14470C-14971C-16111A-16169T-16294T	16176T
+P1d	AY289092	MismatchedPolymorphisms	629C-8485A-8841T-12338C-12414C-13269G-15133G-15514C-16291T-16292T-16335G	
+P2	DQ112897	MismatchedPolymorphisms	274A-2271G-2767G-3447A-3687G-3949C-4334G-6593T-8143T-8424T-8425G-8858T-9683C-11284A-14331T-14455G-14891G-14920A-15172G	73G-263G-750G-2706G-3203G-3882A-4122G-4769G-7028T-8859T-8860G-11719A-14766T-14890G-15326G-15607G
+P3a	AY289052	MismatchedPolymorphisms	1048T-4659A-5420C-6378C-8075A-15077A-15090C-15191C-15889C-16297C	
+P3b	AY289091	MismatchedPolymorphisms	942G-1834C-2010C-5972T-6253C-6734A-6770G-6929G-13020C-13641C-13708A-15061G-15454C-16145A	
+P3b1	EF061153	MismatchedPolymorphisms	574C-576C-3145G-7238C-11101C-11914A-14602G-15431A-15937C-16356C	15937G
+P4a	EF061158	MismatchedPolymorphisms	185A-463T-1977C-10915C-11016A-16342C	
+P4a1	EF495221	MismatchedPolymorphisms	178G-6647G-8557A-10271T-16048A-16243C	
+P4b	AY289064	MismatchedPolymorphisms	548T-574G-1619T-3987G-7337A-7340A-8158G-8389G-8749C-10192A-10933G-15244G-15884C-16249C-16312G-16371G	
+P4b1	DQ404444	MismatchedPolymorphisms	4688C-4976G-6260A-13132T-13419G-16320T	
+P6	AY289053	MismatchedPolymorphisms	271T-4745G-4976G-7010T-8152A-10034C-11176A-11348T-11928G-13545T-14668T-14871C-14923T-14947T-15378C-15930A-16172C-16245T-16278T-16526A	
+U1a	HM852790	MismatchedPolymorphisms	1709A-1711T-3434G-3865G-14311C-14980T-16172C-16292T-16319A	
+U1a1	AY882396	MismatchedPolymorphisms	3338C-5774C-5894G-10034C-12732C-16129A	
+U1a1a	HQ615882	MismatchedPolymorphisms	3882A-14272T-15784C-16362C	
+U1a1b	JQ703793	MismatchedPolymorphisms	4171T-15113G	
+U1a2	JQ704153	MismatchedPolymorphisms	15388C	
+U1a3	JQ704034	MismatchedPolymorphisms	499A-6041T-6293C-7253G-15106A	
+U1a4	EF692533	MismatchedPolymorphisms	8566G-10861C-11470G-15043A	
+U1b	GU123007	MismatchedPolymorphisms	489C-8567C-11914A-13759A-16214A	
+U1b1	JQ705704	MismatchedPolymorphisms	3426G-5460A-6365C-11969A-16104T	14070G
+U5a1a1b	JQ703937	MismatchedPolymorphisms	4340G-8518G	
+U5a1a1+16362	JQ704920	MismatchedPolymorphisms	13434G-16189C-16209C	
+U5a1a2a1	JQ703926	MismatchedPolymorphisms	456T	
+U5a1a2b	JQ704701	MismatchedPolymorphisms	1038T-11204C-13752C	
+U5a1a2b1	JQ705279	MismatchedPolymorphisms	9012C	
+U5a1g	GU296640	MismatchedPolymorphisms	7747T-9604G	
+U5a1b1b	GU296619	MismatchedPolymorphisms	16092C	
+U5a1b1c1	JQ705297	MismatchedPolymorphisms	13194A	
+U5a1b1d	JQ705693	MismatchedPolymorphisms	198T-16093C	
+U5a1b1e	JQ705211	MismatchedPolymorphisms	466C-6260A-15511C	
+U5a1b1f	AY714003	MismatchedPolymorphisms	8441T	
+U5a1c1	GU296588	MismatchedPolymorphisms	9656C	
+U5a1c2	GU296589	MismatchedPolymorphisms	199C-1405T-1888A-3741T-7080C-11770C-16302G-16390A	16270T
+U5a1c2a	JQ705908	MismatchedPolymorphisms	184A-16286T	
+U5a1d1	GU296542	MismatchedPolymorphisms	16051G	
+U5a1d2b	GU123032	MismatchedPolymorphisms	533G	
+U5a1e	GU296547	MismatchedPolymorphisms	152C	
+U5a1f	GU296603	MismatchedPolymorphisms	203A-204C-5557C-8994A-11935C-12491T-16222T	
+U5a1f1a	AY882398	MismatchedPolymorphisms	6674C	
+U5a1f1a1	JQ702735	MismatchedPolymorphisms	6110G	
+U5a2a	JN707685	MismatchedPolymorphisms	15930A	
+U5a2a1b1	JQ702355	MismatchedPolymorphisms	204C	
+U5a2a1c	GU296597	MismatchedPolymorphisms	16311C	
+U5a2a1d	EU124886	MismatchedPolymorphisms	152C	
+U5a2b	GU296559	MismatchedPolymorphisms	9531G	
+U5a2b1a	JQ705696	MismatchedPolymorphisms	2352C-5471A	
+U5a2b1b	JQ704044	MismatchedPolymorphisms	16311C	
+U5a2b2	JQ702184	MismatchedPolymorphisms	182T-8038C	
+U5a2b3	JQ702847	MismatchedPolymorphisms	150T-13246C	
+U5a2b4	JQ704895	MismatchedPolymorphisms	13759A	16192T
+U5a2c2	JQ704067	MismatchedPolymorphisms	12166C	
+U5a2c3	JX101637	MismatchedPolymorphisms	1452C-3394C-12493G-13434G-15662G-16243C	
+U5a2c3a	JF487827	MismatchedPolymorphisms	8152A	
+U5a2d	JQ703280	MismatchedPolymorphisms	469G-9591A-12807G-16148T-16287T-16294T-16368C	
+U5a2d1	HM490393	MismatchedPolymorphisms	16304C	
+U5a2+16362	JQ705111	MismatchedPolymorphisms	5295T-6944C-12540G-16278T	
+U5a2e	JN819535	MismatchedPolymorphisms	4596A	
+U5b1	JQ704112	MismatchedPolymorphisms	146C-9285G	
+U5b1+16189	EF420876	MismatchedPolymorphisms	5460A-8551C-8622T-13708A	
+U5b1a	JQ704875	MismatchedPolymorphisms	9389G	
+U5b1b	GU296644	MismatchedPolymorphisms	3708G-3849A-6302G-16147T	16192T
+U5b1b1	GU296566	MismatchedPolymorphisms	8610C-12501A-13928A-14484C	
+U5b1b1a1a	HM116534	MismatchedPolymorphisms	146C	
+U5b1b1a2	EF420877	MismatchedPolymorphisms	207A	
+U5b1b1d	AY882402	MismatchedPolymorphisms	5441G-11778A-13308G	
+U5b1b1f	GU296591	MismatchedPolymorphisms	16093C-16129A	
+U5b1c	AY882409	MismatchedPolymorphisms	9064A-16129A-16274A	
+U5b1c1a	JQ705095	MismatchedPolymorphisms	14420T-14470C	
+U5b1c2	JQ703983	MismatchedPolymorphisms	1536G-3915A	
+U5b1+16189+@16192	JQ704598	MismatchedPolymorphisms	5605G-16319A	
+U5b1e	GU296630	MismatchedPolymorphisms	8723A	
+U5b1e1	GU122991	MismatchedPolymorphisms	8337C	
+U5b1d1	JQ702807	MismatchedPolymorphisms	10241A	
+U5b1d1a	JQ702376	MismatchedPolymorphisms	12123T	
+U5b1d1b	AY882411	MismatchedPolymorphisms	8053G-8743A	16192T
+U5b1d2	HM043711	MismatchedPolymorphisms		16192T
+U5b1i	JQ681270	MismatchedPolymorphisms	6120G-6483T-13146T-13326C-16278T	
+U5b2	JQ705429	MismatchedPolymorphisms	195C-2380T-13299G-16290T	
+U5b2a1a	JQ703964	MismatchedPolymorphisms	2206T-3644C-9804T-16184T-16213A-16286T	16192T
+U5b2a1a+16311	JQ704726	MismatchedPolymorphisms	538G	
+U5b2a1a1	EU244000	MismatchedPolymorphisms	11329G	
+U5b2a1a1b	EU784076	MismatchedPolymorphisms	958T-2445C	
+U5b2a2	GU296541	MismatchedPolymorphisms	1117G-3834A-8941T-16217C-16234T	16192T
+U5b2a2a2	JQ702167	MismatchedPolymorphisms	10118C-13278G	
+U5b2a2b	EF459670	MismatchedPolymorphisms	709A-3510T	
+U5b2a2b1	GU296567	MismatchedPolymorphisms	5450T	
+U5b2a2c	JQ702431	MismatchedPolymorphisms	2280T	
+U5b2a3	EU682506	MismatchedPolymorphisms	3744G-16093C-16319A	
+U5b2a4	JQ705337	MismatchedPolymorphisms	10769T-16266T	
+U5b2a5	EU233797	MismatchedPolymorphisms	2581G-8657T-9055A-15940C	
+U5b2b	JQ706019	MismatchedPolymorphisms	8668C-16093C	16270T
+U5b2b1a1	JQ703905	MismatchedPolymorphisms	5618C	
+U5b2b1a2	GU296627	MismatchedPolymorphisms	5553C-8348G-13467T-16234T	
+U5b2b1b	GU296641	MismatchedPolymorphisms	5557C	
+U5b2b2	EF419891	MismatchedPolymorphisms	228A-12775A-13146T-15418T	
+U5b2b3	JQ702136	MismatchedPolymorphisms	4619C-16242T	
+U5b2b3a	JQ702843	MismatchedPolymorphisms	5074C-9612A	
+U5b2b3a1	JQ702046	MismatchedPolymorphisms	513A	
+U5b2b3a1a	JQ703790	MismatchedPolymorphisms	14178C	
+U5b2c1	JX186998	MismatchedPolymorphisms	16069T-16126C	
+U5b2c2b	EU490797	MismatchedPolymorphisms	16309G	
+U5b3	JQ705968	MismatchedPolymorphisms	12061T-13934T	228A
+U5b3a1a	AF346988	MismatchedPolymorphisms	16145A	228A
+U5b3a1b	GQ129157	MismatchedPolymorphisms	200G	
+U5b3a2	GQ129163	MismatchedPolymorphisms	16465T	228A
+U5b3b	GQ129167	MismatchedPolymorphisms	189G	
+U5b3c	GQ129170	MismatchedPolymorphisms		228A
+U5b3d	GQ129173	MismatchedPolymorphisms	152C-3212T-9038C	
+U5b3g	GQ129143	MismatchedPolymorphisms	9540C-15043A-16086C	
+U6a	EF064317	MismatchedPolymorphisms	3633C-9380A-9725C-9801A-9966A-10853T-10993A-11590G-12850G	16219G
+U6a1	HQ651694	MismatchedPolymorphisms	152C-250C-3768G	
+U6a1a2	JQ704749	MismatchedPolymorphisms	152C-251A-8994A-15217A-16108T-16111T	
+U6a1b	HQ651705	MismatchedPolymorphisms	4907C-11039T-11971T-16189C	
+U6a1b1	HM775953	MismatchedPolymorphisms	146C-16355T	
+U6a+16189	HQ651707	MismatchedPolymorphisms	7278C-10410C-12814T-16051G-16311C-16360T	
+U6a2	EF064322	MismatchedPolymorphisms	200G-513A-10101C-13986G-15436T-16257T	
+U6a2a	HQ651712	MismatchedPolymorphisms	4936T-5894C-9100G-9335A-10172A-13711A-15314A-16295T	
+U6a2a1	EF064323	MismatchedPolymorphisms	195C-686G-2746C-9656C-9891C-9972G-16274A	
+U6a3	HQ651714	MismatchedPolymorphisms	204C	12308G
+U6a3a	HQ651713	MismatchedPolymorphisms	7364G-10343T-16291T	
+U6a3a1	HQ651686	MismatchedPolymorphisms	10892T-12976T	
+U6a3+185	EF064326	MismatchedPolymorphisms	3337A-4021G-6077T-8466G-8705C-12097T-13569C-13928A-16362C-16399G	
+U6a3b1	EF064325	MismatchedPolymorphisms	16311C	
+U6a4	EF064327	MismatchedPolymorphisms	199C-373G-9866T	
+U6a5	EF064329	MismatchedPolymorphisms	8713G-10192T-16126C-16169T	
+U6a5a	HQ592783	MismatchedPolymorphisms	9118T-11191T	
+U6a6	EF064333	MismatchedPolymorphisms	709A-2967T-9090C-14181G-15661T	
+U6a7a	AY275531	MismatchedPolymorphisms	152C	
+U6a7b	EF064339	MismatchedPolymorphisms	11818C-12940A-13879C	
+U6a7c	HQ651683	MismatchedPolymorphisms	10927C-16400T	14179G
+U6b	AY275530	MismatchedPolymorphisms	5442C-16051G	
+U6b2	JQ704008	MismatchedPolymorphisms	549T	
+U6d	EF064343	MismatchedPolymorphisms	5460A-12842C-13145A-14003T-15892C	
+U6d1	HQ651684	MismatchedPolymorphisms	9630C-12317C-13382G	
+U6d1b	EF064342	MismatchedPolymorphisms	3760G	
+U6c	AY275536	MismatchedPolymorphisms	194T-2109G-3866C	
+U6c1	HQ161773	MismatchedPolymorphisms	16086C	
+U2	FN600416	MismatchedPolymorphisms	542T-711C-13269G-15262C	
+U2a	AY713992	MismatchedPolymorphisms	794C-11084G-11361C-11383C-11794C-15556T	
+U2a1	JX488759	MismatchedPolymorphisms	8568T-16093A-16356C	8860G
+U2b2	AY714027	MismatchedPolymorphisms	4113A-9830T	
+U2c	AY714010	MismatchedPolymorphisms	742C-3208T-9109G-13934T-14687G-15825T-16169T-16256T-16278T	
+U2c1	AY714005	MismatchedPolymorphisms	6218G-10143A-14155T-15043A-16179T-16240C	16234T
+U2d1	JQ706062	MismatchedPolymorphisms	7299G-9266A-12651A-16093C-16148T-16357C	
+U2d2	JQ706046	MismatchedPolymorphisms	15883A	
+U2d3	JQ706045	MismatchedPolymorphisms	12307G-15287C	12308G
+U2e	AY714026	MismatchedPolymorphisms	2322T-3203G-10398G-16092C-16362A	16362C
+U2e1	JQ703356	MismatchedPolymorphisms	9078C-15257A	
+U2e1a	FJ828532	MismatchedPolymorphisms	16093C-16194C-16195C	
+U2e1a1a	JQ705936	MismatchedPolymorphisms	4113A	
+U2e1a1b	HQ424846	MismatchedPolymorphisms	1187C	
+U2e1b	AY714049	MismatchedPolymorphisms	4491A-12612T-14831A-15479C-15562G-16082T-16126C-16298C	
+U2e1b1	JQ702663	MismatchedPolymorphisms	546G	
+U2e1c	JQ705933	MismatchedPolymorphisms	2524C	
+U2e1d	JQ702520	MismatchedPolymorphisms	16325C	
+U2e1e	JQ702316	MismatchedPolymorphisms	9926G-10786C	
+U2e1f	AY195764	MismatchedPolymorphisms	146C-489C-8155A-9101C-12358G-15664T	
+U2e2	JQ705900	MismatchedPolymorphisms	324T-6899A-9695A-15670C-16304C-16527T	
+U2e2a2	FJ984932	MismatchedPolymorphisms	7235A-7427T-9452A-14788C	
+U2e2a4	JQ702004	MismatchedPolymorphisms	5471A-7389C	
+U2e3	JX286498	MismatchedPolymorphisms	15758G-15911G-16400T	217C
+U3a	JQ704440	MismatchedPolymorphisms	152C-2766A-3547G-6293C-10143A-16189C	
+U3a1	JQ705387	MismatchedPolymorphisms	1018A-3531A-11461G	
+U3a1c	JQ703769	MismatchedPolymorphisms	146C	
+U3a2	AY882383	MismatchedPolymorphisms	152C-189G-207A-6050C-13215C-16274A-16343C	16343G
+U3c	HM852803	MismatchedPolymorphisms	452C-2961T-3796G-7382A	150T
+U3b	JN663830	MismatchedPolymorphisms	195C-12972G	
+U3b1	EF177433	MismatchedPolymorphisms	55C-56G-3335A-7055G-8572A-15773A-16256T	
+U3b1a	EF556158	MismatchedPolymorphisms	1585G-5492C-7145T-9098G-9163A-14016A-15172A-15829G	
+U3b2	JQ704130	MismatchedPolymorphisms	195C-2652A-5954G	
+U3b2a	EU935438	MismatchedPolymorphisms	1187C-6941C-8950A-12172G-15247T-16320T	
+U3b3	HQ384204	MismatchedPolymorphisms	5237A-8093C-16266T	
+U4a1a1	EU545417	MismatchedPolymorphisms	7271G-14884T	
+U4a2c	EU545464	MismatchedPolymorphisms	9548A	14766T
+U4a2e	EU545442	MismatchedPolymorphisms	14696G	
+U4a2f	JQ705828	MismatchedPolymorphisms	186T-15314A-16527T	
+U4a2g	JQ480650	MismatchedPolymorphisms	7610T-14305A-16320T	4646C
+U4a3	EU545423	MismatchedPolymorphisms	16265G	
+U4b	EU545444	MismatchedPolymorphisms	10523G	
+U4b1a1	HM044301	MismatchedPolymorphisms	8119C	
+U4b1a3	EU545419	MismatchedPolymorphisms		195C
+U4b1a3a	EU571946	MismatchedPolymorphisms	7445G-15481T	
+U4b1+146  152	FJ147315	MismatchedPolymorphisms	16311C	
+U4b1b	JQ704676	MismatchedPolymorphisms	11788T-15514C-16189C	146C-15326G
+U4b2	EU140898	MismatchedPolymorphisms	16233G	
+U4b2a	JQ702783	MismatchedPolymorphisms	6080G-8659G-15431A	
+U4b2a1	GQ891957	MismatchedPolymorphisms	12290G	
+U4b3	FJ147322	MismatchedPolymorphisms	3204T-3434G	
+U4c1	EF657423	MismatchedPolymorphisms	174G-862G-1235G-1775C-2130G-4070C-4193G-4235G-5423C-5471G-5570G-6452T-8494G-10331C-10756T-10891G-11143A-11732G-11796A-13397T-14044T-14190T-14290T-14750G-15117C	73G-195C-263G-499A-750G-1438G-1811G-2706G-4646C-4769G-4811G-5999C-6047G-6146G-7028T-8860G-9070G-10907C-11332T-11467G-11719A-12308G-12372A-14620T-14766T-14866T-15326G-15693C-16179T-16356C
+U4c2	HQ418462	MismatchedPolymorphisms	146C-228A-11002G	
+U4c2a	EU545460	MismatchedPolymorphisms	7762A-10118C-11497T	
+U4d1a1	JQ704741	MismatchedPolymorphisms	5319T	
+U4d2	FJ230891	MismatchedPolymorphisms	3637A	
+U4d3	GU727822	MismatchedPolymorphisms	3918A-8288C-16311C	
+U9a	AY882389	MismatchedPolymorphisms	5460A-8974T-12852T-16261T-16311C	
+U9b	GU990521	MismatchedPolymorphisms	3483A-3745A-6212G-6506T-11020G-11779T-16189C	
+U9b1	AY882390	MismatchedPolymorphisms	1005C-15930A-16242T	
+U7	AY714004	MismatchedPolymorphisms	7673G-14131T-15244G-16093C	16309G
+U7a	EF556179	MismatchedPolymorphisms	5790A-12234G-12507G	16309G
+U7a1	AY714014	MismatchedPolymorphisms	9476G	
+U7a2	FJ858878	MismatchedPolymorphisms	4452C-4820A-5480G-10124C-12398T-14097T-14669G-15804C	
+U7a3	GU327373	MismatchedPolymorphisms	3834A-4529G-11383C-13716G-14218C	
+U7a4	HM852823	MismatchedPolymorphisms	143A-195C-6221C-12063T-15322G-16148T	
+U7a5	JQ703913	MismatchedPolymorphisms		16309G
+U7b	JQ705198	MismatchedPolymorphisms	8962T-13928C-14798C-16248T	16309G
+U7b1	EU445683	MismatchedPolymorphisms		16309G
+U8a	JQ702759	MismatchedPolymorphisms	9428C-13928A-14311C-16287T-16304C	
+U8a1	JQ611709	MismatchedPolymorphisms	709A-3396C-4491A-16167T-16179T-16258C-16311C	
+U8a1a	DQ200802	MismatchedPolymorphisms	6713T-12768G-13105G-16189C	
+U8a1a1a	HM765458	MismatchedPolymorphisms	4053G-7501C	
+U8a1a3	JX297480	MismatchedPolymorphisms	13466A	
+U8a2	DQ200801	MismatchedPolymorphisms	3918A-12961G-13543C	
+U8b1a	DQ200805	MismatchedPolymorphisms	152C-3244A-5582G-6378C-9300A-13113G-14364A-14831A-16257T-16259T-16304C	195C-1811G-3480G
+U8b1a1	HM590366	MismatchedPolymorphisms	3316A-3808G-6425A-7844G-8251A-16215G-16300G-16465T	16234T
+U8b1b	JQ705831	MismatchedPolymorphisms	146C-198T-207A-236C-3432T-13135A-16301T	
+K1a1a1	FJ348183	MismatchedPolymorphisms	152C-13782A	
+K1a1a2	JQ704696	MismatchedPolymorphisms	4017A-15328G-16167T	114T-16093C
+K1a1a2a	GU980957	MismatchedPolymorphisms	5628C-16129A	114T-16093C
+K1a1a2a1	AY495257	MismatchedPolymorphisms		114T
+K1a1b	JN048471	MismatchedPolymorphisms	12816T-13135A-15323A-16295T-16362C	16093C
+K1a1b1	DQ200804	MismatchedPolymorphisms	5742T-15074C-16278T	114T-16093C-16224C
+K1a1b1a	DQ301795	MismatchedPolymorphisms		16093C
+K1a1b1b	JQ702898	MismatchedPolymorphisms	195C	16093C
+K1a1b1b1	JQ704983	MismatchedPolymorphisms	5746A	114T-16093C
+K1a1b1c	GU592026	MismatchedPolymorphisms	16260T-16362C	16093C
+K1a1b1d	JQ702782	MismatchedPolymorphisms		114T-16093C
+K1a1b1e	JQ704056	MismatchedPolymorphisms	8521G	114T
+K1a1b1f	JQ703737	MismatchedPolymorphisms	3796G-13050G	
+K1a1b1g	FJ348218	MismatchedPolymorphisms	390G	114T-16093C
+K1a1b2a	AY714044	MismatchedPolymorphisms	2352C-11204C-15562G-15731A	16093C
+K1a1b2a1	HQ586011	MismatchedPolymorphisms	15071C-16213A	
+K1a1b2a1a	HQ413154	MismatchedPolymorphisms	13665C-14371C	
+K1a1b2b	FJ865502	MismatchedPolymorphisms	195C-236C-9329A-15346A	114T-16093C
+K1a2	HM065508	MismatchedPolymorphisms	8725G-16399G	
+K1a2a	JQ703581	MismatchedPolymorphisms	7918T-11500G	
+K1a2b	HM041971	MismatchedPolymorphisms	1116G-2834T-3471A-4316G-7694T-8185C-8802C-9293T-16093C	
+K1a2c	JQ702306	MismatchedPolymorphisms	146C-152C-183G	
+K1a3a	JQ705485	MismatchedPolymorphisms	3316A-10909C	
+K1a3a+16093	HM598686	MismatchedPolymorphisms	5333C-8506C-9300A-13350G	
+K1a3a1b	AY495258	MismatchedPolymorphisms	11151T	
+K1a3a2	JQ705957	MismatchedPolymorphisms	12007A-16422C	
+K1a3a3	JQ701962	MismatchedPolymorphisms	9210G-16234T	
+K1a4a	EU603401	MismatchedPolymorphisms	195C-6134T-6480A-6605G-16168T	
+K1a4a1a	JQ702175	MismatchedPolymorphisms	131C-12642G	
+K1a4a1a2	JQ703168	MismatchedPolymorphisms	7609C-10527T-12879C	
+K1a4a1b	JQ703407	MismatchedPolymorphisms	146C-5894G	
+K1a4a1c	JQ705215	MismatchedPolymorphisms	204C-4113A	
+K1a4a1d	JQ705404	MismatchedPolymorphisms	5093C-10493C	
+K1a4b	EU675299	MismatchedPolymorphisms	8029T-13281C-13590A-14470C	
+K1a4b1	EU600366	MismatchedPolymorphisms	5747G-6023A-13395G	
+K1a4c	DQ301809	MismatchedPolymorphisms	4586C-15097C-15214C-16093C-16234T	
+K1a4c1	JQ703523	MismatchedPolymorphisms	9759T	
+K1a4d	EU926621	MismatchedPolymorphisms	3203G	16093C
+K1a4e	JQ704761	MismatchedPolymorphisms	12358G-16169T-16438A	
+K1a4f	GU722601	MismatchedPolymorphisms	279C-411A	
+K1a4f1	JQ704764	MismatchedPolymorphisms	10202T	
+K1a5	DQ301793	MismatchedPolymorphisms	16093C	
+K1a7	DQ301807	MismatchedPolymorphisms	4310G-4742C-4745G-12425G-13174C-14053G-16017C-16234T	
+K1a8	JQ702902	MismatchedPolymorphisms	3398C-5262A-9422G-14259A-15893C	
+K1a8a	DQ301817	MismatchedPolymorphisms	13368A	
+K1a8a1	DQ301816	MismatchedPolymorphisms	5821A-16093C	
+K1a8b	FJ460551	MismatchedPolymorphisms	5460A-10373A	
+K1a+195	FJ348175	MismatchedPolymorphisms	1187C-6182A-6357T	
+K1a9	GU295448	MismatchedPolymorphisms	16093C	
+K1a10	JQ702740	MismatchedPolymorphisms	316A-8764A-16047A	
+K1a13	JQ702796	MismatchedPolymorphisms	16093C	
+K1a13a	GU944475	MismatchedPolymorphisms	10289G	
+K1a+150	HM625695	MismatchedPolymorphisms	152C-9531G-15653T	
+K1a11	JX193906	MismatchedPolymorphisms	57G-134T-183C-247G-481T-734G-1173C-1422G-1795G-2690G-3464G-4753G-7012T-8844G-9039A-9682C-9922C-10382G-10534G-11283C-11451G-11703A-12292G-12356A-14151T-14750T-14782C-15310G-16113A-16208C-16295C-16503C	16T-73G-150T-199C-263G-497T-750G-1189C-1438G-1811G-2706G-3480G-4769G-7028T-8860G-9055A-9698C-9938C-10398G-10550G-11299C-11467G-11719A-12308G-12372A-14167T-14766T-14798C-15326G-16129A-16224C-16311C
+K1a11a	JN657206	MismatchedPolymorphisms	57G-134T-136C-183C-247G-481T-734G-1173C-1422G-1795G-2690G-3464G-4753G-7012T-8844G-9039A-9452G-9682C-9922C-10382G-10534G-10950C-11283C-11451G-11703A-12292G-12356A-14151T-14750T-14782C-15310G-16113A-16208C-16295C-16503C	16T-73G-150T-152C-199C-263G-497T-750G-1189C-1438G-1811G-2706G-3480G-4769G-7028T-8860G-9055A-9698C-9938C-10398G-10550G-10966C-11299C-11467G-11719A-12308G-12372A-14167T-14766T-14798C-15326G-16129A-16224C-16311C
+K1a11a1	JQ705336	MismatchedPolymorphisms	57G-134T-136C-183C-247G-481T-734G-1173C-1422G-1795G-2690G-3464G-4753G-7012T-8686T-8844G-9039A-9682C-9922C-10382G-10534G-10950C-11283C-11451G-11703A-12292G-12356A-14151T-14750T-14782C-15310G-16113A-16208C-16295C-16503C	16T-73G-150T-152C-199C-263G-497T-750G-1189C-1438G-1811G-2706G-3480G-4769G-7028T-8702T-8860G-9055A-9698C-9938C-10398G-10550G-10966C-11299C-11467G-11719A-12308G-12372A-14167T-14766T-14798C-15326G-16129A-16224C-16311C
+K1a11b	EU523125	MismatchedPolymorphisms	57G-134T-183C-247G-481T-734G-1173C-1422G-1795G-2690G-3464G-4753G-7012T-8844G-9039A-9682C-9922C-10382G-10534G-10866C-11283C-11451G-11703A-12292G-12356A-14151T-14589T-14750T-14782C-15310G-16113A-16208C-16295C-16503C	16T-73G-150T-199C-263G-497T-750G-1189C-1438G-1811G-2706G-3480G-4769G-7028T-8860G-9055A-9698C-9938C-10398G-10550G-11299C-11467G-11719A-12308G-12372A-14167T-14605T-14766T-14798C-15326G-16129A-16224C-16311C
+K1a24	JQ703891	MismatchedPolymorphisms	15043A-16093C	
+K1a12	JQ703323	MismatchedPolymorphisms	195C-16093C-16343G	
+K1a12a	EU600362	MismatchedPolymorphisms	9276A-15769G-16093C	
+K1a12a1	JQ706035	MismatchedPolymorphisms	3394C-10248C-14905A-15884A	
+K1a12a1a	JQ706066	MismatchedPolymorphisms	7270C-10343T-10506G-14364A-16129A	
+K1a19	JQ308836	MismatchedPolymorphisms	10172A	
+K1a23	JQ703522	MismatchedPolymorphisms	7846G-10084C-12681C-13335T-16144C	
+K1a27	JN415475	MismatchedPolymorphisms	103A-7299G-13759A-14568T-16293G	
+K1b1a1	GU797785	MismatchedPolymorphisms	1041G-13602C-16093C	
+K1b1a1a	JQ702168	MismatchedPolymorphisms	16093C	
+K1b1a1b	JQ702752	MismatchedPolymorphisms	9804A-10336C	
+K1b1a1c	EU239477	MismatchedPolymorphisms	5298G-13020G	
+K1b1b	AY495260	MismatchedPolymorphisms	7391C-9007G-14063C-14384A	16093C
+K1b1c	EU600370	MismatchedPolymorphisms	13145A	
+K1b2a	JQ705467	MismatchedPolymorphisms	629C	
+K1b2a1a	JQ705289	MismatchedPolymorphisms	3337A-9015T-15514C	
+K1b2a2a	EU849091	MismatchedPolymorphisms	9495C	
+K1c1a	HM851442	MismatchedPolymorphisms	5539G-9210G	
+K1c1e	GU123011	MismatchedPolymorphisms	8027A-14668T-15401G	
+K1c1f	JQ703815	MismatchedPolymorphisms	13934T-14878G	
+K1e	JX293716	MismatchedPolymorphisms	10166C-10757T-16140C	
+K1e1	EU073969	MismatchedPolymorphisms	5090C-12810G-16093C	
+K2a1	JQ665461	MismatchedPolymorphisms	8293T-8905T	
+K2a2	AY495246	MismatchedPolymorphisms	63C-64T-15520G	
+K2a2a	HQ154135	MismatchedPolymorphisms	195C-9263T-16390A	
+K2a3a1	AY495249	MismatchedPolymorphisms	13143C	
+K2a5a	JQ704076	MismatchedPolymorphisms	8291G	
+K2a5a1	EU718789	MismatchedPolymorphisms	16248T	
+K2a9	DQ112812	MismatchedPolymorphisms	274A-1003G-1376G-2271G-2912G-3044G-4126C-4334G-4646C-4695C-6593T-6641G-8425G-8620A-9263C-9281C-10115G-10864C-11032G-11284A-11873G-11937A-13732T-14331T-14363C-14891G	73G-146C-152C-263G-709A-750G-1438G-1811G-2706G-3480G-4561C-4769G-5081C-5130C-7028T-8860G-9055A-9698C-9716C-10550G-11299C-11467G-11719A-12308G-12372A-14167T-14766T-14798C-15326G-16224C-16311C
+K2b	JQ704070	MismatchedPolymorphisms	152C-709A-7885C-10456G-11410C-14502C	
+K2b1	EU294321	MismatchedPolymorphisms	723G-15262C	
+K2b2	JQ704064	MismatchedPolymorphisms	16319A	
+N1a1a1a1	GU290215	MismatchedPolymorphisms	16147A	16147T
+N1a1a1a1a	GU290209	MismatchedPolymorphisms	146C-3531A-5442C-12954C-16147A	16147T
+N1a1a1a2	GU290210	MismatchedPolymorphisms	16147A	16147T
+N1a1a1a3	GU290216	MismatchedPolymorphisms	143A-234G-4772C-9103C-16092C-16129A-16147A	16147T
+N1a1a1b	GU290207	MismatchedPolymorphisms	16147A	16147T
+N1a1a2	JQ701924	MismatchedPolymorphisms	14218C	
+I1	JQ705840	MismatchedPolymorphisms	16278T	
+I1a	HM454265	MismatchedPolymorphisms	3316A-3744G-10327T-11149A-13557G-14395C	
+I1b	FJ968796	MismatchedPolymorphisms	4560A-9286C-12684A	16129A
+I1c	JQ705364	MismatchedPolymorphisms	6267A-6359G-9386C-16270T	
+I2a1	HQ724528	MismatchedPolymorphisms	533G	
+I2c	JQ705666	MismatchedPolymorphisms	6293C	
+I2e	JQ703106	MismatchedPolymorphisms	16289G	
+I3	JQ703883	MismatchedPolymorphisms	2628C	
+I3a1	JQ704837	MismatchedPolymorphisms	258T	
+I3b	JQ705377	MismatchedPolymorphisms	15431A	
+I4	JQ704976	MismatchedPolymorphisms	207A-2124G-2308G-4113A-5078C-7853A-13662T	
+I4a	JQ705906	MismatchedPolymorphisms	16304C	
+I5a	FJ348190	MismatchedPolymorphisms	153G-574C-576C-8705C-12408A-15244G-16192T-16294T	16391A
+I6a	JQ705382	MismatchedPolymorphisms	3828G-15760T	
+N1a3	EF153811	MismatchedPolymorphisms	75A	73G
+N1b1a1	EU742151	MismatchedPolymorphisms	16037G-16075C-16311C	
+N1b1a2	JQ705186	MismatchedPolymorphisms	151T-4370C-15244G	
+N1b1a2a	JQ705552	MismatchedPolymorphisms	200G-5979A-16129A	
+N1b1a2b	JQ704068	MismatchedPolymorphisms	16154C	
+N1b1a+16129	EU742150	MismatchedPolymorphisms	8020A-9438A-12891T-13768C-15071C-15079G-16093C	
+N1b1a4	EF660993	MismatchedPolymorphisms	8261G-8410T-14053G-15813G-16291T-16297C	
+N1b1b	DQ301794	MismatchedPolymorphisms	16176A	16176T
+N5	AY714031	MismatchedPolymorphisms	6011C-6164T-7492T-8545A-10232G-14533T-15262C-15972C-16051G-16092C-16129A	
+N2a	EU787451	MismatchedPolymorphisms	152C-1633C-10841G-11722C-12192A	
+W1+119	FJ472633	MismatchedPolymorphisms	215G-9695A	
+W1c	JQ702450	MismatchedPolymorphisms	5004C-12696C	
+W1f	FJ384432	MismatchedPolymorphisms	10676T-16275G	207A
+W1h	JQ703970	MismatchedPolymorphisms	152C-513C	
+W+194	EU086510	MismatchedPolymorphisms	16234T	8860G
+W3a1	GU122989	MismatchedPolymorphisms	8619T	
+W3a1a	FJ821289	MismatchedPolymorphisms	6267A-15109C	
+W3a1a1	JQ705286	MismatchedPolymorphisms	10715T-15951G-16291T	194T
+W3a1b	GU002155	MismatchedPolymorphisms	15019C-16362C	
+W3a1+199	JQ704160	MismatchedPolymorphisms	10398G-11890G-15844G	
+W3a2	JQ705487	MismatchedPolymorphisms	152C-16192T	
+W3b	HM589047	MismatchedPolymorphisms	1780C-12115T-13209T	
+W4	FJ348217	MismatchedPolymorphisms	119C-7444A-16192T	
+W4a	HM034304	MismatchedPolymorphisms	192C-3531A-16093C	16292T
+W5a	JQ701827	MismatchedPolymorphisms	10398G	
+W5a1	JN583886	MismatchedPolymorphisms	196C-2356G-8292A-16150T	
+W5a1a	EF652811	MismatchedPolymorphisms	16124C	
+W5a1a1a	HM057816	MismatchedPolymorphisms		57C
+W5a2	GU726895	MismatchedPolymorphisms	3337A-10166C	
+W5b	EU744586	MismatchedPolymorphisms	334C-9909C	
+W6	JF902025	MismatchedPolymorphisms	4499T-16173T-16352C	
+W6+16192	FJ449703	MismatchedPolymorphisms	8155A-16362C	
+W6a	JQ705209	MismatchedPolymorphisms	4164G	
+W6c	EU515252	MismatchedPolymorphisms	1303A-8078A-8149G-16211T	
+W7	HM352797	MismatchedPolymorphisms	9198T-11963A-13299G	
+N9a3	AP008608	MismatchedPolymorphisms	195C	
+N9a2	JN857033	MismatchedPolymorphisms	4047C-16278T	
+N9a2d	AP009434	MismatchedPolymorphisms		961C
+N9a5	AP008895	MismatchedPolymorphisms	5498G	
+N9a6	HM596703	MismatchedPolymorphisms	195C-3010A-16309G	
+N9a6a	AP012369	MismatchedPolymorphisms	11253C	
+N9a7	AP011016	MismatchedPolymorphisms	9300A	
+N9a8	AP008714	MismatchedPolymorphisms	151T-3357A-7304G-10044G-16162G-16264T	
+N9a10a	HM238208	MismatchedPolymorphisms	9428C-16086C	
+N9b	AP009475	MismatchedPolymorphisms	1396T-6216C-16054G-16188T	
+N9b1	AP010722	MismatchedPolymorphisms	6770T	
+N9b1b	AP008784	MismatchedPolymorphisms	15106A	
+N9b1c1	AP008529	MismatchedPolymorphisms	189G-3865G-14155T	
+N9b2	AP008790	MismatchedPolymorphisms	41T-513A-7334C-11167G-13092G-16271C-16309G	
+N9b3	AP008474	MismatchedPolymorphisms	9084C-16178C-16295T	
+Y1	EF153813	MismatchedPolymorphisms	709A-3083C-7805A-10379G-16319A-16399G	
+Y1a	EF153825	MismatchedPolymorphisms	2010C-12397G	
+Y1b	GU123044	MismatchedPolymorphisms	6542A-8723A-10238C-12474T	16126C-16266T
+Y1b1a	JF824992	MismatchedPolymorphisms	226C-553T	
+Y2	AP008723	MismatchedPolymorphisms	5435T-10190G-16150T	
+Y2a	GQ119016	MismatchedPolymorphisms	7786T-11512A	
+N10a	HM030521	MismatchedPolymorphisms	6314T-9899C-9989C-13500C-14022G-15229C	
+N11a	HM030528	MismatchedPolymorphisms	8928C-9180G-10556T-14220G-16176T-16232T	
+N11a1	HM030536	MismatchedPolymorphisms	240G-14488C-16145A	
+N13	EF495214	MismatchedPolymorphisms	3483A-4967C-5300T-8631G-13135A-16177G-16189C-16240G-16311C	
+N14	DQ112753	MismatchedPolymorphisms	1003G-1163A-1453A-2271G-4334G-4482G-4856C-6593T-7816A-7834A-8425G-11056G-11284A-12270T-13949C-14331T-14605T-14891G-15449C	73G-263G-750G-1438G-1598A-1888A-2706G-4769G-4917G-5291C-7028T-8251A-8269A-8860G-11491G-11719A-12705T-14384C-14766T-15040T-15326G-15884C-16223T
+N21	GQ301885	MismatchedPolymorphisms	7220C-13753C-15619T-16234T-16259T	
+N21+195	GQ301867	MismatchedPolymorphisms	15244G-16129A-16325C	
+N21a	AP012425	MismatchedPolymorphisms		16223T
+A+152	AY255144	MismatchedPolymorphisms	4227G-7493T-8572A-9058G-12883G	
+A3	AP010994	MismatchedPolymorphisms	8781T	
+A4	EF397559	MismatchedPolymorphisms	449C-9524G-15172A	
+A4a	AP010699	MismatchedPolymorphisms	471C-6266G	
+A4a1	EF153833	MismatchedPolymorphisms	9477A	
+A4a1a	EF153799	MismatchedPolymorphisms	15043A	
+A4b	AY519488	MismatchedPolymorphisms	1709A-3310T-9754G-13758T-16039A-16356C	
+A4c	EF114282	MismatchedPolymorphisms	3150C-8756C-15672C-16124C	
+A4d	EF153775	MismatchedPolymorphisms	7805A-15388C	
+A4e2	AP010832	MismatchedPolymorphisms	8348G-14062G-16249C	207A
+A4f	EF153780	MismatchedPolymorphisms	5267C-15110A	
+A2a	EF153808	MismatchedPolymorphisms	16192T	
+A2b	EU095533	MismatchedPolymorphisms	16527T	
+A2+64	EU095538	MismatchedPolymorphisms	6527G-11176A	
+A2c	HQ012111	MismatchedPolymorphisms	152C-6632C-10192T-16235G	
+A2d	HQ012117	MismatchedPolymorphisms	16129A	
+A2d1	HQ012083	MismatchedPolymorphisms	5423G-15436A-16177G	
+A2e	EF657275	MismatchedPolymorphisms	87G-174G-862G-1160G-2130G-3672C-4193G-4248G-6452T-6536T-7451A-8218T-11143A-11431A-12129T-13132A-14190T-14750G	64T-73G-146C-235G-263G-663G-750G-1438G-1736G-2706G-4248C-4769G-4824G-7028T-7112T-8027A-8794T-8860G-11719A-12007A-12705T-13708A-14766T-15326G-16111T-16189C-16223T-16290T-16319A-16336A-16362C
+A2f1	EF657254	MismatchedPolymorphisms	87G-174G-862G-1160G-2062C-2130G-2739A-3672C-4193G-4248G-6452T-7321A-7451A-8218T-11143A-11431A-12129T-12364A-14190T-14750G-15094C	64T-73G-146C-153G-235G-263G-663G-750G-1438G-1736G-2638C-2706G-3316A-4248C-4769G-4824G-7028T-7897A-8027A-8794T-8860G-11719A-12007A-12705T-12940A-14766T-15326G-15670C-16111T-16192T-16223T-16290T-16319A-16362C
+A2f2	HQ012110	MismatchedPolymorphisms	199C-3394C-6962A-16129A	
+A2f3	HQ012095	MismatchedPolymorphisms	2140A-16124C	
+A2h	EU095545	MismatchedPolymorphisms	709A-2056A-6503G-6716G-7732G-10775A-14053G-15315T-16129A-16297C	146C
+A2h1	HQ012079	MismatchedPolymorphisms	5839T-13317A	
+A2k	DQ282417	MismatchedPolymorphisms	5147A-7961C-10128T-14551G-15519C-16391A	16111T
+A2k1	DQ282390	MismatchedPolymorphisms	8460G	
+A2m	HQ012131	MismatchedPolymorphisms	485C-3745A-6689T-9804A-13135A-16104T-16172C	
+A2n	EU431082	MismatchedPolymorphisms	152C-4742C-12280G-12972G-13356C-15777A-15924G-16126C-16129A-16324C	
+A2p1	HQ012088	MismatchedPolymorphisms	16092C	
+A2q	JQ705973	MismatchedPolymorphisms	10993A-11172G	235G
+A2t	HQ012052	MismatchedPolymorphisms	1211A-16185T-16263C	
+A2u	HQ012053	MismatchedPolymorphisms	59C-709A-961C-10310A-16093C-16260T-16269G-16311C	16223T
+A2u1	HQ012073	MismatchedPolymorphisms	16274A	
+A2v	AY195786	MismatchedPolymorphisms	15172A	
+A2w	EU095528	MismatchedPolymorphisms	895T-16189C	
+A2x	HQ012071	MismatchedPolymorphisms	143A-499A-16262T	
+A2+64+189	JQ702200	MismatchedPolymorphisms	111C-2158C	153G
+A2aa	EU095196	MismatchedPolymorphisms	709A-1117G-15470C	
+A2ab	JQ702592	MismatchedPolymorphisms	207A-489C-2246G	
+A2ac	JQ702324	MismatchedPolymorphisms	9055A-9473C-14687G-16304C	
+A2ad	EF079873	MismatchedPolymorphisms	16259T	153G
+A2ad2	JQ965970	MismatchedPolymorphisms	194T-1790G-8553T	
+A2ae	JQ704276	MismatchedPolymorphisms	437T-5021C-7307G	
+A2af1a1	JQ965972	MismatchedPolymorphisms	195C-340T-16213A	
+A2af1b	JQ965986	MismatchedPolymorphisms	456T-709A-9972G-16189C	
+A2af1b1	JQ965983	MismatchedPolymorphisms	12280G-13191C	
+A2af1b2	HQ012106	MismatchedPolymorphisms	15047A	
+A11+16234	GQ895164	MismatchedPolymorphisms	186T-4901G-13638G-14110C-14527G-16318T	663G-750G
+A5a1a	AP009468	MismatchedPolymorphisms	16296T	
+A5a1a2	AP011037	MismatchedPolymorphisms	11914A-16399G	
+A5a1b	AP008853	MismatchedPolymorphisms	16291T	
+A5a3	AP008835	MismatchedPolymorphisms	15341C-16291T	
+A5b	JF824862	MismatchedPolymorphisms	318C-8659G-13260C-16124C	
+A5b1	GQ999962	MismatchedPolymorphisms	3460A-11172G	
+A5b1a	AP008364	MismatchedPolymorphisms	2863C-9959C-15043A-15793T-15806A	
+A5b1b	JF824875	MismatchedPolymorphisms	262T-7990A-11204C-15262C	
+A8	EU482363	MismatchedPolymorphisms	5824A-12175C	
+A8a	AY519486	MismatchedPolymorphisms	722T-6779G-9007G-15229C-16293C	235G
+A8a1	EF153797	MismatchedPolymorphisms	199C-16066G	
+A10	HM569228	MismatchedPolymorphisms	544T	
+O	AY289059	MismatchedPolymorphisms	547G-794C-1536G-4824G-5206T-5836G-5894C-8392A-8842C-13708A-13967T-15258G-15790T-16145A-16189C-16292T-16294T-16311C-16325C-16368C	
+O1	DQ404447	MismatchedPolymorphisms	5147A-8705C-10724C-12771A-16158G-16304C	9140T
+O1a	AY289056	MismatchedPolymorphisms	1628T-10700G	
+S1	AF346963	MismatchedPolymorphisms	150T-152C-252C-709A-1811G-2792G-10358G-12358G-13594G-16209C-16235G-16318T-16438A	
+S1a	JN226144	MismatchedPolymorphisms	5291C-12397G-15295T-16304C	
+S2	AY289051	MismatchedPolymorphisms	150T-5324T-6092C-8961G-9682C-14502C	
+S3	AY289066	MismatchedPolymorphisms	16317G	
+X1a	EU600318	MismatchedPolymorphisms	4580A-8743A-8856A-10978G-12612G-16145A	
+X1c	HM765467	MismatchedPolymorphisms	15930A-16181C-16311C	16104T-16223T
+X3	EF177437	MismatchedPolymorphisms	10084C	
+X2	GQ200588	MismatchedPolymorphisms	152C-3615G-5435T-11524G-16201T	
+X2+225	EU600328	MismatchedPolymorphisms	4685G-9205C-10774T-14544A-16274A-16344T	
+X2a1a	FJ168759	MismatchedPolymorphisms	15949A	
+X2a1a1	EU095249	MismatchedPolymorphisms	207A-2393T-16291T	
+X2a1b1	FJ168762	MismatchedPolymorphisms	12372A	
+X2a1c	EU095244	MismatchedPolymorphisms		16189C
+X2a2	FJ825753	MismatchedPolymorphisms	3316A-16362C	
+X2b	FJ457949	MismatchedPolymorphisms	1462A	
+X2b1	EF556159	MismatchedPolymorphisms	1555G-2308G	
+X2b2	AF381986	MismatchedPolymorphisms	227G-16129A	226C-13966G
+X2b3	DQ523642	MismatchedPolymorphisms	9386C-15289C	
+X2b4a	EU600321	MismatchedPolymorphisms	9017C-12465T-16126C	
+X2b6	JQ705374	MismatchedPolymorphisms	3745A-5427G	
+X2b7	JQ704754	MismatchedPolymorphisms	3942T-10018G	
+X2d	JQ705795	MismatchedPolymorphisms	152C-3645C-8718G-11361C-16298C	
+X2d1	JQ702739	MismatchedPolymorphisms	709A-8400C	
+X2d2	HM625691	MismatchedPolymorphisms	4052T	
+X2c	DQ523631	MismatchedPolymorphisms	13807T	
+X2c1	JQ705480	MismatchedPolymorphisms	15313C	
+X2c1c	JQ705612	MismatchedPolymorphisms	8027A	
+X2e1	EF556165	MismatchedPolymorphisms	9380A-13789C-16134T-16311C	
+X2e2b	AB626609	MismatchedPolymorphisms	709A-8506C-16093C	
+X2l	JQ704985	MismatchedPolymorphisms	16134T	
+X2m1	FJ008043	MismatchedPolymorphisms	4342G-14971C	
+X2m2	JQ705389	MismatchedPolymorphisms	11008T-15894A	
+X2n	EF660942	MismatchedPolymorphisms	4953G-15910T	
+X2f	EU600323	MismatchedPolymorphisms	13488C-16126C	
+X4	HQ456226	MismatchedPolymorphisms	2237G-11377A-13852C	
+L3a1	DQ341081	MismatchedPolymorphisms	151T-195C-198T-2357T-5310G-10184T-12618A-13443C-13708A-14566G-16178C-16189C	
+L3b1a1a	DQ304995	MismatchedPolymorphisms	8412C	
+L3b1a2	JN655827	MismatchedPolymorphisms	13419G	
+L3b1a3	FJ460529	MismatchedPolymorphisms	146C-16196A	
+L3b1a4	FJ460536	MismatchedPolymorphisms	152C-4562G-10535C	
+L3b1a+152	JN655790	MismatchedPolymorphisms	249G-5605G-6722A-16311C	
+L3b1a7	DQ341073	MismatchedPolymorphisms	1193C-9477A	
+L3b2	JQ045029	MismatchedPolymorphisms	6392C-9299G-14788C-16390A	16278T
+L3b3	JQ704919	MismatchedPolymorphisms	150T	
+L3f1a1	JN655817	MismatchedPolymorphisms	1699T-3834C-15401G-16126C-16172C	
+L3f1b	DQ341077	MismatchedPolymorphisms	3666A	
+L3f1b1	JQ044831	MismatchedPolymorphisms	199C-3909T	200G
+L3f2a	JN655784	MismatchedPolymorphisms	709A-2438G-12285C-13896C-13984T-15119A-15511C-16111A-16145A-16150T	
+L3f2a1	DQ341076	MismatchedPolymorphisms	1842G-16093C-16266T-16290T	
+L3f3	FJ625848	MismatchedPolymorphisms	5492C-15941C	15940C
+L3f3a	FJ625855	MismatchedPolymorphisms	9857T-15941C	15940C
+L3d	DQ112884	MismatchedPolymorphisms	1003G-2271G-3068C-3294G-4184C-4334G-4712A-6593T-6989G-8183C-8266G-8425G-9105C-9963G-10438C-11068T-11284A-12270T-12670G-12933A-13451C-13849T-14331T-14866A-14891G-14999T	73G-152C-263G-750G-1438G-2706G-4769G-5147A-7028T-7424G-8618C-8701G-8860G-9540C-10398G-10873C-11719A-12705T-13105G-13886C-14284T-14766T-15301A-15326G-16124C-16223T
+L3d1a+16319	HM771228	MismatchedPolymorphisms	4924A-8567C-10103G-12189C-15061G-16261T	
+L3d1b	JQ045112	MismatchedPolymorphisms	195C-6119T-13899C-14110C-14311C-16390A	10398G
+L3d1b1	DQ341072	MismatchedPolymorphisms	150T-3459T-5605G-6842C	
+L3d1b1a	JN214459	MismatchedPolymorphisms	12454A	
+L3d1b2	JQ702420	MismatchedPolymorphisms	8473C	
+L3d1b3	JQ045051	MismatchedPolymorphisms	7256T-9368G-14684T-16093C	
+L3d1b3a	JX303821	MismatchedPolymorphisms	9305A-14040A	16223T
+L3d1d	AY195782	MismatchedPolymorphisms	4040T-8709T-14128G-16086C	
+L3d2	JN655793	MismatchedPolymorphisms	151T-199C-202G-2963G-5004C-6492T-9266A-11878C-13191C-13708A	
+L3d3a	DQ112716	MismatchedPolymorphisms	486C-1003G-1284A-2271G-3062G-3958A-4253C-4334G-4712A-5996G-6593T-6989G-7816A-8183C-8266G-8425G-9105C-9963G-10438C-10464G-10969G-11284A-12270T-12670G-13451C-13849T-14331T-14626G-14866A-14891G-15130C	73G-152C-263G-750G-921C-1438G-2706G-3498G-4688C-4769G-5147A-7028T-7424G-8251A-8618C-8701G-8860G-9540C-10398G-10873C-10899G-11404G-11719A-12705T-13105G-13886C-14284T-14766T-15061G-15301A-15326G-16124C-16189C-16223T-16278T-16304C-16311C
+L3d3a1	JX303864	MismatchedPolymorphisms		152C
+L3d3b	JN655797	MismatchedPolymorphisms	5144T-10020C-12236A-16264T	
+L3d4	JN655834	MismatchedPolymorphisms	1393A-12280G	16124C
+L3e1a3a	JX303872	MismatchedPolymorphisms		152C
+L3e1b	JN655794	MismatchedPolymorphisms	3882A-7867T-14563T-16256T	
+L3e1d	HM771171	MismatchedPolymorphisms	7232T-11518A-12876A	
+L3e1e	JQ045096	MismatchedPolymorphisms	8573A-16309G	
+L3e1f	HM771172	MismatchedPolymorphisms	4395G-16189C-16260T	
+L3e1g	JQ044847	MismatchedPolymorphisms	16497G	
+L3e2a1b	DQ305025	MismatchedPolymorphisms	14750G	
+L3e2a1b1	DQ305031	MismatchedPolymorphisms	499A	
+L3e2a1b2	HM771176	MismatchedPolymorphisms	9650T	
+L3e2b	DQ341071	MismatchedPolymorphisms	5186G	
+L3e3b1	HM771231	MismatchedPolymorphisms	5261A	
+L3e3b3	JQ044850	MismatchedPolymorphisms	11350G-16129A	
+L3e4a1	JQ705320	MismatchedPolymorphisms	15639C	
+L3e5	JN655822	MismatchedPolymorphisms	711C-7280T	
+L3e5a	JN655798	MismatchedPolymorphisms	431A-2833G-16235T-16256A	
+L3i1a	JN655780	MismatchedPolymorphisms	11914A-15734A	
+L3i1b	DQ341069	MismatchedPolymorphisms	200G-8598C-14040A-14395C	
+L3i2	DQ341068	MismatchedPolymorphisms	504C-12630A	
+L3x1	JN655779	MismatchedPolymorphisms	5460A-13008G-13392C	
+L3x1+16311	JN655837	MismatchedPolymorphisms	15346A	
+L3x1b	JN655782	MismatchedPolymorphisms	490G-6917A-9554A-14070G	1438G
+L3x2a1	DQ341066	MismatchedPolymorphisms	249G-3621C-8041G-8197T-8928C-12340G-14034C-16147T-16362C	
+L3x2a1a	JN655829	MismatchedPolymorphisms	1842G-5900C-6227C	
+L3h1a1	JN655830	MismatchedPolymorphisms	4048A-11084G-11152C-12741T-14278C	
+L3h1a2a	JN655840	MismatchedPolymorphisms	153G-1508T-4965G-7055G-9839A-13158G-15229C-16189C	
+L3h1a2a1	AF347000	MismatchedPolymorphisms	291G-5004C-7058A-7858T-10197A-11377A-12999G	
+L3h1a2b	JN655788	MismatchedPolymorphisms	7310C-9824A-13153G-14407T-16093C-16242T	
+L3h1b1a	JN655775	MismatchedPolymorphisms	9776T-14950T	
+L3h2	JN655801	MismatchedPolymorphisms	7805A-13753C	
+M	JQ702247	MismatchedPolymorphisms	249G-319C-4021G-4901G-6249A-8970T-9380A-10256C-11140T-13708A-14040A-15574T-15850C-16140C-16172C-16189C-16278T	
+M1a	EF060344	MismatchedPolymorphisms	189G-954T-2905G-4137T-7269A-13105G-15848G-16093C	16249C
+M1a1	EF060330	MismatchedPolymorphisms	13759A	
+M1a1b	DQ779928	MismatchedPolymorphisms	8313A-13152G	
+M1a1b1	EF060320	MismatchedPolymorphisms	11882T	
+M1a1d	EF060324	MismatchedPolymorphisms	198T	
+M1a1e	EF060334	MismatchedPolymorphisms	5788C-9629G-15296G	
+M1a2	EF060340	MismatchedPolymorphisms	1282A-2056A-2581G-2858G-14020C-15401G-16265C	1438G
+M1a2a	AF381984	MismatchedPolymorphisms	14127G	
+M1a2b	EF060337	MismatchedPolymorphisms	200G-8392A-9196A-13149T	
+M1a3a	EF177443	MismatchedPolymorphisms	14952C	195C
+M1a3b	EF060343	MismatchedPolymorphisms	9740T-13928C-16374C	
+M1a4	EF060346	MismatchedPolymorphisms	10667C-16465T	
+M1b1	EF060352	MismatchedPolymorphisms	6179A-6815C-12406A	16189C
+M1b1a	EF060353	MismatchedPolymorphisms	5237A	
+M1b2	EF060359	MismatchedPolymorphisms	9380A-12940A-15262C-16093C	
+M1b2a	EF060355	MismatchedPolymorphisms	7394G	2706G
+M20	AP012349	MismatchedPolymorphisms	6261A-6483T	
+M51	GQ301879	MismatchedPolymorphisms	203C-2833G-8119C-10307T-11470G-12012T-12609C-16311C	
+M51a	GQ301870	MismatchedPolymorphisms	1822C-4136G-5461T-9100G-14527G-15383C-16189C	
+M51a1a	HM596693	MismatchedPolymorphisms	3736A-14129T-16296T	
+M2a1	EU443499	MismatchedPolymorphisms	203A-3652G-9254G-11914A-16086C	
+M2a1a	EU443460	MismatchedPolymorphisms	152C-225A-6221C-9287A-10848G-11151T-14562T	
+M2a1a1a	EU443508	MismatchedPolymorphisms	2775G-5460A	
+M2a1a2	EU443493	MismatchedPolymorphisms	207A-513A-16156A	
+M2a1a2a	EU443494	MismatchedPolymorphisms	1717C-16093C	
+M2a1a+207	EU443506	MismatchedPolymorphisms	2887C-4509C-4532A-10143A	16352C
+M2a1a3	EU443502	MismatchedPolymorphisms	13641C-14470C	
+M2a1a3a	EU443470	MismatchedPolymorphisms	8119C	
+M2a1c	EU443443	MismatchedPolymorphisms	3483A-5990G-14596G-16176T	
+M2a2	EU443487	MismatchedPolymorphisms	8396G-16465T	
+M2a3	EU443450	MismatchedPolymorphisms	3337A-8812G-14155T	
+M2a3a	EU443447	MismatchedPolymorphisms	4314C-11204C-14455T	8860G
+M2b	EU443486	MismatchedPolymorphisms	4823C-6128T-8556C-12990G-16240C	
+M2b1	EU443481	MismatchedPolymorphisms	185C-194T-373G-13437C	
+M2b1a	EU443483	MismatchedPolymorphisms	13856A	
+M2b2	EU443463	MismatchedPolymorphisms	146C-186A-16140C	
+M3	FJ770946	MismatchedPolymorphisms	93G-195C-10238C-11827C-13820C-16344T	
+M3a2	AY922266	MismatchedPolymorphisms	8639C-12879C-16298C-16400T	
+M3c1a	FJ770965	MismatchedPolymorphisms	5097G-6011C-8269A-14319C-16051G	
+M3c2	GU810074	MismatchedPolymorphisms	1598A-2649C-4477A-4479A-16239T	
+M4	DQ408679	MismatchedPolymorphisms	3306T-15466A-16086C	
+M65a	HM036576	MismatchedPolymorphisms	4655A-5302C-16527T	16311C
+M18b	JQ705662	MismatchedPolymorphisms	199C-9099T	
+M38a	AY922286	MismatchedPolymorphisms	7444A-9129T-11221G-16111T	
+M30a1	AY922254	MismatchedPolymorphisms	152C-5805G-16227G	513A
+M30b	AY289071	MismatchedPolymorphisms	183G-3381G-6242T-8491G-13980A-14053G-16192T	
+M30c	AF382013	MismatchedPolymorphisms	152C-204C-8870C-11946T	
+M30c1	AY922268	MismatchedPolymorphisms	9992T-13143C-13368A-14550C-16145A-16311C	
+M30c1a	HM036539	MismatchedPolymorphisms	8251A-14097T-15910T	
+M30c1a1	EF556149	MismatchedPolymorphisms	12178T	
+M37e	AY922267	MismatchedPolymorphisms	35A-36A-14302C-15148A-16172C-16184T-16185T	
+M43a	FJ770954	MismatchedPolymorphisms	11963A-13656C-13966G-16311C-16362C	
+M45a	HM030535	MismatchedPolymorphisms	10101C-16179T	
+M66	FJ770971	MismatchedPolymorphisms	6221C-12501A-16189C-16249C	
+M5a	EF556195	MismatchedPolymorphisms	4373C-10589A-12681C-13617C-16257T	16129A
+M5a1a	AY922289	MismatchedPolymorphisms	1780C-15172A	
+M5a1b	EF583176	MismatchedPolymorphisms	3954T-9833C-16298C	
+M5a2	AY922259	MismatchedPolymorphisms	8930A-11986T	
+M5a2a1	FJ770949	MismatchedPolymorphisms	7358G-9456G-15731A	
+M7a+16324	AP008394	MismatchedPolymorphisms	1598A-2263A-8429A-8470G-8537G-12030G-13928C	
+M7a1	AP008600	MismatchedPolymorphisms	1303A-1508T-14305A-16254G	
+M7a1a	AP010717	MismatchedPolymorphisms	10373A	
+M7a1a1	AP009451	MismatchedPolymorphisms	10589A	
+M7a1a3	AP008585	MismatchedPolymorphisms	200G	
+M7a1a4	AP008367	MismatchedPolymorphisms	7258C-8595T-13053G-14548G	
+M7a1a5	AP008280	MismatchedPolymorphisms	12634G	
+M7a1a6	AP008483	MismatchedPolymorphisms	152C-15965G	16223T
+M7a1a9	AP008466	MismatchedPolymorphisms	199C-10654T-11287C-15355A	
+M7a1b	AP008266	MismatchedPolymorphisms	204C-207A-408A-1977C	
+M7a2	AP010826	MismatchedPolymorphisms	195C-12140G-13596T-16167T-16234T	
+M7a2a	EF153781	MismatchedPolymorphisms	1888A-4093G-9494G-10966C-15379T-16187T	
+M7a2a1	AP010824	MismatchedPolymorphisms	6734A	
+M7a2a2	AP010825	MismatchedPolymorphisms	249G-2218T-14040A-15617A	146C
+M7b1'2'4'5'6'7'8+(16192)	EF153820	MismatchedPolymorphisms	6465A	
+M7b1	HM357816	MismatchedPolymorphisms	182T-5752G-9695A-16254G	
+M7b5	GU123012	MismatchedPolymorphisms	146C-980C	
+M7b6	HM357821	MismatchedPolymorphisms	10232G-12561A	
+M7b2b	AP008429	MismatchedPolymorphisms	6644T	
+M7b7	JF896798	MismatchedPolymorphisms	593C-4137T-11778A	
+M7b4	AY255159	MismatchedPolymorphisms	7702A-9681G-16301T	
+M7b3	DQ272126	MismatchedPolymorphisms	8566G-9581C-12172G-14569A	
+M7b3a	HM238210	MismatchedPolymorphisms	2068T-12720G-14905A	
+M7d	HM030531	MismatchedPolymorphisms	16239T	
+M7g	HM030506	MismatchedPolymorphisms	15514C-16086C-16235G	
+M7c1	AP008755	MismatchedPolymorphisms	373G-4452C-7960G-11389T-11914A-15787C-15924G	
+M7c1b1	AP008336	MismatchedPolymorphisms	7521A-9017C-13269G-14281G	
+M7c1d	EU007890	MismatchedPolymorphisms	7977C-8994A-9266A-12810G-16254G	
+M7c2	AY255158	MismatchedPolymorphisms	1375T-1625G-7073G-7844G-8292A-12501A	
+M7c2a	EF153782	MismatchedPolymorphisms	6031G	16295T
+M7c2b2	AP012419	MismatchedPolymorphisms	152C-14110C-14470C-15596A	
+M7c3a	HM238203	MismatchedPolymorphisms	16242T	16295T
+M7c3b	DQ272117	MismatchedPolymorphisms	3394C-15355A-16095T-16147T-16192T	16295T
+M7c3c	DQ372876	MismatchedPolymorphisms	12579G	
+M7c3c1	HM238218	MismatchedPolymorphisms	295T-2887C-3714G-4659A-8170G-11893G-16266T	
+M7e	HM030509	MismatchedPolymorphisms	16291T	
+M8a1	AP008823	MismatchedPolymorphisms	6719C	
+M8a2+152	AP008531	MismatchedPolymorphisms	4047C-5252A-16293C	
+M8a2a	JF824924	MismatchedPolymorphisms	11923G-14425T-16209C	
+M8a2a1	AP008803	MismatchedPolymorphisms	146C-1382C-3010A-3372C-7319C-16278T	2835T
+M8a3a	JF824830	MismatchedPolymorphisms	6164T-9758C-16293T	
+C1b	EU095226	MismatchedPolymorphisms	6456A-13545T-16318C	
+C1b1	AY195759	MismatchedPolymorphisms	5493C-6962A-8555C-10151G	
+C1b3	DQ282464	MismatchedPolymorphisms	5664G-6293C	
+C1b5a	HQ012213	MismatchedPolymorphisms	146C	
+C1b5b	JQ702595	MismatchedPolymorphisms	9449T-11755G	
+C1b7	HQ012207	MismatchedPolymorphisms	143A-195C-709A-5279T-12361G-12603T	
+C1b7a	HQ012215	MismatchedPolymorphisms	333C	
+C1b8	HQ012236	MismatchedPolymorphisms	195C-5563A-8389G-10601C-12631G-16172C-16188T-16195C	493G
+C1b8a	HQ012210	MismatchedPolymorphisms	150T-6260A	
+C1b9	HQ012208	MismatchedPolymorphisms	195C-241G-5894G-10397G-16181G-16336A	
+C1b9a	HQ012212	MismatchedPolymorphisms	198T	
+C1b11	JQ705451	MismatchedPolymorphisms	194T-4925T-10514G	
+C1b12	JQ705153	MismatchedPolymorphisms	11419C	
+C1c	DQ282459	MismatchedPolymorphisms	12397G	
+C1c1	HQ012229	MismatchedPolymorphisms	5471A-8251A-11377A-16317G	8584A
+C1c1b	JQ705676	MismatchedPolymorphisms	7149G-14690G	
+C1c4	HQ012220	MismatchedPolymorphisms	152C-5813G-9617G-15715G	
+C1c6	JQ704040	MismatchedPolymorphisms	3766C-12092T-13707A	
+C1d+194	HM107317	MismatchedPolymorphisms	7828G-14020C	8860G
+C1d1	HM107355	MismatchedPolymorphisms	16172C	
+C1d1a	HM107321	MismatchedPolymorphisms	93G-3591A-10978G-16209C	
+C1d1b	HM107324	MismatchedPolymorphisms	9449T-14122G-14341T	
+C1d1c	HM107334	MismatchedPolymorphisms	143A-3504C	
+C1d2	HM107315	MismatchedPolymorphisms	7129G-7151T-12396C-16104T-16174T	
+C1d2a	HM107314	MismatchedPolymorphisms	13966G	
+C4	FJ951604	MismatchedPolymorphisms	189G-14004T-16287T	
+C4a1	FJ951462	MismatchedPolymorphisms	719A-7675T	
+C4a1a	JX266268	MismatchedPolymorphisms	194T	16093C
+C4a1+16129+195	FJ951601	MismatchedPolymorphisms	10322C-14971C	
+C4a1b	JF824987	MismatchedPolymorphisms	8137T-11893G-14233G	16093C
+C4a1b1	AY255174	MismatchedPolymorphisms		16093C
+C4a1c2	EU482380	MismatchedPolymorphisms	430C-14225T	
+C4a1d	FJ951607	MismatchedPolymorphisms	4688C-10908C-16150T	16093C
+C4a1e	FJ951612	MismatchedPolymorphisms	16234T	
+C4a5	GU392063	MismatchedPolymorphisms	9148C-16311C	
+C4a3	GQ895170	MismatchedPolymorphisms	513A	16278T
+C4a4	FJ951548	MismatchedPolymorphisms	8443G-11654G-16189C	
+C4a4b	HM036530	MismatchedPolymorphisms	14668T	
+C4b1a	AY570526	MismatchedPolymorphisms	14793G	
+C4b3	FJ951447	MismatchedPolymorphisms	4109T-10843T	
+C4b8	EU482370	MismatchedPolymorphisms	16317G	
+C4c	EU095543	MismatchedPolymorphisms	11440A-13368A-16245T	10873C
+C4c1	JF979205	MismatchedPolymorphisms	207A-8027A	
+C4+152+16093	GQ895156	MismatchedPolymorphisms	4742C-8152A-10314T-16129A-16297C	
+C4e	FJ951611	MismatchedPolymorphisms	14392T	
+C5a2	EU482306	MismatchedPolymorphisms	16189C	
+C5b	FJ951454	MismatchedPolymorphisms	152C-4705C-6040G-7775A-12235C-16189C	
+C5b1	FJ951472	MismatchedPolymorphisms	195C-16126C-16192T-16278T	
+C5b1a	FJ951441	MismatchedPolymorphisms	64T-12855G-15848G	
+C5+16093	AP008664	MismatchedPolymorphisms	4562G-9489A	
+C5c	FJ951614	MismatchedPolymorphisms	16291T	
+C5c1	FJ951452	MismatchedPolymorphisms	54A	
+C5d2	FJ951576	MismatchedPolymorphisms	207A-13956G-14067T-16148T-16284G	
+C7	FJ951594	MismatchedPolymorphisms	143A-152C-225A-745G-1711T-4216C-15299C-16248T	1438G
+C7a1c	FJ951563	MismatchedPolymorphisms	15670C	
+C7a2	EF429136	MismatchedPolymorphisms	12810G-12909G-13635G-14226A-14470C	
+C7+16051	FJ951540	MismatchedPolymorphisms	152C-4401G-5262A-5264T-6386T-9389G-11447A-16093C-16145A-16311C	
+Z1	AY519493	MismatchedPolymorphisms	93G-207A-6425C-9948A-14180C	
+Z1a	FJ493510	MismatchedPolymorphisms	11252G	
+Z1a1	FJ493514	MismatchedPolymorphisms	7521A-8251A	
+Z1a2	AY195761	MismatchedPolymorphisms	11078G	
+Z3	AP008841	MismatchedPolymorphisms	7337A-14063C	
+Z3a1a	JF824889	MismatchedPolymorphisms	13174C	
+Z4a	AP008305	MismatchedPolymorphisms	204C-3520G-5894G-7270C-8654C-9479C-11914A-16294T	11719A-16189C
+M9a	AP010767	MismatchedPolymorphisms	1763G-8670G-9377G-11764G-13020C-16274A	
+M9a1	HM346892	MismatchedPolymorphisms	249G	
+M9a1a	HM346905	MismatchedPolymorphisms	146C	8860G
+M9a1a1	HM346912	MismatchedPolymorphisms	150T-185A-189G-12082G-13980A	
+M9a1a1b	AP008378	MismatchedPolymorphisms	13434G-15151G-16173T	
+M9a1a1c	HM346913	MismatchedPolymorphisms	709A-3372C-10340G-14180C	
+M9a1a1c1	HM346914	MismatchedPolymorphisms	8631G-16301T-16497G	
+M9a1a1c1b	HM346924	MismatchedPolymorphisms	711C	153G
+M9a1a1d	HM346910	MismatchedPolymorphisms	3277T-9054T	
+M9a1b	HM346893	MismatchedPolymorphisms	9266A-14857C-16316G	
+M9a1b+150	HM346895	MismatchedPolymorphisms	2161G-10081C	
+M9a1b2	JN857049	MismatchedPolymorphisms	188G	
+M9a4a	HM346885	MismatchedPolymorphisms	151T-8679G-9332T-12599C	15326G
+M9a4a1	EF093554	MismatchedPolymorphisms	1021A-4260T-7673G	
+M9a5	HM346889	MismatchedPolymorphisms	150T-16356C	
+E1a1a	EF185798	MismatchedPolymorphisms	16185T	
+E1a1a1	EF093551	MismatchedPolymorphisms	3736A-11075C-16189C	
+E1a1a2	EF093540	MismatchedPolymorphisms	5277C-8953G-9020T	
+E1a2	EF185805	MismatchedPolymorphisms	16256T-16324C	
+E2a	EF093541	MismatchedPolymorphisms	9063G	
+M10	DQ272116	MismatchedPolymorphisms	953C-4823C-9644G-9729T-12976T-16256T-16299G	
+M10a	AP008783	MismatchedPolymorphisms	63G-253G-479C-699A-740G-1428G-2696G-4130T-4759G-7018T-7240G-8691G-8783C-8846A-8850G-9530C-10388G-10390T-10636A-10863C-11709A-12539T-12695T-13142G-13467A-14301C-14492C-14756T-14773C-14860G-15030T-15033A-15061C-15208G-15291A-15316G-16213T-16301C-16509C	73G-263G-489C-709A-750G-1438G-2706G-4140T-4769G-7028T-7250G-8701G-8793C-8856A-8860G-9540C-10398G-10400T-10646A-10873C-11719A-12549T-12705T-13152G-14502C-14766T-14783C-15040T-15043A-15071C-15218G-15301A-15326G-16223T-16311C
+M10a+16129	JN857060	MismatchedPolymorphisms	146C-739T-3253C-12070A-13105G-13934T-16186T-16362C	
+M10a1a1	AP008719	MismatchedPolymorphisms	12696C-16266T	
+M10a1a2	AP010748	MismatchedPolymorphisms	5246T-10289G-10653A-14239T	
+M10a1a2a	AP010668	MismatchedPolymorphisms	11614T-16249C	
+M10a2	AY255154	MismatchedPolymorphisms	15172A-15924G	
+M11b	AP008639	MismatchedPolymorphisms	146C-154C-10685A-11926G-14790G-14869A-15924G	
+M11d	JN857062	MismatchedPolymorphisms	64T-65C-188G-3565G-8557A-14890G-16189C	
+M11c	AP010716	MismatchedPolymorphisms	189G-16178C-16192T	
+M12a1a	EU294322	MismatchedPolymorphisms	150T-189G-194T-8005C-14016A-14693G-16093C	16234T
+M12a1b	AY255172	MismatchedPolymorphisms	633G-1888A-5288T-5814C-14774T-15344C-16311C	128T
+G1a1	EF153773	MismatchedPolymorphisms	3221G-12178T-15077A	
+G1a1a2	AP008760	MismatchedPolymorphisms	152C	
+G1a2	DQ272114	MismatchedPolymorphisms	2760G-8520G	
+G1a3	AP008618	MismatchedPolymorphisms	6260A-14990T	
+G1c	AY255137	MismatchedPolymorphisms	2226C-15565C-16157C-16220G	
+G2a1	HM036563	MismatchedPolymorphisms	3777C-13194A-16311C	
+G2a1+16189	AP008515	MismatchedPolymorphisms	2483C	
+G2a1+16189+16194	AP008569	MismatchedPolymorphisms	9182A-13968A-16093C	
+G2a1c1	AP008401	MismatchedPolymorphisms	3278C-16094C-16260T	
+G2a1c2	AP008662	MismatchedPolymorphisms	1313G-16311C	
+G2a1d1	AP008313	MismatchedPolymorphisms	9165C-16269G	
+G2a1d2	HM030544	MismatchedPolymorphisms	10172A	
+G2a+152	EU545470	MismatchedPolymorphisms	2357A-3351T-4721G-7604A-11778A	
+G2a3	GU123045	MismatchedPolymorphisms	11764G	
+G2a4	JF824986	MismatchedPolymorphisms	57C-59C-189G	
+G2b1a	GU392066	MismatchedPolymorphisms	2120A-3593C-16172C	263G
+G2b2b	HQ260973	MismatchedPolymorphisms	143A-204C-4388G-9168T-13434G-13708A-14484C-15346A-16291T	
+G2b2c	GU123035	MismatchedPolymorphisms	513A	
+G3a	GU392096	MismatchedPolymorphisms	5041C-12408C-16390A	
+G3a1	DQ272108	MismatchedPolymorphisms	57G-127A-134T-247G-473C-693A-734G-1422G-2690G-4753G-4817G-5092C-7012T-8685G-8844G-8845T-9524C-10382G-10384T-10857C-11703A-11898A-12689T-14553A-14750T-14767C-15027A-15285A-15310G-15730G-16199G-16207T-16258A	16T-73G-143A-150T-263G-489C-709A-750G-1438G-2706G-4769G-4833G-5108C-7028T-8701G-8860G-9540C-10398G-10400T-10873C-11719A-11914A-12705T-14569A-14766T-14783C-15043A-15301A-15326G-15746G-16215G-16223T-16274A
+G3a2	JN580300	MismatchedPolymorphisms	9054T-12842C-13209T-13350G-13718C-14110C-16291T	
+G3b	DQ272109	MismatchedPolymorphisms	146C-6896C-16166G	
+G4	AP008911	MismatchedPolymorphisms	194T-4541A	
+M13a1b	GU392104	MismatchedPolymorphisms	15130T	
+M13a2	FJ968773	MismatchedPolymorphisms	2786C-3105G-8387A-9630C-13395G	
+M13b1	AY963577	MismatchedPolymorphisms	2225A-5177A-6164T-11482C-12501A-15553A-16093C-16381C	
+M13b2	HM030529	MismatchedPolymorphisms	6779G-7220C-14956C	
+M46	FJ442939	MismatchedPolymorphisms	16256T	
+M61	HM030538	MismatchedPolymorphisms	16093C	
+M14	EF495222	MismatchedPolymorphisms	64T-146C-154C-182T-544T-3547G-4092A-4604T-6734A-10595C-10876G-12952A-13020C-13934T-13980A-14812A-15908C-16051G-16148T-16243C-16245T-16270A	
+M15	EF495219	MismatchedPolymorphisms	93G-95C-709A-3802G-10166C-14577C-16186T-16189C	
+M17a	GQ301873	MismatchedPolymorphisms	150T-4053G-7717G-9192A-10365A-16093C-16278T	
+M17c	GQ119030	MismatchedPolymorphisms	143A-4917G-10103G-10166C-11204C-12012T-13651G-15853T-16233G-16274A-16304C	
+M53	AY922302	MismatchedPolymorphisms	152C-593C-5978G-8943T-12927T-13135A-16256T-16258C	
+M21a	AP012377	MismatchedPolymorphisms	10202T-16271C-16362C	7861C
+M21c	AY963581	MismatchedPolymorphisms	200G-204C-2222C-5093C-8718G-12940A-15106A-15511C-15734A-16242T	
+M22a	AY963583	MismatchedPolymorphisms	1119C-5351G-8158G-14142A-15236G-16093C-16184T-16304C	
+M22b	GQ301880	MismatchedPolymorphisms	185A-195C-316A-1598A-2283T-5054A-5471A-5655C-7933G-11842G-13962C-14821T-15479C-15664A-16274A	
+M23	GQ389777	MismatchedPolymorphisms	8188G	8860G
+M75	HM030540	MismatchedPolymorphisms	204C-207A-4487G-4502C-6062T-6284G-8185C-8790A-9380A-13980A-16311C-16318T	
+M41	DQ513522	MismatchedPolymorphisms	2757G	
+M41b	DQ513521	MismatchedPolymorphisms	15812C	
+M25	DQ246830	MismatchedPolymorphisms	226C-487G-1175G-2443G-4206G-6765T-8396T-8438G-8597G-9277C-10135G-10137T-10610C-11456A-12442T-14503T-14520C-14780A-15038A-15063G-15665A-15960T-16041C-16256C	73G-263G-489C-750G-1438G-2706G-4769G-7028T-8701G-8860G-9540C-10398G-10400T-10873C-11719A-12705T-14766T-14783C-15043A-15301A-15326G-15928A-16223T-16304C
+M26	HM596710	MismatchedPolymorphisms	16362C	
+M27a	DQ137410	MismatchedPolymorphisms	1503A-14730T	
+M27c	DQ137405	MismatchedPolymorphisms	151T	
+M28a	DQ372879	MismatchedPolymorphisms	6962A-7394G-16366T	
+M28b	DQ137399	MismatchedPolymorphisms	2135G-2280T-3808G-5772A-5951G-12373G-12507G-13754T-16291T	
+M29a	DQ137407	MismatchedPolymorphisms	8296G-9959C	
+M29b	EF061147	MismatchedPolymorphisms	200G-16104T	16311C
+Q1	DQ372885	MismatchedPolymorphisms	1407A-3834A-4913C-9101C-11884G-13047G-14798C-16526A	
+Q1a	AY289085	MismatchedPolymorphisms	15498A-16362C	92A
+Q1b	AF347003	MismatchedPolymorphisms	208C-8577G-10142T-12477C-14070T-16223T-16255A	
+Q2a	HQ113226	MismatchedPolymorphisms	11266T-12130C-16399G	
+Q2a1	GQ214525	MismatchedPolymorphisms	8999C-15916C	
+Q2a2	GQ214526	MismatchedPolymorphisms	10978C-12588T-14305A	16223T
+Q3a	AY289079	MismatchedPolymorphisms	59C-62T-64T-152C-4023G-6260A-8531G-8842G-9755A-11914A-12530G-13269G-14209G-16242A	7028T
+Q3a+61  62	DQ112896	MismatchedPolymorphisms	54C-1003G-2271G-2333G-3682C-3900T-4334G-5408G-6593T-8266G-8355A-8425G-9105C-9963G-9965T-10355C-10438C-10825C-11284A-12270T-12505A-13065C-14331T-14348C-14608A-14737A-14866A-14891G	61T-62A-73G-143A-263G-489C-750G-1438G-2706G-2768G-4117C-4335T-4769G-5843G-7028T-8701G-8790A-8860G-9540C-10398G-10400T-10873C-11719A-12705T-12940A-13500C-14766T-14783C-15043A-15172A-15301A-15326G-16129A-16223T-16241G-16311C
+Q3a1	AY289089	MismatchedPolymorphisms	227T-453C-5177A-5351G-11963A-13641C-13681G-16320T	
+M31a2	HQ438684	MismatchedPolymorphisms	13708A	
+M31b1	HQ438686	MismatchedPolymorphisms	3337A-3834A-11989G-14212C-16126C	
+M31c	FJ770962	MismatchedPolymorphisms	6323G-7805A-11903T	
+M32a	DQ149512	MismatchedPolymorphisms	143A-8108G	
+M32c	GQ389779	MismatchedPolymorphisms		8860G
+M33a2a	AY922276	MismatchedPolymorphisms	10166C-16278T	
+M33a+146	FJ770960	MismatchedPolymorphisms	195C-198T-8194T-12501A-15236G-16124C-16304C	
+M33b	FJ770968	MismatchedPolymorphisms	234G-2068T-6164T-10939T	
+M33c	EU148486	MismatchedPolymorphisms	4182T-4577T-7364G-16235G	
+M34b	AY922274	MismatchedPolymorphisms	11149A	
+M35	FJ770956	MismatchedPolymorphisms	2442A-3200C-3540C-5027T-6566T-6719C-6866C-7954G-9983G-10325A-11353C-13500C-13734C-14381G-16111T-16327T-16398A	
+M35b	AY922272	MismatchedPolymorphisms	152C-709A-4143G-5363T-8584A-8709T-9615C-16095T-16335G	
+M35b+16304	FJ770966	MismatchedPolymorphisms	3368C-6830T-8844T-9804A-11311G-11914A-16136C-16209C-16263C	
+M36a	AY922287	MismatchedPolymorphisms	3783T-9685C-16144C	
+M39	AY922269	MismatchedPolymorphisms	58A-182T-10188G-10619T-15589A-16270T-16325C	66T
+M40	AY922294	MismatchedPolymorphisms	252C-2442C-3010A-4099T-6221C-11485C-12616C-15832T-15932C-16145A-16174T	
+M62b	FJ544231	MismatchedPolymorphisms	8410T-11230T-14389T-16293C-16362C	
+M42a	DQ404445	MismatchedPolymorphisms	5563A-6104T-9410G-10786C-11110G-12715G-14527G-16137G-16294T	8251A-14783C
+M42b	FJ380216	MismatchedPolymorphisms	259G-296T-1053G-1173T-4197T-4232C-7897A-10289G-12950G-13194A-13748C-14020C-14058T-15241G-15438C-15562G-16092C-16147T-16243C-16278T-16311C-16362C	
+M42b1a	FJ380210	MismatchedPolymorphisms	8772C	
+M74a	GU377083	MismatchedPolymorphisms	7861C-16274A	
+M74b	HM030520	MismatchedPolymorphisms	146C-185A-979T-2263T-6413C-6896C-7444A-10658G-13651G-14798C-16214T-16400T	
+M74b2	AP012354	MismatchedPolymorphisms	226A-14325C-15315T	
+M50	GU810023	MismatchedPolymorphisms	204C-207A-466C-4688G-5054A-6293C-6620C-6962A-7642A-8297T-13802T-16129A-16153A-16309G-16526A	
+M52a	JQ703445	MismatchedPolymorphisms	5181G-7379A-10111C-10327T-12630A-14374C-14935C-16303A	6020T
+M71a	GQ119038	MismatchedPolymorphisms	143A-146C-200G-4959A-8838A-9615C-9926G-11665A-13759A-14605G-15097C-15229C-16129A-16140C	
+M71a1	HM030543	MismatchedPolymorphisms	152C-204C-7178T-12408C-13530T	
+M71b	HM030511	MismatchedPolymorphisms	11608G-15836G-16189C	
+M71c	GU810039	MismatchedPolymorphisms	207A-3398C-16017C	
+M72	HM030501	MismatchedPolymorphisms	16093C-16249C-16278T	
+M73a	GQ301883	MismatchedPolymorphisms	185A-3533T-6902G-10373A-10586A-12810G-12950G-16093C-16148T-16172C-16243C	
+M73b	GQ119012	MismatchedPolymorphisms	13482G-16290T-16293G	
+M76	HM030525	MismatchedPolymorphisms	152C-1822C-4655A-4742C-7229T-7624C-7961C-8260C-10304C-12361G-15283C-15511C-16124C-16278T-16356C	513A-14766T
+M76a	HM030541	MismatchedPolymorphisms	551G	
+D1	JN253391	MismatchedPolymorphisms	15519C-16187A	
+D1a2	AF346984	MismatchedPolymorphisms	10505C-14016A-14094C	
+D1d	DQ282480	MismatchedPolymorphisms	13105G-13821A-14569A	
+D1f	EU095536	MismatchedPolymorphisms	12530G-14798C-15212G-16168T-16278T-16293G	
+D1f1	EU095235	MismatchedPolymorphisms	228A-16192T	11719A
+D1g1b	JN253399	MismatchedPolymorphisms	90A-98T	
+D1g2	JN253401	MismatchedPolymorphisms	14319C-16304C	16189C
+D1g2a	JN253404	MismatchedPolymorphisms	3421A-9438A	
+D1g3	JN253409	MismatchedPolymorphisms	10646A	
+D1h	HQ012251	MismatchedPolymorphisms	204C-211G-7861C-13635C-13651G	
+D1i	DQ282487	MismatchedPolymorphisms	3438A-5237A	
+D1j	JN253419	MismatchedPolymorphisms	14116T-16157C	
+D1j1	JN253422	MismatchedPolymorphisms	3834A-16214T	
+D4a1a1a	AP010669	MismatchedPolymorphisms	1462A	
+D4a1e	AP008614	MismatchedPolymorphisms	8614C-9254G	
+D4a1f	JQ702207	MismatchedPolymorphisms	7202G-14467G-16086C	
+D4a2	AP008765	MismatchedPolymorphisms	15052G-15622C	
+D4a3a	AP008862	MismatchedPolymorphisms	3396C-14013G-14577C-15448T-15776G-16093C	
+D4a3b2	JF824944	MismatchedPolymorphisms	7572C-13302T	
+D4a+16294	AP008582	MismatchedPolymorphisms	5744A-6551T-9197G	
+D4a4	AP008888	MismatchedPolymorphisms	9569T	
+D4b1a2	EU482305	MismatchedPolymorphisms	3397G-6842C-7581C-12957C-13759A-13815T-16320T	15326G
+D4b1a2a1	EU007895	MismatchedPolymorphisms	11383C-14122C-16093C	
+D4b1a2a2	EU482385	MismatchedPolymorphisms	14207A	
+D4b1b1	AP008254	MismatchedPolymorphisms	9129T-10801A-16209C	
+D4b1b2	AP008708	MismatchedPolymorphisms	209C-7043T-14584C-16093C	
+D4b1d	HM030519	MismatchedPolymorphisms	204C-8823C	
+D4b1c	JQ703736	MismatchedPolymorphisms	3576T-9469T-9604G-15110A-16243C	
+D4b2	AP011004	MismatchedPolymorphisms	10692T-12795A-13392C	
+D4b2a	AP008434	MismatchedPolymorphisms	207A-1211A-1888A-3327G-13105G-15265T-15271T-16254G	
+D4b2a2	AP008256	MismatchedPolymorphisms	199C-4824G-16187T-16290T-16311C	
+D4b2a2b	AP010697	MismatchedPolymorphisms	6713T	
+D4b2b	AP008757	MismatchedPolymorphisms	3398C	
+D4b2b1a	AP008467	MismatchedPolymorphisms	3639G-12727C-16291T	
+D4b2b2a	JF824962	MismatchedPolymorphisms	6317T-8152A-11098G	
+D4b2b2b	HM030530	MismatchedPolymorphisms	1393A-11887A	
+D4b2b5	FJ951535	MismatchedPolymorphisms	151T-15525G	
+D4c1a	AP008633	MismatchedPolymorphisms	11257T	
+D4c1b	AP008251	MismatchedPolymorphisms	11113C	
+D4c1b1	AP008494	MismatchedPolymorphisms	195C-10819G	
+D4e1a	HM357813	MismatchedPolymorphisms	6692G-8119C	
+D4e1a1	AP008275	MismatchedPolymorphisms		16092C
+D4e1a2a	AP008772	MismatchedPolymorphisms		16092C
+D4e1c	HQ012262	MismatchedPolymorphisms	16172C	
+D2a1a	EU660538	MismatchedPolymorphisms		16092C
+D2a1b	EU660553	MismatchedPolymorphisms		16092C
+D2a2	EU482339	MismatchedPolymorphisms		16092C
+D2b1	JF824877	MismatchedPolymorphisms	574G	
+D2b1a	EF153796	MismatchedPolymorphisms	16148T	
+D2b2	EU095542	MismatchedPolymorphisms	16296T	16092C
+D2c	FJ951506	MismatchedPolymorphisms		16092C
+D4e2b	AP008352	MismatchedPolymorphisms	15314A	
+D4e4a	FJ951569	MismatchedPolymorphisms	8348G-8812G-16291T	
+D4e5b	FJ858882	MismatchedPolymorphisms	4637T-6827C-16129A-16311C	
+D4f	EU007883	MismatchedPolymorphisms	207A-7746G	263G-1438G
+D4g1c	AP008560	MismatchedPolymorphisms	9851T	
+D4g2	JF896799	MismatchedPolymorphisms	593C-4959A-11778A-11935C-12972G-16271C	
+D4g2a	AP008422	MismatchedPolymorphisms	152C-189G-195C-203A-204C-228A-325T-2772T-9128C-15496G-16093C-16209C-16295T-16325C	
+D4g2a1	FJ951522	MismatchedPolymorphisms	10694G	
+D4g2b	FJ951468	MismatchedPolymorphisms	316A-8793C-13287T-14221C-15893C-16188T	
+D4g2b1	AP008408	MismatchedPolymorphisms	504C-5460A-6719C-9386C	
+D4h1	AP009422	MismatchedPolymorphisms	152C-7181T-7673G-13914A-14470C-16265G-16311C-16317G	
+D4h1b	JF271012	MismatchedPolymorphisms	16169A	10398G
+D4h3a	EU095531	MismatchedPolymorphisms	6480A-16291T	
+D4h3a1	FJ168713	MismatchedPolymorphisms	203A-204C-9533T-12681C-14384A-15804C-16265C	
+D4h3a1a2	FJ168722	MismatchedPolymorphisms	7849T-15928A	
+D4h3a2	FJ168727	MismatchedPolymorphisms	208A-12673G-16298C	
+D4h3a3	FJ168728	MismatchedPolymorphisms	58C-2260G-10616T-11407A-15556A-16234T-16256G-16342G-16526A	16342C
+D4h3a3a	FJ168731	MismatchedPolymorphisms	3565G-14861A-16209C	
+D4h3a5	FJ168739	MismatchedPolymorphisms	9770C-9821G-12040G-12528A-16051G	
+D4h3a6	FJ168744	MismatchedPolymorphisms	15930A-16129A	
+D4h4	AP008782	MismatchedPolymorphisms	10463C-16146G-16256T-16309G	
+D4h4a	FJ951519	MismatchedPolymorphisms	7642A	
+D4i1	AP008428	MismatchedPolymorphisms	15257A-16356C	
+D4j	AP008496	MismatchedPolymorphisms	7501A-9909C-11422T-16172C	
+D4j2	FJ415605	MismatchedPolymorphisms	16261T	
+D4j3a	HM044855	MismatchedPolymorphisms	8149G	
+D4j11	FJ951501	MismatchedPolymorphisms	14905A	
+D4j5	FJ951458	MismatchedPolymorphisms	146C-15773A	
+D4j7	EU482377	MismatchedPolymorphisms	12406A-16147A	
+D4k	DQ272107	MismatchedPolymorphisms	6040G-16192T	
+D4o	FJ951500	MismatchedPolymorphisms	183G-9196A-11809C-11944C-12612G	195C
+D4o1	EU482383	MismatchedPolymorphisms	13269G-16129A-16176T-16342C	
+D4o1a	AP008819	MismatchedPolymorphisms	8854A-11084G-15380G	
+D4o2	FJ951551	MismatchedPolymorphisms	16365T	
+D4l1	FJ951528	MismatchedPolymorphisms	93G-373G-1308C-3808G-5704T-15315T-16325C	
+D4l1a	AP009464	MismatchedPolymorphisms	9355G	
+D4l2	FJ951570	MismatchedPolymorphisms	125C-13651G-16274A	73G
+D4m1	AP008321	MismatchedPolymorphisms	4310G	
+D4m2	FJ951565	MismatchedPolymorphisms	15313C-16093C-16214T	
+D4n	AP010765	MismatchedPolymorphisms	93G-16357C	
+D4n2	FJ951554	MismatchedPolymorphisms	16171T	
+D5a1	AP008250	MismatchedPolymorphisms	12040G-15817G	
+D5a1a2	AP008619	MismatchedPolymorphisms	13527G	
+D5a2a	FJ951467	MismatchedPolymorphisms	4232C-8322C	
+D5a2a1	AY570525	MismatchedPolymorphisms	4947C-8838A-12954C	
+D5a2a1a	AP011023	MismatchedPolymorphisms	12398T	
+D5a2a1a1	AP008536	MismatchedPolymorphisms	10589A	
+D5a3	FJ951589	MismatchedPolymorphisms	151G-4924A-5911T-13135A-14020C	
+D5b1	JN580302	MismatchedPolymorphisms	7280T-9554A	
+D5b1a	AP010708	MismatchedPolymorphisms	16172C-16325C-16355T	
+D5b1a1	AP008674	MismatchedPolymorphisms	152C	
+D5b1c	AY255169	MismatchedPolymorphisms	3338C-3510T-8485A-12297C-12501A	9180G
+D5b2	AP008289	MismatchedPolymorphisms	16126C	
+D5c1	EU482335	MismatchedPolymorphisms	182T-185A-217C-16129A	16189C-16190T-16223T
+D5c+16311	EU007893	MismatchedPolymorphisms	1120T-4080C-7408G-9970T-14470C-16234T	16189C-16190T
+D5c2	HM460797	MismatchedPolymorphisms	12696C-13260C-14484C-16356C	16189C-16190T
+D6a2	GQ119022	MismatchedPolymorphisms	8459G-9377G	
+D6c	GQ119040	MismatchedPolymorphisms	5357G-6260A-14371C	
+L4a1	FJ460531	MismatchedPolymorphisms	6701G-8817G-13043T-16093C-16368C	
+L4a1a	DQ341064	MismatchedPolymorphisms	185A-189G-8697A-12280G-13344G-16261T	
+L4b1	JQ044811	MismatchedPolymorphisms	16093C	513A
+L4b2b	JQ702504	MismatchedPolymorphisms	2220T-4206G-5134G-5483C-8251A-12397G-15759C-16224C-16274A-16292T-16294T	
+L6b	DQ341063	MismatchedPolymorphisms	184A-12405T-12714C	
+L2a1a2a	DQ304975	MismatchedPolymorphisms	8686C-14857C	
+L2a1a3	HM771168	MismatchedPolymorphisms	8598C-9449T-16256T	
+L2a1a3b	DQ304948	MismatchedPolymorphisms	3826C-14502C	16093C
+L2a1c+16086	JQ044973	MismatchedPolymorphisms	16124C-16189C	143A-195C
+L2a1c1	FJ460560	MismatchedPolymorphisms	5567C-8020A-9608G	
+L2a1c1a	JQ412577	MismatchedPolymorphisms	6164T-8188G-11137C	
+L2a1c2	JQ045108	MismatchedPolymorphisms	644G-7299G-8659G-9438A-9812A-16093C	
+L2a1c2a	HM771169	MismatchedPolymorphisms	8733C-15203G	
+L2a1c4	JN214432	MismatchedPolymorphisms	3699G-6299G-7436G-13749T-15943C	146C
+L2a1c4a	DQ304942	MismatchedPolymorphisms	13617C	
+L2a1c4a1	DQ304951	MismatchedPolymorphisms	9497C	
+L2a1c+16129	JN858955	MismatchedPolymorphisms	5147A-8065A-8772C-11087C-16218T	16309G
+L2a1c5	HM771225	MismatchedPolymorphisms	7853A-16189C-16192T	
+L2a1d2	JX303838	MismatchedPolymorphisms	5442C-5603T-7741C-15596A-16129A	
+L2a1e	DQ304945	MismatchedPolymorphisms	1007A-6431G-13980A	
+L2a1e1	DQ304930	MismatchedPolymorphisms	5237A-7424G-13953C	143A
+L2a1+143+16189	HQ384198	MismatchedPolymorphisms	2887C-8544T-15955G	
+L2a1i	JQ044958	MismatchedPolymorphisms	14978G	
+L2a1k	EU200760	MismatchedPolymorphisms	6116G-7756T-16247G	146C
+L2a1+143+16189+16192	FJ460527	MismatchedPolymorphisms	8108G	
+L2a1l1	JQ044956	MismatchedPolymorphisms	198T-12684A	
+L2a1l3	JX021728	MismatchedPolymorphisms	10042G	
+L2a1m	JQ045040	MismatchedPolymorphisms	6899A-11623T	
+L2a1m1	JQ701914	MismatchedPolymorphisms	8553T	
+L2a2b	HM771207	MismatchedPolymorphisms	235G-3337A-6383A-9077C-15530C-16368C	
+L2a2b1	HM771208	MismatchedPolymorphisms	5563A	
+L2b1a	JQ044854	MismatchedPolymorphisms	235G-801G-6185C-12164T-16290T	
+L2b1a4	JN214453	MismatchedPolymorphisms	4062C-13768C-15872G	13924T-14059G
+L2b1b	FJ228403	MismatchedPolymorphisms	183G-16153A-16274A-16311C	
+L2b2a	JX303807	MismatchedPolymorphisms	16292T	204C
+L2b3a	JQ702626	MismatchedPolymorphisms	207A-5074C-5237A-16212G-16359C	
+L2c	JQ044941	MismatchedPolymorphisms	850C-6293C-13759A-15883A-16355T	
+L2c1a	JQ045106	MismatchedPolymorphisms	6221C-7830A-8655T-13886C-14979C-16261T	
+L2c2	DQ304986	MismatchedPolymorphisms	14530C	
+L2c2b	JQ044878	MismatchedPolymorphisms	3784C-5978G-9758C-10399T	
+L2c3	JQ705626	MismatchedPolymorphisms	7403G-8125T-16086C	513A
+L2c3a	AF346995	MismatchedPolymorphisms	11909G-14118G-16187T-16362C	513A
+L2c4	JQ044914	MismatchedPolymorphisms	6518T-11197T-15917T	
+L2c5	AY195785	MismatchedPolymorphisms	3221G-14374C	
+L2d	JQ045050	MismatchedPolymorphisms	9254G	
+L2d1	JQ044948	MismatchedPolymorphisms	6366A-8839A	
+L2e1	FJ460523	MismatchedPolymorphisms	8821C-8994A-11016A-11149A-13194A	479G
+L5a1c	DQ112922	MismatchedPolymorphisms	274A-334A-390A-416G-495A-583A-1003G-1387C-1415C-2271G-2987C-3159T-3669G-3702T-4061T-4334G-4676T-4712A-5221G-5543G-5747A-5862C-6593T-6821T-6989G-7086A-7537G-7720A-7753G-8147T-8220T-8266G-8319T-8425G-8870A-8894A-9105C-9963G-10253A-10375C-10438C-10590C-11284A-11446T-11801A-11868T-11997T-12270T-12345G-12515G-12670G-13071T-13215T-13287G-13317A-13777C-13804T-14146C-14331T-14470A-14536C-14782A-14891G-15449A	73G-152C-182T-195C-247A-263G-513A-709A-750G-769A-825A-851G-930A-1018A-1438G-1822C-2706G-3423C-3594T-4104G-4137T-4496T-4769G-5111T-5147A-5656G-6182A-6297C-7028T-7256T-7424G-7521A-7972G-8155A-8188G-8582T-8655T-8701G-8754T-8860G-9305A-9329A-9540C-10398G-10688A-10810C-10873C-11025C-11719A-11881T-12236A-12303T-12432T-12705T-12950G-13105G-13506T-13650T-13722G-13752A-14212C-14239T-14581C-14766T-14905A-14971C-15217A-15326G-15884A-16129A-16148T-16166G-16187T-16189C-16223T-16278T-16311C-16355T-16362C
+L5c1	DQ341061	MismatchedPolymorphisms	15383C	247A-16187T
+L1b1	DQ112737	MismatchedPolymorphisms	274A-275C-334A-390A-583A-1303C-1917C-2271G-2323A-2450C-2872C-3159T-3231A-3258A-3669G-3688G-4334G-4601G-4611A-5220C-6113T-6392C-6554G-6593T-6620G-6711G-6821T-6954C-7009A-7086A-7432T-7813G-7894G-8033T-8220T-8266G-8425G-8502C-9105C-9963G-10253A-10375C-10438C-11017C-11284A-12084C-12270T-12670G-13071T-13215T-13354C-13445A-13743C-13745C-13768G-14125A-14324G-14331T-14334G-14680C-14866A-14891G	73G-152C-182T-185T-195C-247A-263G-357G-709A-710C-750G-769A-825A-1018A-1738C-2352C-2706G-2758A-2768G-2885C-3308C-3594T-3666A-3693A-4104G-4769G-5036G-5046A-5655C-6548T-6827C-6989G-7028T-7055G-7146G-7256T-7389C-7521A-7867T-8248G-8468T-8655T-8701G-8860G-9540C-10398G-10688A-10810C-10873C-11719A-12519C-12705T-13105G-13506T-13650T-13789C-13880A-14178C-14203G-14560A-14766T-14769G-15115C-15326G-16126C-16187T-16189C-16223T-16264T-16270T-16278T-16293G-16311C
+L1b1a	JN214480	MismatchedPolymorphisms	7598A-7807A-10187C	
+L1b1a4	AY195783	MismatchedPolymorphisms	146C-13194A	
+L1b1a+189	JN214471	MismatchedPolymorphisms	16362C	
+L1b1a3b	JQ703036	MismatchedPolymorphisms	11015G	
+L1b1a15	JQ705587	MismatchedPolymorphisms	146C-721C-4589C-8839A-16355T	
+L1b1a17	JQ704683	MismatchedPolymorphisms	3027C-7859A	
+L1b1a7	DQ282505	MismatchedPolymorphisms	228A-14053G	
+L1b1a8	JQ704968	MismatchedPolymorphisms	5147A	16270T
+L1b1a13	JN214477	MismatchedPolymorphisms	9493C-9948A	
+L1b1a14	JQ045114	MismatchedPolymorphisms	16256T	
+L1b1a16	JN214460	MismatchedPolymorphisms	185C-16360T	185A
+L1b2	JQ044866	MismatchedPolymorphisms	8605T-9650T-15734A	16293G
+L1c1a	JQ705275	MismatchedPolymorphisms	1762G-3969T-4219A-4225G-6578C-8841T-9830T-10976T-11044T-12281T-13260C-16093C-16263C-16368C	
+L1c2b1	DQ341059	MismatchedPolymorphisms	189G-200G-513A-1598A-5162C-6962A-11252G-11959G-12477C-12540G-15929G-16286G	189C-16093C-16278T-16286T
+L1c2b1a	HM771222	MismatchedPolymorphisms	6125G-6209T-7010T-14071G-15514C-16286A	13506T-16093C-16187T-16286T
+L1c2b1b1	JQ705650	MismatchedPolymorphisms	5123G-16286G	16093C-16286T
+L1c2b2	HM771221	MismatchedPolymorphisms	794C-4094T-4454C-4722G-5843G-11290G-12634G-15886T-16078G-16286A	182T-16093C-16278T-16286T
+L1c4b	JF812599	MismatchedPolymorphisms	146C-9494G-10927C-11928G	
+L1c5	JX303797	MismatchedPolymorphisms	13981T	
+L1c3a1a	EU935458	MismatchedPolymorphisms	1700C-5165T-11995G-14129T	
+L1c3a1b	JQ044855	MismatchedPolymorphisms	8680T-16213A-16291T	
+L0a1b	DQ112777	MismatchedPolymorphisms	334A-390A-583A-613T-1003G-1810G-2271G-2323A-2450C-3080A-3159T-3414A-3669G-3877T-4151C-4334G-4661C-4796A-5007C-5025A-5168T-5476T-5750C-6593T-6711G-6821T-7086A-7993T-8033T-8131G-8220T-8266G-8425G-8607T-8912G-9105C-9320A-9383T-9963G-10154A-10229T-10253A-10375C-10438C-10480C-10741A-10897T-11206G-11284A-11479A-11572A-12270T-12285G-12670G-12841G-13071T-13215T-13572G-13873C-14331T-14701T-14891G-14996A-15451T	93G-95C-152C-185A-189G-236C-247A-263G-750G-769A-825A-1018A-1048T-1438G-2245G-2706G-2758A-2885C-3516A-3594T-4104G-4312T-4586C-4769G-5096C-5231A-5442C-5460A-5603T-5911T-6185C-7028T-7146G-7256T-7521A-8428T-8468T-8566G-8655T-8701G-8860G-9042T-9347G-9540C-9755A-9818T-10398G-10589A-10664T-10688A-10810C-10873C-10915C-11176A-11641G-11719A-11914A-12007A-12705T-12720G-13105G-13276G-13506T-13650T-14007G-14308C-14766T-15136T-15326G-15431A-16129A-16148T-16168T-16172C-16187T-16188G-16189C-16223T-16230G-16278T-16293G-16311C-16320T
+L0a1b1	AF381988	MismatchedPolymorphisms	1539A-5628C-7258C	
+L0a1b1a	EU935434	MismatchedPolymorphisms	3311T	
+L0a1b2	DQ304897	MismatchedPolymorphisms	7711C-9804A	
+L0a1b2a	EF657743	MismatchedPolymorphisms	174G-193A-249A-442A-472T-862G-1669G-2130G-2182A-2309C-2939A-3017T-3528G-3736T-4010C-4193G-4520C-4655A-4866C-4884A-4987A-5027T-5335T-5609C-6452T-6570G-6680T-6945A-7852T-7892T-7990G-8079T-8125G-8466T-8771G-8964C-9179A-9242T-9822G-10013A-10088T-10112A-10234C-10297C-10339C-10600A-11065G-11143A-11236G-11338A-11431A-12129T-12144G-12529G-12700G-12930T-13074T-13431G-13530C-13732C-14190T-14523C-14560T-14750G-14855A	93G-95C-152C-185A-189G-236C-247A-263G-750G-769A-825A-1018A-1048T-1438G-2245G-2706G-2758A-2885C-3516A-3594T-4104G-4312T-4586C-4769G-5096C-5231A-5442C-5460A-5563A-5603T-5911T-6185C-7028T-7146G-7256T-7521A-8428T-8468T-8566G-8655T-8701G-8860G-9042T-9347G-9540C-9755A-9818T-10398G-10589A-10664T-10688A-10810C-10873C-10915C-11176A-11641G-11719A-11914A-12007A-12705T-12720G-13105G-13276G-13506T-13650T-14007G-14106C-14308C-14766T-15099C-15136T-15326G-15431A-16093C-16129A-16148T-16168T-16172C-16187T-16188G-16189C-16223T-16230G-16278T-16293G-16311C-16320T
+L0a2a1	HM771161	MismatchedPolymorphisms	6407C-15927A-16093C	64T-95C
+L0a2a1a1	DQ112686	MismatchedPolymorphisms	334A-390A-583A-613T-1003G-1810G-2271G-2323A-2450C-3080A-3159T-3669G-3877T-4151C-4163C-4334G-4712A-4796A-5007C-5025A-5168T-5276G-5750C-5822A-6593T-6711G-6821T-7086A-7829T-7993T-8025G-8033T-8131G-8220T-8266G-8425G-8607T-8743A-8912G-9105C-9320A-9383T-9963G-10154A-10229T-10253A-10375C-10438C-10480C-10708T-10737G-10741A-11206G-11284A-11395C-11479A-11572A-12270T-12285G-12670G-12841G-13071T-13215T-13747C-13873C-14320G-14331T-14701T-14891G-14996A	64T-93G-95C-152C-189G-236C-247A-263G-750G-769A-825A-1018A-1048T-1438G-2245G-2706G-2758A-2885C-3516A-3594T-4104G-4312T-4586C-4598C-4769G-5147A-5231A-5442C-5460A-5603T-5711G-6185C-6257A-7028T-7146G-7256T-7521A-8264T-8428T-8460G-8468T-8566G-8655T-8701G-8860G-9042T-9178A-9347G-9540C-9755A-9818T-10398G-10589A-10664T-10688A-10810C-10873C-10915C-11143T-11172G-11176A-11641G-11719A-11914A-12007A-12705T-12720G-13105G-13276G-13506T-13650T-14182C-14308C-14755G-14766T-15136T-15326G-15431A-16148T-16172C-16187T-16188G-16189C-16223T-16230G-16311C-16320T
+L0a2a1b	JX303784	MismatchedPolymorphisms	15562G-16287T	95C-189G
+L0a2b1	HM771200	MismatchedPolymorphisms	16188A	95C-16188T
+L0a2c	EF556174	MismatchedPolymorphisms	16188A	16188T
+L0k1	JX303865	MismatchedPolymorphisms	593C-3777C-10321C-11864C-12390T-14364A-15721C-15884A	

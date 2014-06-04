@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{570D8F8C-4B97-4A9D-ABF5-27588030C3E5}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MitoDataAssembler</RootNamespace>
+    <AssemblyName>MitoDataAssembler</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <StartupObject>MitoDataAssembler.Program</StartupObject>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Commandlineparameters> -k:19  -p:FirstAssembly -v -o:/Users/ndelaney/LocalLR-PCR/FirstAssembly.fna -ref:/Users/ndelaney/LocalLR-PCR/MT_SeqNoN.fa /Users/ndelaney/LocalLR-PCR/171068.bam</Commandlineparameters>
+    <Prefer32Bit>false</Prefer32Bit>
+    <ConsolePause>false</ConsolePause>
+    <additionalargs>/debug</additionalargs>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <DefineConstants>TRACE; </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <Commandlineparameters> -k:19 -v -p:Test -o:FirstAssembly.fna -chr:MT /Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/TestData/MT_1.bam</Commandlineparameters>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <EnvironmentVariables>
+      <EnvironmentVariables>
+        <Variable name="R_LIB" value="/Library/Frameworks/R.framework/Resources/lib/libR.dylib" />
+        <Variable name="R_HOME" value="/Library/Frameworks/R.framework/Resources/" />
+      </EnvironmentVariables>
+    </EnvironmentVariables>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Mono|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>TRACE;DEBUG;MONO</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RDotNet">
+      <HintPath>..\..\lib\RDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="RDotNet.NativeLibrary">
+      <HintPath>..\..\lib\RDotNet.NativeLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyOutput.cs" />
+    <Compile Include="Assembly\AllAssemblyFinder.cs" />
+    <Compile Include="DeletionReport.cs" />
+    <Compile Include="Assembly\MitochondrialAssembly.cs" />
+    <Compile Include="PairedEnd\PairedEndDeletionFinderOutput.cs" />
+    <Compile Include="PairedEnd\PossibleDeletion.cs" />
+    <Compile Include="ReadFilter.cs" />
+    <Compile Include="ReferenceGenome.cs" />
+    <Compile Include="R\RInterfaceException.cs" />
+    <Compile Include="Assembly\SingletonNodeRemover.cs" />
+    <Compile Include="ExportClasses.cs" />
+    <Compile Include="Assembly\LargeDeletionFinder.cs" />
+    <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="Assembly\PossibleAssembly.cs" />
+    <Compile Include="Visualization\Arrow.cs" />
+    <Compile Include="Visualization\GenomeSlice.cs" />
+    <Compile Include="Visualization\GraphGenerator.cs" />
+    <Compile Include="Assembly\LowCoveragePurger.cs" />
+    <Compile Include="Visualization\MetaNode.cs" />
+    <Compile Include="Assembly\MitoPaintedAssembler.cs" />
+    <Compile Include="ConsoleInterface\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ConsoleInterface\Output.cs" />
+    <Compile Include="ConsoleInterface\MTAssembleArguments.cs" />
+    <Compile Include="ConsoleInterface\StaticResources.cs" />
+    <Compile Include="Assembly\UnlinkedToReferencePurger.cs" />
+    <Compile Include="Visualization\MitochondrialAssemblyPlotMaker.cs" />
+    <Compile Include="PairedEnd\PairedEndPeakFinder.cs" />
+    <Compile Include="R\RInterface.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Visualization\MakeGenomeAssemblyPlot.r">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\bio\Bio.csproj">
+      <Project>{b53e11df-f9a9-4939-893e-78e59872089a}</Project>
+      <Name>Bio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\bio\Source\Framework\Add-ins\Bio.Padena\Bio.Padena.csproj">
+      <Project>{1CFF1C79-1E34-4411-97E0-0FB02F4865C3}</Project>
+      <Name>Bio.Padena</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HaploGrepSharp\HaploGrepSharp.csproj">
+      <Project>{BA4796D5-36EA-4E3F-BE47-A06E06F3F4FB}</Project>
+      <Name>HaploGrepSharp</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup />
+</Project>

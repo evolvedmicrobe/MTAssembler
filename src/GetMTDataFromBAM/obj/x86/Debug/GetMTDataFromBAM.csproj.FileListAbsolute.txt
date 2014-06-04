@@ -1,0 +1,12 @@
+D:\Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\bin\Debug\GetMTDataFromBAM.exe
+D:\Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\bin\Debug\GetMTDataFromBAM.pdb
+D:\Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\bin\Debug\Bio.dll
+D:\Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\bin\Debug\Bio.pdb
+D:\Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\bin\Debug\Bio.xml
+D:\Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\obj\x86\Debug\GetMTDataFromBAM.csprojResolveAssemblyReference.cache
+D:\Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\obj\x86\Debug\GetMTDataFromBAM.exe
+D:\Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\obj\x86\Debug\GetMTDataFromBAM.pdb
+C:\Users\Delaney\SkyDrive\Software\MitochondrialPrograms\MT_Data_Grabber\obj\x86\Debug\GetMTDataFromBAM.exe
+C:\Users\Delaney\SkyDrive\Software\MitochondrialPrograms\MT_Data_Grabber\obj\x86\Debug\GetMTDataFromBAM.pdb
+C:\Users\Nigel\SkyDrive\Software\MitochondrialPrograms\MT_Data_Grabber\obj\x86\Debug\GetMTDataFromBAM.csprojResolveAssemblyReference.cache
+C:\Users\Nigel\SkyDrive\Software\MitochondrialPrograms\MT_Data_Grabber\obj\x86\Debug\GetMTDataFromBAM.exe

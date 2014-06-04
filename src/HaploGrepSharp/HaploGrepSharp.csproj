@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BA4796D5-36EA-4E3F-BE47-A06E06F3F4FB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HaploGrepSharp</RootNamespace>
+    <AssemblyName>HaploGrepSharp</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Mono|AnyCPU' ">
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Mono</OutputPath>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Annotation\BigTableAnnotation.cs" />
+    <Compile Include="Annotation\ConfirmedDiseaseAssocation.cs" />
+    <Compile Include="Annotation\FrequencyFileAnnotation.cs" />
+    <Compile Include="Annotation\HaploTypeMatchReport.cs" />
+    <Compile Include="Annotation\VariantAnnotation.cs" />
+    <Compile Include="CONSTANTS.cs" />
+    <Compile Include="NewSearchMethods\GenomeToHaploGrepConverter.cs" />
+    <Compile Include="NewSearchMethods\HaplotypeComparison.cs" />
+    <Compile Include="NewSearchMethods\HaploTypeReport.cs" />
+    <Compile Include="NewSearchMethods\HaplotypeSearcher.cs" />
+    <Compile Include="NewSearchMethods\PolymorphismFilter.cs" />
+    <Compile Include="NewSearchMethods\SimpleSample.cs" />
+    <Compile Include="OldSearchMethods\ClusteredSearchResult.cs" />
+    <Compile Include="HaploGrepException.cs" />
+    <Compile Include="HaploGrepIdentifier.cs" />
+    <Compile Include="Haplogroup.cs" />
+    <Compile Include="OldSearchMethods\HaploSearch.cs" />
+    <Compile Include="OldSearchMethods\HaploSearchManager.cs" />
+    <Compile Include="Mutations.cs" />
+    <Compile Include="OldSearchMethods\PhyloTreeNode.cs" />
+    <Compile Include="PhyloTreePath.cs" />
+    <Compile Include="Polymorphism.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="OldSearchMethods\Sample.cs" />
+    <Compile Include="OldSearchMethods\SampleFile.cs" />
+    <Compile Include="OldSearchMethods\SampleRange.cs" />
+    <Compile Include="OldSearchMethods\SearchResult.cs" />
+    <Compile Include="OldSearchMethods\Session.cs" />
+    <Compile Include="Properties\Resources1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ReferenceGenome.cs" />
+    <Compile Include="Tests\TestPhyloTreeWithGenbank.cs" />
+    <Compile Include="TestSample.cs" />
+    <Compile Include="TreeUtilities\PhyloTreeNodev2.cs" />
+    <Compile Include="TreeUtilities\PolymorphismCollection.cs" />
+    <Compile Include="TreeUtilities\TreeLoader.cs" />
+    <Compile Include="NucMerQueryable.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="BadPositions.xlsx" />
+    <None Include="PhyloTreeSequences.fasta.gz">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Annotation\crs.rn.bigtable.txt" />
+    <Content Include="Annotation\mitomap_dz_mutations_110126.filtered_110916.confirmed_120126.txt" />
+    <Content Include="Annotation\mitomap_dz_mutations_110126.filtered_110916.txt" />
+    <Content Include="Annotation\mtDB.sorted.crs.rn.txt" />
+    <Content Include="fluctRates15.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="phylotree15.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\bio\Bio.csproj">
+      <Project>{b53e11df-f9a9-4939-893e-78e59872089a}</Project>
+      <Name>Bio</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

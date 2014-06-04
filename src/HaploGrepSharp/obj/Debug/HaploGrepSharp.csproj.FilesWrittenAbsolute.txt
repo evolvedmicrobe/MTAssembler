@@ -1,0 +1,17 @@
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/obj/Debug/HaploGrepSharp.exe
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/bin/Debug/Bio.dll
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/bin/Debug/Bio.dll.mdb
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/bin/Debug/PhyloTreeSequences.fasta.gz
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/bin/Debug/fluctRates15.txt
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/bin/Debug/phylotree15.xml
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/bin/Debug/HaploGrepSharp.exe.mdb
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/bin/Debug/HaploGrepSharp.exe
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/obj/Debug/HaploGrepSharp.exe.mdb
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/obj/Debug/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/bin/Debug/HaploGrepSharp.dll.config
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/bin/Debug/HaploGrepSharp.dll.mdb
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/bin/Debug/HaploGrepSharp.dll
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/obj/Debug/HaploGrepSharp.dll
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/obj/Debug/HaploGrepSharp.dll.mdb
+/Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/obj/Debug/HaploGrepSharp.Properties.Resources.resources

@@ -1,0 +1,65 @@
+ChrPos	Nuc_change	AA_change	Gene	Disease	Type
+CRS:583	G-A	noncoding	MT-TF	MELAS / MM & EXIT	RNAMutation
+CRS:1494	C-T	noncoding	MT-RNR1	DEAF	RNAMutation
+CRS:1555	A-G	noncoding	MT-RNR1	DEAF	RNAMutation
+CRS:1606	G-A	noncoding	MT-TV	AMDF	RNAMutation
+CRS:3243	A-G	noncoding	MT-TL1	MELAS / LS	RNAMutation
+CRS:3243	A-G	noncoding	MT-TL1	DMDF / MIDD / SNHL / FSGS	RNAMutation
+CRS:3243	A-G	noncoding	MT-TL1	CPEO / MM	RNAMutation
+CRS:3243	A-T	noncoding	MT-TL1	MM / MELAS / SNHL / CPEO	RNAMutation
+CRS:3256	C-T	noncoding	MT-TL1	MELAS	RNAMutation
+CRS:3260	A-G	noncoding	MT-TL1	MMC	RNAMutation
+CRS:3271	T-C	noncoding	MT-TL1	MELAS	RNAMutation
+CRS:3271	T-C	noncoding	MT-TL1	DM	RNAMutation
+CRS:3271	T-delT	noncoding	MT-TL1	PEM	RNAMutation
+CRS:3291	T-C	noncoding	MT-TL1	MELAS / Myopathy / Deafness+Cognitive Impairment	RNAMutation
+CRS:3302	A-G	noncoding	MT-TL1	MM	RNAMutation
+CRS:3303	C-T	noncoding	MT-TL1	MMC	RNAMutation
+CRS:3460	G-A	A-T	MT-ND1	LHON	CodingMutation
+CRS:3635	G-A	S-N	MT-ND1	LHON	CodingMutation
+CRS:3697	G-A	G-S	MT-ND1	MELAS/LS	CodingMutation
+CRS:4298	G-A	noncoding	MT-TI	CPEO / MS	RNAMutation
+CRS:4300	A-G	noncoding	MT-TI	MICM	RNAMutation
+CRS:4332	G-A	noncoding	MT-TQ	Encephalopathy / MELAS	RNAMutation
+CRS:5537	A-insT	noncoding	MT-TW	Leigh Syndrome	RNAMutation
+CRS:5703	G-A	noncoding	MT-TN	CPEO / MM	RNAMutation
+CRS:5802	T-C	noncoding	MT-TC	DEAF1555 increased penetrance	RNAMutation
+CRS:7445	A-C	Ter-S	MT-CO1	DEAF	CodingMutation
+CRS:7445	A-G	Ter-Ter	MT-CO1	SNHL	CodingMutation
+CRS:7445	A-C	noncoding	MT-TS1 precursor?	DEAF	RNAMutation
+CRS:7445	A-G	noncoding	MT-TS1 precursor?	SNHL	RNAMutation
+CRS:7445	A-T	noncoding	MT-TS1 precursor?	SNHL	RNAMutation
+CRS:7472	A-C	noncoding	MT-TS1	MM/DMDF modulator	RNAMutation
+CRS:7497	G-A	noncoding	MT-TS1	MM / EXIT	RNAMutation
+CRS:7511	T-C	noncoding	MT-TS1	SNHL	RNAMutation
+CRS:8344	A-G	noncoding	MT-TK	MERRF	RNAMutation
+CRS:8356	T-C	noncoding	MT-TK	MERRF	RNAMutation
+CRS:8363	G-A	noncoding	MT-TK	MICM+DEAF/ MERRF/ Autism/ LS/ Ataxia+Lipomas	RNAMutation
+CRS:8993	T-C	L-P	MT-ATP6	NARP/Leigh Disease/MILS	CodingMutation
+CRS:8993	T-G	L-R	MT-ATP6	NARP/Leigh Disease/MILS	CodingMutation
+CRS:9176	T-C	L-P	MT-ATP6	FBSN/Leigh Disease	CodingMutation
+CRS:9176	T-G	L-R	MT-ATP6	Leigh Disease	CodingMutation
+CRS:9185	T-C	L-P	MT-ATP6	Leigh Disease/Ataxia/NARP-like disease	CodingMutation
+CRS:10010	T-C	noncoding	MT-TG	PEM	RNAMutation
+CRS:10158	T-C	S-P	MT-ND3	Leigh Disease	CodingMutation
+CRS:10191	T-C	S-P	MT-ND3	ESOC/Leigh-like Disease/Leigh Syndrome	CodingMutation
+CRS:10197	G-A	A-T	MT-ND3	Leigh Syndrome/Dystonia/Stroke	CodingMutation
+CRS:11777	C-A	R-S	MT-ND4	Leigh Disease	CodingMutation
+CRS:11778	G-A	R-H	MT-ND4	LHON	CodingMutation
+CRS:11778	G-A	R-H	MT-ND4	Progressive Dystonia	CodingMutation
+CRS:12147	G-A	noncoding	MT-TH	MERRF-MELAS / Cerebral edema	RNAMutation
+CRS:12300	G-A	noncoding	MT-TL2	3243 suppressor mutant	RNAMutation
+CRS:12315	G-A	noncoding	MT-TL2	CPEO/KSS	RNAMutation
+CRS:12338	T-C	M-T	MT-ND5	DEAF1555 increased penetrance	CodingMutation
+CRS:12706	T-C	F-L	MT-ND5	Leigh Disease	CodingMutation
+CRS:13513	G-A	D-N	MT-ND5	MELAS/Leigh Disease	CodingMutation
+CRS:13514	A-G	D-G	MT-ND5	MELAS/Leigh Disease	CodingMutation
+CRS:14459	G-A	A-V	MT-ND6	LDYT/Leigh Disease	CodingMutation
+CRS:14482	C-A	M-I	MT-ND6	LHON	CodingMutation
+CRS:14482	C-G	M-I	MT-ND6	LHON	CodingMutation
+CRS:14484	T-C	M-V	MT-ND6	LHON	CodingMutation
+CRS:14487	T-C	M-V	MT-ND6	Dystonia/Leigh Disease/OA/Ataxia	CodingMutation
+CRS:14568	C-T	G-S	MT-ND6	LHON	CodingMutation
+CRS:14674	T-C	noncoding	MT-TE	Reversible COX deficiency myopathy	RNAMutation
+CRS:14709	T-C	noncoding	MT-TE	MM+DMDF / Encephalomyopathy	RNAMutation
+CRS:15927	G-A	noncoding	MT-TT	Multiple Sclerosis/DEAF1555 increased penetrance	RNAMutation

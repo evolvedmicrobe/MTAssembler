@@ -1,0 +1,13 @@
+D:\Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\obj\x86\Release\GetMTDataFromBAM.csprojResolveAssemblyReference.cache
+D:\Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\bin\Release\GetMTDataFromBAM.exe
+D:\Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\bin\Release\Bio.dll
+D:\Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\bin\Release\Bio.pdb
+D:\Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\bin\Release\Bio.xml
+D:\Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\obj\x86\Release\GetMTDataFromBAM.exe
+C:\Users\Nigel\Documents\My Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\obj\x86\Release\GetMTDataFromBAM.exe
+C:\Users\Nigel\Documents\My Dropbox\Software\MitochondrialPrograms\MT_Data_Grabber\obj\x86\Release\GetMTDataFromBAM.csprojResolveAssemblyReference.cache
+C:\Users\Delaney\SkyDrive\Software\MitochondrialPrograms\MT_Data_Grabber\obj\x86\Release\GetMTDataFromBAM.csprojResolveAssemblyReference.cache
+C:\Users\Delaney\SkyDrive\Software\MitochondrialPrograms\MT_Data_Grabber\bin\Release\GetMTDataFromBAM.dll
+C:\Users\Delaney\SkyDrive\Software\MitochondrialPrograms\MT_Data_Grabber\bin\Release\Bio.dll
+C:\Users\Delaney\SkyDrive\Software\MitochondrialPrograms\MT_Data_Grabber\bin\Release\Bio.pdb
+C:\Users\Delaney\SkyDrive\Software\MitochondrialPrograms\MT_Data_Grabber\obj\x86\Release\GetMTDataFromBAM.dll

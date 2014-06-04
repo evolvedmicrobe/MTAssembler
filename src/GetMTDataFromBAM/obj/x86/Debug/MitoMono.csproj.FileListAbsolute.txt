@@ -1,0 +1,8 @@
+D:\MTData\MT_Data_Grabber\MitoMono\MitoMono\bin\Debug\MitoMono.exe
+D:\MTData\MT_Data_Grabber\MitoMono\MitoMono\bin\Debug\MitoMono.pdb
+D:\MTData\MT_Data_Grabber\MitoMono\MitoMono\bin\Debug\Bio.dll
+D:\MTData\MT_Data_Grabber\MitoMono\MitoMono\bin\Debug\Bio.IO.dll
+D:\MTData\MT_Data_Grabber\MitoMono\MitoMono\bin\Debug\SAMUtils.exe
+D:\MTData\MT_Data_Grabber\MitoMono\MitoMono\obj\x86\Debug\MitoMono.csprojResolveAssemblyReference.cache
+D:\MTData\MT_Data_Grabber\MitoMono\MitoMono\obj\x86\Debug\MitoMono.exe
+D:\MTData\MT_Data_Grabber\MitoMono\MitoMono\obj\x86\Debug\MitoMono.pdb
