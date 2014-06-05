@@ -24,7 +24,6 @@ namespace MitoDataAssembler
         {
             //The frequency of the highest split reads relative to total reads at this position.
             public double MaxFrequency;
-
             /// <summary>
             /// A list of possibilities at this junction.
             /// </summary>
@@ -51,8 +50,7 @@ namespace MitoDataAssembler
             }
 
         }
-        public const int CRS_LENGTH = 16569;
-
+        
 		/// <summary>
 		/// The lowest frequency selected along a greedy path
 		/// </summary>
@@ -77,7 +75,7 @@ namespace MitoDataAssembler
 		/// The reverse complement sequence of the reverse primer used by the LR-PCR at the Broad and at Baylor
 		/// </summary>
 		public string reversePrimer="CACCATCCTCCGTGAAATCAATATC";//Actually the RC of the primer
-		public int AssemblyLength=CRS_LENGTH;
+		public int AssemblyLength=StaticResources.CRS_LENGTH;
         public List<SplitData> PathSplits = new List<SplitData>();
         private GraphGenerator gg;
         public bool FormsCompleteLoop;
@@ -109,7 +107,7 @@ namespace MitoDataAssembler
         {
 			if (SuccessfulAssembly) {
 				FastAFormatter fa = new FastAFormatter (fileNamePrefix + "_BestGreedyAssembly.fna");
-				StringBuilder sb = new StringBuilder (CRS_LENGTH);
+				StringBuilder sb = new StringBuilder (StaticResources.CRS_LENGTH);
 				var bestAssembly = GreedyPathAssembly;
 				bestAssembly.Finalize ();
 				Bio.Sequence s = new Bio.Sequence (bestAssembly.Sequence);

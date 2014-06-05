@@ -60,8 +60,8 @@
 \begin_body
 
 \begin_layout Title
-MitoSembler: A Unified Variant Calling Approach for DNA from LR-PCR or whole
- exome studies
+MT Assembler: A Unified Variant Calling Approach for DNA from LR-PCR or
+ whole exome studies
 \end_layout
 
 \begin_layout Author
@@ -70,6 +70,16 @@ Nigel Delaney
 
 \begin_layout Part*
 Introduction
+\end_layout
+
+\begin_layout Standard
+MT Assembler is a program designed to analyze and call variants in Mitochondrial
+ Genomes.
+ 
+\end_layout
+
+\begin_layout Standard
+It addresses several issues that 
 \end_layout
 
 \begin_layout Standard
@@ -89,6 +99,22 @@ Heteroplasmy
 
 \begin_layout Itemize
 Deletions
+\end_layout
+
+\begin_layout Section*
+Read Filtering
+\end_layout
+
+\begin_layout Itemize
+Filter SAM File Duplicates (SAM Flag 1024)
+\end_layout
+
+\begin_layout Itemize
+Trim Quality (mean required = 22, ends trimmed to 22).
+\end_layout
+
+\begin_layout Itemize
+
 \end_layout
 
 \begin_layout Part*
@@ -126,6 +152,10 @@ Processing the BAM file to extract mtDNA reads
 \begin_layout Standard
 The mtDNA is mixed in with the BAM at NuMT locations as well as possibly
  in the 
+\end_layout
+
+\begin_layout Part
+Source Code Overview
 \end_layout
 
 \end_body

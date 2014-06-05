@@ -457,7 +457,7 @@ namespace Bio.IO.BAM
 		/// <param name="end">End index.</param>
 		/// <returns>SequenceAlignmentMap object which contains alignments overlaps with the specified start 
 		/// and end co-ordinate of the specified reference sequence.</returns>
-		public IEnumerable<SAMAlignedSequence> ParseRangeAsEnumerableSequences (string fileName, string refSeqName, int start, int end)
+		public IEnumerable<SAMAlignedSequence> ParseRangeAsEnumerableSequences (string fileName, string refSeqName, int start=0, int end=int.MaxValue)
 		{
 			if (refSeqName == null) {
 				throw new ArgumentNullException ("refSeqName");

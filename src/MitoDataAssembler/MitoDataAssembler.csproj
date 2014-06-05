@@ -87,9 +87,10 @@
     <Compile Include="Assembly\AllAssemblyFinder.cs" />
     <Compile Include="DeletionReport.cs" />
     <Compile Include="Assembly\MitochondrialAssembly.cs" />
+    <Compile Include="Utils\DepthOfCoverageGraphMaker.cs" />
     <Compile Include="PairedEnd\PairedEndDeletionFinderOutput.cs" />
     <Compile Include="PairedEnd\PossibleDeletion.cs" />
-    <Compile Include="ReadFilter.cs" />
+    <Compile Include="Utils\ReadFilter.cs" />
     <Compile Include="ReferenceGenome.cs" />
     <Compile Include="R\RInterfaceException.cs" />
     <Compile Include="Assembly\SingletonNodeRemover.cs" />

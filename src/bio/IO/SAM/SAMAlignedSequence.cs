@@ -341,6 +341,7 @@ namespace Bio.IO.SAM
 			info.AddValue ("sequence", QuerySequence);
 		}
 
+
 		public int? GetReadIndexOfAlignmentPosition (int referencePosition)
 		{
 			if (string.IsNullOrWhiteSpace (CIGAR) || CIGAR.Equals ("*")) {

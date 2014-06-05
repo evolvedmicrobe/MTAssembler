@@ -52,8 +52,6 @@
   <ItemGroup>
     <Compile Include="AssemblerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PLINK_ParserTest.cs" />
-    <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Bio.PLINK\Bio.PLINK.csproj">
@@ -64,7 +62,7 @@
       <Project>{1cff1c79-1e34-4411-97e0-0fb02f4865c3}</Project>
       <Name>Bio.Padena</Name>
     </ProjectReference>
-    <ProjectReference Include="..\bio\Source\Framework\Bio\Bio.csproj">
+    <ProjectReference Include="..\bio\Bio.csproj">
       <Project>{b53e11df-f9a9-4939-893e-78e59872089a}</Project>
       <Name>Bio</Name>
     </ProjectReference>
@@ -80,9 +78,6 @@
       <Project>{10619b0a-719d-44a6-8b35-ff1dc23c29cf}</Project>
       <Name>ReadSimulatorCommandLine</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

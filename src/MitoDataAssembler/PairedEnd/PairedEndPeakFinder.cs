@@ -154,7 +154,7 @@ namespace MitoDataAssembler.PairedEnd
             this.OutputFilePrefix = prefix;
 			bp = new BAMParser ();
 			//create count array
-			countsOfSize = new double[MitochondrialAssembly.CRS_LENGTH];
+			countsOfSize = new double[StaticResources.CRS_LENGTH];
 
 		}
         
@@ -282,7 +282,7 @@ namespace MitoDataAssembler.PairedEnd
 					//those less than 0 should have their mate contain a value, can continue
 					if (i < 0) {
 						continue;
-					} else if (i > (MitochondrialAssembly.CRS_LENGTH - 1)) {
+					} else if (i > (StaticResources.CRS_LENGTH - 1)) {
 						CountOverMax++;
 					} else {
 						countsOfSize [i]+=1.0;

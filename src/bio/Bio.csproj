@@ -175,6 +175,7 @@
     <Compile Include="Assembly\Padena\Scaffold\ValidMatePair.cs" />
     <Compile Include="BigArray.cs" />
     <Compile Include="BigList.cs" />
+    <Compile Include="CompactSAMSequence.cs" />
     <Compile Include="CrossPlatform.cs" />
     <Compile Include="Filters\QualityFilter.cs" />
     <Compile Include="IO\BAM\AlignmentData.cs" />

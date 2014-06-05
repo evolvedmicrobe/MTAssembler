@@ -26,6 +26,7 @@ namespace Bio.Algorithms.Assembly.Graph
 		/// The largest kmer length allowable
 		/// </summary>
 		public const int MaxKmerLength = 31;
+
         /// <summary>
         /// When to add list to blocking collection, most short reads are greater than 151bp so this should avoid needing to grow the list
         /// </summary>

@@ -21,7 +21,7 @@ namespace MitoDataAssembler
         private const string R_LIB_ENV_DIR="R_LIB";
         private const string R_HOME_ENV_DIR="R_HOME";
 		private static RDotNet.REngine pEngine;
-        public static object lockObject=new Object();
+        private static object lockObject=new Object();
 		public REngine CurrentEngine {
             get
             {
@@ -91,8 +91,20 @@ namespace MitoDataAssembler
                 }
             }
 		}
-        public void PlotPDF(IEnumerable<double> x, IEnumerable<double> y, string pdfName,  string title = null, string xlab = null, string ylab = null, List<string> AdditionalCommands = null)
-        {
+        /// <summary>
+        /// Make a PDF from the given x,y data.
+        /// </summary>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <param name="pdfName"></param>
+        /// <param name="title"></param>
+        /// <param name="xlab"></param>
+        /// <param name="ylab"></param>
+        /// <param name="AdditionalCommands"></param>
+        /// <param name="?"></param>
+        /// <param name="optArgs"></param>
+        public void PlotPDF(IEnumerable<double> x, IEnumerable<double> y, string pdfName,  string title = null, string xlab = null, string ylab = null, List<string> AdditionalCommands = null,List<OptionalArgument> optArgs=null)
+        {         
             int xl = x.Count();
             int yl = y.Count();
             if (xl != yl)
@@ -104,6 +116,10 @@ namespace MitoDataAssembler
                 throw new Exception("Tried to plot zero length vector!");
             }
             List<OptionalArgument> args = new List<OptionalArgument>() { new OptionalArgument("main", title), new OptionalArgument("xlab", xlab), new OptionalArgument("ylab", ylab) };
+                if (optArgs!=null)
+            {
+                args.AddRange(optArgs);
+            }
             var engine = pEngine;
             lock (engine)
             {
@@ -114,11 +130,11 @@ namespace MitoDataAssembler
                 engine.Evaluate("library(grDevices)");
                 string pdfCMD = "pdf(\"" + pdfName + "\")";
                 engine.Evaluate(pdfCMD);
-                var optArgs = args.Where(z => z.HasValue()).Select(b => b.ValuePair()).ToArray();
+                var locOptArgs = args.Where(z => z.HasValue()).Select(b => b.ValuePair()).ToArray();
                 string command = "plot(xvals,yvals";
-                if (optArgs.Length > 0)
+                if (locOptArgs.Length > 0)
                 {
-                    command += "," + String.Join(",", optArgs);
+                    command += "," + String.Join(",", locOptArgs);
                 }
                 command += ")";
                 engine.Evaluate(command);
@@ -130,24 +146,36 @@ namespace MitoDataAssembler
                     }
                 }
                 engine.Evaluate("dev.off()");
-            }
+            }            
         }
 
-        internal class OptionalArgument { protected string name,value;
-        internal OptionalArgument(string name, string value) { this.name = name; this.value = value; }
-        internal bool HasValue() { return !String.IsNullOrEmpty(value); }
-        internal virtual string ValuePair() { return name + "=\"" + value + "\""; }        }
-        internal class NumericOptionalArgument : OptionalArgument
+        public class OptionalArgument { 
+            protected string name,value;
+            public OptionalArgument(string name, string value) { this.name = name; this.value = value; }
+            public bool HasValue() { return !String.IsNullOrEmpty(value); }
+            public virtual string ValuePair() { return name + "=\"" + value + "\""; }        
+        }
+
+        public class NumericOptionalArgument : OptionalArgument
         {
-            internal NumericOptionalArgument(string s, string v) : base(s, v) { }
-            internal override string ValuePair()
+            public NumericOptionalArgument(string s, string v) : base(s, v) { }
+            public override string ValuePair()
             {
                 return name + "=" + value + ""; 
             }
         }
-        public void HistPDF(IEnumerable<double> x, string pdfName,int breaks=10, string title=null,string xlab=null,string ylab=null,List<string> AdditionalCommands=null)
-        {
-            List<OptionalArgument> args = new List<OptionalArgument>() {new NumericOptionalArgument("breaks",breaks.ToString()), new OptionalArgument("main", title), new OptionalArgument("xlab",xlab), new OptionalArgument("ylab",ylab)};
+        
+        public void HistPDF(IEnumerable<double> x, string pdfName,int breaks=10, string title=null,string xlab=null,string ylab=null,List<string> AdditionalCommands=null,List<OptionalArgument> optArgs=null)
+        {           
+            List<OptionalArgument> args = new List<OptionalArgument>() { 
+                                                new NumericOptionalArgument("breaks", breaks.ToString()), 
+                                                new OptionalArgument("main", title), 
+                                                new OptionalArgument("xlab", xlab), 
+                                                new OptionalArgument("ylab", ylab) };
+            if (optArgs!=null)
+            {
+                args.AddRange(optArgs);               
+            }
             var engine = pEngine;
             lock (engine)
             {
@@ -156,12 +184,12 @@ namespace MitoDataAssembler
                 engine.Evaluate("library(grDevices)");
                 string pdfCMD = "pdf(\"" + pdfName + "\")";
                 engine.Evaluate(pdfCMD);
-                var optArgs=args.Where(z => z.HasValue()).Select(b => b.ValuePair()).ToArray();
-                string command="hist(xvals,col=\"blue\"";
-                if (optArgs.Length > 0)
+                var locOptArgs = args.Where(z => z.HasValue()).Select(b => b.ValuePair()).ToList();
+                string command = "hist(xvals,col=\"blue\"";
+                if (locOptArgs.Count>0)
                 {
-                    command += "," + String.Join(",", optArgs);
-                }
+                    command += "," + String.Join(",", locOptArgs);
+                }    
                 command += ")";
                 engine.Evaluate(command);
                 if (AdditionalCommands != null)
@@ -171,10 +199,9 @@ namespace MitoDataAssembler
                         engine.Evaluate(cmd);
                     }
                 }
-                engine.Evaluate("dev.off()");    
-            }
+                engine.Evaluate("dev.off()");
+            }            
         }
-
 
 		private static void setupMacOSX()
 		{

@@ -255,23 +255,26 @@ namespace Bio.IO.BAM
         protected ISequence GetAlignedSequence()
         {
             byte[] array = new byte[4];
-
             ReadUnCompressedData(array, 0, 4);
             int blockLen = Helper.GetInt32(array, 0);
             byte[] alignmentBlock = new byte[blockLen];
             ReadUnCompressedData(alignmentBlock, 0, blockLen);
-            //SAMAlignedSequence alignedSeq = new SAMAlignedSequence();
             int value;
             UInt32 UnsignedValue;
             // 0-4 bytes
-            //int refSeqIndex = Helper.GetInt32(alignmentBlock, 0);
+            int refSeqIndex = Helper.GetInt32(alignmentBlock, 0);
+            string RName;
+            if (refSeqIndex == -1)
+                RName = "*";
+            else
+                RName = refSeqNames[refSeqIndex];
 
+            // 4-8 bytes
+            int Pos = Helper.GetInt32(alignmentBlock, 4) + 1;
 
 
             // 8 - 12 bytes "bin<<16|mapQual<<8|read_name_len"
             UnsignedValue = Helper.GetUInt32(alignmentBlock, 8);
-
-
             int queryNameLen = (int)(UnsignedValue & 0x000000FF);
 
             // 12 - 16 bytes
@@ -286,7 +289,55 @@ namespace Bio.IO.BAM
             string name = System.Text.ASCIIEncoding.ASCII.GetString(alignmentBlock, 32, queryNameLen - 1);
             StringBuilder strbuilder = new StringBuilder();
             int startIndex = 32 + queryNameLen;
+            for (int i = startIndex; i < (startIndex + cigarLen * 4); i += 4)
+            {
+                // Get the CIGAR operation length stored in first 28 bits.
+                UInt32 cigarValue = Helper.GetUInt32(alignmentBlock, i);
+                strbuilder.Append(((cigarValue & 0xFFFFFFF0) >> 4).ToString(CultureInfo.InvariantCulture));
 
+                // Get the CIGAR operation stored in last 4 bits.
+                value = (int)cigarValue & 0x0000000F;
+
+                // MIDNSHP=>0123456
+                switch (value)
+                {
+                    case 0:
+                        strbuilder.Append("M");
+                        break;
+                    case 1:
+                        strbuilder.Append("I");
+                        break;
+                    case 2:
+                        strbuilder.Append("D");
+                        break;
+                    case 3:
+                        strbuilder.Append("N");
+                        break;
+                    case 4:
+                        strbuilder.Append("S");
+                        break;
+                    case 5:
+                        strbuilder.Append("H");
+                        break;
+                    case 6:
+                        strbuilder.Append("P");
+                        break;
+                    case 7:
+                        strbuilder.Append("=");
+                        break;
+                    case 8:
+                        strbuilder.Append("X");
+                        break;
+                    default:
+                        throw new FileFormatException(Properties.Resource.BAM_InvalidCIGAR);
+                }
+            }
+
+            string cigar = strbuilder.ToString();
+            if (string.IsNullOrWhiteSpace(cigar))
+            {
+                cigar = "*";
+            }
             startIndex += cigarLen * 4;
             //strbuilder = new StringBuilder();
             byte[] seqData = new byte[readLen];
@@ -332,15 +383,16 @@ namespace Bio.IO.BAM
             var alpha = Alphabets.AutoDetectAlphabet(seqData, 0, seqData.Length, null);
             //Sequence toReturn = new Sequence(alpha, syms);
             //TODO: Possibly a bit unsafe here
-            ISequence toReturn = new QualitativeSequence(alpha, FastQFormatType.GATK_Recalibrated, seqData, qualValues, false);
+            var toReturn = new CompactSAMSequence(alpha, FastQFormatType.GATK_Recalibrated, seqData, qualValues, false);
             toReturn.ID = name;
-            toReturn.Metadata[SAM_FLAG_META_DATA_KEY] = flagValue;
+            toReturn.Pos = Pos;
+            toReturn.CIGAR = cigar;
+            toReturn.RName = RName;
+            toReturn.SAMFlags = flagValue;
             return toReturn;
 
-            ///////////
-
         }
-        public const string SAM_FLAG_META_DATA_KEY = "SAMFLAGS";
+      
 #endif
 
         public IEnumerable<ISequence> Parse()
