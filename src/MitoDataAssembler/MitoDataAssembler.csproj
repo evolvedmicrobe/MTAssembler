@@ -34,14 +34,20 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Release</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG; USE_R</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Commandlineparameters> -k:19  -p:FirstAssembly -v -o:/Users/ndelaney/LocalLR-PCR/FirstAssembly.fna -ref:/Users/ndelaney/LocalLR-PCR/MT_SeqNoN.fa /Users/ndelaney/LocalLR-PCR/171068.bam</Commandlineparameters>
+    <Commandlineparameters> -k:19  -p:FirstAssembly -v -o:/Users/ndelaney/LocalLR-PCR/FirstAssembly.fna  /Users/ndelaney/LocalLR-PCR/171067.bam</Commandlineparameters>
     <Prefer32Bit>false</Prefer32Bit>
     <ConsolePause>false</ConsolePause>
     <additionalargs>/debug</additionalargs>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <EnvironmentVariables>
+      <EnvironmentVariables>
+        <Variable name="R_LIB" value="/Library/Frameworks/R.framework/Resources/lib/libR.dylib" />
+        <Variable name="R_HOME" value="/Library/Frameworks/R.framework/Resources" />
+      </EnvironmentVariables>
+    </EnvironmentVariables>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
@@ -73,14 +79,14 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RDotNet">
-      <HintPath>..\..\lib\RDotNet.dll</HintPath>
-    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System" />
     <Reference Include="RDotNet.NativeLibrary">
       <HintPath>..\..\lib\RDotNet.NativeLibrary.dll</HintPath>
     </Reference>
-    <Reference Include="System.Core" />
-    <Reference Include="System" />
+    <Reference Include="RDotNet">
+      <HintPath>..\..\lib\RDotNet.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssemblyOutput.cs" />
@@ -113,6 +119,7 @@
     <Compile Include="Visualization\MitochondrialAssemblyPlotMaker.cs" />
     <Compile Include="PairedEnd\PairedEndPeakFinder.cs" />
     <Compile Include="R\RInterface.cs" />
+    <Compile Include="ReadGenerator\BAMNuclearChromosomeReadGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -122,7 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\bio\Bio.csproj">
-      <Project>{b53e11df-f9a9-4939-893e-78e59872089a}</Project>
+      <Project>{B53E11DF-F9A9-4939-893E-78E59872089A}</Project>
       <Name>Bio</Name>
     </ProjectReference>
     <ProjectReference Include="..\bio\Source\Framework\Add-ins\Bio.Padena\Bio.Padena.csproj">
@@ -164,4 +171,7 @@
   </Target>
   -->
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ReadGenerator\" />
+  </ItemGroup>
 </Project>

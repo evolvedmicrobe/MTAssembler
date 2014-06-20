@@ -60,8 +60,8 @@
 \begin_body
 
 \begin_layout Title
-MT Assembler: A Unified Variant Calling Approach for DNA from LR-PCR or
- whole exome studies
+MT-Assembler: A Variant Calling Program for DNA from LR-PCR or whole exome
+ studies
 \end_layout
 
 \begin_layout Author
@@ -73,20 +73,22 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-MT Assembler is a program designed to analyze and call variants in Mitochondrial
+MT-Assembler is a program designed to analyze and call variants in Mitochondrial
  Genomes.
  
 \end_layout
 
 \begin_layout Standard
-It addresses several issues that 
-\end_layout
+It addresses several issues that represent the unique challenges of mitochondria
+l genomes.
+ In particular, the Mitochondrial DNA:
+\begin_inset CommandInset label
+LatexCommand label
+name "ProgramName"
 
-\begin_layout Standard
-Mitochondrial sequencing data, whether obtained from exome capture studies,
- long range pcrs or ....
- poses unique challenges.
- In particular, Mitochondrial DNA:
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -101,22 +103,293 @@ Heteroplasmy
 Deletions
 \end_layout
 
+\begin_layout Part*
+Program Overview
+\end_layout
+
+\begin_layout Standard
+The MT-Assembler takes an input BAM file and produces several reports that
+ detail the 
+\end_layout
+
 \begin_layout Section*
 Read Filtering
 \end_layout
 
 \begin_layout Itemize
-Filter SAM File Duplicates (SAM Flag 1024)
+Filter SAM File Duplicates (SAM Flag: 1024)
 \end_layout
 
 \begin_layout Itemize
-Trim Quality (mean required = 22, ends trimmed to 22).
+Trim Quality (Mean required = 22; Ends trimmed to quality >= 22).
 \end_layout
 
 \begin_layout Itemize
+Ambiguous bases are ignored during SNP calling (per 
+\family typewriter
+UnifiedGenotyper
+\family default
+)
+\end_layout
+
+\begin_layout Section*
+Heteroplasmic SNP Calling
+\end_layout
+
+\begin_layout Standard
+The MT-Assembler differs from standard SNP calling tools in that instead
+ of considering a discrete ploidy for a sample, it views the frequency of
+ the four nucleotide base present in the original sample as continous variables
+ that range from 0 to 1.
+ The underlying parameter is thus the frequency of each base, 
+\begin_inset Formula $\mathbf{\theta}=\{\theta_{A},\theta_{C},\theta_{G},\theta_{T}\}$
+\end_inset
+
+, 
+\begin_inset Formula $\sum\theta=1$
+\end_inset
+
+.
+ The model also uses the standard likelihood model for a SNP based on the
+ QC score: 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+l(Base|Data)=\begin{cases}
+1-10^{-Q/10} & \text{if}\text{ }Base=Data\\
+\frac{1}{3}\cdot10^{-Q/10} & \text{if }Base\neq Data
+\end{cases}
+\end{equation}
+
+\end_inset
+
 
 \end_layout
 
+\begin_layout Standard
+Given data, 
+\begin_inset Formula $D$
+\end_inset
+
+, which is the read pileup of bases and quality scores at a site, the heteroplas
+mic SNP caller estimates the maximum likelihood value of frequencies at
+ each site 
+\begin_inset Formula $\theta$
+\end_inset
+
+ for each well defined site (no indels present at or around site).
+\end_layout
+
+\begin_layout Standard
+It does this using an E-M algorithm to maximize the likelihood, where the
+ actual base the read was sequenced from, 
+\begin_inset Formula $Z$
+\end_inset
+
+, is treated as the unobserved data.
+ Note that conditioned on the current parameter vector, the conditional
+ probability for the base, 
+\begin_inset Formula $\tau_{j}$
+\end_inset
+
+ , is:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\tau_{j}^{(t)}=\frac{\theta_{j}^{(t)}l(j|Data)}{\sum_{i=A,C,G,T}\theta_{i}^{(t)}l(i|Data)}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This allows for the expectated value of the log likelihood over all 
+\begin_inset Formula $k$
+\end_inset
+
+ bases in the read pileup to be calculated as:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+E=\sum_{k}\sum_{j=A,C,G,T}\tau_{k,j}^{(t)}[\log\theta_{j}+\log[l(j|Data)]]
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Maximization of this function over the parameter vector then is relatively
+ straightforward as it is nearly equivalent to a multinomial likelihood
+ and so is equal to:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\theta_{j}^{(t+1)}=\frac{\sum_{k}\tau_{k,j}}{k}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+UnifiedGenotyper internals and differences with MT-Assembler
+\end_layout
+
+\begin_layout Standard
+The continuous ploiding calling model is designed to be largely compatible
+ with the GATK's 
+\family typewriter
+UnifiedGenotyper
+\family default
+ tool (click here for description: 
+\begin_inset CommandInset href
+LatexCommand href
+name "GATK Page"
+target "http://www.broadinstitute.org/gatk/gatkdocs/org_broadinstitute_sting_gatk_walkers_genotyper_UnifiedGenotyper.html"
+
+\end_inset
+
+).
+ In particular, it is designed to mimic the behavior of calling the 
+\family typewriter
+UnifiedGenotyper 
+\family default
+with a high ploidy level (N=100), in order to account for heteroplasmy.
+ With high ploidy number, the likelikood is calculated by the GATK class
+ 
+\family typewriter
+GeneralPloidySNPGenotypeLikelihoods.
+\family default
+A central problem with the 
+\family typewriter
+UnifiedGenotyper 
+\family default
+when called at high ploidy is that it attempts to quantify the likelihood
+ of all possible genotypes at a site.
+ This is feasible with a small number of possible alleles or chromosomes.
+ However, it does not work with many samples.
+ For example with (K) possible alleles (e.g.
+ the four bases A,C,G,T) and a ploidy, (P), there are 
+\begin_inset Formula $\binom{P+K-1}{K-1}$
+\end_inset
+
+ possible genotypes, which in the case of 
+\begin_inset Formula $K=4$
+\end_inset
+
+ and 
+\begin_inset Formula $P=100$
+\end_inset
+
+ is equal to 176,851, which is inefficient to manually enumerate.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula 
+\begin{equation}
+l(Base|Data)=\begin{cases}
+1-10^{-Q/10} & \text{if}\text{ }Base=Data\\
+\frac{1}{3}\cdot10^{-Q/10} & \text{if }Base\neq Data
+\end{cases}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The UnifiedGenotyper Map function takes the following inputs:
+\end_layout
+
+\begin_layout Itemize
+Map function takes a 
+\family typewriter
+ReferenceContext
+\family default
+ and 
+\family typewriter
+AlignmentContext
+\end_layout
+
+\begin_layout Itemize
+Passes this to the UG 
+\family typewriter
+calculateLikelihoodsAndGenotypes
+\family default
+ function, responsible for computing calls at a locus.
+\end_layout
+
+\begin_layout Itemize
+Passes to UG Engine 
+\family typewriter
+calculateLikelihoodsAndGenotypes
+\family default
+ function, which passes to the 
+\family typewriter
+GeneralPloidyGenotypeLikelihoodsCalculationModel 
+\family default
+caller.
+\end_layout
+
+\begin_layout Itemize
+If a SNP, goes to 
+\family typewriter
+GeneralPloidySNPGenotypeLikelihoods
+\family default
+ model.
+ For each base this:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Gets the quality of that base subject to the following constraints.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+If N -> skip
+\end_layout
+
+\begin_layout Itemize
+If the base quality is lower than the mapping quality, set it equal to the
+ mapping quality.
+\end_layout
+
+\begin_layout Itemize
+If the base is below the minimium base quality (typically 17) set the quality
+ equal to 0 and it is ignored.
+\end_layout
+
+\end_deeper
+\end_deeper
 \begin_layout Part*
 Pipeline description
 \end_layout
@@ -150,13 +423,64 @@ Processing the BAM file to extract mtDNA reads
 \end_layout
 
 \begin_layout Standard
-The mtDNA is mixed in with the BAM at NuMT locations as well as possibly
- in the 
+In order to evaluate which reads landed where, the 
+\end_layout
+
+\begin_layout Section*
+NuMT Evaluation
 \end_layout
 
 \begin_layout Part
 Source Code Overview
 \end_layout
 
+\begin_layout Section*
+MitoDataAssembler
+\end_layout
+
+\begin_layout Standard
+The assembler is used to find large deletions and identify indels in the
+ file.
+ It works in the following steps.
+\end_layout
+
+\begin_layout Enumerate
+Takes a list of reads that pass the filtering steps described above.
+\end_layout
+
+\begin_layout Enumerate
+Cuts these reads in to K-mers and builds a graph.
+\end_layout
+
+\begin_layout Enumerate
+Filters this graph according to the following criteria:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+K-mers not connected to at least one k-mer found in the reference mtDNA
+ sequence are removed.
+\end_layout
+
+\begin_layout Enumerate
+K-mers that show up less frequently than the square root of the median k-mer
+ found in the reference are also removed.
+\end_layout
+
+\begin_layout Enumerate
+Removes 
+\begin_inset Quotes eld
+\end_inset
+
+Dangling Links
+\begin_inset Quotes erd
+\end_inset
+
+ that are of length equal to the k-mer length plus one.
+ These are strings of graph nodes (k-mers) that dead end without reconnecting
+ to the graph, and are caused by 
+\end_layout
+
+\end_deeper
 \end_body
 \end_document

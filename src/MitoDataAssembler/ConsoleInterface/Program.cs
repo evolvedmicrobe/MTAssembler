@@ -27,10 +27,9 @@ namespace MitoDataAssembler
             args=args.Select(x=>x.Replace("%SKYDRIVE%",Environment.GetEnvironmentVariable("SKYDRIVE"))).ToArray();
 	        //Takes two arguments, the first is the reference genome, the second is the reads file.				
 	        Output.WriteLine(OutputLevel.Required, "\nThe Mitochondrial Assembler ");
-            if (Bio.CrossPlatform.Environment.RunningInMono)
-            {
-                Console.WriteLine("Running in the mono runtime");
-                }
+			if (Bio.CrossPlatform.Environment.RunningInMono) {
+				Console.WriteLine ("Running in the mono runtime");
+			}
                 DateTime compTime = RetrieveLinkerTimestamp();
                 Console.WriteLine("Compiled on: " +compTime.ToLongDateString()+" "+compTime.ToLongTimeString());
 #if !DEBUG
@@ -180,7 +179,7 @@ namespace MitoDataAssembler
                     parser.Parameter(ArgumentType.Optional, "AllowErosion", ArgumentValueType.Bool, "i", "Bool to do erosion or not.");
                     parser.Parameter(ArgumentType.Optional, "AllowKmerLengthEstimation", ArgumentValueType.Bool, "a", "Whether to estimate kmer length.");
                     parser.Parameter(ArgumentType.Optional, "ContigCoverageThreshold", ArgumentValueType.Int, "c", "Threshold used for removing low-coverage contigs.");
-                    parser.Parameter(ArgumentType.Optional, "Help", ArgumentValueType.Bool, "h", "");
+			parser.Parameter(ArgumentType.Optional, "Help", ArgumentValueType.Bool, "h", "");        
                     parser.Parameter(ArgumentType.Optional, "OutputFile", ArgumentValueType.String, "o", "Output file");
                     parser.Parameter(ArgumentType.Optional, "Verbose", ArgumentValueType.Bool, "v", "Display verbose logging during processing.");
                     parser.Parameter(ArgumentType.DefaultArgument, "Filename", ArgumentValueType.String, "", "Input file of reads");
@@ -189,7 +188,8 @@ namespace MitoDataAssembler
                     parser.Parameter(ArgumentType.Optional, "ForceKmer", ArgumentValueType.Bool, "fk", "Force specified k-mer to be used without a warning prompt.");
                     parser.Parameter(ArgumentType.Optional, "DiagnosticFilePrefix", ArgumentValueType.String, "p", "Prefix to append to all diagnostic files, which will be output if set");
                     parser.Parameter(ArgumentType.Optional, "ChromosomeName", ArgumentValueType.String, "chr", "Only assemble sequences that align to this chromosome in a BAM File.");
-                }
+                
+		}
                 private static DateTime RetrieveLinkerTimestamp()
                 {
                     string filePath = System.Reflection.Assembly.GetCallingAssembly().Location;

@@ -67,10 +67,12 @@ namespace MitoDataAssembler
 		/// Output file.
 		/// </summary>
 		public string OutputFile = string.Empty;
+
 		/// <summary>
 		/// If a subset of the BAM is used this can be specified here.
 		/// </summary>
-		public string ChromosomeName = string.Empty;
+		public string ChromosomeName = "MT";
+
 		/// <summary>
 		/// Prefix of the report output prefix file
 		/// </summary>
@@ -80,6 +82,8 @@ namespace MitoDataAssembler
         /// Make a depth of coverage plot.
         /// </summary>
         public bool MakeDepthOfCoveragePlot = true;
+
+	
 
 		/// <summary>
 		/// Display verbose logging during processing.
@@ -179,7 +183,7 @@ namespace MitoDataAssembler
                 }
 				toReturn = assembler.GetReportLine ();
 
-                //Step 4: Run Beak Finder
+				//Step 4: Run Break Finder
 				#region RUNPEAKFINDER
 				string peakFinderOutputLine;
                 Output.WriteLine(OutputLevel.Verbose, "Attempting to Run Peak Finder Program");

@@ -57,6 +57,10 @@ namespace MitoDataAssembler
                         //change path 
                         System.Diagnostics.Debug.WriteLine(R_HOME_ENV_DIR + ": " + r_home);
                         System.Diagnostics.Debug.WriteLine(R_LIB_ENV_DIR + ":" + dll);
+
+						Console.WriteLine(R_HOME_ENV_DIR + ":" + r_home);
+						Console.WriteLine(R_LIB_ENV_DIR + ":" + dll);
+
 						var j = RDotNet.NativeLibrary.NativeUtility.GetPlatform ();
 						Console.WriteLine (j.ToString ());
                       
@@ -72,6 +76,7 @@ namespace MitoDataAssembler
                             RInterface.pEngine = REngine.CreateInstance("RDotNet", dll);
 
                         }
+
                         StartupParameter sp = new StartupParameter();
                         sp.Interactive = false;
                         sp.Slave = true;

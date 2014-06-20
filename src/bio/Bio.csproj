@@ -35,7 +35,6 @@
     <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
     <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
     <Prefer32Bit>false</Prefer32Bit>
-    <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>bio.snk</AssemblyOriginatorKeyFile>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
@@ -65,9 +64,6 @@
     <DefineConstants>DEBGU;TRACE;MONO</DefineConstants>
     <Prefer32Bit>false</Prefer32Bit>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile />
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -429,6 +425,17 @@
     <Compile Include="WordMatch.cs" />
     <Compile Include="IO\FastA\FastAZippedParser.cs" />
     <Compile Include="IO\FastQ\FastQZippedParser.cs" />
+    <Compile Include="Variant\BaseAndQuality.cs" />
+    <Compile Include="Variant\BaseAndQualityAndPosition.cs" />
+    <Compile Include="Variant\BasePairFrequencies.cs" />
+    <Compile Include="Variant\BaseQualityUtils.cs" />
+    <Compile Include="Variant\ContinuousFrequencyComplexGenotype.cs" />
+    <Compile Include="Variant\ContinuousFrequencyGenotype.cs" />
+    <Compile Include="Variant\ContinuousFrequencySNPGenotype.cs" />
+    <Compile Include="Variant\ContinuousGenotypeGenotypeCaller.cs" />
+    <Compile Include="Variant\GenotypeCallResult.cs" />
+    <Compile Include="Variant\PileUp.cs" />
+    <Compile Include="Variant\PileUpProducer.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resource.resx">
@@ -463,4 +470,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="Variant\" />
+  </ItemGroup>
 </Project>

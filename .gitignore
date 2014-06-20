@@ -7,6 +7,14 @@
 *.java
 *.jar
 *.mdb
+*.cache
+*.user
+src/HaploGrepSharp/obj/*
+src/HaploGrepSharp/bin/*
+src/MitoDataAssembler/obj/*
+src/MT_Assembler_Test/obj/*
+src/MitoDataAssembler/bin/*
+src/GetMTDataFromBAM/obj/*
 src/HaploGrepSharp/obj/*
 src/bio/Source/Framework/Add-ins/Bio.Padena/obj/*
 src/bio/obj/*

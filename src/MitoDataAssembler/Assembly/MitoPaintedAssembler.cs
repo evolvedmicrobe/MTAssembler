@@ -100,6 +100,8 @@ namespace MitoDataAssembler
 		#endregion
 
 		private HaploGrepSharp.NewSearchMethods.HaploTypeReport haplotypeReport;
+
+
 		private RInterface rInt;
 
 		public bool OutputDiagnosticInformation {

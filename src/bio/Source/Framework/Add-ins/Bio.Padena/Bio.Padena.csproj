@@ -108,7 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Bio.csproj">
-      <Project>{b53e11df-f9a9-4939-893e-78e59872089a}</Project>
+      <Project>{B53E11DF-F9A9-4939-893E-78E59872089A}</Project>
       <Name>Bio</Name>
     </ProjectReference>
   </ItemGroup>

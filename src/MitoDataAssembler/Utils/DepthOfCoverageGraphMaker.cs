@@ -7,6 +7,8 @@ using System.IO;
 using Bio.IO.BAM;
 using Bio.IO.SAM;
 using Bio;
+using System.Diagnostics;
+
 namespace MitoDataAssembler
 {
     /// <summary>
@@ -27,7 +29,7 @@ namespace MitoDataAssembler
         /// </summary>
         public void ProcessCountCoverageFromSequence(CompactSAMSequence orgSeq)
         {
-            if (orgSeq != null && orgSeq.RName == StaticResources.MT_CHROMOSOME_NAME)
+			if (orgSeq != null && orgSeq.RName != StaticResources.MT_CHROMOSOME_NAME)
             { return;}
 
             string CIGAR = orgSeq.CIGAR;
@@ -74,15 +76,18 @@ namespace MitoDataAssembler
                         {
                             if (curRef >= StaticResources.CRS_LENGTH)
                             {
-                                Console.WriteLine("what");
+								Debug.WriteLine ("Seq: " + orgSeq.ID + " is aligned past the MT DNA reference genome");
                                 break;
                             }
-                            depthCounts[curRef]++; 
+							depthCounts [curRef] = depthCounts [curRef] + 1.0;; 
                             curRef++;                            
                         }
                         break;
                     case 'I'://insertion to the reference
+						break;
                     case 'D'://Deletion from the reference
+						curRef += len;
+						break;
                     case 'S': //soft clipped
                     case 'H'://had clipped
                         break;
@@ -103,7 +108,7 @@ namespace MitoDataAssembler
             //Now to make the plot
             var r = new RInterface();
             List<RInterface.OptionalArgument> args = new List<RInterface.OptionalArgument>() { new RInterface.OptionalArgument("type", "l") };
-            r.PlotPDF(Enumerable.Range(0, StaticResources.CRS_LENGTH).Select(x => (double)x), depthCounts, outputFilePrefix+"_Coverage.pdf", "Depth of Coverage", "mtDNA Position", "Depth",null,args);
+			r.PlotPDF(Enumerable.Range(0, StaticResources.CRS_LENGTH).Select(x => (double)(x+1)), depthCounts, outputFilePrefix+"_Coverage.pdf", "Depth of Coverage", "mtDNA Position", "Depth",null,args);
             StreamWriter sw = new StreamWriter(outputFilePrefix + "_Coverage.csv");
             sw.WriteLine("Pos,Depth");
             for (int i = 0; i < depthCounts.Length; i++)

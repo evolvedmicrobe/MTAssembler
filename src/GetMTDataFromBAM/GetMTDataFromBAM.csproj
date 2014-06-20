@@ -89,7 +89,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\bio\Source\Framework\Bio\Bio.csproj">
+    <ProjectReference Include="..\bio\Bio.csproj">
       <Project>{B53E11DF-F9A9-4939-893E-78E59872089A}</Project>
       <Name>Bio</Name>
     </ProjectReference>
