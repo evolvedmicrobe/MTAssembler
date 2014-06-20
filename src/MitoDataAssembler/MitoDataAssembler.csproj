@@ -89,12 +89,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyOutput.cs" />
     <Compile Include="Assembly\AllAssemblyFinder.cs" />
     <Compile Include="DeletionReport.cs" />
     <Compile Include="Assembly\MitochondrialAssembly.cs" />
     <Compile Include="Utils\DepthOfCoverageGraphMaker.cs" />
-    <Compile Include="PairedEnd\PairedEndDeletionFinderOutput.cs" />
     <Compile Include="PairedEnd\PossibleDeletion.cs" />
     <Compile Include="Utils\ReadFilter.cs" />
     <Compile Include="ReferenceGenome.cs" />
@@ -120,6 +118,11 @@
     <Compile Include="PairedEnd\PairedEndPeakFinder.cs" />
     <Compile Include="R\RInterface.cs" />
     <Compile Include="ReadGenerator\BAMNuclearChromosomeReadGenerator.cs" />
+    <Compile Include="Utils\SNPCaller.cs" />
+    <Compile Include="Utils\AlgorithmReport.cs" />
+    <Compile Include="Utils\OutputColumn.cs" />
+    <Compile Include="PairedEnd\PairedEndDeletionFinderReporty.cs" />
+    <Compile Include="Assembly\AssemblyReport.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

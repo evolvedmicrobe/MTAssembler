@@ -63,6 +63,8 @@ namespace MitoDataAssembler
 		/// Input file of reads.
 		/// </summary>
 		public string Filename = string.Empty;
+
+		private string fullFileName;
 		/// <summary>
 		/// Output file.
 		/// </summary>
@@ -82,8 +84,6 @@ namespace MitoDataAssembler
         /// Make a depth of coverage plot.
         /// </summary>
         public bool MakeDepthOfCoveragePlot = true;
-
-	
 
 		/// <summary>
 		/// Display verbose logging during processing.
@@ -115,123 +115,136 @@ namespace MitoDataAssembler
 		#endregion
 
 		#region Public methods
-
-		
 		/// <summary>
 		/// Assembles the sequences and returns the string that can be placed in a CSV output report.
 		/// </summary>
 		/// <returns></returns>
-		public string AssembleSequences()
+		public List<AlgorithmReport> ProcessMTDNA()
 		{
-			string toReturn = "No String Set";
+			var results = new List<AlgorithmReport> ();
 			TimeSpan algorithmSpan = new TimeSpan ();
 			Stopwatch runAlgorithm = new Stopwatch ();
-			
-            //STEP 0: Preprocess reads
-            FileInfo refFileinfo = new FileInfo (this.Filename);
+
+			//STEP 0: Preprocess reads file 
+			FileInfo refFileinfo = new FileInfo (this.Filename);
 			long refFileLength = refFileinfo.Length;
-            IEnumerable<ISequence> reads = this.createSequenceProducer (this.Filename);
-			
 
 			Output.WriteLine (OutputLevel.Information, StaticResources.AssemblyStarting);
-			string fullFname = Path.GetFullPath (this.Filename);
-			if (this.Verbose) {
+			fullFileName = Path.GetFullPath (this.Filename);
+			if (File.Exists (fullFileName)) {
 				Output.WriteLine (OutputLevel.Verbose);
-				Output.WriteLine (OutputLevel.Verbose, "Found read file: {0}", fullFname);
+				Output.WriteLine (OutputLevel.Verbose, "Found read file: {0}", fullFileName);
 				Output.WriteLine (OutputLevel.Verbose, "   File Size           : {0}", refFileLength);
 				Output.WriteLine (OutputLevel.Verbose, "   k-mer Length        : {0}", this.KmerLength);
 			}
 
-			using (MitoPaintedAssembler assembler = new MitoPaintedAssembler ()) {
-				Console.WriteLine ("Prefix is: " + assembler.DiagnosticFileOutputPrefix);
-				Console.WriteLine ("Diagnostic Information On: " + assembler.OutputDiagnosticInformation.ToString ());
+			Console.WriteLine ("Prefix is: " + DiagnosticFilePrefix);
+			Console.WriteLine ("Diagnostic Information On: " + (!Quiet).ToString());
 
-                //Step 1: Initialize assembler.
-                //assembler.ReferenceGenomeFile = ReferenceGenome;
-                assembler.DiagnosticFileOutputPrefix = DiagnosticFilePrefix;				
-				assembler.StatusChanged += this.AssemblerStatusChanged;
-				assembler.AllowErosion = this.AllowErosion;
-				assembler.AllowKmerLengthEstimation = this.AllowKmerLengthEstimation;
-				if (ContigCoverageThreshold != -1) {
-					assembler.AllowLowCoverageContigRemoval = true;
-					assembler.ContigCoverageThreshold = ContigCoverageThreshold;
-				}
-				assembler.DanglingLinksThreshold = this.DangleThreshold;
-				assembler.ErosionThreshold = this.ErosionThreshold;
-				if (!this.AllowKmerLengthEstimation) {
-					assembler.KmerLength = this.KmerLength;
-				}
-				assembler.RedundantPathLengthThreshold = this.RedundantPathLengthThreshold;
+			//Assemble
+			var asmReport = CreateAssemblyAndDepthOfCoverage ();
+			results.Add (asmReport);
 
-                //Step 2: Assemble
-				runAlgorithm.Restart ();
-				IDeNovoAssembly assembly = assembler.Assemble (reads);
-				runAlgorithm.Stop ();
-				algorithmSpan = algorithmSpan.Add (runAlgorithm.Elapsed);
-				if (this.Verbose) {
-					Output.WriteLine (OutputLevel.Verbose);
-					Output.WriteLine (OutputLevel.Verbose, "Compute time: {0}", runAlgorithm.Elapsed);
-				}
-				
-                //Step 3: Report
-                runAlgorithm.Restart ();
-				this.writeContigs (assembly);
-				runAlgorithm.Stop ();
-                if (MakeDepthOfCoveragePlot)
-                {
-                    coveragePlotter.OutputCoverageGraphAndCSV(ReportOutputPrefix);
-                }
-				toReturn = assembler.GetReportLine ();
+			//Peak find
+			var peakFindReport = RunPeakFinder ();
+			results.Add (peakFindReport);
 
-				//Step 4: Run Break Finder
-				#region RUNPEAKFINDER
-				string peakFinderOutputLine;
-                Output.WriteLine(OutputLevel.Verbose, "Attempting to Run Peak Finder Program");
-                var isBAM = Helper.IsBAM(fullFname);
-				try {
-					if (isBAM) {
-						PairedEndPeakFinder pairedEndPeakFinder = new PairedEndPeakFinder (fullFname, DiagnosticFilePrefix);
-						pairedEndPeakFinder.FindDeletionPeaks ();
-						peakFinderOutputLine = PairedEndDeletionFinderOutput.GetReportValues (pairedEndPeakFinder);
 
-					} else {
-						peakFinderOutputLine = String.Join (",",
-							Enumerable.Range (0, PairedEndDeletionFinderOutput.TotalOutputFields).Select (x => "NOT_BAM_FILE"));
-					}
-				} catch (Exception thrown) {
-					Output.WriteLine (OutputLevel.Error, "Failed to run peak finder: " + thrown.Message);
-					peakFinderOutputLine = String.Join (",",
-						Enumerable.Range (0, PairedEndDeletionFinderOutput.TotalOutputFields).Select (x => "FAILED"));
-
-				}
-				#endregion
-
-				if (assembler.OutputDiagnosticInformation) {
-					var outFile = new StreamWriter (ReportOutputPrefix + DiagnosticFilePrefix + ".csv");
-					outFile.WriteLine (MitoDataAssembler.AssemblyOutput.CreateHeaderLine () + "," + PairedEndDeletionFinderOutput.CreateHeaderLine ());
-					outFile.WriteLine (toReturn + "," + peakFinderOutputLine);
-					outFile.Close ();
-
- 
-				}
-				algorithmSpan = algorithmSpan.Add (runAlgorithm.Elapsed);
-				if (this.Verbose) {
-					Output.WriteLine (OutputLevel.Verbose);
-					Output.WriteLine (OutputLevel.Verbose, "Write contigs time: {0}", runAlgorithm.Elapsed);
-					Output.WriteLine (OutputLevel.Verbose, "Total runtime: {0}", algorithmSpan);
-				}
+			if (!String.IsNullOrEmpty (DiagnosticFilePrefix)) {
+				var outFile = new StreamWriter (ReportOutputPrefix + DiagnosticFilePrefix + ".csv");
+				var header = String.Join (",", results.Select (z => z.HeaderLineForCSV ));
+				outFile.Write (header);
+				var data = String.Join (",", results.Select (z => z.DataLineForCSV ));
+				outFile.WriteLine (data);
+				outFile.Close ();
 			}
-			return toReturn;
+			return results;
 		}
 
 		#endregion
 
 		#region Protected Members
 
-        private DepthOfCoverageGraphMaker coveragePlotter;
+		protected AssemblyReport CreateAssemblyAndDepthOfCoverage() 
+		{
+
+			MitoPaintedAssembler assembler = new MitoPaintedAssembler ();
+			DepthOfCoverageGraphMaker coveragePlotter = MakeDepthOfCoveragePlot ? 
+														new DepthOfCoverageGraphMaker() : null;
+		
+			IEnumerable<ISequence> reads = this.createSequenceProducer (this.Filename,coveragePlotter);
+
+			TimeSpan algorithmSpan = new TimeSpan ();
+			Stopwatch runAlgorithm = new Stopwatch ();
+
+			//Step 1: Initialize assembler.
+			assembler.DiagnosticFileOutputPrefix = DiagnosticFilePrefix;				
+			assembler.StatusChanged += this.StatusChanged;
+			assembler.AllowErosion = this.AllowErosion;
+			assembler.AllowKmerLengthEstimation = this.AllowKmerLengthEstimation;
+			if (ContigCoverageThreshold != -1) {
+				assembler.AllowLowCoverageContigRemoval = true;
+				assembler.ContigCoverageThreshold = ContigCoverageThreshold;
+			}
+			assembler.DanglingLinksThreshold = this.DangleThreshold;
+			assembler.ErosionThreshold = this.ErosionThreshold;
+			if (!this.AllowKmerLengthEstimation) {
+				assembler.KmerLength = this.KmerLength;
+			}
+			assembler.RedundantPathLengthThreshold = this.RedundantPathLengthThreshold;
+
+			//Step 2: Assemble
+			runAlgorithm.Restart ();
+			IDeNovoAssembly assembly = assembler.Assemble (reads);
+			runAlgorithm.Stop ();
+			algorithmSpan = algorithmSpan.Add (runAlgorithm.Elapsed);
+			if (this.Verbose) {
+				Output.WriteLine (OutputLevel.Verbose);
+				Output.WriteLine (OutputLevel.Verbose, "Compute time: {0}", runAlgorithm.Elapsed);
+			}
+
+			//Step 3: Report
+			runAlgorithm.Restart ();
+			this.writeContigs (assembly);
+			runAlgorithm.Stop ();
+			algorithmSpan = algorithmSpan.Add (runAlgorithm.Elapsed);
+
+			if (this.Verbose) {
+				Output.WriteLine (OutputLevel.Verbose);
+				Output.WriteLine (OutputLevel.Verbose, "Write contigs time: {0}", runAlgorithm.Elapsed);
+				Output.WriteLine (OutputLevel.Verbose, "Total assembly runtime: {0}", algorithmSpan);
+			}
+
+			if (coveragePlotter !=null) {
+				coveragePlotter.OutputCoverageGraphAndCSV (DiagnosticFilePrefix);
+			}
+
+			return assembler.GetReport ();
+		}
+
+		protected PairedEndDeletionFinderReport RunPeakFinder()
+		{
+			//Step 4: Run Break Finder
+			Output.WriteLine (OutputLevel.Verbose, "Attempting to Run Peak Finder Program");
+			var isBAM = Helper.IsBAM (fullFileName);
+			PairedEndDeletionFinderReport report;
+			try {
+				if (isBAM) {
+					PairedEndPeakFinder pairedEndPeakFinder = new PairedEndPeakFinder (fullFileName, DiagnosticFilePrefix);
+					pairedEndPeakFinder.FindDeletionPeaks ();
+					report = new PairedEndDeletionFinderReport (pairedEndPeakFinder);
+				} else {
+					report = new PairedEndDeletionFinderReport ("NOT BAM");
+				}
+			} catch (Exception thrown) {
+				Output.WriteLine (OutputLevel.Error, "Failed to run peak finder: " + thrown.Message);
+				report = new PairedEndDeletionFinderReport ("Failure");
+			}
+			return report;
+		}
 
 		/// <summary>
-		/// It Writes the contigs to the file.
+		/// Writes the contigs to the file.
 		/// </summary>
 		/// <param name="assembly">IDeNovoAssembly parameter is the result of running De Novo Assembly on a set of two or more sequences. </param>
 		protected void writeContigs (IDeNovoAssembly assembly)
@@ -308,7 +321,7 @@ namespace MitoDataAssembler
 		/// </summary>
 		/// <param name="fileName">Filename to load data from</param>
 		/// <returns>Enumerable set of ISequence elements</returns>
-		private IEnumerable<ISequence> createSequenceProducer (string fileName)
+		private IEnumerable<ISequence> createSequenceProducer (string fileName, DepthOfCoverageGraphMaker coveragePlotter = null)
 		{
             if (MakeDepthOfCoveragePlot && !Helper.IsBAM(fileName))
             {
@@ -331,11 +344,7 @@ namespace MitoDataAssembler
             {
                 sequences = parser.Parse();
             }
-            //Also tally coverage
-            if (MakeDepthOfCoveragePlot)
-            {
-                coveragePlotter = new DepthOfCoverageGraphMaker();
-            }
+            
             //Filter by quality
             return ReadFilter.FilterReads(sequences,coveragePlotter);
 		}
@@ -343,7 +352,7 @@ namespace MitoDataAssembler
 		/// <summary>
 		/// Method to handle status changed event.
 		/// </summary>
-		protected void AssemblerStatusChanged (object sender, StatusChangedEventArgs statusEventArgs)
+		protected void StatusChanged (object sender, StatusChangedEventArgs statusEventArgs)
 		{
 			if (Verbose)
 				Output.WriteLine (OutputLevel.Verbose, statusEventArgs.StatusMessage);
@@ -356,7 +365,9 @@ namespace MitoDataAssembler
 			}
 		}
 
-		#endregion
 
+
+		#endregion
 	}
+	
 }

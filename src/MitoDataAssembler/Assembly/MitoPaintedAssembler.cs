@@ -124,9 +124,9 @@ namespace MitoDataAssembler
 			#endif
 		}
 
-		public string GetReportLine ()
+		public AssemblyReport GetReport ()
 		{
-			return AssemblyOutput.GetReportValues (this);
+			return new AssemblyReport (this);
 		}
 
 		/// <summary>

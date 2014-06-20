@@ -153,63 +153,34 @@ namespace MitoDataAssembler
         }
         public static string DeletionReportHeaderLine()
         {
-            return String.Join(",", OutputColumn.OutputColumnCollection.Select(x => x.Name).ToArray());
+            return String.Join(",", OutputColumnCollection.Select(x => x.Name).ToArray());
         }
         public IEnumerable<string> DeletionReportDataLines()
         {
             //TODO Problem here
             foreach(UnAccountedForSpan span in this.MissingSpans)
-                yield return String.Join(",", OutputColumn.OutputColumnCollection.Select(x => x.outFunc(span)).ToArray());
+                yield return String.Join(",", OutputColumnCollection.Select(x => x.outFunc(span)).ToArray());
         }
+
+		/// <summary>
+		/// Collection of columns to output with various summary statistics.
+		/// </summary>
+		public static List<OutputColumn> OutputColumnCollection = new List<OutputColumn>() {
+			new OutputColumn("PossibleAssemblyNumber", x => x.parent.DeletionNumber.ToString()),
+			new OutputColumn("UnAccountedForSpanNumber",x=>x.SubDeletionNumber.ToString()),
+			new OutputColumn("StartRef",x=>x.StartReference.ToString()),
+			new OutputColumn("EndRef",x=>x.EndReference.ToString()),
+			new OutputColumn("DeltaRef",x=>x.DeltaSequence.ToString()),
+			new OutputColumn("StartNode",x=>x.StartNodeIndex.ToString()),
+			new OutputColumn("EndNode",x=>x.EndNodeIndex.ToString()),
+			new OutputColumn("SimpleBifurcation",x=>x.SimpleBifurcation.ToString()),
+			new OutputColumn("FractionEvidence",x=>x.FractionEvidence.ToString()),
+			new OutputColumn("RefChangesMonotonically",x=>x.parent.ReferenceValuesChangeMonotonically.ToString()),
+			new OutputColumn("AssemblyLength",x=>x.parent.Assembly.DirtySequence.Count.ToString()),
+			new OutputColumn("SequenceOfAssembly",x=>x.parent.Assembly.DirtySequence.ConvertToString())
+
+		};
     }
-    public sealed class OutputColumn
-    {
-        public readonly string Name;
-        public readonly Func<DeletionReport.UnAccountedForSpan, object> outFunc;
-        public OutputColumn(string name, Func<DeletionReport.UnAccountedForSpan, object> outputFunction)
-        {
-            this.Name = name;
-            this.outFunc = outputFunction;
-        }
 
-        public static string SafeGet(Func<DeletionReport.UnAccountedForSpan, object> func, DeletionReport.UnAccountedForSpan GC)
-        {
-            try
-            {
-                object o = func(GC).ToString();
-                if (o is double)
-                {
-                    double n = (double)o;
-                    return n.ToString("n5");
-                }
-                else
-                {
-                    return o.ToString();
-                }
-            }
-            catch
-            {
-                return "NA";
-            }
-        }
-
-        /// <summary>
-        /// Collection of columns to output with various summary statistics.
-        /// </summary>
-        public static List<OutputColumn> OutputColumnCollection = new List<OutputColumn>() {
-                new OutputColumn("PossibleAssemblyNumber", x => x.parent.DeletionNumber.ToString()),
-                new OutputColumn("UnAccountedForSpanNumber",x=>x.SubDeletionNumber.ToString()),
-                new OutputColumn("StartRef",x=>x.StartReference.ToString()),
-                new OutputColumn("EndRef",x=>x.EndReference.ToString()),
-                new OutputColumn("DeltaRef",x=>x.DeltaSequence.ToString()),
-                new OutputColumn("StartNode",x=>x.StartNodeIndex.ToString()),
-                new OutputColumn("EndNode",x=>x.EndNodeIndex.ToString()),
-                new OutputColumn("SimpleBifurcation",x=>x.SimpleBifurcation.ToString()),
-                new OutputColumn("FractionEvidence",x=>x.FractionEvidence.ToString()),
-                new OutputColumn("RefChangesMonotonically",x=>x.parent.ReferenceValuesChangeMonotonically.ToString()),
-                new OutputColumn("AssemblyLength",x=>x.parent.Assembly.DirtySequence.Count.ToString()),
-                new OutputColumn("SequenceOfAssembly",x=>x.parent.Assembly.DirtySequence.ConvertToString())
-
-        };
-    }
+   
 }

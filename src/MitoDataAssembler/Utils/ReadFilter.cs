@@ -21,11 +21,13 @@ namespace MitoDataAssembler
             foreach (var toFilter in preFiltered)
             {
                 var samRead = toFilter as CompactSAMSequence;
-                if ( samRead!=null)
+				if ( samRead !=null)
                 {
                     if ((samRead.SAMFlags & 1024) == 1024)
-                    { continue; }                    
-                    coverageCounter.ProcessCountCoverageFromSequence(samRead);
+                    { continue; }   
+					if (coverageCounter != null) {
+						coverageCounter.ProcessCountCoverageFromSequence (samRead);
+					}
                 }
                 var qs = toFilter as QualitativeSequence;
                 if (qs != null)
