@@ -7,6 +7,7 @@
     using System.Globalization;
     using System.Reflection;
     using System.Text.RegularExpressions;
+	using System.Linq;
 
     /// <summary>
     /// Command Line Argument value types.
@@ -282,7 +283,75 @@
             this.enumerator.Reset();
         }
 
-        /// <summary>
+		public string PrintArguments() 
+		{
+			System.Text.StringBuilder sb = new System.Text.StringBuilder ();
+			sb.Append ("\n");
+			var required = argumentList.Values.Where (x => x.AllowType != ArgumentType.Optional).Select (p => CreateLineForArgument (p));
+			sb.Append ("\nRequired Arguments:\n");
+			sb.Append(String.Join("",required));
+			var optional = argumentList.Values.Where (x => x.AllowType == ArgumentType.Optional).Select (p => CreateLineForArgument (p));
+			sb.Append ("\nOptional Arguments:\n");
+			sb.Append(String.Join("",optional));
+			return sb.ToString ();			
+		}
+
+		private string CreateLineForArgument(Argument toProduceFor, int colSize = 19)
+		{
+			string colOne; 
+			if (toProduceFor.AllowType == ArgumentType.DefaultArgument){
+				colOne = "Default";
+			}
+			else{
+				colOne = "-" + toProduceFor.ShortName;
+			}
+			//int colTwoLength = Console.WindowWidth - colSize;
+			int colTwoLength = 80;
+
+			if (toProduceFor.ValueType != ArgumentValueType.Bool)
+			{
+				switch (toProduceFor.ValueType) 
+				{
+					case ArgumentValueType.OptionalInt:
+					case ArgumentValueType.Int:
+						colOne += ":<int>";
+						break;
+				case ArgumentValueType.OptionalString:
+				case ArgumentValueType.String:
+					colOne += ":<string>";
+					break;
+					default:
+						throw new NotImplementedException ("Haven't setup parser for this");
+				}
+			}
+			//add what is needed for first column
+			var additional = colSize - colOne.Length;
+			if (additional > 0) {
+				colOne += new String (' ', additional);
+			}
+			var emptyColumn = new String (' ', colSize);
+			var a = new List<string>();
+			var hstring = toProduceFor.Help;
+			if (!String.IsNullOrEmpty (hstring)) {
+				for (int i = 0; i < hstring.Length; i += colTwoLength) {
+					string line;
+					if ((i + colTwoLength) < hstring.Length)
+						line = hstring.Substring (i, colTwoLength);
+					else
+						line = hstring.Substring (i);
+					if (i == 0) {
+						colOne += line;
+					} else {
+						colOne += emptyColumn;
+						colOne += line;
+					}
+					colOne += "\n";
+				}
+			}
+			return colOne;
+		}  		
+
+		/// <summary>
         /// Returns the position of the mismatch of arguments.
         /// </summary>
         /// <param name="regExpr">Regular expression used for matching.</param>
@@ -533,6 +602,8 @@
                 }
             }
         }
+
+
 
         /// <summary>
         /// Parses the command line arguments passed from the utility.

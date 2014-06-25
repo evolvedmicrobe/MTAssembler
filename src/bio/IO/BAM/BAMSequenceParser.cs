@@ -497,7 +497,6 @@ namespace Bio.IO.BAM
 
                     ValidateReader();
                     SAMAlignmentHeader header = GetHeader();
-
                     // verify whether there is any reads related to chromosome.
                     int refSeqIndex = refSeqNames.IndexOf(refSeqName);
                     if (refSeqIndex < 0)
@@ -514,12 +513,9 @@ namespace Bio.IO.BAM
                 }
             }
         }
-
-
 #if WANT_OLD_VERSION
         private IEnumerable<SAMAlignedSequence> EnumerateAlignedSequences(IList<Chunk> chunks, int start, int end)
 #else
-
         private IEnumerable<ISequence> EnumerateAlignedSequences(IList<Chunk> chunks)
 #endif
         {
@@ -530,7 +526,6 @@ namespace Bio.IO.BAM
                 if (deCompressedStream != null)
                 {
                     deCompressedStream.Seek(chunk.ChunkStart.UncompressedBlockOffset, SeekOrigin.Begin);
-
                     // read until eof or end of the chunck is reached.
                     while (!IsEOF() && (currentCompressedBlockStartPos < (long)chunk.ChunkEnd.CompressedBlockOffset || deCompressedStream.Position < chunk.ChunkEnd.UncompressedBlockOffset))
                     {
@@ -542,15 +537,11 @@ namespace Bio.IO.BAM
                     }
                 }
             }
-
         }
-
-
         public void Close()
         {
 
         }
-
         public IAlphabet Alphabet
         {
             get

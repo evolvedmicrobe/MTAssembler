@@ -37,7 +37,7 @@
     <DefineConstants>TRACE;DEBUG; USE_R</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Commandlineparameters> -k:19  -p:FirstAssembly -v -o:/Users/ndelaney/LocalLR-PCR/FirstAssembly.fna  /Users/ndelaney/LocalLR-PCR/171067.bam</Commandlineparameters>
+    <Commandlineparameters>-h</Commandlineparameters>
     <Prefer32Bit>false</Prefer32Bit>
     <ConsolePause>false</ConsolePause>
     <additionalargs>/debug</additionalargs>
@@ -92,6 +92,8 @@
     <Compile Include="Assembly\AllAssemblyFinder.cs" />
     <Compile Include="DeletionReport.cs" />
     <Compile Include="Assembly\MitochondrialAssembly.cs" />
+    <Compile Include="PileUpCaller\SNPCaller.cs" />
+    <Compile Include="PileUpCaller\SNPCallerReport.cs" />
     <Compile Include="Utils\DepthOfCoverageGraphMaker.cs" />
     <Compile Include="PairedEnd\PossibleDeletion.cs" />
     <Compile Include="Utils\ReadFilter.cs" />
@@ -118,7 +120,6 @@
     <Compile Include="PairedEnd\PairedEndPeakFinder.cs" />
     <Compile Include="R\RInterface.cs" />
     <Compile Include="ReadGenerator\BAMNuclearChromosomeReadGenerator.cs" />
-    <Compile Include="Utils\SNPCaller.cs" />
     <Compile Include="Utils\AlgorithmReport.cs" />
     <Compile Include="Utils\OutputColumn.cs" />
     <Compile Include="PairedEnd\PairedEndDeletionFinderReporty.cs" />
@@ -174,7 +175,5 @@
   </Target>
   -->
   <ItemGroup />
-  <ItemGroup>
-    <Folder Include="ReadGenerator\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

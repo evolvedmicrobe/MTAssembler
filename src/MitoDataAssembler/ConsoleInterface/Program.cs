@@ -36,29 +36,7 @@ namespace MitoDataAssembler
             try
             {
 #endif
-                if ((args == null) || (args.Length < 2))
-                {
-                    Output.WriteLine(OutputLevel.Required, "You need at least two arguments\n");
-                    Output.WriteLine(OutputLevel.Required, StaticResources.ASSEMBLE_HELP);
-
-                }
-                else
-                {
-                    if (args[0].Equals("Help", StringComparison.InvariantCultureIgnoreCase)
-                        || args[0].Equals("/h", StringComparison.CurrentCultureIgnoreCase)
-                        || args[0].Equals("/help", StringComparison.CurrentCultureIgnoreCase)
-                        || args[0].Equals("-h", StringComparison.CurrentCultureIgnoreCase)
-                        || args[0].Equals("-help", StringComparison.CurrentCultureIgnoreCase))
-                    {
-
-                        Output.WriteLine(OutputLevel.Required, StaticResources.ASSEMBLE_HELP);
-
-                    }
-                    else
-                    {
-                        Assemble(args);
-                    }
-                }
+				Assemble(args);
 #if !DEBUG
             }
 
@@ -125,7 +103,6 @@ namespace MitoDataAssembler
 				}
 			}
 		
-
 			/// <summary>
 			/// Assemble function.
 			/// </summary>
@@ -135,7 +112,18 @@ namespace MitoDataAssembler
 				MTAssembleArguments options = new MTAssembleArguments();
 				CommandLineArguments parser = new CommandLineArguments();
 				AddAssembleParameters(parser);
-				if (args.Length > 0)
+			if (args.Length<1 
+				|| args[0].Equals("Help", StringComparison.InvariantCultureIgnoreCase)
+				|| args[0].Equals("/h", StringComparison.CurrentCultureIgnoreCase)
+				|| args[0].Equals("/help", StringComparison.CurrentCultureIgnoreCase)
+				|| args[0].Equals("-h", StringComparison.CurrentCultureIgnoreCase)
+				|| args[0].Equals("-help", StringComparison.CurrentCultureIgnoreCase))
+				{
+					//Output.WriteLine(OutputLevel.Required, StaticResources.ASSEMBLE_HELP);
+					PrintHelp (parser);
+
+				}
+				else
 				{
 					try
 					{
@@ -149,7 +137,7 @@ namespace MitoDataAssembler
 					}
 					if (options.Help)
 					{
-						Output.WriteLine(OutputLevel.Required, StaticResources.ASSEMBLE_HELP);
+						PrintHelp (parser);
 					}
 					else
 					{
@@ -159,16 +147,15 @@ namespace MitoDataAssembler
 							Output.TraceLevel = OutputLevel.Information;
 						options.ProcessMTDNA();
 					}
-
-				}
-				else
-				{
-					Output.WriteLine(OutputLevel.Required, StaticResources.ASSEMBLE_HELP);
-				}
+				}				
 			}
             private static void AddAssembleParameters(CommandLineArguments parser)
 			{
 				// Add the parameters to be parsed
+				parser.Parameter (ArgumentType.DefaultArgument, "Filename", ArgumentValueType.String, "", "Input file of reads");
+				parser.Parameter (ArgumentType.Optional, "OutputFile", ArgumentValueType.String, "o", "Output file");
+				parser.Parameter (ArgumentType.Optional, "Help", ArgumentValueType.Bool, "h", "Display help");        
+
 				parser.Parameter (ArgumentType.Optional, "Quiet", ArgumentValueType.Bool, "q", "Display minimal output during processing.");
 				parser.Parameter (ArgumentType.Optional, "KmerLength", ArgumentValueType.OptionalInt, "k", "Length of k-mer");
 				parser.Parameter (ArgumentType.Optional, "DangleThreshold", ArgumentValueType.OptionalInt, "d", "Threshold for removing dangling ends in graph");
@@ -177,18 +164,16 @@ namespace MitoDataAssembler
 				parser.Parameter (ArgumentType.Optional, "AllowErosion", ArgumentValueType.Bool, "i", "Bool to do erosion or not.");
 				parser.Parameter (ArgumentType.Optional, "AllowKmerLengthEstimation", ArgumentValueType.Bool, "a", "Whether to estimate kmer length.");
 				parser.Parameter (ArgumentType.Optional, "ContigCoverageThreshold", ArgumentValueType.Int, "c", "Threshold used for removing low-coverage contigs.");
-				parser.Parameter (ArgumentType.Optional, "Help", ArgumentValueType.Bool, "h", "");        
-				parser.Parameter (ArgumentType.Optional, "OutputFile", ArgumentValueType.String, "o", "Output file");
 				parser.Parameter (ArgumentType.Optional, "Verbose", ArgumentValueType.Bool, "v", "Display verbose logging during processing.");
-				parser.Parameter (ArgumentType.DefaultArgument, "Filename", ArgumentValueType.String, "", "Input file of reads");
-				parser.Parameter (ArgumentType.Optional, "MakeDepthOfCoveragePlot", ArgumentValueType.Bool, "dp", "Make Depth of Coverage Plot");
+			parser.Parameter (ArgumentType.Optional, "MakeDepthOfCoveragePlot", ArgumentValueType.Bool, "dp", "Make depth of coverage plot");
 				//parser.Parameter (ArgumentType.Required, "ReferenceGenome", ArgumentValueType.String, "ref","Reference Genome File (Fasta");
 				parser.Parameter (ArgumentType.Optional, "ForceKmer", ArgumentValueType.Bool, "fk", "Force specified k-mer to be used without a warning prompt.");
 				parser.Parameter (ArgumentType.Optional, "DiagnosticFilePrefix", ArgumentValueType.String, "p", "Prefix to append to all diagnostic files, which will be output if set");
 				parser.Parameter (ArgumentType.Optional, "ChromosomeName", ArgumentValueType.String, "chr", "Only assemble sequences that align to this chromosome in a BAM File.");
-		            
+                parser.Parameter(ArgumentType.Optional, "DoPileUpSNPCalling", ArgumentValueType.Bool, "pileup", "Call SNPs and haplotypes using a columnwise pile-up in addition to the de novo assembly");
 			}
-            private static DateTime RetrieveLinkerTimestamp()
+
+        private static DateTime RetrieveLinkerTimestamp()
             {
                 string filePath = System.Reflection.Assembly.GetCallingAssembly().Location;
                 const int c_PeHeaderOffset = 60;
@@ -216,7 +201,13 @@ namespace MitoDataAssembler
                 dt = dt.AddHours(TimeZone.CurrentTimeZone.GetUtcOffset(dt).Hours);
                 return dt;
             }
-
+		private static void PrintHelp(CommandLineArguments parser)
+		{
+			Output.WriteLine(OutputLevel.Required,@"
+MTAssembler.exe assemble [options] <Input BAM File> 
+Description: Assemble reads into contigs (No matepair information required.)");
+			Output.Write (OutputLevel.Required, parser.PrintArguments ());
+		}
 			#endregion
 	}
 }

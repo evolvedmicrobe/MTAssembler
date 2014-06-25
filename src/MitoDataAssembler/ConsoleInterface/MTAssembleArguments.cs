@@ -26,7 +26,7 @@ namespace MitoDataAssembler
 		/// Length of k-mer.
 		/// </summary>
 		public int KmerLength = 19;
-		public string ReferenceGenome;
+
 		/// <summary>
 		/// Threshold for removing dangling ends in graph.
 		/// </summary>
@@ -63,8 +63,11 @@ namespace MitoDataAssembler
 		/// Input file of reads.
 		/// </summary>
 		public string Filename = string.Empty;
-
 		private string fullFileName;
+        /// <summary>
+        /// Should we also call SNPs and Haplotypes using a column wise pile-up?
+        /// </summary>
+        public bool DoPileUpSNPCalling = true;
 		/// <summary>
 		/// Output file.
 		/// </summary>
@@ -148,6 +151,9 @@ namespace MitoDataAssembler
 			//Peak find
 			var peakFindReport = RunPeakFinder ();
 			results.Add (peakFindReport);
+
+            //Pile-up
+			//var pileupReport = SNPCaller
 
 
 			if (!String.IsNullOrEmpty (DiagnosticFilePrefix)) {
