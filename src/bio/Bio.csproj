@@ -171,7 +171,6 @@
     <Compile Include="Assembly\Padena\Scaffold\ValidMatePair.cs" />
     <Compile Include="BigArray.cs" />
     <Compile Include="BigList.cs" />
-    <Compile Include="CompactSAMSequence.cs" />
     <Compile Include="CrossPlatform.cs" />
     <Compile Include="Filters\QualityFilter.cs" />
     <Compile Include="IO\BAM\AlignmentData.cs" />
@@ -436,6 +435,8 @@
     <Compile Include="Variant\GenotypeCallResult.cs" />
     <Compile Include="Variant\PileUp.cs" />
     <Compile Include="Variant\PileUpProducer.cs" />
+    <Compile Include="Variant\ContinuousFrequencyIndelGenotype.cs" />
+    <Compile Include="IO\SAM\CompactSAMSequence.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resource.resx">

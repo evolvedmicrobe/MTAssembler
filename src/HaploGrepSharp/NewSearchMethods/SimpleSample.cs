@@ -5,7 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace HaploGrepSharp.NewSearchMethods
-{    public class SimpleSample
+{    
+	public class SimpleSample
     {
         //TODO: Make this static?
         public readonly PolymorphismFilter Filter;

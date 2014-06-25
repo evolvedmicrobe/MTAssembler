@@ -35,21 +35,20 @@ Infrequently Used Parameters:
 
 		public const string AssemblyStarting = "Beginning assembly processing.";
 	
-		public const string ContinuePrompt="Are you sure you want to continue (Y/N)?";
+		public const string ContinuePrompt = "Are you sure you want to continue (Y/N)?";
 				
 
-		public const string PeakPagedMemorySize64="Peak memory in the virtual memory paging file used: {0}";
+		public const string PeakPagedMemorySize64 = "Peak memory in the virtual memory paging file used: {0}";
 			
-		public const string PeakVirtualMemorySize64="Peak virtual memory used: {0}";
+		public const string PeakVirtualMemorySize64 = "Peak virtual memory used: {0}";
 			
-		public const string PeakWorkingSet64="Peak physical memory used: {0}";
+		public const string PeakWorkingSet64 = "Peak physical memory used: {0}";
 			
-		public const string ReferenceFile="Reference File not in correct format";
-				
+		public const string ReferenceFile = "Reference File not in correct format";
 
 		public const string TotalProcessorTime = "Total CPU time taken: {0}";
 			
-		public const string UnknownCommand="Unknown command: {0}";
+		public const string UnknownCommand = "Unknown command: {0}";
         
         /// <summary>
         /// The expected name of the mtDNA chromosome in the BAM File.

@@ -13,6 +13,7 @@ namespace MitoDataAssembler
 		/// This string is the concatenation of each analysis subset, and this field gives the header lines for it.
 		/// </summary>
 		public string HeaderLineForCSV { get; protected set;}
+
 		/// <summary>
 		/// The data line for the CSV report string.
 		/// </summary>

@@ -10,6 +10,11 @@ namespace Bio.Variant
 
 		public GenotypeCallResult ResultType;
 
+		public abstract string GetMostFrequentGenotype();
+
+
+		public abstract double GetHighestFrequency ();
+
 		public abstract List<string> GetGenotypesPresent();
 
 		public abstract List<double> GetGenotypeFrequencies();

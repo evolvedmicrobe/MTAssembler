@@ -125,8 +125,6 @@ namespace MitoDataAssembler
 		public List<AlgorithmReport> ProcessMTDNA()
 		{
 			var results = new List<AlgorithmReport> ();
-			TimeSpan algorithmSpan = new TimeSpan ();
-			Stopwatch runAlgorithm = new Stopwatch ();
 
 			//STEP 0: Preprocess reads file 
 			FileInfo refFileinfo = new FileInfo (this.Filename);
@@ -153,7 +151,10 @@ namespace MitoDataAssembler
 			results.Add (peakFindReport);
 
             //Pile-up
-			//var pileupReport = SNPCaller
+			if (DoPileUpSNPCalling) {
+				var pileupReport = RunSNPCaller ();
+				results.Add (pileupReport);
+			}
 
 
 			if (!String.IsNullOrEmpty (DiagnosticFilePrefix)) {
@@ -247,6 +248,22 @@ namespace MitoDataAssembler
 				report = new PairedEndDeletionFinderReport ("Failure");
 			}
 			return report;
+		}
+
+		protected SNPCallerReport RunSNPCaller()
+		{
+
+			Stopwatch time = new Stopwatch ();
+			time.Start ();
+			IEnumerable<ISequence> reads = this.createSequenceProducer (this.Filename);
+			var res = SNPCaller.CallSNPs (reads);
+			time.Stop ();
+			if (this.Verbose) {
+				Output.WriteLine (OutputLevel.Verbose);
+				Output.WriteLine (OutputLevel.Verbose, "Call Pile-up SNPs: {0}", time.Elapsed);
+			}
+			return res;
+
 		}
 
 		/// <summary>

@@ -59,6 +59,21 @@ namespace HaploGrepSharp
         {
             return pos >= 3106 ? pos + 2 : pos + 1;
         }
+
+		/// <summary>
+		/// Gets the reference base at the 1-based index position.
+		/// </summary>
+		/// <param name="position"></param>
+		/// <returns></returns>
+		public static char GetReferenceBaseAt_rCRSPosition(int position)
+		{
+			int n_pos = position - 1;
+			if (n_pos == 3106) { return 'N'; }
+			n_pos = n_pos > 3106 ? n_pos-1 : n_pos;
+			return rCRS[n_pos];
+
+		}
+
         /// <summary>
         /// The reference cambridge sequence with the "N" removed;
         /// </summary>

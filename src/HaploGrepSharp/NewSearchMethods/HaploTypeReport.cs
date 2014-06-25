@@ -65,9 +65,9 @@ namespace HaploGrepSharp.NewSearchMethods
 			return String.Join (ReportColumn.ReportDelimiter, ReportValues.Select (x => x.GetValue (this)).ToArray ());
 		}
 
-		public static string GetColumnReportHeaderLine ()
+		public static string GetColumnReportHeaderLine (string prefix = "")
 		{
-			return String.Join (ReportColumn.ReportDelimiter, ReportValues.Select (x => x.ColumnName).ToArray ());
+			return String.Join (ReportColumn.ReportDelimiter, ReportValues.Select (x => prefix+x.ColumnName).ToArray ());
 		}
 
 		static List<ReportColumn> ReportValues = new List<ReportColumn> () { 

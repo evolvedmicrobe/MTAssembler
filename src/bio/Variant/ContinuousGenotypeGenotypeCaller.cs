@@ -36,16 +36,18 @@ namespace Bio.Variant
 		/// Initializes a new instance of the <see cref="Bio.Variant.ContinuousGenotypeCaller"/> class.
 		/// </summary>
 		/// <param name="sortedPileUps">Sorted pile ups.</param>
-		public ContinuousGenotypeCaller (IEnumerable<PileUp> sortedPileUps)
+		public static IEnumerable<ContinuousFrequencyGenotype> CallContinuousGenotypes(IEnumerable<PileUp> sortedPileUps)
 		{
-
+			foreach (var v in sortedPileUps) {
+				yield return callGenotype (v);
+			}
 
 		}
-		private ContinuousFrequencyGenotype callGenotype(PileUp pu)
+		private static ContinuousFrequencyGenotype callGenotype(PileUp pu)
 		{
 			//If it looks like a deletion, skip it
 			if(pileupHasTooManyIndels(pu)) {
-				return new ContinuousFrequencySNPGenotype (GenotypeCallResult.TooManyGaps);
+				return new ContinuousFrequencySNPGenotype (GenotypeCallResult.TooManyGaps, pu);
 			}
 
 			// Otherwise, drop gaps, ambiguous bases and low scoring reads.
@@ -91,7 +93,7 @@ namespace Bio.Variant
 					}
 				}
 			}
-			return new ContinuousFrequencySNPGenotype (theta);
+			return new ContinuousFrequencySNPGenotype (theta,base_pair_counts);
 		}
 
 		/// <summary>
@@ -102,7 +104,7 @@ namespace Bio.Variant
 		/// <param name="freqs">Freqs.</param>
 		/// <param name="data">Data.</param>
 		/// <param name="bp">Bp.</param>
-		private double updateGonditionalProbabilities(BasePairFrequencies freqs, double[] data, BaseAndQuality bp ) {
+		private static double updateGonditionalProbabilities(BasePairFrequencies freqs, double[] data, BaseAndQuality bp ) {
 			//Calculate conditional probability that the base comes from the observed base.
 
 			double probRight = BaseQualityUtils.GetCorrectProbability (bp.PhredScore);
@@ -119,7 +121,7 @@ namespace Bio.Variant
 			return Math.Log(totProb);
 		}
 
-		private bool pileupHasTooManyIndels(PileUp up)
+		private static bool pileupHasTooManyIndels(PileUp up)
 		{
 			var freq = up.Bases.Count (z => z.Base == BaseAndQuality.GAP_BASE_INDEX) / (double)up.Bases.Count;
 			return freq >= MIN_DELETION_PERCENTAGE_NEEDED_TO_CALL;

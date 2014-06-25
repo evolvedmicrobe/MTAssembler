@@ -12,14 +12,14 @@ namespace Bio.Variant
     /// A class the produces read pile ups (columns of multiple sequence alignments) from a stream of 
     /// SAM aligned quality sequences.
     /// </summary>
-    public class PileUpProducer
+	public static class PileUpProducer
     {        
         /// <summary>
         /// Takes a sorted list of SAMAligned sequences and converts them in to read pile-ups. One pile-up for genomic position or alignment.
         /// </summary>
         /// <param name="sequences"></param>
         /// <returns></returns>
-        public IEnumerable<PileUp> CreatePileupFromReads(IEnumerable<SAMAlignedSequence> sequences)
+		public static IEnumerable<PileUp> CreatePileupFromReads(IEnumerable<CompactSAMSequence> sequences)
 		{
 			LinkedList<PileUp> pileupsToEmit = null;
 			string cur_ref, last_ref = null;
@@ -100,13 +100,13 @@ namespace Bio.Variant
         /// Avoids, separate checks within each method.
         /// </summary>
         /// <param name="seq"></param>
-        private void validateSequence(SAMAlignedSequence seq)
+		private static void validateSequence(CompactSAMSequence seq)
         {
             if (seq == null) {
                 throw new ArgumentNullException("seq");
             }
             if (String.IsNullOrEmpty(seq.RName) || 
-                seq.RefEndPos <= seq.Pos || 
+				seq.RefEndPos <= seq.Pos || 
                 String.IsNullOrEmpty(seq.CIGAR) || 
                 seq.CIGAR =="*" ||
                 !(seq.QuerySequence is QualitativeSequence) )
@@ -122,7 +122,7 @@ namespace Bio.Variant
         /// </summary>
         /// <param name="seq"></param>
         /// <returns></returns>
-        List<BaseAndQualityAndPosition> getBasesForSequence(SAMAlignedSequence seq)
+		static List<BaseAndQualityAndPosition> getBasesForSequence(CompactSAMSequence seq)
         {
             List<BaseAndQualityAndPosition> toReturn = new List<BaseAndQualityAndPosition>(seq.RefEndPos - seq.Pos + 10);
             // Decode the cigar string into operations.

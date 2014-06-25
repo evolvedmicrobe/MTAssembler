@@ -36,7 +36,7 @@ namespace MitoDataAssembler
             try
             {
 #endif
-				Assemble(args);
+				ProcessData(args);
 #if !DEBUG
             }
 
@@ -53,125 +53,124 @@ namespace MitoDataAssembler
 			}
 
     #region Private Methods
-			/// <summary>
-			/// Formats the specified memory in bytes to appropriate string.
-			/// for example, 
-			///  if the value is less than one KB then it returns a string representing memory in bytes.
-			///  if the value is less than one MB then it returns a string representing memory in KB.
-			///  if the value is less than one GB then it returns a string representing memory in MB.
-			///  else it returns memory in GB.
-			/// </summary>
-			/// <param name="value">value in bytes</param>
-			public static string FormatMemorySize(long value)
+		/// <summary>
+		/// Formats the specified memory in bytes to appropriate string.
+		/// for example, 
+		///  if the value is less than one KB then it returns a string representing memory in bytes.
+		///  if the value is less than one MB then it returns a string representing memory in KB.
+		///  if the value is less than one GB then it returns a string representing memory in MB.
+		///  else it returns memory in GB.
+		/// </summary>
+		/// <param name="value">value in bytes</param>
+		public static string FormatMemorySize(long value)
+		{
+			string result = null;
+			if (value > GB)
 			{
-				string result = null;
-				if (value > GB)
-				{
-					result = (Math.Round(value / GB, 2)).ToString() + " GB";
-				}
-				else if (value > MB)
-				{
-					result = (Math.Round(value / MB, 2)).ToString() + " MB";
-				}
-				else if (value > KB)
-				{
-					result = (Math.Round(value / KB, 2)).ToString() + " KB";
-				}
-				else
-				{
-					result = value.ToString() + " Bytes";
-				}
-
-				return result;
+				result = (Math.Round(value / GB, 2)).ToString() + " GB";
+			}
+			else if (value > MB)
+			{
+				result = (Math.Round(value / MB, 2)).ToString() + " MB";
+			}
+			else if (value > KB)
+			{
+				result = (Math.Round(value / KB, 2)).ToString() + " KB";
+			}
+			else
+			{
+				result = value.ToString() + " Bytes";
 			}
 
-			/// <summary>
-			/// Catches Inner Exception Messages.
-			/// </summary>
-			/// <param name="ex">Exception</param>
-			private static void CatchInnerException(Exception ex)
+			return result;
+		}
+
+		/// <summary>
+		/// Catches Inner Exception Messages.
+		/// </summary>
+		/// <param name="ex">Exception</param>
+		private static void CatchInnerException(Exception ex)
+		{
+			if (ex.InnerException == null || string.IsNullOrEmpty(ex.InnerException.Message))
 			{
-				if (ex.InnerException == null || string.IsNullOrEmpty(ex.InnerException.Message))
-				{
-					Output.WriteLine(OutputLevel.Error, "Error: " + ex.Message);
-                    Output.WriteLine(OutputLevel.Error, ex.StackTrace);
-			        throw ex;
-				}
-				else
-				{
-					CatchInnerException(ex.InnerException);
-				}
+				Output.WriteLine(OutputLevel.Error, "Error: " + ex.Message);
+                Output.WriteLine(OutputLevel.Error, ex.StackTrace);
+		        throw ex;
 			}
-		
-			/// <summary>
-			/// Assemble function.
-			/// </summary>
-			/// <param name="args">Arguments to Assemble.</param>
-			private static void Assemble(string[] args)
+			else
 			{
-				MTAssembleArguments options = new MTAssembleArguments();
-				CommandLineArguments parser = new CommandLineArguments();
-				AddAssembleParameters(parser);
+				CatchInnerException(ex.InnerException);
+			}
+		}
+	
+		/// <summary>
+		/// Main function to do all the processing.
+		/// </summary>
+		/// <param name="args">Arguments to Assemble.</param>
+		private static void ProcessData(string[] args)
+		{
+			MTAssembleArguments options = new MTAssembleArguments();
+			CommandLineArguments parser = new CommandLineArguments();
+			AddAssembleParameters(parser);
 			if (args.Length<1 
-				|| args[0].Equals("Help", StringComparison.InvariantCultureIgnoreCase)
-				|| args[0].Equals("/h", StringComparison.CurrentCultureIgnoreCase)
-				|| args[0].Equals("/help", StringComparison.CurrentCultureIgnoreCase)
-				|| args[0].Equals("-h", StringComparison.CurrentCultureIgnoreCase)
-				|| args[0].Equals("-help", StringComparison.CurrentCultureIgnoreCase))
+			|| args[0].Equals("Help", StringComparison.InvariantCultureIgnoreCase)
+			|| args[0].Equals("/h", StringComparison.CurrentCultureIgnoreCase)
+			|| args[0].Equals("/help", StringComparison.CurrentCultureIgnoreCase)
+			|| args[0].Equals("-h", StringComparison.CurrentCultureIgnoreCase)
+			|| args[0].Equals("-help", StringComparison.CurrentCultureIgnoreCase))
+			{
+				//Output.WriteLine(OutputLevel.Required, StaticResources.ASSEMBLE_HELP);
+				PrintHelp (parser);
+			}
+			else
+			{
+				try
 				{
+					parser.Parse(args, options);
+				}
+				catch (ArgumentParserException ex)
+				{
+					Output.WriteLine(OutputLevel.Error, ex.Message);
 					//Output.WriteLine(OutputLevel.Required, StaticResources.ASSEMBLE_HELP);
+					Environment.Exit(-1);
+				}
+				if (options.Help)
+				{
 					PrintHelp (parser);
-
 				}
 				else
 				{
-					try
-					{
-						parser.Parse(args, options);
-					}
-					catch (ArgumentParserException ex)
-					{
-						Output.WriteLine(OutputLevel.Error, ex.Message);
-						//Output.WriteLine(OutputLevel.Required, StaticResources.ASSEMBLE_HELP);
-						Environment.Exit(-1);
-					}
-					if (options.Help)
-					{
-						PrintHelp (parser);
-					}
-					else
-					{
-						if (options.Verbose)
-							Output.TraceLevel = OutputLevel.Information | OutputLevel.Verbose;
-						else if (!options.Quiet)
-							Output.TraceLevel = OutputLevel.Information;
-						options.ProcessMTDNA();
-					}
-				}				
-			}
-            private static void AddAssembleParameters(CommandLineArguments parser)
-			{
-				// Add the parameters to be parsed
-				parser.Parameter (ArgumentType.DefaultArgument, "Filename", ArgumentValueType.String, "", "Input file of reads");
-				parser.Parameter (ArgumentType.Optional, "OutputFile", ArgumentValueType.String, "o", "Output file");
-				parser.Parameter (ArgumentType.Optional, "Help", ArgumentValueType.Bool, "h", "Display help");        
+					if (options.Verbose)
+						Output.TraceLevel = OutputLevel.Information | OutputLevel.Verbose;
+					else if (!options.Quiet)
+						Output.TraceLevel = OutputLevel.Information;
+					options.ProcessMTDNA();
+				}
+			}				
+		}
+        private static void AddAssembleParameters(CommandLineArguments parser)
+		{
+			// Add the parameters to be parsed
+			parser.Parameter (ArgumentType.DefaultArgument, "Filename", ArgumentValueType.String, "", "Input BAM file with reads");
+			parser.Parameter (ArgumentType.Optional, "OutputFile", ArgumentValueType.String, "o", "Output file");
+			parser.Parameter (ArgumentType.Optional, "Help", ArgumentValueType.Bool, "h", "Display help");        
 
-				parser.Parameter (ArgumentType.Optional, "Quiet", ArgumentValueType.Bool, "q", "Display minimal output during processing.");
-				parser.Parameter (ArgumentType.Optional, "KmerLength", ArgumentValueType.OptionalInt, "k", "Length of k-mer");
-				parser.Parameter (ArgumentType.Optional, "DangleThreshold", ArgumentValueType.OptionalInt, "d", "Threshold for removing dangling ends in graph");
-				parser.Parameter (ArgumentType.Optional, "RedundantPathLengthThreshold", ArgumentValueType.OptionalInt, "r", "Length Threshold for removing redundant paths in graph");
-				parser.Parameter (ArgumentType.Optional, "ErosionThreshold", ArgumentValueType.OptionalInt, "e", "Threshold for eroding low coverage ends");
-				parser.Parameter (ArgumentType.Optional, "AllowErosion", ArgumentValueType.Bool, "i", "Bool to do erosion or not.");
-				parser.Parameter (ArgumentType.Optional, "AllowKmerLengthEstimation", ArgumentValueType.Bool, "a", "Whether to estimate kmer length.");
-				parser.Parameter (ArgumentType.Optional, "ContigCoverageThreshold", ArgumentValueType.Int, "c", "Threshold used for removing low-coverage contigs.");
-				parser.Parameter (ArgumentType.Optional, "Verbose", ArgumentValueType.Bool, "v", "Display verbose logging during processing.");
+			parser.Parameter (ArgumentType.Optional, "Quiet", ArgumentValueType.Bool, "q", "Display minimal output during processing.");
+			parser.Parameter (ArgumentType.Optional, "KmerLength", ArgumentValueType.OptionalInt, "k", "Length of k-mer");
+			parser.Parameter (ArgumentType.Optional, "DangleThreshold", ArgumentValueType.OptionalInt, "d", "Threshold for removing dangling ends in graph");
+			parser.Parameter (ArgumentType.Optional, "RedundantPathLengthThreshold", ArgumentValueType.OptionalInt, "r", "Length Threshold for removing redundant paths in graph");
+			parser.Parameter (ArgumentType.Optional, "ErosionThreshold", ArgumentValueType.OptionalInt, "e", "Threshold for eroding low coverage ends");
+			parser.Parameter (ArgumentType.Optional, "AllowErosion", ArgumentValueType.Bool, "i", "Bool to do erosion or not.");
+			parser.Parameter (ArgumentType.Optional, "AllowKmerLengthEstimation", ArgumentValueType.Bool, "a", "Whether to estimate kmer length.");
+			parser.Parameter (ArgumentType.Optional, "ContigCoverageThreshold", ArgumentValueType.Int, "c", "Threshold used for removing low-coverage contigs.");
+			parser.Parameter (ArgumentType.Optional, "Verbose", ArgumentValueType.Bool, "v", "Display verbose logging during processing.");
 			parser.Parameter (ArgumentType.Optional, "MakeDepthOfCoveragePlot", ArgumentValueType.Bool, "dp", "Make depth of coverage plot");
-				//parser.Parameter (ArgumentType.Required, "ReferenceGenome", ArgumentValueType.String, "ref","Reference Genome File (Fasta");
-				parser.Parameter (ArgumentType.Optional, "ForceKmer", ArgumentValueType.Bool, "fk", "Force specified k-mer to be used without a warning prompt.");
-				parser.Parameter (ArgumentType.Optional, "DiagnosticFilePrefix", ArgumentValueType.String, "p", "Prefix to append to all diagnostic files, which will be output if set");
-				parser.Parameter (ArgumentType.Optional, "ChromosomeName", ArgumentValueType.String, "chr", "Only assemble sequences that align to this chromosome in a BAM File.");
-                parser.Parameter(ArgumentType.Optional, "DoPileUpSNPCalling", ArgumentValueType.Bool, "pileup", "Call SNPs and haplotypes using a columnwise pile-up in addition to the de novo assembly");
-			}
+			//parser.Parameter (ArgumentType.Required, "ReferenceGenome", ArgumentValueType.String, "ref","Reference Genome File (Fasta");
+			parser.Parameter (ArgumentType.Optional, "ForceKmer", ArgumentValueType.Bool, "fk", "Force specified k-mer to be used without a warning prompt.");
+			parser.Parameter (ArgumentType.Optional, "DiagnosticFilePrefix", ArgumentValueType.String, "p", "Prefix to append to all diagnostic files, which will be output if set");
+			parser.Parameter (ArgumentType.Optional, "ChromosomeName", ArgumentValueType.String, "chr", "Only assemble sequences that align to this chromosome in a BAM File.");
+            parser.Parameter(ArgumentType.Optional, "DoPileUpSNPCalling", ArgumentValueType.Bool, "pileup", "Call SNPs and haplotypes using a columnwise pile-up in addition to the de novo assembly");
+		}
 
         private static DateTime RetrieveLinkerTimestamp()
             {
