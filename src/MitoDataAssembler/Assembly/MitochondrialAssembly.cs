@@ -75,13 +75,23 @@ namespace MitoDataAssembler
 		/// The reverse complement sequence of the reverse primer used by the LR-PCR at the Broad and at Baylor
 		/// </summary>
 		public string reversePrimer="CACCATCCTCCGTGAAATCAATATC";//Actually the RC of the primer
+
 		public int AssemblyLength=StaticResources.CRS_LENGTH;
-        public List<SplitData> PathSplits = new List<SplitData>();
-        private GraphGenerator gg;
-        public bool FormsCompleteLoop;
+        
+		public List<SplitData> PathSplits = new List<SplitData>();
+        
+		private GraphGenerator gg;
+
+		/// <summary>
+		/// Does the assembly form a complete loop?
+		/// </summary>
+		public bool FormsCompleteLoop;
+
         public bool SuccessfulAssembly { get; set; }
-        List<MetaNode> assemblyNodes=new List<MetaNode>();
-        public List<MetaNode> NodesInCompleteAssembly
+
+		List<MetaNode> assemblyNodes = new List<MetaNode>();
+        
+		public List<MetaNode> NodesInCompleteAssembly
         {
             get
             {
@@ -89,6 +99,7 @@ namespace MitoDataAssembler
                 else return null;
             }
         }
+
         public List<MetaNode> AllNodesInGraph
         {
             get { return gg.MetaNodes; }
@@ -163,7 +174,6 @@ namespace MitoDataAssembler
                             FormsCompleteLoop = true;
                             break;
                         }
-
                     }
                     else { FormsCompleteLoop = false; SuccessfulAssembly = false; break; }
                 }
@@ -182,7 +192,7 @@ namespace MitoDataAssembler
                 SuccessfulAssembly = true;
                 _greedyPathAssembly.Finalize();
                 AssemblyLength = (int) _greedyPathAssembly.Sequence.Count;
-                //TODO: More sophisticated criteria than larger than 16 kb to validate assembly
+				//TODO: More sophisticated criteria than larger than 8 kb to validate assembly
                 if (AssemblyLength > 8000)
                 {
                     SuccessfulAssembly = true;

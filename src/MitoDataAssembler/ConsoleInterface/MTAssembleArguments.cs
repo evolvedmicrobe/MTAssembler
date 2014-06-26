@@ -7,9 +7,9 @@ using System.Linq;
 using Bio;
 using Bio.Algorithms.Assembly;
 using Bio.Algorithms.Assembly.Padena;
-using Bio.IO;
-using Bio.IO.FastA;
+using Bio.IO.BAM;
 using Bio.Util;
+using Bio.IO.FastA;
 using MitoDataAssembler.PairedEnd;
 
 namespace MitoDataAssembler
@@ -255,8 +255,8 @@ namespace MitoDataAssembler
 
 			Stopwatch time = new Stopwatch ();
 			time.Start ();
-			IEnumerable<ISequence> reads = this.createSequenceProducer (this.Filename);
-			var res = SNPCaller.CallSNPs (reads);
+			var reads = this.createSequenceProducer (this.Filename);
+			var res = SNPCaller.CallSNPs (reads );
 			time.Stop ();
 			if (this.Verbose) {
 				Output.WriteLine (OutputLevel.Verbose);
@@ -344,24 +344,20 @@ namespace MitoDataAssembler
 		/// </summary>
 		/// <param name="fileName">Filename to load data from</param>
 		/// <returns>Enumerable set of ISequence elements</returns>
-		private IEnumerable<ISequence> createSequenceProducer (string fileName, DepthOfCoverageGraphMaker coveragePlotter = null)
+		private IEnumerable<CompactSAMSequence> createSequenceProducer (string fileName, DepthOfCoverageGraphMaker coveragePlotter = null)
 		{
             if (MakeDepthOfCoveragePlot && !Helper.IsBAM(fileName))
             {
                 MakeDepthOfCoveragePlot = false;
                 Output.WriteLine(OutputLevel.Error, "Warning: No coverage plots can be made without an input BAM File");
             }
-			ISequenceParser parser = SequenceParsers.FindParserByFileName (fileName);
-            IEnumerable<ISequence> sequences;
-            if (parser == null)
+
+			var parser = new BAMSequenceParser (Filename);
+			IEnumerable<CompactSAMSequence> sequences;
+			if (ChromosomeName != string.Empty)
             {
-                sequences= new FastAParser(fileName).Parse();
-            }
-			else if (parser is Bio.IO.BAM.BAMSequenceParser && ChromosomeName != string.Empty)
-            {
-                var b = parser as Bio.IO.BAM.BAMSequenceParser;
-                b.ChromosomeToGet = ChromosomeName;
-                sequences = b.Parse();
+				parser.ChromosomeToGet = ChromosomeName;
+				sequences = parser.Parse();
             }            
             else
             {

@@ -62,18 +62,11 @@ namespace Bio
         /// </summary>
         private List<byte> nucleotides = new List<byte>();
 
-        #if (SILVERLIGHT == false)
-            /// <summary>
+        /// <summary>
             /// Mapping from set of symbols to corresponding ambiguous symbol.
             /// </summary>
-            private Dictionary<HashSet<byte>, byte> basicSymbolsToAmbiguousSymbolMap = new Dictionary<HashSet<byte>, byte>(HashSet<byte>.CreateSetComparer());
-        #else
-            /// <summary>
-            /// Mapping from set of symbols to corresponding ambiguous symbol.
-            /// </summary>
-            private Dictionary<HashSet<byte>, byte> basicSymbolsToAmbiguousSymbolMap = new Dictionary<HashSet<byte>, byte>(new HashSetComparer<byte>());
-        #endif
-
+        private Dictionary<HashSet<byte>, byte> basicSymbolsToAmbiguousSymbolMap = new Dictionary<HashSet<byte>, byte>(HashSet<byte>.CreateSetComparer());
+       
         /// <summary>
         /// Mapping from ambiguous symbol to set of basic symbols they represent.
         /// </summary>
@@ -259,7 +252,7 @@ namespace Bio
                 return false;
             }
 
-            long length = symbols.LongLength();
+            long length = symbols.Length;
             complementSymbols = new byte[length];
             for (long index = 0; index < length; index++)
             {

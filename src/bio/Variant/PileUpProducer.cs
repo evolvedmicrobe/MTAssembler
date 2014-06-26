@@ -108,8 +108,7 @@ namespace Bio.Variant
             if (String.IsNullOrEmpty(seq.RName) || 
 				seq.RefEndPos <= seq.Pos || 
                 String.IsNullOrEmpty(seq.CIGAR) || 
-                seq.CIGAR =="*" ||
-                !(seq.QuerySequence is QualitativeSequence) )
+                seq.CIGAR =="*" )
             {
                 throw new ArgumentException("Tried to build a pileup with an invalid sequence.  Sequence was:\n"+
                     seq.ToString());
@@ -140,9 +139,8 @@ namespace Bio.Variant
             }
 
             // Get sequence bases and error probabilities
-            var qseq = seq.QuerySequence as QualitativeSequence;
-			var seq_phred_scores = qseq.GetPhredQualityScores();
-            var seq_bases = qseq.ToArray();
+			var seq_phred_scores = seq.GetPhredQualityScores();
+            var seq_bases = seq.ToArray();
             // Use the cigar operations to emit bases.
             int curRef = seq.Pos;
             int curQuery = 0;

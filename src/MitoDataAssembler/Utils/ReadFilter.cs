@@ -12,50 +12,47 @@ namespace MitoDataAssembler
 {
     public static class ReadFilter
     {
-        static bool Filter1024 = true;//FilterDuplicates
+		static bool FilterDuplicates = true;//FilterDuplicates
         static bool TrimQuality = true;
         static private int _trimEndQuality=22;
         static private int _meanRequiredQuality=22;        
-        public static IEnumerable<ISequence> FilterReads(IEnumerable<ISequence> preFiltered, DepthOfCoverageGraphMaker coverageCounter = null)
+		public static IEnumerable<CompactSAMSequence> FilterReads(IEnumerable<CompactSAMSequence> preFiltered, DepthOfCoverageGraphMaker coverageCounter = null)
         {
             foreach (var toFilter in preFiltered)
             {
-                var samRead = toFilter as CompactSAMSequence;
-				if ( samRead !=null)
+				if ( FilterDuplicates && ((toFilter.SAMFlags & SAMFlags.Duplicate) == SAMFlags.Duplicate))
+                { continue; }   
+
+				//Process coverage before trimming, as otherwise the CIGARs are off...
+				if (coverageCounter != null) {
+					coverageCounter.ProcessCountCoverageFromSequence (toFilter);
+				}
+                
+                int[] vals = toFilter.GetQualityScores();
+				int lastAcceptableBase = (int)toFilter.Count - 1;
+                while (lastAcceptableBase >= 0)
                 {
-                    if ((samRead.SAMFlags & 1024) == 1024)
-                    { continue; }   
-					if (coverageCounter != null) {
-						coverageCounter.ProcessCountCoverageFromSequence (samRead);
-					}
-                }
-                var qs = toFilter as QualitativeSequence;
-                if (qs != null)
-                {
-                    int[] vals = qs.GetQualityScores();
-                    int lastAcceptableBase = (int)qs.Count - 1;
-                    while (lastAcceptableBase >= 0)
+                    if (vals[lastAcceptableBase] >= _trimEndQuality)
                     {
-                        if (vals[lastAcceptableBase] >= _trimEndQuality)
-                        {
-                            break;
-                        }
-                        lastAcceptableBase--;
+                        break;
                     }
-                    if (lastAcceptableBase > 0)
-                    {
-                        //check mean
-                        double mean = vals.Take(lastAcceptableBase + 1).Average();
-                        if (mean > _meanRequiredQuality)
-                        {
-                            yield return qs.GetSubSequence(0, lastAcceptableBase + 1) as QualitativeSequence;
-                        }
-                    }
+                    lastAcceptableBase--;
                 }
-                else
+                if (lastAcceptableBase > 0)
                 {
-                    yield return toFilter;
+                    //check mean
+                    double mean = vals.Take(lastAcceptableBase + 1).Average();
+                    if (mean > _meanRequiredQuality)
+                    {
+						//only trim if necessary.
+						if (lastAcceptableBase < (toFilter.Count-1)) {
+							yield return toFilter.GetSubSequence (0, lastAcceptableBase + 1) as CompactSAMSequence;
+						} else {
+							yield return toFilter;
+						}
+					 }
                 }
+                
             }
         }
 

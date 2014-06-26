@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Text;
 using System.Linq;
 using Bio.Util;
+using Bio.IO.SAM;
 
 namespace Bio
 {
@@ -24,18 +25,80 @@ namespace Bio
         /// Start position.
         /// </summary>
         public int Pos;
+
         /// <summary>
         /// SAM Flag vales
         /// </summary>
-        public int SAMFlags;
+		public SAMFlags SAMFlags;
 
         /// <summary>
         /// The SAM Cigar Field
         /// </summary>
-        public string CIGAR;
+        public string CIGAR
+		{
+			get { return pCIGAR; }
+			set {
+				pCIGAR = value;
+				this.RefEndPos = Pos + getRefSeqAlignmentLengthFromCIGAR ();
+			}
+		}
+			private string pCIGAR;
+		/// <summary>
+		/// Gets one based alignment end position of reference sequence depending on CIGAR Value.
+		/// </summary>
+		public int RefEndPos; 
+
 
         #endregion
 
+
+		/// <summary>
+		/// Gets the reference sequence alignment length depending on the CIGAR value.
+		/// </summary>
+		/// <returns>Length of the alignment.</returns>
+		private int getRefSeqAlignmentLengthFromCIGAR()
+		{
+			if (string.IsNullOrWhiteSpace(CIGAR) || CIGAR.Equals("*"))
+			{
+				return 0;
+			}
+
+			List<KeyValuePair<char,int>> charsAndPositions = new List<KeyValuePair<char,int>>(7);
+
+			for (int i = 0; i < CIGAR.Length; i++)
+			{
+				char ch = CIGAR[i];
+				if (Char.IsDigit(ch))
+				{
+					continue;
+				}
+				charsAndPositions.Add(new KeyValuePair<char,int>(ch,i));
+			}
+			string CIGARforClen = "MDNX=";
+			int len = 0;
+			for (int i = 0; i < charsAndPositions.Count; i++)
+			{
+				char ch = charsAndPositions[i].Key;
+				int start = 0;
+				int end = 0;
+				if (CIGARforClen.Contains(ch))
+				{
+					if (i == 0)
+					{
+						start = 0;
+					}
+					else
+					{
+						start = charsAndPositions[i - 1].Value + 1;
+					}
+
+					end = charsAndPositions[i].Value - start;
+
+					len += int.Parse(CIGAR.Substring(start, end), CultureInfo.InvariantCulture);
+				}
+			}
+			return len;
+		}
         #region Constructors
         /// <summary>
         /// Initializes a new instance of the QualitativeSequence class with specified alphabet, quality score type,

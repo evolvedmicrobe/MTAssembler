@@ -367,7 +367,6 @@
     <Compile Include="Algorithms\SuffixTree\MultiWaySuffixEdge.cs" />
     <Compile Include="Algorithms\SuffixTree\MultiWaySuffixTree.cs" />
     <Compile Include="Util\ArgumentParser\CmdLineArgumentParserExceptions.cs" />
-    <Compile Include="Util\ArrayExtensions.cs" />
     <Compile Include="Util\Distribute\CommandApp.cs" />
     <Compile Include="Util\Distribute\IDistributable.cs" />
     <Compile Include="Util\Distribute\IDistribute.cs" />

@@ -261,7 +261,7 @@ namespace Bio
                 return false;
             }
 
-            long length = symbols.LongLength();
+            long length = symbols.Length;
             complementSymbols = new byte[length];
             for (long index = 0; index < length; index++)
             {

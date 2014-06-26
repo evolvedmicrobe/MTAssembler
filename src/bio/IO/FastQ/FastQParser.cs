@@ -235,7 +235,7 @@ namespace Bio.IO.FastQ
             byte[] qualScores = Encoding.UTF8.GetBytes(line);
 
             // Check for sequence length and quality score length.
-            if (sequenceData.LongLength() != qualScores.LongLength())
+            if (sequenceData.Length != qualScores.Length)
             {
                 string details = string.Format(CultureInfo.CurrentCulture, Properties.Resource.FastQ_InvalidQualityScoresLength, id);
                 string message = string.Format(CultureInfo.CurrentCulture, Properties.Resource.IOFormatErrorMessage, this.Name, details);
@@ -246,13 +246,13 @@ namespace Bio.IO.FastQ
             IAlphabet alphabet = this.Alphabet;
             if (alphabet == null)
             {
-                alphabet = Alphabets.AutoDetectAlphabet(sequenceData, 0, sequenceData.LongLength(), alphabet);
+                alphabet = Alphabets.AutoDetectAlphabet(sequenceData, 0, sequenceData.Length, alphabet);
                 if (alphabet == null)
                     throw new FileFormatException(Properties.Resource.CouldNotIdentifyAlphabetType);
             }
             else
             {
-                if (!alphabet.ValidateSequence(sequenceData, 0, sequenceData.LongLength()))
+                if (!alphabet.ValidateSequence(sequenceData, 0, sequenceData.Length))
                     throw new FileFormatException(Properties.Resource.InvalidAlphabetType);
             }
             return new QualitativeSequence(alphabet, formatType, sequenceData, qualScores, false) { ID = id };

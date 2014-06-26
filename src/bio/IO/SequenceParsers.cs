@@ -142,7 +142,8 @@ namespace Bio.IO
                 }
                 else if (Helper.IsBAM(fileName))
                 {
-                    parser = new BAMSequenceParser(fileName);
+					throw new NotImplementedException ();
+					//parser = new BAMSequenceParser(fileName);
                 }
                 else if (IsGenBank(fileName))
                 {

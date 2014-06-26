@@ -86,14 +86,14 @@ namespace Bio
             if (validate)
             {
                 // Validate sequence data
-                if (!alphabet.ValidateSequence(values, 0, values.LongLength()))
+                if (!alphabet.ValidateSequence(values, 0, values.Length))
                 {
                     throw new ArgumentOutOfRangeException("sequence");
                 }
             }
 
             this._sequenceData = values;
-            this.Count = this._sequenceData.LongLength();
+            this.Count = this._sequenceData.Length;
         }
 
         /// <summary>
@@ -130,13 +130,13 @@ namespace Bio
             if (validate)
             {
                 // Validate sequence data
-                if (!alphabet.ValidateSequence(values, 0, values.LongLength()))
+                if (!alphabet.ValidateSequence(values, 0, values.Length))
                 {
                     throw new ArgumentOutOfRangeException("values");
                 }
             }
 
-            this._sequenceData = new byte[values.LongLength()];
+            this._sequenceData = new byte[values.Length];
             this.ID = string.Empty;
 
 #if (SILVERLIGHT == false)
@@ -146,7 +146,7 @@ namespace Bio
 #endif
 
             this.Alphabet = alphabet;
-            this.Count = this._sequenceData.LongLength();
+            this.Count = this._sequenceData.Length;
         }
 
         /// <summary>
@@ -355,7 +355,7 @@ namespace Bio
         /// <returns>If found returns a zero based index of the first non-gap symbol, otherwise returns -1.</returns>
         public long IndexOfNonGap(long startPos)
         {
-            if (startPos >= this._sequenceData.LongLength())
+            if (startPos >= this._sequenceData.Length)
             {
                 throw new ArgumentOutOfRangeException("startPos");
             }

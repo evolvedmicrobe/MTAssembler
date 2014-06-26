@@ -29,7 +29,7 @@ namespace MitoDataAssembler
 	{
 
 		#region REPORTVALUES
-
+		[OutputAttribute]
 		public double PercentNodesPainted;
 		[OutputAttribute]
 		public double PercentNodesRemovedByLowCoverageOrThreshold;
@@ -96,18 +96,28 @@ namespace MitoDataAssembler
 		public int PolymorphismsMissingFromHaplotype = -1;
 		[OutputAttribute]
 		public int PolymorphismsMissingFromGenotype = -1;
-
 		#endregion
 
 		private HaploGrepSharp.NewSearchMethods.HaploTypeReport haplotypeReport;
 
-
+		/// <summary>
+		/// This is the interface to R, can be used to evaluate R statements.
+		/// </summary>
 		private RInterface rInt;
 
+		/// <summary>
+		/// Should we output diagnostic information?
+		/// </summary>
+		/// <value><c>true</c> if we output diagnostic information; otherwise, <c>false</c>.</value>
 		public bool OutputDiagnosticInformation {
 			get{ return !String.IsNullOrWhiteSpace (DiagnosticFileOutputPrefix); }
 		}
 
+		/// <summary>
+		/// Gets all the nodes in the reference that are derived from 
+		/// the rCRS sequence.
+		/// </summary>
+		/// <value>The reference nodes.</value>
 		IEnumerable<DeBruijnNode> referenceNodes {
 			get {
 				if (Graph != null) {
@@ -170,13 +180,13 @@ namespace MitoDataAssembler
 				if (this.AllowLowCoverageContigRemoval && this.ContigCoverageThreshold == -1) {
 					this.ContigCoverageThreshold = threshold;
 				}
-
 				if (this.AllowErosion && this.ErosionThreshold == -1) {
 					// Erosion threshold is an int, so round it off
 					this.ErosionThreshold = (int)Math.Round (threshold);
 				}
 			}
 		}
+
 
 		private int CalculateCoverageCutoff ()
 		{
@@ -201,7 +211,6 @@ namespace MitoDataAssembler
 			var allCounts = Graph.GetNodes ().Select (x => (double)x.KmerCount);
 			rInt.HistPDF (allCounts, DiagnosticFileOutputPrefix + @"_Allcounts_" + FileSuffix + ".pdf", 125, FileSuffix, "All K-mer Occurence", "Count", additionalCommands);
 			#endif
-
 		}
 
 		public override IDeNovoAssembly Assemble (IEnumerable<ISequence> inputSequences)
@@ -209,10 +218,10 @@ namespace MitoDataAssembler
 			if (inputSequences == null) {
 				throw new ArgumentNullException ("inputSequences");
 			}
+
 			this._sequenceReads = inputSequences;
 
-			//Step 0: Load the reference genome as a fasta file.
-			//LoadReferenceGenome ();
+			// Step 0: Load the reference genome as a fasta file.
 			// Remove ambiguous reads and set up fields for assembler process
 			this.Initialize ();
 
@@ -250,7 +259,7 @@ namespace MitoDataAssembler
 				OutputNodeCountHistograms ("PreFiltered", coverageCutOff);
 			}            
 
-			//Step 2.1, Remove nodes that are not connected to the reference genome or are singletons
+			//Step 2.1, Remove nodes that are not connected to the reference genome or are below coverage cutoff
 			sw.Reset ();
 			sw.Start ();
 			long originalNodes = this.Graph.NodeCount;
@@ -296,7 +305,7 @@ namespace MitoDataAssembler
             
 
 			//STEP 4.2 Rerun the unlinked to reference purger after graph is cleaned
-			ChangeNodeFlag (false);
+			ChangeNodeVisitFlag (false);
 			remover = new UnlinkedToReferencePurger ();
 			remover.RemoveUnconnectedNodes (Graph, referenceNodes);
 			this.RemoveRedundancyEnded ();
@@ -391,7 +400,6 @@ namespace MitoDataAssembler
 					return seq.Count;
 			}
 			throw new Exception ();
-
 		}
 
 		private int outputVisualization (string prefix)
@@ -434,7 +442,11 @@ namespace MitoDataAssembler
 			SW.Close ();
 		}
 
-		public void ChangeNodeFlag (bool valueToSet)
+		/// <summary>
+		/// Changes the visit flag on all nodes so it is false.
+		/// </summary>
+		/// <param name="valueToSet">If set to <c>true</c> value to set.</param>
+		public void ChangeNodeVisitFlag (bool valueToSet)
 		{
 			Parallel.ForEach (this.Graph.GetNodes (), node => node.IsVisited = valueToSet);
 		}

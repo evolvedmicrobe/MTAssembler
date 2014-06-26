@@ -20,9 +20,9 @@ namespace Bio.Util
     {
 
         private static readonly Regex _rangeExpression = new Regex(@"^(?<begin>-?\d+)(-(?<last>-?\d+))?$"
-#if !SILVERLIGHT
+
 , RegexOptions.Compiled
-#endif
+
 );
         private List<long> _startItems;
         private SortedDictionary<long, long> _itemToLength;

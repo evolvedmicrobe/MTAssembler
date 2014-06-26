@@ -17,7 +17,7 @@ namespace Bio.IO.BAM
     /// <summary>
     /// An implementation of a BAM parser that only returns sequences, not full alignments
     /// </summary>
-    public class BAMSequenceParser : BAMParser, ISequenceParser
+    public class BAMSequenceParser : BAMParser
     {
         private string _fileName;
         public string ChromosomeToGet;
@@ -252,7 +252,7 @@ namespace Bio.IO.BAM
 #endif
 #if !WANT_OLD_VERSION
 
-        protected ISequence GetAlignedSequence()
+		protected CompactSAMSequence GetAlignedSequence()
         {
             byte[] array = new byte[4];
             ReadUnCompressedData(array, 0, 4);
@@ -388,14 +388,14 @@ namespace Bio.IO.BAM
             toReturn.Pos = Pos;
             toReturn.CIGAR = cigar;
             toReturn.RName = RName;
-            toReturn.SAMFlags = flagValue;
+			toReturn.SAMFlags = (SAMFlags)flagValue;
             return toReturn;
 
         }
       
 #endif
 
-        public IEnumerable<ISequence> Parse()
+        public IEnumerable<CompactSAMSequence> Parse()
         {
             if (string.IsNullOrWhiteSpace(_fileName))
             {
@@ -441,21 +441,22 @@ namespace Bio.IO.BAM
 #if WANT_OLD_VERSION
                     SAMAlignedSequence alignedSeq = GetAlignedSequence(0, int.MaxValue);
 #else
-                        ISequence alignedSeq = GetAlignedSequence();
+						var alignedSeq = GetAlignedSequence();
 #endif
                         if (alignedSeq != null)
                         {
+
+#if WANT_OLD_VERSION
                             //make a new Sequence
                             ISequence strippedOfInfo = null;
                             try
                             {
-#if WANT_OLD_VERSION
                             var syms=alignedSeq.QuerySequence.ToArray();
                             var alpha = Alphabets.AutoDetectAlphabet(syms, 0, syms.Length, null);
                             strippedOfInfo = new Sequence(alpha, alignedSeq.QuerySequence.ToArray());
-#else
+
                                 strippedOfInfo = alignedSeq;
-#endif
+
                             }
                             catch (ArgumentOutOfRangeException exception)
                             {
@@ -463,6 +464,9 @@ namespace Bio.IO.BAM
                             }
                             if (strippedOfInfo != null)
                                 yield return strippedOfInfo;
+#else
+							yield return alignedSeq;
+							#endif
                         }
                         alignedSeq = null;
                     }
@@ -476,7 +480,7 @@ namespace Bio.IO.BAM
 #if WANT_OLD_VERSION
         public IEnumerable<SAMAlignedSequence> ParseRangeAsEnumerableSequences(string fileName, string refSeqName, int start, int end)
 #else
-        public IEnumerable<ISequence> ParseRangeAsEnumerableSequences(string fileName, string refSeqName)
+		public IEnumerable<CompactSAMSequence> ParseRangeAsEnumerableSequences(string fileName, string refSeqName)
 #endif
         {
             if (refSeqName == null)
@@ -516,7 +520,7 @@ namespace Bio.IO.BAM
 #if WANT_OLD_VERSION
         private IEnumerable<SAMAlignedSequence> EnumerateAlignedSequences(IList<Chunk> chunks, int start, int end)
 #else
-        private IEnumerable<ISequence> EnumerateAlignedSequences(IList<Chunk> chunks)
+		private IEnumerable<CompactSAMSequence> EnumerateAlignedSequences(IList<Chunk> chunks)
 #endif
         {
             foreach (Chunk chunk in chunks)
