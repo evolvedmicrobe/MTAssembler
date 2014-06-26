@@ -478,7 +478,13 @@ Dangling Links
 
  that are of length equal to the k-mer length plus one.
  These are strings of graph nodes (k-mers) that dead end without reconnecting
- to the graph, and are caused by 
+ to the graph, and are caused by errors towards the ends of the reads.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Remove redundant paths or bubbles.
+ 
 \end_layout
 
 \end_deeper
