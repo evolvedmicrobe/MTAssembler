@@ -136,10 +136,6 @@
       <Project>{B53E11DF-F9A9-4939-893E-78E59872089A}</Project>
       <Name>Bio</Name>
     </ProjectReference>
-    <ProjectReference Include="..\bio\Source\Framework\Add-ins\Bio.Padena\Bio.Padena.csproj">
-      <Project>{1CFF1C79-1E34-4411-97E0-0FB02F4865C3}</Project>
-      <Name>Bio.Padena</Name>
-    </ProjectReference>
     <ProjectReference Include="..\HaploGrepSharp\HaploGrepSharp.csproj">
       <Project>{BA4796D5-36EA-4E3F-BE47-A06E06F3F4FB}</Project>
       <Name>HaploGrepSharp</Name>

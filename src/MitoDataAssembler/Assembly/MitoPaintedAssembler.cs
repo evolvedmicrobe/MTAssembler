@@ -213,7 +213,7 @@ namespace MitoDataAssembler
 			#endif
 		}
 
-		public override IDeNovoAssembly Assemble (IEnumerable<ISequence> inputSequences)
+		public override PadenaAssembly Assemble (IEnumerable<ISequence> inputSequences)
 		{
 			if (inputSequences == null) {
 				throw new ArgumentNullException ("inputSequences");

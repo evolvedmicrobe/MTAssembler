@@ -202,7 +202,7 @@ namespace MitoDataAssembler
 
 			//Step 2: Assemble
 			runAlgorithm.Restart ();
-			IDeNovoAssembly assembly = assembler.Assemble (reads);
+			var assembly = assembler.Assemble (reads);
 			runAlgorithm.Stop ();
 			algorithmSpan = algorithmSpan.Add (runAlgorithm.Elapsed);
 			if (this.Verbose) {
@@ -270,7 +270,7 @@ namespace MitoDataAssembler
 		/// Writes the contigs to the file.
 		/// </summary>
 		/// <param name="assembly">IDeNovoAssembly parameter is the result of running De Novo Assembly on a set of two or more sequences. </param>
-		protected void writeContigs (IDeNovoAssembly assembly)
+		protected void writeContigs (PadenaAssembly assembly)
 		{
 			if (assembly.AssembledSequences.Count == 0) {
 				Output.WriteLine (OutputLevel.Results, "No sequences assembled.");
