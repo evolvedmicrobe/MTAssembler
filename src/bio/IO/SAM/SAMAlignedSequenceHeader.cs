@@ -656,42 +656,14 @@ namespace Bio.IO.SAM
             {
                 return DefaultReadLength;
             }
-
-            List<KeyValuePair<char,int>> charsAndPositions = new List<KeyValuePair<char,int>>();
-            
-            for (int i = 0; i < CIGAR.Length; i++)
-            {
-                char ch = CIGAR[i];
-                if (Char.IsDigit(ch))
-                {
-                    continue;
-                }
-                charsAndPositions.Add(new KeyValuePair<char,int>(ch,i));
-            }
-            string CIGARforClen = "MDNX=";
-            int len = 0;
-            for (int i = 0; i < charsAndPositions.Count; i++)
-            {
-                char ch = charsAndPositions[i].Key;
-                int start = 0;
-                int end = 0;
-                if (CIGARforClen.Contains(ch))
-                {
-                    if (i == 0)
-                    {
-                        start = 0;
-                    }
-                    else
-                    {
-                        start = charsAndPositions[i - 1].Value + 1;
-                    }
-
-                    end = charsAndPositions[i].Value - start;
-
-                    len += int.Parse(CIGAR.Substring(start, end), CultureInfo.InvariantCulture);
-                }
-            }
-            return len;
+            var elements = CigarUtils.GetCigarElements (CIGAR);
+			int len = 0;
+			foreach (var v in elements) {
+				if (CigarUtils.CigarElementis_MDNX_Equal (v.Operation)) {
+					len += v.Length;
+				}
+			}
+			return len;
         }
         #endregion
     }

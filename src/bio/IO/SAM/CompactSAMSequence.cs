@@ -51,6 +51,34 @@ namespace Bio
 
         #endregion
 
+		public CompactSAMSequence TrimSequence(long newLength)
+		{
+			if (newLength > this.sequenceData.Length)
+			{
+				throw new ArgumentOutOfRangeException("length");
+			}
+
+			byte[] newSequenceData = new byte[newLength];
+			sbyte[] newQualityScores = new sbyte[newLength];
+
+			for (long index = 0; index < newLength; index++)
+			{
+				newSequenceData[index] = this.sequenceData[index];
+				newQualityScores[index] = this.qualityScores[index];
+			}
+			//now to adjust cigar
+			var oldCigar = CIGAR;
+
+			//now to trim
+
+
+			return new QualitativeSequence(this.Alphabet, this.FormatType, newSequenceData, newQualityScores, false)
+			{
+				ID = this.ID, 
+				metadata = this.metadata
+			};
+		}
+
 
 		/// <summary>
 		/// Gets the reference sequence alignment length depending on the CIGAR value.
@@ -58,43 +86,14 @@ namespace Bio
 		/// <returns>Length of the alignment.</returns>
 		private int getRefSeqAlignmentLengthFromCIGAR()
 		{
-			if (string.IsNullOrWhiteSpace(CIGAR) || CIGAR.Equals("*"))
-			{
+			if (string.IsNullOrWhiteSpace(CIGAR) || CIGAR.Equals("*")) {
 				return 0;
 			}
-
-			List<KeyValuePair<char,int>> charsAndPositions = new List<KeyValuePair<char,int>>(7);
-
-			for (int i = 0; i < CIGAR.Length; i++)
-			{
-				char ch = CIGAR[i];
-				if (Char.IsDigit(ch))
-				{
-					continue;
-				}
-				charsAndPositions.Add(new KeyValuePair<char,int>(ch,i));
-			}
-			string CIGARforClen = "MDNX=";
+			var elements = CigarUtils.GetCigarElements (CIGAR);
 			int len = 0;
-			for (int i = 0; i < charsAndPositions.Count; i++)
-			{
-				char ch = charsAndPositions[i].Key;
-				int start = 0;
-				int end = 0;
-				if (CIGARforClen.Contains(ch))
-				{
-					if (i == 0)
-					{
-						start = 0;
-					}
-					else
-					{
-						start = charsAndPositions[i - 1].Value + 1;
-					}
-
-					end = charsAndPositions[i].Value - start;
-
-					len += int.Parse(CIGAR.Substring(start, end), CultureInfo.InvariantCulture);
+			foreach (var v in elements) {
+				if (CigarUtils.CigarElementis_MDNX_Equal (v.Operation)) {
+					len += v.Length;
 				}
 			}
 			return len;

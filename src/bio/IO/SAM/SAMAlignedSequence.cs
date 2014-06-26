@@ -352,31 +352,18 @@ namespace Bio.IO.SAM
 			if (curRef == referencePosition) {
 				return curQuery;
 			}
-			List<KeyValuePair<char,int>> charsAndPositions = new List<KeyValuePair<char,int>> ();
-			for (int i = 0; i < CIGAR.Length; i++) {
-				char ch = CIGAR [i];
-				if (Char.IsDigit (ch)) {
-					continue;
-				}
-				charsAndPositions.Add (new KeyValuePair<char,int> (ch, i));
-			}
+			var elements = CigarUtils.GetCigarElements (CIGAR);
 			string CIGARforClen = "MDNX=";
-			for (int i = 0; i < charsAndPositions.Count; i++) {
-				char ch = charsAndPositions [i].Key;
+			foreach (var e in elements) {
+				char ch = e.Operation;
 				if (ch == 'P' || ch == 'N') {
 					throw new Exception ("Not built to handle clipping yet");
 				}
 				int start = 0;
 				int end = 0;
 				int len;
-				if (CIGARforClen.Contains (ch)) {
-					if (i == 0) {
-						start = 0;
-					} else {
-						start = charsAndPositions [i - 1].Value + 1;
-					}
-					end = charsAndPositions [i].Value - start;
-					len = int.Parse (CIGAR.Substring (start, end));
+				if (CigarUtils.CigarElementis_MDNX_Equal(ch)) {
+					len = e.Length;
 					bool addRef = false;
 					bool addQuery = false;
 					if (ch == 'M' || ch == '=' || ch == 'X') {
@@ -402,8 +389,6 @@ namespace Bio.IO.SAM
 				}
 			}
 			return null;
-
-
 		}
 
 		#endregion

@@ -413,7 +413,9 @@ namespace Bio.IO.BAM
                     foreach (var s in
                     ParseRangeAsEnumerableSequences(_fileName, ChromosomeToGet ))
                     {
-                        yield return s;
+						if (s != null) {
+							yield return s;
+						}
                         ////TODO: Super inefficient right now, am parsing the sequence multiple times,
                         ////fix this.
                         //var s2 = s.ToArray ();

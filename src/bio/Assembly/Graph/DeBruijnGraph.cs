@@ -174,7 +174,11 @@ namespace Bio.Algorithms.Assembly.Graph
 #endif
                         // if the sequence alphabet is not of type DNA then ignore it.
                         bool skipSequence = false;
-                        
+							if(sequence ==null || sequence.Alphabet == null)
+							{
+								Console.WriteLine("WTF!");
+							}
+
                         if (sequence.Alphabet != Alphabets.NoGapDNA || sequence.Count<_kmerLength)
                         {
                             skipSequence = true;

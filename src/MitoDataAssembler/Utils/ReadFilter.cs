@@ -15,7 +15,8 @@ namespace MitoDataAssembler
 		static bool FilterDuplicates = true;//FilterDuplicates
         static bool TrimQuality = true;
         static private int _trimEndQuality=22;
-        static private int _meanRequiredQuality=22;        
+        static private int _meanRequiredQuality=22; 
+
 		public static IEnumerable<CompactSAMSequence> FilterReads(IEnumerable<CompactSAMSequence> preFiltered, DepthOfCoverageGraphMaker coverageCounter = null)
         {
             foreach (var toFilter in preFiltered)
@@ -45,11 +46,17 @@ namespace MitoDataAssembler
                     if (mean > _meanRequiredQuality)
                     {
 						//only trim if necessary.
+						CompactSAMSequence toReturn;
 						if (lastAcceptableBase < (toFilter.Count-1)) {
-							yield return toFilter.GetSubSequence (0, lastAcceptableBase + 1) as CompactSAMSequence;
+							toReturn = toFilter.GetSubSequence (0, lastAcceptableBase + 1) as CompactSAMSequence;
 						} else {
-							yield return toFilter;
+							toReturn = toFilter;
 						}
+						if (toReturn == null )
+						{
+							throw new NullReferenceException();
+						}
+						yield return toReturn;
 					 }
                 }
                 
