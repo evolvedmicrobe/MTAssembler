@@ -64,19 +64,19 @@ namespace Bio.Variant
 
 			//if only one base has data or if 
 			//if we are not doing EM optimization, we are done.
-			if (base_pair_counts.Count (x => x > 0) == 1 && DO_EM_ESTIMATION) {
+			if (base_pair_counts.Count (x => x > 0) > 1 && DO_EM_ESTIMATION) {
 				//first make an NumReads * Num_Bases Matrix
 				double[][] conditionalProbs = new double[filteredBases.Length][];
 				for (int i = 0; i < filteredBases.Length; i++) {
 					conditionalProbs [i] = new double[BasePairFrequencies.NUM_BASES];
 				}
 
-				double likDif = double.MinValue;
+				double likDif = double.MaxValue;
 				double last_lik = double.MinValue;
 				while (likDif > 1e-3) {
 					double lik = 0;
 					for (int i = 0; i < conditionalProbs.Length; i++) {
-						lik += updateGonditionalProbabilities (theta, conditionalProbs [i], filteredBases [i]);
+						lik += updateConditionalProbabilities (theta, conditionalProbs [i], filteredBases [i]);
 					}
 					likDif = lik - last_lik;
 					last_lik = lik;
@@ -105,7 +105,7 @@ namespace Bio.Variant
 		/// <param name="freqs">Freqs.</param>
 		/// <param name="data">Data.</param>
 		/// <param name="bp">Bp.</param>
-		private static double updateGonditionalProbabilities(BasePairFrequencies freqs, double[] data, BaseAndQuality bp ) {
+		private static double updateConditionalProbabilities(BasePairFrequencies freqs, double[] data, BaseAndQuality bp ) {
 			//Calculate conditional probability that the base comes from the observed base.
 
 			double probRight = BaseQualityUtils.GetCorrectProbability (bp.PhredScore);

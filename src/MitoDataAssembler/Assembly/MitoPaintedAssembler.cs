@@ -219,7 +219,6 @@ namespace MitoDataAssembler
 				throw new ArgumentNullException ("inputSequences");
 			}
 
-			this._sequenceReads = inputSequences;
 
 			// Step 0: Load the reference genome as a fasta file.
 			// Remove ambiguous reads and set up fields for assembler process
@@ -228,7 +227,7 @@ namespace MitoDataAssembler
 			// Step 1, 2: Create k-mers from reads and build de bruijn graph and paint them with the reference
 			System.Diagnostics.Stopwatch sw = System.Diagnostics.Stopwatch.StartNew ();
 			this.CreateGraphStarted ();
-			this.CreateGraph ();
+			this.CreateGraph (inputSequences);
 			this.CreateGraphEnded ();
 			sw.Stop ();
 			this.NodeCountReport ();
@@ -341,7 +340,7 @@ namespace MitoDataAssembler
 			//Now find deletions
 			this.OutputGraphicAndFindDeletion (attemptedAssembly);            
 			PercentageOfScannedReadsUsed = Graph.GetNodes ().Sum (x => x.KmerCount * KmerLength) / (double)TotalSequencingBP;
-			Console.WriteLine ("Used a total of " + PercentageOfScannedReadsUsed.ToString ("p") + " scanned reads");
+			RaiseMessage("Used a total of " + PercentageOfScannedReadsUsed.ToString ("p") + " scanned reads");
 
 			// Step 5: Build Contigs - This is essentially independent of deletion finding
 			this.BuildContigsStarted ();
@@ -373,7 +372,7 @@ namespace MitoDataAssembler
 				DecidedAssemblyTotalLength = plotMaker.Assembly.AssemblyLength;
 
 				//Output all possible assemblies and deletions if possible
-				Console.WriteLine ("Graph contains " + plotMaker.Assembly.AllNodesInGraph.Count.ToString () + " Contained Nodes");
+				RaiseMessage("Graph contains " + plotMaker.Assembly.AllNodesInGraph.Count.ToString () + " Contained Nodes");
 				if (plotMaker.Assembly.AllNodesInGraph.Count < 10) {
 					DeletionSearchAttempted = true;
 					LargeDeletionFinder ldf = new LargeDeletionFinder ();
@@ -420,10 +419,10 @@ namespace MitoDataAssembler
 		/// Step 2: Build de bruijn graph for input set of k-mers.
 		/// Sets the _assemblerGraph field.
 		/// </summary>
-		protected override void CreateGraph ()
+        protected override void CreateGraph(IEnumerable<ISequence> inputSequences )
 		{
 			this.Graph = new DeBruijnGraph (this._kmerLength);
-			this.Graph.Build (this._sequenceReads, false);
+			this.Graph.Build (inputSequences, false);
 			RaiseMessage ("Graph Processed:\t" + this.Graph.ProcessedSequencesCount.ToString () + " sequences");
 			RaiseMessage ("Skipped:\t" + this.Graph.SkippedSequencesCount.ToString () + " sequences");
 			// Recapture the kmer length to keep them in sync.
@@ -495,14 +494,14 @@ namespace MitoDataAssembler
 			double percentHit = KmersPainted / (double)refKmerPositions.Count;
 			RaiseMessage ("A total of " + (100.0 * percentHit).ToString () + "% nodes in the reference were painted");
 			PercentNodesPainted = 100.0 * KmersPainted / (double)totalNodes;
-			this._statusMessage = PercentNodesPainted.ToString ("n2") + " % of graph nodes were painted, for a total of " + KmersPainted.ToString () + " painted.\n  "
-			+ percentKmersSkipped.ToString ("n2") + " % of Kmers were skipped for being in multiple locations";
-			this.RaiseStatusEvent ();
+			RaiseMessage(PercentNodesPainted.ToString ("n2") + " % of nodes painted, for a total of " + KmersPainted.ToString () + " painted.");
+            RaiseMessage(percentKmersSkipped.ToString ("n2") + " % of Kmers were skipped for being in multiple locations");
 		}
 
 		/// <summary>
 		/// Step 5: Build contigs from de bruijn graph.
 		/// If coverage threshold is set, remove low coverage contigs.
+        /// 
 		/// </summary>
 		/// <returns>List of contig sequences.</returns>
 		protected override IEnumerable<ISequence> BuildContigs ()

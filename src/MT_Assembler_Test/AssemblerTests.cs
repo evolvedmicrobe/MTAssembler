@@ -43,15 +43,14 @@ namespace MT_Assembler_Test
                 assembler.KmerLength = 19;
                 assembler.DiagnosticFileOutputPrefix = "tmp";
                 assembler.DanglingLinksThreshold = 1;
-                var assembly=assembler.Assemble(seqs);
-                IDeNovoAssembly result = assembler.Assemble(seqs);
-
+                var assembly = assembler.Assemble(seqs);
+                
                 // Compare the two graphs
-                Assert.IsTrue(result.AssembledSequences.Count == 1);
-                Assert.AreEqual(1, result.AssembledSequences.Count());
-                bool correctContig = result.AssembledSequences[0].SequenceEqual(testSequence);
+                Assert.IsTrue(assembly.AssembledSequences.Count == 1);
+                Assert.AreEqual(1, assembly.AssembledSequences.Count());
+                bool correctContig = assembly.AssembledSequences[0].SequenceEqual(testSequence);
                 if (!correctContig)
-                    correctContig = result.AssembledSequences[0].GetReverseComplementedSequence().Equals(testSequence);
+                    correctContig = assembly.AssembledSequences[0].GetReverseComplementedSequence().Equals(testSequence);
                 Assert.IsTrue(correctContig);
             }
         }

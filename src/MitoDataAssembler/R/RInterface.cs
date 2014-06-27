@@ -18,8 +18,8 @@ namespace MitoDataAssembler
 	public class RInterface
 	{
 		//TODO: This is dangerous, should be cleaned up once the configuration settings are better.
-        private const string R_LIB_ENV_DIR="R_LIB";
-        private const string R_HOME_ENV_DIR="R_HOME";
+        internal const string R_LIB_ENV_DIR="R_LIB";
+        internal const string R_HOME_ENV_DIR="R_HOME";
 		private static RDotNet.REngine pEngine;
         private static object lockObject=new Object();
 		public REngine CurrentEngine {
@@ -58,12 +58,7 @@ namespace MitoDataAssembler
                         System.Diagnostics.Debug.WriteLine(R_HOME_ENV_DIR + ": " + r_home);
                         System.Diagnostics.Debug.WriteLine(R_LIB_ENV_DIR + ":" + dll);
 
-						Console.WriteLine(R_HOME_ENV_DIR + ":" + r_home);
-						Console.WriteLine(R_LIB_ENV_DIR + ":" + dll);
-
-						var j = RDotNet.NativeLibrary.NativeUtility.GetPlatform ();
-						Console.WriteLine (j.ToString ());
-                      
+                     
                         if (System.Environment.OSVersion.Platform != PlatformID.Unix)
                         {
                             var envPath = Environment.GetEnvironmentVariable("PATH");

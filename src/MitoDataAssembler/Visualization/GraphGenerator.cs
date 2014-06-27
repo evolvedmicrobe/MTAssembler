@@ -117,7 +117,7 @@ namespace MitoDataAssembler.Visualization
 
             }
             SW.WriteLine("}");
-            Console.WriteLine("Wrote " + edgeCount.ToString() + " edges in dot file");
+            MitoPaintedAssembler.RaiseStatusEvent("\tWrote " + edgeCount.ToString() + " edges in dot file");
             SW.Close();
             
         }
@@ -125,7 +125,7 @@ namespace MitoDataAssembler.Visualization
         public void OutputGraph(string fname)
         {
             SW = new StreamWriter(fname);
-            Console.WriteLine("Building Graph");
+            MitoPaintedAssembler.RaiseStatusEvent("\tBuilding Graph File");
             SW.Write(HEADER);
             //make verticies
             foreach (MetaNode node in MetaNodes)
@@ -146,7 +146,7 @@ namespace MitoDataAssembler.Visualization
                     OutEdge(node, rightNode.ToNode, rightNode.DifferentOrientation, 100, rightNode.Weight);
                 }
             }
-            Console.WriteLine("Wrote " + edgeCount.ToString() + " edges");
+            MitoPaintedAssembler.RaiseStatusEvent("\tWrote " + edgeCount.ToString() + " edges");
             SW.Write(FOOTER);
             SW.Close();
                     }

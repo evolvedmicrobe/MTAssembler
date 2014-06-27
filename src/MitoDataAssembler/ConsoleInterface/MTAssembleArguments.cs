@@ -118,6 +118,23 @@ namespace MitoDataAssembler
 		#endregion
 
 		#region Public methods
+        public void OutputEnvironmentSettings()
+        {
+            Output.WriteLine(OutputLevel.Verbose, "\nEnvironment Settings:");
+            Output.WriteLine(OutputLevel.Verbose, "\tk-mer Length: {0}", this.KmerLength);
+            Output.WriteLine(OutputLevel.Verbose, "\tPrefix is: " + DiagnosticFilePrefix);
+            Output.WriteLine(OutputLevel.Verbose, "\tDiagnostic Information On: " + (!Quiet).ToString());
+
+
+            string dll = System.Environment.GetEnvironmentVariable( RInterface.R_LIB_ENV_DIR);
+            string r_home = System.Environment.GetEnvironmentVariable(RInterface.R_HOME_ENV_DIR);
+            Output.WriteLine(OutputLevel.Verbose, "\t"+RInterface.R_HOME_ENV_DIR + ": " + r_home);
+            Output.WriteLine(OutputLevel.Verbose, "\t"+RInterface.R_LIB_ENV_DIR + ": " + dll);
+            var platform  = RDotNet.NativeLibrary.NativeUtility.GetPlatform();
+            Output.WriteLine(OutputLevel.Verbose, "\tPlatform: "+platform.ToString());
+
+        }
+
 		/// <summary>
 		/// Assembles the sequences and returns the string that can be placed in a CSV output report.
 		/// </summary>
@@ -130,18 +147,16 @@ namespace MitoDataAssembler
 			FileInfo refFileinfo = new FileInfo (this.Filename);
 			long refFileLength = refFileinfo.Length;
 
-			Output.WriteLine (OutputLevel.Information, StaticResources.AssemblyStarting);
+
 			fullFileName = Path.GetFullPath (this.Filename);
 			if (File.Exists (fullFileName)) {
 				Output.WriteLine (OutputLevel.Verbose);
 				Output.WriteLine (OutputLevel.Verbose, "Found read file: {0}", fullFileName);
-				Output.WriteLine (OutputLevel.Verbose, "   File Size           : {0}", refFileLength);
-				Output.WriteLine (OutputLevel.Verbose, "   k-mer Length        : {0}", this.KmerLength);
+				Output.WriteLine (OutputLevel.Verbose, "   File Size           : {0}", Program.FormatMemorySize(refFileLength));
 			}
 
-			Console.WriteLine ("Prefix is: " + DiagnosticFilePrefix);
-			Console.WriteLine ("Diagnostic Information On: " + (!Quiet).ToString());
-
+            OutputEnvironmentSettings();
+            
 			//Assemble
 			var asmReport = CreateAssemblyAndDepthOfCoverage ();
 			results.Add (asmReport);
@@ -155,7 +170,6 @@ namespace MitoDataAssembler
 				var pileupReport = RunSNPCaller ();
 				results.Add (pileupReport);
 			}
-
 
 			if (!String.IsNullOrEmpty (DiagnosticFilePrefix)) {
 				var outFile = new StreamWriter (ReportOutputPrefix + DiagnosticFilePrefix + ".csv");
@@ -174,7 +188,7 @@ namespace MitoDataAssembler
 
 		protected AssemblyReport CreateAssemblyAndDepthOfCoverage() 
 		{
-
+            Output.WriteLine(OutputLevel.Verbose, "\nAssemblying mtDNA and obtaining depth of coverage (if asked).");
 			MitoPaintedAssembler assembler = new MitoPaintedAssembler ();
 			DepthOfCoverageGraphMaker coveragePlotter = MakeDepthOfCoveragePlot ? 
 														new DepthOfCoverageGraphMaker() : null;
@@ -186,7 +200,7 @@ namespace MitoDataAssembler
 
 			//Step 1: Initialize assembler.
 			assembler.DiagnosticFileOutputPrefix = DiagnosticFilePrefix;				
-			assembler.StatusChanged += this.StatusChanged;
+			MitoPaintedAssembler.StatusChanged += this.StatusChanged;
 			assembler.AllowErosion = this.AllowErosion;
 			assembler.AllowKmerLengthEstimation = this.AllowKmerLengthEstimation;
 			if (ContigCoverageThreshold != -1) {
@@ -207,7 +221,7 @@ namespace MitoDataAssembler
 			algorithmSpan = algorithmSpan.Add (runAlgorithm.Elapsed);
 			if (this.Verbose) {
 				Output.WriteLine (OutputLevel.Verbose);
-				Output.WriteLine (OutputLevel.Verbose, "Compute time: {0}", runAlgorithm.Elapsed);
+				Output.WriteLine (OutputLevel.Verbose, "\tCompute time: {0}", runAlgorithm.Elapsed);
 			}
 
 			//Step 3: Report
@@ -218,8 +232,8 @@ namespace MitoDataAssembler
 
 			if (this.Verbose) {
 				Output.WriteLine (OutputLevel.Verbose);
-				Output.WriteLine (OutputLevel.Verbose, "Write contigs time: {0}", runAlgorithm.Elapsed);
-				Output.WriteLine (OutputLevel.Verbose, "Total assembly runtime: {0}", algorithmSpan);
+				Output.WriteLine (OutputLevel.Verbose, "\tWrite contigs time: {0}", runAlgorithm.Elapsed);
+				Output.WriteLine (OutputLevel.Verbose, "\tTotal assembly runtime: {0}", algorithmSpan);
 			}
 
 			if (coveragePlotter !=null) {
@@ -232,7 +246,9 @@ namespace MitoDataAssembler
 		protected PairedEndDeletionFinderReport RunPeakFinder()
 		{
 			//Step 4: Run Break Finder
-			Output.WriteLine (OutputLevel.Verbose, "Attempting to Run Peak Finder Program");
+			Output.WriteLine (OutputLevel.Verbose, "\nRunning Peak Finder Program");
+            Stopwatch time = new Stopwatch();
+            time.Start();
 			var isBAM = Helper.IsBAM (fullFileName);
 			PairedEndDeletionFinderReport report;
 			try {
@@ -244,26 +260,29 @@ namespace MitoDataAssembler
 					report = new PairedEndDeletionFinderReport ("NOT BAM");
 				}
 			} catch (Exception thrown) {
-				Output.WriteLine (OutputLevel.Error, "Failed to run peak finder: " + thrown.Message);
+				Output.WriteLine (OutputLevel.Error, "\tFailed to run peak finder: " + thrown.Message);
 				report = new PairedEndDeletionFinderReport ("Failure");
 			}
+            time.Stop();
+            if (this.Verbose)
+            {
+                Output.WriteLine(OutputLevel.Verbose, "\tTime Elapsed: {0}", time.Elapsed);
+            }
 			return report;
 		}
 
 		protected SNPCallerReport RunSNPCaller()
 		{
-
+            Output.WriteLine(OutputLevel.Verbose, "\nCalling Pile-up SNPs");
 			Stopwatch time = new Stopwatch ();
 			time.Start ();
 			var reads = this.createSequenceProducer (this.Filename);
 			var res = SNPCaller.CallSNPs (reads );
 			time.Stop ();
 			if (this.Verbose) {
-				Output.WriteLine (OutputLevel.Verbose);
-				Output.WriteLine (OutputLevel.Verbose, "Call Pile-up SNPs: {0}", time.Elapsed);
+				Output.WriteLine (OutputLevel.Verbose, "\tTime Elapsed: {0}", time.Elapsed);
 			}
 			return res;
-
 		}
 
 		/// <summary>
@@ -273,7 +292,7 @@ namespace MitoDataAssembler
 		protected void writeContigs (PadenaAssembly assembly)
 		{
 			if (assembly.AssembledSequences.Count == 0) {
-				Output.WriteLine (OutputLevel.Results, "No sequences assembled.");
+				Output.WriteLine (OutputLevel.Results, "\tNo sequences assembled.");
 				return;
 			}
 			ensureContigNames (assembly.AssembledSequences);
@@ -285,9 +304,9 @@ namespace MitoDataAssembler
 						formatter.Write (seq);
 					}
 				}
-				Output.WriteLine (OutputLevel.Information, "Wrote {0} sequences to {1}", assembly.AssembledSequences.Count, ContigFileName);
+				Output.WriteLine (OutputLevel.Information, "\tWrote {0} sequences to {1}", assembly.AssembledSequences.Count, ContigFileName);
 			} else {
-				Output.WriteLine (OutputLevel.Information, "Assembled Sequence Results: {0} sequences", assembly.AssembledSequences.Count);
+				Output.WriteLine (OutputLevel.Information, "\tAssembled Sequence Results: {0} sequences", assembly.AssembledSequences.Count);
 				using (FastAFormatter formatter = new FastAFormatter ()) {
 					formatter.Open (new StreamWriter (Console.OpenStandardOutput ()));
 					formatter.MaxSymbolsAllowedPerLine = decideOutputWidth ();

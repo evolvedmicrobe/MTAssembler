@@ -150,7 +150,7 @@ namespace MitoDataAssembler
             _greedyPathAssembly = new PossibleAssembly();
             if (!curNode.CircularLoop)
             {
-                Console.WriteLine("Attempting to find greedy path, frequencies of majority split below");
+                MitoPaintedAssembler.RaiseStatusEvent("\tAttempting to find greedy path, frequencies of majority split below");
                 //now to attempt to loop back to the start node
                 //will move along while greedily grabbing the next node with the highest kmer coverage
                 //constantly oriented everyone so we go right ot left
@@ -163,7 +163,7 @@ namespace MitoDataAssembler
                     {
                         SplitData sd = new SplitData(possibles);
                         PathSplits.Add(sd);
-                        Console.WriteLine("Possible Paths: "+possibles.Count+"\tFrequency: "+sd.MaxFrequency.ToString());
+                        MitoPaintedAssembler.RaiseStatusEvent("\tPossible Paths: " + possibles.Count + "\tFrequency: " + sd.MaxFrequency.ToString());
                         if (sd.MaxFrequency < MinimumGreedySplit)
                         {
                             MinimumGreedySplit = sd.MaxFrequency;
@@ -196,12 +196,12 @@ namespace MitoDataAssembler
                 if (AssemblyLength > 8000)
                 {
                     SuccessfulAssembly = true;
-                    Console.WriteLine("Successful assembly of length: " + AssemblyLength.ToString());
+                    MitoPaintedAssembler.RaiseStatusEvent("\tSuccessful assembly of length: " + AssemblyLength.ToString());
                 }
                 else
                 {
                     SuccessfulAssembly = false;
-                    Console.WriteLine("Assembly failed.  Only recovered sequence of length: " + AssemblyLength.ToString());                   
+                    MitoPaintedAssembler.RaiseStatusEvent("\tAssembly failed.  Only recovered sequence of length: " + AssemblyLength.ToString());                   
                 }
             }
         }

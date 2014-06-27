@@ -33,7 +33,6 @@ Infrequently Used Parameters:
 
 		
 
-		public const string AssemblyStarting = "Beginning assembly processing.";
 	
 		public const string ContinuePrompt = "Are you sure you want to continue (Y/N)?";
 				

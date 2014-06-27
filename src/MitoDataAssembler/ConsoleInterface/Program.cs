@@ -46,10 +46,11 @@ namespace MitoDataAssembler
             }
 #endif
                 Process p = Process.GetCurrentProcess();
-		        Debug.Print(StaticResources.PeakWorkingSet64, FormatMemorySize(p.PeakWorkingSet64));
-		        Debug.Print(StaticResources.TotalProcessorTime, p.TotalProcessorTime);
-				Debug.Print(StaticResources.PeakVirtualMemorySize64, FormatMemorySize(p.PeakVirtualMemorySize64));
-				Debug.Print(StaticResources.PeakPagedMemorySize64, FormatMemorySize(p.PeakPagedMemorySize64));
+                Console.WriteLine("\nResource Report:");
+		        Console.WriteLine(StaticResources.PeakWorkingSet64, FormatMemorySize(p.PeakWorkingSet64));
+                Console.WriteLine(StaticResources.TotalProcessorTime, p.TotalProcessorTime);
+                Console.WriteLine(StaticResources.PeakVirtualMemorySize64, FormatMemorySize(p.PeakVirtualMemorySize64));
+                Console.WriteLine(StaticResources.PeakPagedMemorySize64, FormatMemorySize(p.PeakPagedMemorySize64));
 			}
 
     #region Private Methods

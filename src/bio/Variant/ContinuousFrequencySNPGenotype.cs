@@ -46,7 +46,7 @@ namespace Bio.Variant
 
 		public ContinuousFrequencySNPGenotype(BasePairFrequencies frequencies, int[] originalReadCounts, PileUp pileup = null):
 		this(GenotypeCallResult.GenotypeCalled,pileup) {
-			Frequencies = Frequencies;
+			Frequencies = frequencies;
 			OriginalBasePairCounts = originalReadCounts;
 			var freq = frequencies.Frequencies;
 			this.indexMax = 0;

@@ -31,17 +31,6 @@ namespace Bio.Algorithms.Assembly.Padena
         protected int _kmerLength;
 
         /// <summary>
-        /// List of input sequence reads. Different steps in the assembly 
-        /// may access this. Should be set before starting the assembly process.
-        /// </summary>
-        protected IEnumerable<ISequence> _sequenceReads;
-
-        /// <summary>
-        /// Holds the status message which will be sent through the Status event.
-        /// </summary>
-        protected string _statusMessage;
-
-        /// <summary>
         /// Timer to report progress.
         /// </summary>
         private Timer _progressTimer;
@@ -78,7 +67,6 @@ namespace Bio.Algorithms.Assembly.Padena
             this._kmerLength = -1;
             this.DanglingLinksThreshold = -1;
             this.RedundantPathLengthThreshold = -1;
-            this._sequenceReads = new List<ISequence>();
 
             // Contig and scaffold Builder are required modules. Set this to default.
             this.ContigBuilder = new SimplePathContigBuilder();
@@ -93,7 +81,7 @@ namespace Bio.Algorithms.Assembly.Padena
         /// <summary>
         /// Provides the status to the subscribers.
         /// </summary>
-        public event EventHandler<StatusChangedEventArgs> StatusChanged;
+        public static event EventHandler<StatusChangedEventArgs> StatusChanged;
 
         /// <summary>
         /// Gets the name of the current assembly algorithm used.
@@ -221,15 +209,7 @@ namespace Bio.Algorithms.Assembly.Padena
         /// </summary>
         public int Depth { get; set; }
 
-        /// <summary>
-        /// Gets or sets the list of sequence reads.
-        /// </summary>
-        protected IList<ISequence> SequenceReads
-        {
-            get { return this._sequenceReads.ToList(); }
-            set { this._sequenceReads = value; }
-        }
-
+ 
         #endregion
 
         /// <summary>
@@ -301,15 +281,13 @@ namespace Bio.Algorithms.Assembly.Padena
                 throw new ArgumentNullException("inputSequences");
             }
 
-            this._sequenceReads = inputSequences;
-
             // Remove ambiguous reads and set up fields for assembler process
             this.Initialize();
 
             // Step 1, 2: Create k-mers from reads and build de bruijn graph
             Stopwatch sw = Stopwatch.StartNew();
             this.CreateGraphStarted();
-            this.CreateGraph();
+            this.CreateGraph(inputSequences);
             sw.Stop();
 
             this.CreateGraphEnded();
@@ -343,11 +321,9 @@ namespace Bio.Algorithms.Assembly.Padena
             
             // Perform dangling link purger step once more.
             // This is done to remove any links created by redundant paths purger.
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "Second round undangle graph start.", DateTime.Now);
-            this.RaiseStatusEvent();
+			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Second round undangle graph start.", DateTime.Now));
             this.UnDangleGraph();
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "Second round undangle graph end.", DateTime.Now);
-            this.RaiseStatusEvent();
+			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Second round undangle graph end.", DateTime.Now));
             
             // Report end after undangle
             sw.Stop();
@@ -441,10 +417,10 @@ namespace Bio.Algorithms.Assembly.Padena
         /// Step 2: Build de bruijn graph for input set of k-mers.
         /// Sets the _assemblerGraph field.
         /// </summary>
-        protected virtual void CreateGraph()
+        protected virtual void CreateGraph(IEnumerable<ISequence> inputSequences)
         {
             this.Graph = new DeBruijnGraph(this._kmerLength);
-            this.Graph.Build(this._sequenceReads);
+            this.Graph.Build(inputSequences);
 
             // Recapture the kmer length to keep them in sync.
             this._kmerLength = this.Graph.KmerLength;
@@ -568,7 +544,6 @@ namespace Bio.Algorithms.Assembly.Padena
                 }
 
                 this.Graph = null;
-                this._sequenceReads = null;
                 this.DanglingLinksPurger = null;
                 this.RedundantPathsPurger = null;
                 this.ContigBuilder = null;
@@ -583,15 +558,6 @@ namespace Bio.Algorithms.Assembly.Padena
         }
 
         /// <summary>
-        /// Sets the sequences from which the graph will be created.
-        /// </summary>
-        /// <param name="sequences">Sequences to set.</param>
-        protected void SetSequenceReads(IList<ISequence> sequences)
-        {
-            this.SequenceReads = sequences;
-        }
-
-        /// <summary>
         /// Sets up fields for the assembly process.
         /// </summary>
         protected void Initialize()
@@ -600,40 +566,19 @@ namespace Bio.Algorithms.Assembly.Padena
             this._progressTimer = new Timer(ProgressTimerInterval);
             this._progressTimer.Elapsed += this.ProgressTimerElapsed;
 
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "Initializing - Start time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now);
-            this.RaiseStatusEvent();
+            //this.RaiseMessage((CultureInfo.CurrentCulture, "Initializing - Start time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now));
 
             // Reset parameters not set by user, based on sequenceReads
-            if (this.AllowKmerLengthEstimation)
+            if (this._kmerLength <= 0)
             {
-                this._kmerLength = EstimateKmerLength(this._sequenceReads);
-            }
-            else
-            {
-                if (this._kmerLength <= 0)
-                {
-					throw new InvalidOperationException("Kmer length must be less than the length of the shortest sequence, and should be greater than half the length of the longest sequence.");
-                }
-
-                //try
-                //{
-                //    if (!Alphabets.CheckIsFromSameBase(this._sequenceReads.First().Alphabet, Alphabets.DNA))
-                //        throw new InvalidOperationException(Properties.Resource.CannotAssembleSequenceType);
-                //}
-                //catch (Exception e)
-                //{
-                //    if (e.InnerException != null && !string.IsNullOrEmpty(e.InnerException.Message))
-                //        throw e.InnerException;
-
-                //    throw;
-                //}
+                throw new InvalidOperationException("Kmer length must be less than the length of the shortest sequence, and should be greater than half the length of the longest sequence.");
             }
 
             // TODO: Force an odd kmer length to avoid palindromes
             // Need to evaluate this more - for now rely on the user to
             // not pass in bad data.
-            //if (_kmerLength % 2 == 0)
-            //    _kmerLength++;
+            if (_kmerLength % 2 == 0)
+                _kmerLength++;
 
             // Enforce our boundaries (same as DeBruijnGraph code)
             _kmerLength = Math.Max(1, Math.Min(DeBruijnGraph.MaxKmerLength, _kmerLength));
@@ -652,8 +597,7 @@ namespace Bio.Algorithms.Assembly.Padena
 
             this.InitializeDefaultGraphModifiers();
 
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "Initializing - End time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now);
-            this.RaiseStatusEvent();
+            //RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Initializing - End time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now));
         }
 
         /// <summary>
@@ -680,16 +624,19 @@ namespace Bio.Algorithms.Assembly.Padena
             }
         }
 
+
+        #region ProgressReportMethodsAndProperties
+
         /// <summary>
         /// Raises status event.
         /// </summary>
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate")]
-        protected void RaiseStatusEvent()
+        public static void RaiseStatusEvent(string msg)
         {
 			//Console.WriteLine(_statusMessage);
-            if (this.StatusChanged != null)
+            if (StatusChanged != null)
             {
-                this.StatusChanged.Invoke(this, new StatusChangedEventArgs(this._statusMessage));
+                StatusChanged.Invoke(null, new StatusChangedEventArgs(msg));
             }
         }
 
@@ -707,12 +654,11 @@ namespace Bio.Algorithms.Assembly.Padena
                     {
                         if (this.Graph.SkippedSequencesCount > 0)
                         {
-						this._statusMessage = string.Format(CultureInfo.CurrentCulture, "Creating Graph Progress: {0} sequence(s) skipped out of {1} processed sequences.  Currently {2} Nodes in Graph", this.Graph.SkippedSequencesCount, this.Graph.ProcessedSequencesCount,this.Graph.NodeCount);
-                            
+						 RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Creating Graph Progress: {0} sequence(s) skipped out of {1} processed sequences.  Currently {2} Nodes in Graph", this.Graph.SkippedSequencesCount, this.Graph.ProcessedSequencesCount,this.Graph.NodeCount)); 
                         }
                         else
                         {
-						this._statusMessage = string.Format(CultureInfo.CurrentCulture, "{0} sequence(s) processed.", this.Graph.ProcessedSequencesCount);
+						    RaiseMessage(string.Format(CultureInfo.CurrentCulture, "{0} sequence(s) processed.", this.Graph.ProcessedSequencesCount));
                         }
                     }
                     else
@@ -720,31 +666,26 @@ namespace Bio.Algorithms.Assembly.Padena
                         if (!this._graphBuildCompleted)
                         {
                             this._graphBuildCompleted = this.Graph.GraphBuildCompleted;
-						this._statusMessage = string.Format(CultureInfo.CurrentCulture,"   Graph built successfully - Processed {0} sequences.", this.Graph.ProcessedSequencesCount);
-                            this.RaiseStatusEvent();
-
-						this._statusMessage = string.Format(CultureInfo.CurrentCulture,"   Generate Links Started.");
+						    RaiseMessage(string.Format(CultureInfo.CurrentCulture,"   Graph built successfully - Processed {0} sequences.", this.Graph.ProcessedSequencesCount));
+						    RaiseMessage(string.Format(CultureInfo.CurrentCulture,"   Generate Links Started."));
                         }
                         else
                         {
                             if (!this._linkGenerationCompleted && this.Graph.LinkGenerationCompleted)
                             {
                                 this._linkGenerationCompleted = this.Graph.LinkGenerationCompleted;
-                                this._statusMessage = string.Format(CultureInfo.CurrentCulture,
-								"   Generate Links Ended.");
+                                RaiseMessage(string.Format(CultureInfo.CurrentCulture,
+								"   Generate Links Ended."));
                             }
                             else
                             {
-							this._statusMessage = ".";
+							     RaiseMessage(".");
                             }
                         }
                     }
-
-                    this.RaiseStatusEvent();
                     break;
                 default:
-				this._statusMessage = ".";
-                    this.RaiseStatusEvent();
+				    RaiseMessage( ".");
                     break;
             }
             var mem=Bio.Util.Logging.OutputInformation.GetMemoryUsage();
@@ -764,8 +705,7 @@ namespace Bio.Algorithms.Assembly.Padena
         /// </summary>
         protected void CreateGraphStarted()
         {
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "Step 1 & 2: Create Kmer and Graph - Start time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now);
-            this.RaiseStatusEvent();
+			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Step 1 & 2: Create Kmer and Graph - Start time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now));
             this._currentStep = 2;
             this._progressTimer.Start();
         }
@@ -780,22 +720,17 @@ namespace Bio.Algorithms.Assembly.Padena
             if (!this._graphBuildCompleted)
             {
                 this._graphBuildCompleted = this.Graph.GraphBuildCompleted;
-				this._statusMessage = string.Format(CultureInfo.CurrentCulture,"   Graph built successfully - Processed {0} sequences.", this.Graph.ProcessedSequencesCount);
-                this.RaiseStatusEvent();
-
-				this._statusMessage = string.Format(CultureInfo.CurrentCulture, "   Generate Links Started.");
-                this.RaiseStatusEvent();
+				RaiseMessage(string.Format(CultureInfo.CurrentCulture,"   Graph built successfully - Processed {0} sequences.", this.Graph.ProcessedSequencesCount));
+                RaiseMessage(string.Format(CultureInfo.CurrentCulture, "   Generate Links Started."));
             }
 
             if (!this._linkGenerationCompleted && this.Graph.LinkGenerationCompleted)
             {
                 this._linkGenerationCompleted = this.Graph.LinkGenerationCompleted;
-				this._statusMessage = string.Format(CultureInfo.CurrentCulture, "   Generate Links Ended.");
-                this.RaiseStatusEvent();
+				RaiseMessage(string.Format(CultureInfo.CurrentCulture, "   Generate Links Ended."));
             }
 
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "Step 1 & 2: Create Kmer and Graph - End time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now);
-            this.RaiseStatusEvent();
+			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Step 1 & 2: Create Kmer and Graph - End time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now));
         }
 
         /// <summary>
@@ -804,18 +739,15 @@ namespace Bio.Algorithms.Assembly.Padena
         /// <param name="ts"></param>
         protected void TaskTimeSpanReport(TimeSpan ts)
         {
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "Total Time for Task: {0:c}", ts);
-            this.RaiseStatusEvent();
-            
+			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Total Time for Task: {0:c}", ts));            
         }
+
         /// <summary>
         /// Raise event to report the number of nodes currently in graph.
         /// </summary>
         protected void NodeCountReport()
         {
-            
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "Nodes in graph: {0}", this.Graph.NodeCount);
-            this.RaiseStatusEvent();
+            RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Nodes in graph: {0}", this.Graph.NodeCount));
         }
 
         /// <summary>
@@ -823,8 +755,7 @@ namespace Bio.Algorithms.Assembly.Padena
         /// </summary>
         protected void EstimateDefaultValuesStarted()
         {
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "   Estimating default values - Start time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now);
-            this.RaiseStatusEvent();
+			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Estimating default values - Start time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now));
         }
 
         /// <summary>
@@ -832,8 +763,7 @@ namespace Bio.Algorithms.Assembly.Padena
         /// </summary>
         protected void EstimateDefaultValuesEnded()
         {
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "Estimating default values - End time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now);
-            this.RaiseStatusEvent();
+			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Estimating default values - End time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now));
         }
 
         /// <summary>
@@ -841,8 +771,7 @@ namespace Bio.Algorithms.Assembly.Padena
         /// </summary>
         protected void UndangleGraphStarted()
         {
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "UndangleGraph - Start time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now);
-            this.RaiseStatusEvent();
+            RaiseMessage(string.Format(CultureInfo.CurrentCulture, "UndangleGraph - Start time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now));
             this._currentStep = 3;
             this._progressTimer.Start();
         }
@@ -853,8 +782,7 @@ namespace Bio.Algorithms.Assembly.Padena
         protected void UndangleGraphEnded()
         {
             this._progressTimer.Stop();
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "UndangleGraph - End time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now);
-            this.RaiseStatusEvent();
+			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "UndangleGraph - End time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now));
         }
 
         /// <summary>
@@ -862,12 +790,8 @@ namespace Bio.Algorithms.Assembly.Padena
         /// </summary>
         protected void RemoveRedundancyStarted()
         {
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "RemoveRedundancy - Start time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now);
-            this.RaiseStatusEvent();
-            this._statusMessage = "Redundant path threshold is: " + this.RedundantPathLengthThreshold.ToString();
-            this.RaiseStatusEvent();
-            this._currentStep = 4;
-            this._progressTimer.Start();
+            RaiseMessage(string.Format(CultureInfo.CurrentCulture, "RemoveRedundancy - Start time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now));
+            RaiseMessage("Redundant path threshold is: " + this.RedundantPathLengthThreshold.ToString());
         }
 
         /// <summary>
@@ -876,8 +800,7 @@ namespace Bio.Algorithms.Assembly.Padena
         protected void RemoveRedundancyEnded()
         {
             this._progressTimer.Stop();
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "End Redundancy Removal Step", DateTime.Now);
-            this.RaiseStatusEvent();
+			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "End Redundancy Removal Step", DateTime.Now));
         }
 
         /// <summary>
@@ -885,8 +808,7 @@ namespace Bio.Algorithms.Assembly.Padena
         /// </summary>
         protected void BuildContigsStarted()
         {
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "Start building Contigs", DateTime.Now);
-            this.RaiseStatusEvent();
+			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Start building Contigs", DateTime.Now));
             this._currentStep = 5;
             this._progressTimer.Start();
         }
@@ -897,8 +819,7 @@ namespace Bio.Algorithms.Assembly.Padena
         protected void BuildContigsEnded()
         {
             this._progressTimer.Stop();
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "End Building Contigs", DateTime.Now);
-            this.RaiseStatusEvent();
+			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "End Building Contigs", DateTime.Now));
             this._currentStep = 0;
         }
 
@@ -907,8 +828,7 @@ namespace Bio.Algorithms.Assembly.Padena
         /// </summary>
         protected void BuildScaffoldsStarted()
         {
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "Start building scaffolds", DateTime.Now);
-            this.RaiseStatusEvent();
+			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Start building scaffolds", DateTime.Now));
             this._currentStep = 6;
             this._progressTimer.Start();
         }
@@ -920,8 +840,7 @@ namespace Bio.Algorithms.Assembly.Padena
         {
             this._progressTimer.Stop();
             this._currentStep = 0;
-			this._statusMessage = string.Format(CultureInfo.CurrentCulture, "BuildScaffolds - End time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now);
-            this.RaiseStatusEvent();
+			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "BuildScaffolds - End time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now));
         }
         /// <summary>
         /// Raise a message
@@ -929,9 +848,9 @@ namespace Bio.Algorithms.Assembly.Padena
         /// <param name="msg"></param>
         public void RaiseMessage(string msg)
         {
-            _statusMessage = msg;
-            //Console.WriteLine(msg);
-            RaiseStatusEvent();
+            msg = "\t"+msg;
+            RaiseStatusEvent(msg);
         }
+        #endregion
     }
 }

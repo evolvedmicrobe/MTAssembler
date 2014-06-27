@@ -194,12 +194,12 @@ namespace MitoDataAssembler.PairedEnd
 		}
         private void makeSlidingWindowOccurencePlot()
         {
-            Console.WriteLine("Attempting sliding window plot");
+            MitoPaintedAssembler.RaiseStatusEvent("\tStarting sliding window plot");
             var list = GetAverageInSlidingCoverageWindows().ToList();
             double[] xvals = list.Select(x => (double)x.Key).ToArray();
             double[] yvals = list.Select(x => x.Value).ToArray();
             rInt.PlotPDF(xvals, yvals, OutputFilePrefix + "_Windowed" + this.ScanningWindowSize.ToString() + ".pdf", "Windowed occurence", "Insert Size", "Window Average");
-            Console.WriteLine("Finished sliding window plot");
+            MitoPaintedAssembler.RaiseStatusEvent("\tFinished sliding window plot");
             
         }
 
