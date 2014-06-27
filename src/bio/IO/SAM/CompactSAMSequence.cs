@@ -39,21 +39,28 @@ namespace Bio
 			get { return pCIGAR; }
 			set {
 				pCIGAR = value;
-				this.RefEndPos = Pos + getRefSeqAlignmentLengthFromCIGAR ();
+				if (!CigarUtils.NoInformationCigar (value)) {
+					var alnLength = getRefSeqAlignmentLengthFromCIGAR ();
+					this.RefEndPos = Pos + (alnLength > 0 ? alnLength - 1 : 0);
+					if (RefEndPos < Pos) {
+						throw new InvalidProgramException ();
+					}
+				}
+
 			}
 		}
-			private string pCIGAR;
+		private string pCIGAR;
 		/// <summary>
 		/// Gets one based alignment end position of reference sequence depending on CIGAR Value.
+		/// This value is INCLUSIVE!
 		/// </summary>
 		public int RefEndPos; 
 
 
         #endregion
 
-		public CompactSAMSequence TrimSequence(long newLength)
-		{
-			if (newLength > this.sequenceData.Length)
+		public CompactSAMSequence CreateTrimmedSequence(int newLength) {
+			if (newLength > this.sequenceData.Length || newLength < 1)
 			{
 				throw new ArgumentOutOfRangeException("length");
 			}
@@ -61,22 +68,80 @@ namespace Bio
 			byte[] newSequenceData = new byte[newLength];
 			sbyte[] newQualityScores = new sbyte[newLength];
 
-			for (long index = 0; index < newLength; index++)
-			{
-				newSequenceData[index] = this.sequenceData[index];
-				newQualityScores[index] = this.qualityScores[index];
-			}
+			Array.Copy (sequenceData, 0, newSequenceData, 0, newLength);
+			Array.Copy (qualityScores, 0, newQualityScores, 0, newLength);
+ 
 			//now to adjust cigar
-			var oldCigar = CIGAR;
+			string newCigar = CIGAR;
 
-			//now to trim
+			if (!CigarUtils.NoInformationCigar(CIGAR)) {
+				var elements = CigarUtils.GetCigarElements (CIGAR);
+				int curLen = 0;
+				for (int i = 0; i < elements.Count; i++) {
+					var ce = elements [i];
+					var op = ce.Operation;
+					if (op == CigarOperations.HARD_CLIP || op == CigarOperations.DELETION) {
+						continue;
+					} else if (op == CigarOperations.PADDING || op == CigarOperations.SKIPPED) {
+						throw new NotImplementedException ();
+					} else if (op == CigarOperations.SOFT_CLIP || op == CigarOperations.INSERTION || CigarOperations.OperationIsMatch (op)) {
+						curLen += ce.Length;
+						if (curLen == newLength) {
+							newCigar = CigarUtils.CreateCigarString (elements.Take (i + 1));
+							break;
+						} else if (curLen > newLength) {
+							var dif = curLen - newLength;
+							ce.Length -= dif;
+							elements [i]= ce;
+							newCigar = CigarUtils.CreateCigarString (elements.Take (i + 1));
+							break;
+						}
+					}
+				}
+			}
+			var ns = new CompactSAMSequence (this.Alphabet, this.FormatType, newSequenceData, newQualityScores, false);
+			ns.Pos = Pos;
+			ns.CIGAR = newCigar;
+			return ns;
+		}
 
-
-			return new QualitativeSequence(this.Alphabet, this.FormatType, newSequenceData, newQualityScores, false)
+		public void TrimSequence(int newLength)
+		{
+			Count = newLength;
+			if (newLength > this.sequenceData.Length || newLength <1)
 			{
-				ID = this.ID, 
-				metadata = this.metadata
-			};
+				throw new ArgumentOutOfRangeException("length");
+			}
+			Array.Resize (ref sequenceData, newLength);
+			Array.Resize (ref qualityScores, newLength);
+
+			//now to adjust cigar
+			string newCigar = CIGAR;
+			if (!CigarUtils.NoInformationCigar(CIGAR)) {
+				var elements = CigarUtils.GetCigarElements (CIGAR);
+				int curLen = 0;
+				for (int i = 0; i < elements.Count; i++) {
+					var ce = elements [i];
+					var op = ce.Operation;
+					if (op == CigarOperations.HARD_CLIP || op == CigarOperations.DELETION) {
+						continue;
+					} else if (op == CigarOperations.PADDING || op == CigarOperations.SKIPPED) {
+						throw new NotImplementedException ();
+					} else if (op == CigarOperations.SOFT_CLIP || op == CigarOperations.INSERTION || CigarOperations.OperationIsMatch (op)) {
+						curLen += ce.Length;
+						if (curLen == newLength) {
+							newCigar = CigarUtils.CreateCigarString (elements.Take (i + 1));
+							break;
+						} else if (curLen > newLength) {
+							ce.Length -= curLen - newLength;
+							elements [i] = ce;
+							newCigar = CigarUtils.CreateCigarString (elements.Take (i + 1));
+							break;
+						}
+					}
+				}
+			}
+			CIGAR = newCigar;
 		}
 
 
@@ -86,7 +151,7 @@ namespace Bio
 		/// <returns>Length of the alignment.</returns>
 		private int getRefSeqAlignmentLengthFromCIGAR()
 		{
-			if (string.IsNullOrWhiteSpace(CIGAR) || CIGAR.Equals("*")) {
+			if (CigarUtils.NoInformationCigar(CIGAR)) {
 				return 0;
 			}
 			var elements = CigarUtils.GetCigarElements (CIGAR);
@@ -159,7 +224,5 @@ namespace Bio
             : base(alphabet, fastQFormatType, sequence, qualityScores, validate) { }
 
         #endregion
-
-
-    }
+	}
 }

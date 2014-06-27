@@ -27,7 +27,10 @@ namespace Bio.Variant
 			// Variable for catching errors, can be removed later after once no problems show up.
 			int lastEmittedPosition = -1;
 			foreach (var seq in sequences) {
-				validateSequence (seq);
+				if (!validateSequence (seq)) {
+					continue;
+				}
+				;
 				cur_ref = seq.RName;                
 
 				// initalize if first sequence or a new reference
@@ -100,7 +103,7 @@ namespace Bio.Variant
         /// Avoids, separate checks within each method.
         /// </summary>
         /// <param name="seq"></param>
-		private static void validateSequence(CompactSAMSequence seq)
+		private static bool validateSequence(CompactSAMSequence seq)
         {
             if (seq == null) {
                 throw new ArgumentNullException("seq");
@@ -108,11 +111,13 @@ namespace Bio.Variant
             if (String.IsNullOrEmpty(seq.RName) || 
 				seq.RefEndPos <= seq.Pos || 
                 String.IsNullOrEmpty(seq.CIGAR) || 
-                seq.CIGAR =="*" )
+				seq.CIGAR == "*" )
             {
-                throw new ArgumentException("Tried to build a pileup with an invalid sequence.  Sequence was:\n"+
-                    seq.ToString());
+				return false;
+				//throw new ArgumentException("Tried to build a pileup with an invalid sequence.  Sequence was:\n"+
+				//    seq.ToString());
             }
+			return true;
         }
 
 		        /// <summary>

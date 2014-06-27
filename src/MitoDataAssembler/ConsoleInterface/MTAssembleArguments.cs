@@ -59,6 +59,8 @@ namespace MitoDataAssembler
 		/// Help.
 		/// </summary>
 		public bool Help = false;
+
+
 		/// <summary>
 		/// Input file of reads.
 		/// </summary>
@@ -68,10 +70,6 @@ namespace MitoDataAssembler
         /// Should we also call SNPs and Haplotypes using a column wise pile-up?
         /// </summary>
         public bool DoPileUpSNPCalling = true;
-		/// <summary>
-		/// Output file.
-		/// </summary>
-		public string OutputFile = string.Empty;
 
 		/// <summary>
 		/// If a subset of the BAM is used this can be specified here.
@@ -115,6 +113,8 @@ namespace MitoDataAssembler
 		/// </summary>
 		public string DiagnosticFilePrefix = string.Empty;
 
+
+		public string ContigFileName { get { return DiagnosticFilePrefix + "_contigs.fna"; } }
 		#endregion
 
 		#region Public methods
@@ -277,14 +277,15 @@ namespace MitoDataAssembler
 				return;
 			}
 			ensureContigNames (assembly.AssembledSequences);
-            if (!string.IsNullOrEmpty (this.OutputFile)) {
-				using (FastAFormatter formatter = new FastAFormatter (this.OutputFile)) {
+
+			if (!string.IsNullOrEmpty (this.DiagnosticFilePrefix)) {
+				using (FastAFormatter formatter = new FastAFormatter (ContigFileName)) {
 					formatter.AutoFlush = true;
 					foreach (ISequence seq in assembly.AssembledSequences) {
 						formatter.Write (seq);
 					}
 				}
-				Output.WriteLine (OutputLevel.Information, "Wrote {0} sequences to {1}", assembly.AssembledSequences.Count, this.OutputFile);
+				Output.WriteLine (OutputLevel.Information, "Wrote {0} sequences to {1}", assembly.AssembledSequences.Count, ContigFileName);
 			} else {
 				Output.WriteLine (OutputLevel.Information, "Assembled Sequence Results: {0} sequences", assembly.AssembledSequences.Count);
 				using (FastAFormatter formatter = new FastAFormatter ()) {
@@ -329,7 +330,7 @@ namespace MitoDataAssembler
 		/// <returns>Auto-generated sequence id</returns>
 		private string generateSequenceId (int counter)
 		{
-			string filename = Path.GetFileNameWithoutExtension (this.OutputFile);
+			string filename = Path.GetFileNameWithoutExtension (this.ContigFileName);
 			if (string.IsNullOrEmpty (filename))
 				filename = Path.GetFileNameWithoutExtension (this.Filename);
 			filename = filename.Replace (" ", "");

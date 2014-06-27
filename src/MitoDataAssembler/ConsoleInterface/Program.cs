@@ -152,7 +152,7 @@ namespace MitoDataAssembler
 		{
 			// Add the parameters to be parsed
 			parser.Parameter (ArgumentType.DefaultArgument, "Filename", ArgumentValueType.String, "", "Input BAM file with reads");
-			parser.Parameter (ArgumentType.Optional, "OutputFile", ArgumentValueType.String, "o", "Output file");
+			//parser.Parameter (ArgumentType.Optional, "OutputFile", ArgumentValueType.String, "o", "Output file");
 			parser.Parameter (ArgumentType.Optional, "Help", ArgumentValueType.Bool, "h", "Display help");        
 
 			parser.Parameter (ArgumentType.Optional, "Quiet", ArgumentValueType.Bool, "q", "Display minimal output during processing.");
@@ -167,7 +167,7 @@ namespace MitoDataAssembler
 			parser.Parameter (ArgumentType.Optional, "MakeDepthOfCoveragePlot", ArgumentValueType.Bool, "dp", "Make depth of coverage plot");
 			//parser.Parameter (ArgumentType.Required, "ReferenceGenome", ArgumentValueType.String, "ref","Reference Genome File (Fasta");
 			parser.Parameter (ArgumentType.Optional, "ForceKmer", ArgumentValueType.Bool, "fk", "Force specified k-mer to be used without a warning prompt.");
-			parser.Parameter (ArgumentType.Optional, "DiagnosticFilePrefix", ArgumentValueType.String, "p", "Prefix to append to all diagnostic files, which will be output if set");
+			parser.Parameter (ArgumentType.Optional, "DiagnosticFilePrefix", ArgumentValueType.String, "o", "Prefix to append to all diagnostic files, which will be output if set");
 			parser.Parameter (ArgumentType.Optional, "ChromosomeName", ArgumentValueType.String, "chr", "Only assemble sequences that align to this chromosome in a BAM File.");
             parser.Parameter(ArgumentType.Optional, "DoPileUpSNPCalling", ArgumentValueType.Bool, "pileup", "Call SNPs and haplotypes using a columnwise pile-up in addition to the de novo assembly");
 		}

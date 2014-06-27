@@ -37,7 +37,7 @@
     <DefineConstants>TRACE;DEBUG; USE_R</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Commandlineparameters>/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/data/sortedExomeDemoData.bam -v </Commandlineparameters>
+    <Commandlineparameters>/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/data/sortedExomeDemoData.bam -v  -o:test_res</Commandlineparameters>
     <Prefer32Bit>false</Prefer32Bit>
     <ConsolePause>false</ConsolePause>
     <additionalargs>/debug</additionalargs>

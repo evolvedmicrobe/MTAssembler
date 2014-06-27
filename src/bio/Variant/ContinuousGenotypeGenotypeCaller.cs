@@ -59,11 +59,12 @@ namespace Bio.Variant
 			foreach (var bp in filteredBases) {
 				base_pair_counts [bp.Base]++;
 			}
-			var freqs = base_pair_counts.Select (x => x / (double) pu.Bases.Count).ToArray ();
+			var freqs = base_pair_counts.Select (x => x / (double) filteredBases.Length).ToArray ();
 			var theta = new BasePairFrequencies ( freqs );
 
-			//Do an EM optimization of just counts? 
-			if (DO_EM_ESTIMATION) {
+			//if only one base has data or if 
+			//if we are not doing EM optimization, we are done.
+			if (base_pair_counts.Count (x => x > 0) == 1 && DO_EM_ESTIMATION) {
 				//first make an NumReads * Num_Bases Matrix
 				double[][] conditionalProbs = new double[filteredBases.Length][];
 				for (int i = 0; i < filteredBases.Length; i++) {

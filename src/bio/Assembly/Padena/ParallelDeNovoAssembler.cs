@@ -686,7 +686,7 @@ namespace Bio.Algorithms.Assembly.Padena
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1030:UseEventsWhereAppropriate")]
         protected void RaiseStatusEvent()
         {
-            Console.WriteLine(_statusMessage);
+			//Console.WriteLine(_statusMessage);
             if (this.StatusChanged != null)
             {
                 this.StatusChanged.Invoke(this, new StatusChangedEventArgs(this._statusMessage));

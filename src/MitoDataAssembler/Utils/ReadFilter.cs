@@ -13,9 +13,12 @@ namespace MitoDataAssembler
     public static class ReadFilter
     {
 		static bool FilterDuplicates = true;//FilterDuplicates
-        static bool TrimQuality = true;
-        static private int _trimEndQuality=22;
-        static private int _meanRequiredQuality=22; 
+		static bool TrimQuality = true;
+
+		//Actually is one plus this number.
+		static private int _minReadLength = 18;
+		static private int _trimEndQuality = 22;
+		static private int _meanRequiredQuality = 22; 
 
 		public static IEnumerable<CompactSAMSequence> FilterReads(IEnumerable<CompactSAMSequence> preFiltered, DepthOfCoverageGraphMaker coverageCounter = null)
         {
@@ -24,12 +27,7 @@ namespace MitoDataAssembler
 				if ( FilterDuplicates && ((toFilter.SAMFlags & SAMFlags.Duplicate) == SAMFlags.Duplicate))
                 { continue; }   
 
-				//Process coverage before trimming, as otherwise the CIGARs are off...
-				if (coverageCounter != null) {
-					coverageCounter.ProcessCountCoverageFromSequence (toFilter);
-				}
-                
-                int[] vals = toFilter.GetQualityScores();
+				int[] vals = toFilter.GetQualityScores();
 				int lastAcceptableBase = (int)toFilter.Count - 1;
                 while (lastAcceptableBase >= 0)
                 {
@@ -39,7 +37,7 @@ namespace MitoDataAssembler
                     }
                     lastAcceptableBase--;
                 }
-                if (lastAcceptableBase > 0)
+				if (lastAcceptableBase > _minReadLength)
                 {
                     //check mean
                     double mean = vals.Take(lastAcceptableBase + 1).Average();
@@ -48,17 +46,16 @@ namespace MitoDataAssembler
 						//only trim if necessary.
 						CompactSAMSequence toReturn;
 						if (lastAcceptableBase < (toFilter.Count-1)) {
-							toReturn = toFilter.GetSubSequence (0, lastAcceptableBase + 1) as CompactSAMSequence;
-						} else {
-							toReturn = toFilter;
+							toFilter.TrimSequence (lastAcceptableBase + 1);
 						}
-						if (toReturn == null )
-						{
-							throw new NullReferenceException();
+						//Process coverage before returning the read
+						if (coverageCounter != null) {
+							coverageCounter.ProcessCountCoverageFromSequence (toFilter);
 						}
-						yield return toReturn;
+						yield return toFilter;
 					 }
                 }
+
                 
             }
         }

@@ -29,72 +29,43 @@ namespace MitoDataAssembler
         /// </summary>
         public void ProcessCountCoverageFromSequence(CompactSAMSequence orgSeq)
         {
-			if (orgSeq != null && orgSeq.RName != StaticResources.MT_CHROMOSOME_NAME)
+			if (orgSeq == null || orgSeq.RName != StaticResources.MT_CHROMOSOME_NAME)
             { return;}
-
             string CIGAR = orgSeq.CIGAR;
-            if (string.IsNullOrWhiteSpace(CIGAR) || CIGAR=="*")
-            {
-                return;
-            }
-            int curRef = orgSeq.Pos-1; 
-            List<KeyValuePair<char, int>> charsAndPositions = new List<KeyValuePair<char, int>>();
-            for (int i = 0; i < CIGAR.Length; i++)
-            {
-                char ch = CIGAR[i];
-                if (Char.IsDigit(ch))
-                {
-                    continue;
-                }
-                charsAndPositions.Add(new KeyValuePair<char, int>(ch, i));
-            }
-            for (int i = 0; i < charsAndPositions.Count; i++)
-            {
-                int start = 0;
-                int end = 0;
-                int len = 0;
-                char ch = charsAndPositions[i].Key;
-                if (i == 0)
-                {
-                    start = 0;
-                }
-                else
-                {
-                    start = charsAndPositions[i - 1].Value + 1;
-                }
-                end = charsAndPositions[i].Value - start;
-                len = int.Parse(CIGAR.Substring(start, end));
-                switch (ch)
-                {
-                    case 'P': //padding (Silent deltions from padded reference)
-                    case 'N': //skipped region from reference
-                        throw new Exception("Not built to handle clipping yet");                        
-                    case 'M': //match or mismatch
-                    case '=': //match
-                    case 'X': //mismatch
-                        for (int k = 0; k < len; k++)
-                        {
-                            if (curRef >= StaticResources.CRS_LENGTH)
-                            {
+			if (!CigarUtils.NoInformationCigar (CIGAR)) {
+				int curRef = orgSeq.Pos - 1; 
+				var elements = CigarUtils.GetCigarElements (CIGAR);
+				foreach (var v in elements) {
+					var len = v.Length;
+					switch (v.Operation) {
+					case 'P': //padding (Silent deltions from padded reference)
+					case 'N': //skipped region from reference
+						throw new Exception ("Not built to handle clipping yet");                        
+					case 'M': //match or mismatch
+					case '=': //match
+					case 'X': //mismatch
+						for (int k = 0; k < len; k++) {
+							if (curRef >= StaticResources.CRS_LENGTH) {
 								Debug.WriteLine ("Seq: " + orgSeq.ID + " is aligned past the MT DNA reference genome");
-                                break;
-                            }
-							depthCounts [curRef] = depthCounts [curRef] + 1.0;; 
-                            curRef++;                            
-                        }
-                        break;
-                    case 'I'://insertion to the reference
+								break;
+							}
+							depthCounts [curRef] = depthCounts [curRef] + 1.0;
+							curRef++;                            
+						}
 						break;
-                    case 'D'://Deletion from the reference
+					case 'I'://insertion to the reference
+						break;
+					case 'D'://Deletion from the reference
 						curRef += len;
 						break;
-                    case 'S': //soft clipped
-                    case 'H'://had clipped
-                        break;
-                    default:
-                        throw new FormatException("Unexpected SAM Cigar element found " + ch.ToString());
-                }
-            }
+					case 'S': //soft clipped
+					case 'H'://had clipped
+						break;
+					default:
+						throw new FormatException ("Unexpected SAM Cigar element found " + v.Operation.ToString ());
+					}
+				}
+			}
         }
         /// <summary>
         /// Make a PDF depth of coverage plot for the given file and MT DNA name.

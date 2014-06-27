@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace Bio.IO.SAM
 {
@@ -16,9 +17,14 @@ namespace Bio.IO.SAM
 					var str_len = i - start;
 					var length = int.Parse (cigar.Substring (start, str_len), CultureInfo.InvariantCulture);
 					elements.Add (new CigarElement (ch, length));
-					start = i++;//increment i as the next element will be a number
+					start = ++i;//increment i as the next element will be a number
 				}
 			}
+			return elements;
+		}
+
+		public static string CreateCigarString(IEnumerable<CigarElement> elements) {
+			return String.Join("",elements.Select(x=> x.Length.ToString()+x.Operation.ToString()));
 		}
 		/// <summary>
 		/// These are the CIGAR elements "MDNX=" can change the alignment length on the reference
@@ -29,8 +35,12 @@ namespace Bio.IO.SAM
 		public static bool CigarElementis_MDNX_Equal(char element)
 		{
 			//"MDNX=";
-			return element == 'M' || element == 'D' || element == 'N' ||
-			element == 'X' || element == '=';
+			return element == CigarOperations.ALN_MATCH || element == CigarOperations.DELETION || element == CigarOperations.SKIPPED ||
+				element == CigarOperations.SEQ_MISMATCH || element == CigarOperations.SEQ_MATCH;
+		}
+
+		public static bool NoInformationCigar(string cigar) {
+			return String.IsNullOrEmpty (cigar) || cigar == "*";
 		}
 	}
 }

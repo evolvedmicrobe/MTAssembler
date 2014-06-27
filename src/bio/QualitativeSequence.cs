@@ -454,7 +454,7 @@ namespace Bio
         /// <summary>
         /// Gets the number of bytes contained in the Sequence.
         /// </summary>
-        public long Count { get; private set; }
+		public long Count { get; protected set; }
 
         /// <summary>
         /// Gets the quality scores format type.

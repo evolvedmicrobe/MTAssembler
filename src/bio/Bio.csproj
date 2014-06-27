@@ -455,6 +455,7 @@
     </Compile>
     <Compile Include="IO\SAM\CigarUtils.cs" />
     <Compile Include="IO\SAM\CigarElement.cs" />
+    <Compile Include="IO\SAM\CigarOperations.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resource.resx">

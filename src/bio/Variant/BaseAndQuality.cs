@@ -47,30 +47,31 @@ namespace Bio.Variant
         /// </summary>
         static readonly int[] validBases = new int[byte.MaxValue + 1];
 
-        /// <summary>
-        /// A list of valid basepairs as well as their ordering when projected down to a smaller array.
-        /// e.g. We change the encoding as follows:
-        /// 'A' = 0
-        /// 'C' = 1
-        /// 'G' = 2
-        /// 'T' = 3
-        /// 'N' = 4
-        /// '-' = 5
-		/// Note that these values are stored as constants below as well for direct access.
-        /// </summary>
-        public static readonly char[] BasesInOrder = new char[] { 'A', 'C', 'G', 'T', 'N', '-' };
-
+        
 		/// <summary>
 		/// Initializes the <see cref="Bio.Variant.BaseAndQuality"/> struct.
 		/// </summary>
         static BaseAndQuality()
         {
             int i = 1;
-            foreach (var bp in validBases)
+			foreach (var bp in BasesInOrder)
             {
                 validBases[bp] = i++;
             }
         }
+
+		/// <summary>
+		/// A list of valid basepairs as well as their ordering when projected down to a smaller array.
+		/// e.g. We change the encoding as follows:
+		/// 'A' = 0
+		/// 'C' = 1
+		/// 'G' = 2
+		/// 'T' = 3
+		/// 'N' = 4
+		/// '-' = 5
+		/// Note that these values are stored as constants below as well for direct access.
+		/// </summary>
+		public static readonly char[] BasesInOrder = new char[] { 'A', 'C', 'G', 'T', 'N', '-' };
 
 		public const byte A_BASE_INDEX = 0;
 		public const byte C_BASE_INDEX = 1;
