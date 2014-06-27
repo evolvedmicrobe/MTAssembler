@@ -21,7 +21,7 @@ namespace MitoDataAssembler
             return String.Join(",", outputValues.Select(x => x.Name).ToArray());
         }
 
-		public AssemblyReport(MitoPaintedAssembler toReportOn)
+		public AssemblyReport(MitoPaintedAssembler toReportOn, AlgorithmResult result = AlgorithmResult.Success) : base(result)
         {
 			HeaderLineForCSV = CreateHeaderLine ();
 

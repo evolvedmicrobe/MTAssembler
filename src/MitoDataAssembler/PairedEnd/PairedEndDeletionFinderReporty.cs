@@ -22,14 +22,14 @@ namespace MitoDataAssembler.PairedEnd
 			outputValues = typeof(PairedEndPeakFinder).GetProperties ().Where (prop => prop.IsDefined (typeof(OutputAttribute), true)).ToArray ();
 		}
 
-		public PairedEndDeletionFinderReport(PairedEndPeakFinder toReportOn)
+		public PairedEndDeletionFinderReport(PairedEndPeakFinder toReportOn) :base(AlgorithmResult.Success)
 		{
 			this.DataLineForCSV = GetReportValues (toReportOn);
 			this.HeaderLineForCSV = CreateHeaderLine ();
 
 		}
 
-		public PairedEndDeletionFinderReport(string reasonNoReport)
+		public PairedEndDeletionFinderReport(string reasonNoReport) : base(AlgorithmResult.Failed)
 		{
 			this.DataLineForCSV = String.Join (",",
 				Enumerable.Range (0, outputValues.Length ).Select (x => reasonNoReport));

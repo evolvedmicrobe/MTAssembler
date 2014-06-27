@@ -61,6 +61,7 @@ namespace MitoDataAssembler
 		public bool Help = false;
 
 
+
 		/// <summary>
 		/// Input file of reads.
 		/// </summary>
@@ -70,6 +71,12 @@ namespace MitoDataAssembler
         /// Should we also call SNPs and Haplotypes using a column wise pile-up?
         /// </summary>
         public bool DoPileUpSNPCalling = true;
+
+        /// <summary>
+        /// Are we going to use the EM algorithm to do frequency estimates, 
+        /// or just use read counts from the pile-ups??
+        /// </summary>
+        public bool Skip_EM_Frequency_Estimates = false;
 
 		/// <summary>
 		/// If a subset of the BAM is used this can be specified here.
@@ -174,7 +181,7 @@ namespace MitoDataAssembler
 			if (!String.IsNullOrEmpty (DiagnosticFilePrefix)) {
 				var outFile = new StreamWriter (ReportOutputPrefix + DiagnosticFilePrefix + ".csv");
 				var header = String.Join (",", results.Select (z => z.HeaderLineForCSV ));
-				outFile.Write (header);
+				outFile.WriteLine (header);
 				var data = String.Join (",", results.Select (z => z.DataLineForCSV ));
 				outFile.WriteLine (data);
 				outFile.Close ();

@@ -10,11 +10,11 @@ namespace MitoDataAssembler
 {
     public class SNPCallerReport : AlgorithmReport
     {
-		public List<ContinuousFrequencyGenotype> Genotypes { get; private set; }
+		public List<ContinuousFrequencySNPGenotype> Genotypes { get; private set; }
 
 		public HaploTypeReport HaplotypeInformation { get; private set; }
 
-		public SNPCallerReport(List<ContinuousFrequencyGenotype> genos, HaploTypeReport hap_report)
+		public SNPCallerReport(List<ContinuousFrequencySNPGenotype> genos, HaploTypeReport hap_report) :base(AlgorithmResult.Success)
 		{
 			this.Genotypes = genos;
 			this.HaplotypeInformation = hap_report;
@@ -22,6 +22,10 @@ namespace MitoDataAssembler
 			HeaderLineForCSV = HaploTypeReport.GetColumnReportHeaderLine ("snp_");
 			this.DataLineForCSV = hap_report.GetColumnReportLine ();
 		}
+
+        public SNPCallerReport() : base(AlgorithmResult.Failed) {
+            
+        }
 
 
 

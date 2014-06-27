@@ -171,7 +171,10 @@ namespace MitoDataAssembler
 			parser.Parameter (ArgumentType.Optional, "DiagnosticFilePrefix", ArgumentValueType.String, "o", "Prefix to append to all diagnostic files, which will be output if set");
 			parser.Parameter (ArgumentType.Optional, "ChromosomeName", ArgumentValueType.String, "chr", "Only assemble sequences that align to this chromosome in a BAM File.");
             parser.Parameter(ArgumentType.Optional, "DoPileUpSNPCalling", ArgumentValueType.Bool, "pileup", "Call SNPs and haplotypes using a columnwise pile-up in addition to the de novo assembly");
-		}
+            parser.Parameter(ArgumentType.Optional, "Skip_EM_Frequency_Estimates ", ArgumentValueType.Bool, "skip_em", "Estimate SNP frequencies by simple read counts.");
+		
+            
+        }
 
         private static DateTime RetrieveLinkerTimestamp()
             {

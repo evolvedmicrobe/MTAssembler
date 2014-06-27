@@ -5,6 +5,7 @@ namespace Bio.Variant
 	public enum GenotypeCallResult
 	{
 		GenotypeCalled,
+        NoData,
 		TooManyGaps
 	}
 }

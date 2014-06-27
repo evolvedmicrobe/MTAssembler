@@ -20,17 +20,31 @@ namespace MitoDataAssembler
 		/// <param name="sequences">Sequences.</param>
 		public static SNPCallerReport CallSNPs(IEnumerable<CompactSAMSequence> sequences)
 		{
-			//Get a pile up and convert it to genotypes
+			// Get a pile up and convert it to genotypes
 			var pileups = PileUpProducer.CreatePileupFromReads(sequences);
 			var genotypes = ContinuousGenotypeCaller.CallContinuousGenotypes (pileups).ToList();
+
+            // Filter down to a usable set
+            var usable = genotypes.Where(x => x.ResultType == GenotypeCallResult.GenotypeCalled && x.OriginalPosition.HasValue).ToList();
+            if (usable.Count == 0)
+            {
+                return new SNPCallerReport();
+            }
+
+            // Get median coverage at sites
+            var data_counts =usable.Select(x => x.TotalObservedBases).ToList();
+            data_counts.Sort();
+            var median = data_counts[data_counts.Count / 2];
+
+            //now create a cut-off for required coverage as the square root of the median.
+            var cut_off = Math.Sqrt(median);            
 
 			//Get a list of genotypes, and if a simple SNP, make a polymorphism if it doesn't match
 			//the reference
 			var genotypedPositions = new HashSet<int> ();
 			List<Polymorphism> polys = new List<Polymorphism> ();
-			foreach (var v in genotypes) {
-				var geno = v as ContinuousFrequencySNPGenotype;
-				if (geno != null && geno.ResultType == GenotypeCallResult.GenotypeCalled && geno.OriginalPosition.HasValue) {
+			foreach (var geno in usable) {
+				if (geno.TotalObservedBases >= cut_off) {
 					genotypedPositions.Add (geno.OriginalPosition.Value);
 					var org_bp = ReferenceGenome.GetReferenceBaseAt_rCRSPosition (geno.OriginalPosition.Value);
 					var cur_bp = geno.GetMostFrequentGenotype ();

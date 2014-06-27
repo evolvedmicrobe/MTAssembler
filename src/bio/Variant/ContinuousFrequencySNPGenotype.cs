@@ -11,6 +11,10 @@ namespace Bio.Variant
 
 		public int[] OriginalBasePairCounts;
 
+        public int TotalObservedBases { 
+            get { return ResultType == GenotypeCallResult.GenotypeCalled ? OriginalBasePairCounts.Sum(): 0; } 
+        }
+
 		public string ReferenceName { get; protected set; }
 
 		protected int pOriginalPosition;
@@ -24,9 +28,10 @@ namespace Bio.Variant
 		public int? OriginalPosition {
 			get{
 				if (InsertionOffset == 0)
-					return null;
+                    return pOriginalPosition;
 				else
-					return pOriginalPosition;
+                    return null;
+					
 			}
 		}
 

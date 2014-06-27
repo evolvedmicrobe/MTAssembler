@@ -36,23 +36,28 @@ namespace Bio.Variant
 		/// Initializes a new instance of the <see cref="Bio.Variant.ContinuousGenotypeCaller"/> class.
 		/// </summary>
 		/// <param name="sortedPileUps">Sorted pile ups.</param>
-		public static IEnumerable<ContinuousFrequencyGenotype> CallContinuousGenotypes(IEnumerable<PileUp> sortedPileUps)
+		public static IEnumerable<ContinuousFrequencySNPGenotype> CallContinuousGenotypes(IEnumerable<PileUp> sortedPileUps)
 		{
 			foreach (var v in sortedPileUps) {
 				yield return callGenotype (v);
 			}
 
 		}
-		private static ContinuousFrequencyGenotype callGenotype(PileUp pu)
+		private static ContinuousFrequencySNPGenotype callGenotype(PileUp pu)
 		{
 			//If it looks like a deletion, skip it
 			if(pileupHasTooManyIndels(pu)) {
 				return new ContinuousFrequencySNPGenotype (GenotypeCallResult.TooManyGaps, pu);
-			}
+			}         
 
 			// Otherwise, drop gaps, ambiguous bases and low scoring reads.
 			var filteredBases = pu.Bases.Where (z => z.Base != BaseAndQuality.N_BASE_INDEX &&
 			                    z.Base != BaseAndQuality.GAP_BASE_INDEX && z.PhredScore > 17).ToArray ();
+
+            if (filteredBases.Length == 0)
+            {
+                return new ContinuousFrequencySNPGenotype(GenotypeCallResult.NoData);
+            }
 
 			// initialize the continuous frequency based on counts of bases.
 			var base_pair_counts = new int[BasePairFrequencies.NUM_BASES];
@@ -94,7 +99,7 @@ namespace Bio.Variant
 					}
 				}
 			}
-			return new ContinuousFrequencySNPGenotype (theta,base_pair_counts);
+			return new ContinuousFrequencySNPGenotype (theta,base_pair_counts,pu);
 		}
 
 		/// <summary>
@@ -112,9 +117,13 @@ namespace Bio.Variant
 			double probWrong = .333333333 * BaseQualityUtils.GetErrorProbability(bp.PhredScore); 
 			double totProb = 0.0;
 			for (int i = 0; i < data.Length; i++) {
-					double  prob = freqs.Frequencies [i] * (i == bp.Base ? probRight : probWrong); 
-					totProb += prob;
-					data[i] = prob;
+                var freq = freqs.Frequencies[i];
+                if (freq != 0.0)
+                {
+                    double prob = freq * (i == bp.Base ? probRight : probWrong);
+                    totProb += prob;
+                    data[i] = prob;
+                }
 			}
 			for (int i = 0; i < data.Length; i++) {
 				data[i] /= totProb;
