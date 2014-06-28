@@ -29,6 +29,14 @@ namespace MitoDataAssembler.PairedEnd
 
 		}
 
+		/// <summary>
+		/// Creates an empty result if the algorithm was never attempted.
+		/// </summary>
+		public PairedEndDeletionFinderReport() : base(AlgorithmResult.Failed) {
+			this.HeaderLineForCSV = CreateHeaderLine ();
+			this.DataLineForCSV = String.Join(",", Enumerable.Repeat ("NA", outputValues.Length));
+		}
+
 		public PairedEndDeletionFinderReport(string reasonNoReport) : base(AlgorithmResult.Failed)
 		{
 			this.DataLineForCSV = String.Join (",",

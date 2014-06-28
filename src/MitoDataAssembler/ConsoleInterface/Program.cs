@@ -170,10 +170,11 @@ namespace MitoDataAssembler
 			parser.Parameter (ArgumentType.Optional, "ForceKmer", ArgumentValueType.Bool, "fk", "Force specified k-mer to be used without a warning prompt.");
 			parser.Parameter (ArgumentType.Optional, "DiagnosticFilePrefix", ArgumentValueType.String, "o", "Prefix to append to all diagnostic files, which will be output if set");
 			parser.Parameter (ArgumentType.Optional, "ChromosomeName", ArgumentValueType.String, "chr", "Only assemble sequences that align to this chromosome in a BAM File.");
-            parser.Parameter(ArgumentType.Optional, "DoPileUpSNPCalling", ArgumentValueType.Bool, "pileup", "Call SNPs and haplotypes using a columnwise pile-up in addition to the de novo assembly");
-            parser.Parameter(ArgumentType.Optional, "Skip_EM_Frequency_Estimates ", ArgumentValueType.Bool, "skip_em", "Estimate SNP frequencies by simple read counts.");
-		
-            
+			parser.Parameter (ArgumentType.Optional, "Skip_Pileup_Calling", ArgumentValueType.Bool, "skip_pileup", "Skip calling SNPs and haplotypes using a columnwise pile-up in addition to the de novo assembly");
+			parser.Parameter (ArgumentType.Optional, "Skip_EM_Frequency_Estimates", ArgumentValueType.Bool, "skip_em", "Estimate SNP frequencies by simple read counts.");
+			parser.Parameter (ArgumentType.Optional, "Skip_Assembly_Step", ArgumentValueType.Bool, "skip_asm", "Skip the de-novo assembly and indel finding step");
+			parser.Parameter (ArgumentType.Optional, "Skip_Peak_Finder", ArgumentValueType.Bool, "skip_pf", "Skip the peak finding step");
+
         }
 
         private static DateTime RetrieveLinkerTimestamp()

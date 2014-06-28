@@ -26,7 +26,6 @@ namespace MitoDataAssembler
 		/// Length of k-mer.
 		/// </summary>
 		public int KmerLength = 19;
-
 		/// <summary>
 		/// Threshold for removing dangling ends in graph.
 		/// </summary>
@@ -59,24 +58,33 @@ namespace MitoDataAssembler
 		/// Help.
 		/// </summary>
 		public bool Help = false;
-
-
-
 		/// <summary>
 		/// Input file of reads.
 		/// </summary>
 		public string Filename = string.Empty;
 		private string fullFileName;
+
         /// <summary>
-        /// Should we also call SNPs and Haplotypes using a column wise pile-up?
+		/// Skip calling SNPs and Haplotypes using a column wise pile-up?
         /// </summary>
-        public bool DoPileUpSNPCalling = true;
+		public bool Skip_Pileup_Calling = false;
 
         /// <summary>
         /// Are we going to use the EM algorithm to do frequency estimates, 
         /// or just use read counts from the pile-ups??
         /// </summary>
         public bool Skip_EM_Frequency_Estimates = false;
+
+		/// <summary>
+		/// Should we skip the denovo assembler?
+		/// </summary>
+		public bool Skip_Assembly_Step = false;
+
+
+		/// <summary>
+		/// Should we skip the peak finding step?
+		/// </summary>
+		public bool Skip_Peak_Finder = false;
 
 		/// <summary>
 		/// If a subset of the BAM is used this can be specified here.
@@ -86,7 +94,7 @@ namespace MitoDataAssembler
 		/// <summary>
 		/// Prefix of the report output prefix file
 		/// </summary>
-		public string ReportOutputPrefix = "AssemblyReport_";
+		public string ReportOutputPrefix = "Report_";
 
         /// <summary>
         /// Make a depth of coverage plot.
@@ -173,10 +181,9 @@ namespace MitoDataAssembler
 			results.Add (peakFindReport);
 
             //Pile-up
-			if (DoPileUpSNPCalling) {
-				var pileupReport = RunSNPCaller ();
-				results.Add (pileupReport);
-			}
+			var pileupReport = RunSNPCaller ();
+			results.Add (pileupReport);
+
 
 			if (!String.IsNullOrEmpty (DiagnosticFilePrefix)) {
 				var outFile = new StreamWriter (ReportOutputPrefix + DiagnosticFilePrefix + ".csv");
@@ -195,6 +202,10 @@ namespace MitoDataAssembler
 
 		protected AssemblyReport CreateAssemblyAndDepthOfCoverage() 
 		{
+			if (Skip_Assembly_Step) {
+				return new AssemblyReport ();
+			}
+
             Output.WriteLine(OutputLevel.Verbose, "\nAssemblying mtDNA and obtaining depth of coverage (if asked).");
 			MitoPaintedAssembler assembler = new MitoPaintedAssembler ();
 			DepthOfCoverageGraphMaker coveragePlotter = MakeDepthOfCoveragePlot ? 
@@ -252,6 +263,9 @@ namespace MitoDataAssembler
 
 		protected PairedEndDeletionFinderReport RunPeakFinder()
 		{
+			if (Skip_Peak_Finder) {
+				return new PairedEndDeletionFinderReport ();
+			}
 			//Step 4: Run Break Finder
 			Output.WriteLine (OutputLevel.Verbose, "\nRunning Peak Finder Program");
             Stopwatch time = new Stopwatch();
@@ -280,11 +294,18 @@ namespace MitoDataAssembler
 
 		protected SNPCallerReport RunSNPCaller()
 		{
+			if (Skip_Pileup_Calling) {
+				return new SNPCallerReport (AlgorithmResult.NotAttempted);
+			}
             Output.WriteLine(OutputLevel.Verbose, "\nCalling Pile-up SNPs");
 			Stopwatch time = new Stopwatch ();
 			time.Start ();
 			var reads = this.createSequenceProducer (this.Filename);
+			Bio.Variant.ContinuousGenotypeCaller.DO_EM_ESTIMATION = !Skip_EM_Frequency_Estimates;
 			var res = SNPCaller.CallSNPs (reads );
+			if (res.Result == AlgorithmResult.Success) {
+				res.OutputHaploReport (DiagnosticFilePrefix);
+			}
 			time.Stop ();
 			if (this.Verbose) {
 				Output.WriteLine (OutputLevel.Verbose, "\tTime Elapsed: {0}", time.Elapsed);

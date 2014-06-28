@@ -14,3 +14,14 @@
 /Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/obj/Release/HaploGrepSharp.dll
 /Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/obj/Release/HaploGrepSharp.dll.mdb
 /Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/HaploGrepSharp/obj/Release/HaploGrepSharp.Properties.Resources.resources
+/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/src/HaploGrepSharp/obj/Release/.NETFramework,Version=v4.0.AssemblyAttribute.cs
+/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/src/HaploGrepSharp/obj/Release/HaploGrepSharp.Properties.Resources.resources
+/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/src/HaploGrepSharp/bin/Release/PhyloTreeSequences.fasta.gz
+/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/src/HaploGrepSharp/bin/Release/fluctRates15.txt
+/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/src/HaploGrepSharp/bin/Release/phylotree15.xml
+/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/src/HaploGrepSharp/bin/Release/HaploGrepSharp.dll.mdb
+/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/src/HaploGrepSharp/bin/Release/HaploGrepSharp.dll
+/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/src/HaploGrepSharp/obj/Release/HaploGrepSharp.dll
+/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/src/HaploGrepSharp/obj/Release/HaploGrepSharp.dll.mdb
+/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/src/HaploGrepSharp/bin/Release/Bio.dll
+/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/src/HaploGrepSharp/bin/Release/Bio.dll.mdb

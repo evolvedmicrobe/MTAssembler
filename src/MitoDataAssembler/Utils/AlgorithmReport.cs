@@ -28,7 +28,7 @@ namespace MitoDataAssembler
 
     public enum AlgorithmResult
     {
-        Failed, Success
+		Failed, Success, NotAttempted
     }
 }
 

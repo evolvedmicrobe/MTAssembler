@@ -30,7 +30,7 @@ namespace Bio.Variant
 		/// <summary>
 		/// Should we use the EM algorithm or just read counts?
 		/// </summary>
-		const bool DO_EM_ESTIMATION = true;
+		public static bool DO_EM_ESTIMATION;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Bio.Variant.ContinuousGenotypeCaller"/> class.

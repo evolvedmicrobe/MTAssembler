@@ -71,12 +71,10 @@ C:\Users\Delaney\OneDrive\Software\MTAssembler\src\MitoDataAssembler\bin\Release
 C:\Users\Delaney\OneDrive\Software\MTAssembler\src\MitoDataAssembler\bin\Release\MitoDataAssembler.exe
 C:\Users\Delaney\OneDrive\Software\MTAssembler\src\MitoDataAssembler\bin\Release\MitoDataAssembler.pdb
 C:\Users\Delaney\OneDrive\Software\MTAssembler\src\MitoDataAssembler\bin\Release\Bio.dll
-C:\Users\Delaney\OneDrive\Software\MTAssembler\src\MitoDataAssembler\bin\Release\Bio.Padena.dll
 C:\Users\Delaney\OneDrive\Software\MTAssembler\src\MitoDataAssembler\bin\Release\HaploGrepSharp.dll
 C:\Users\Delaney\OneDrive\Software\MTAssembler\src\MitoDataAssembler\bin\Release\RDotNet.dll
 C:\Users\Delaney\OneDrive\Software\MTAssembler\src\MitoDataAssembler\bin\Release\RDotNet.NativeLibrary.dll
 C:\Users\Delaney\OneDrive\Software\MTAssembler\src\MitoDataAssembler\bin\Release\Bio.pdb
-C:\Users\Delaney\OneDrive\Software\MTAssembler\src\MitoDataAssembler\bin\Release\Bio.Padena.pdb
 C:\Users\Delaney\OneDrive\Software\MTAssembler\src\MitoDataAssembler\bin\Release\HaploGrepSharp.pdb
 C:\Users\Delaney\OneDrive\Software\MTAssembler\src\MitoDataAssembler\bin\Release\RDotNet.xml
 C:\Users\Delaney\OneDrive\Software\MTAssembler\src\MitoDataAssembler\bin\Release\RDotNet.NativeLibrary.xml

@@ -28,7 +28,7 @@ namespace MitoDataAssembler
             var usable = genotypes.Where(x => x.ResultType == GenotypeCallResult.GenotypeCalled && x.OriginalPosition.HasValue).ToList();
             if (usable.Count == 0)
             {
-                return new SNPCallerReport();
+				return new SNPCallerReport(AlgorithmResult.Failed);
             }
 
             // Get median coverage at sites

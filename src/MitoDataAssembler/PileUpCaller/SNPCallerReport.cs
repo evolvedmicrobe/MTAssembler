@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Bio.Variant;
 using HaploGrepSharp.NewSearchMethods;
+using System.IO;
 
 namespace MitoDataAssembler
 {
@@ -20,12 +21,20 @@ namespace MitoDataAssembler
 			this.HaplotypeInformation = hap_report;
 
 			HeaderLineForCSV = HaploTypeReport.GetColumnReportHeaderLine ("snp_");
-			this.DataLineForCSV = hap_report.GetColumnReportLine ();
+			DataLineForCSV = hap_report.GetColumnReportLine ();
 		}
 
-        public SNPCallerReport() : base(AlgorithmResult.Failed) {
-            
+		public SNPCallerReport(AlgorithmResult result) : base(result) {
+			HeaderLineForCSV = HaploTypeReport.GetColumnReportHeaderLine ("snp_");
+			DataLineForCSV = String.Join(",",Enumerable.Repeat("NA",HeaderLineForCSV.Count(x=>x==',')-1));            
         }
+
+		public void OutputHaploReport(string prefix) {
+			var sw = new StreamWriter(prefix +"_SNP_Haplotypes.csv");
+			sw.WriteLine (HeaderLineForCSV);
+			sw.WriteLine (DataLineForCSV);
+			sw.Close ();
+		}
 
 
 

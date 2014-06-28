@@ -20,6 +20,14 @@ namespace MitoDataAssembler
         {
             return String.Join(",", outputValues.Select(x => x.Name).ToArray());
         }
+		/// <summary>
+		/// Creates an an empty assembly report if the method was never attempted.
+		/// </summary>
+		public AssemblyReport() : base(AlgorithmResult.NotAttempted)
+		{
+			HeaderLineForCSV = CreateHeaderLine ();
+			this.DataLineForCSV = String.Join (",", Enumerable.Repeat ("NA", outputValues.Length));
+		}
 
 		public AssemblyReport(MitoPaintedAssembler toReportOn, AlgorithmResult result = AlgorithmResult.Success) : base(result)
         {

@@ -56,7 +56,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
-    <Commandlineparameters> -k:19 -v -p:Test -o:FirstAssembly.fna -chr:MT /Users/ndelaney/Documents/SkyDrive/Software/MitochondrialPrograms/TestData/MT_1.bam</Commandlineparameters>
+    <Commandlineparameters>/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/data/sortedExomeDemoData.bam -v  -o:test_res</Commandlineparameters>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -122,8 +122,8 @@
     <Compile Include="ReadGenerator\BAMNuclearChromosomeReadGenerator.cs" />
     <Compile Include="Utils\AlgorithmReport.cs" />
     <Compile Include="Utils\OutputColumn.cs" />
-    <Compile Include="PairedEnd\PairedEndDeletionFinderReporty.cs" />
     <Compile Include="Assembly\AssemblyReport.cs" />
+    <Compile Include="PairedEnd\PairedEndDeletionFinderReport.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
