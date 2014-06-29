@@ -169,7 +169,7 @@ namespace MitoDataAssembler
 				Output.WriteLine (OutputLevel.Verbose, "Found read file: {0}", fullFileName);
 				Output.WriteLine (OutputLevel.Verbose, "   File Size           : {0}", Program.FormatMemorySize(refFileLength));
 			}
-
+			//Print environment settings to console.  
             OutputEnvironmentSettings();
             
 			//Assemble

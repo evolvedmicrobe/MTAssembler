@@ -31,7 +31,7 @@ namespace MitoDataAssembler
 				Console.WriteLine ("Running in the Mono runtime");
 		}
             DateTime compTime = RetrieveLinkerTimestamp();
-            Console.WriteLine("Compiled on: " +compTime.ToLongDateString()+" "+compTime.ToLongTimeString());
+			Console.WriteLine("Compiled on: " +compTime.ToLongDateString()+" "+compTime.ToLongTimeString());
 #if !DEBUG
             try
             {
@@ -113,7 +113,7 @@ namespace MitoDataAssembler
 			MTAssembleArguments options = new MTAssembleArguments();
 			CommandLineArguments parser = new CommandLineArguments();
 			AddAssembleParameters(parser);
-			if (args.Length<1 
+			if (args.Length < 1 
 			|| args[0].Equals("Help", StringComparison.InvariantCultureIgnoreCase)
 			|| args[0].Equals("/h", StringComparison.CurrentCultureIgnoreCase)
 			|| args[0].Equals("/help", StringComparison.CurrentCultureIgnoreCase)
@@ -201,6 +201,7 @@ namespace MitoDataAssembler
                 int i = System.BitConverter.ToInt32(b, c_PeHeaderOffset);
                 int secondsSince1970 = System.BitConverter.ToInt32(b, i + c_LinkerTimestampOffset);
                 DateTime dt = new DateTime(1970, 1, 1, 0, 0, 0);
+
                 dt = dt.AddSeconds(secondsSince1970);
                 dt = dt.AddHours(TimeZone.CurrentTimeZone.GetUtcOffset(dt).Hours);
                 return dt;

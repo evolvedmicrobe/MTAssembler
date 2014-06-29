@@ -29,6 +29,29 @@ namespace MitoDataAssembler
 	{
 
 		#region REPORTVALUES
+		/// <summary>
+		/// The diagnostic file output prefix, if set a series of diagnostic files are created.
+		/// </summary>
+		[OutputAttribute]
+		public string DiagnosticFileOutputPrefix = null;
+		[OutputAttribute]
+		public bool SuccessfulAssembly = false;
+		[OutputAttribute]
+		public string BestMatchingHaplotype = "NOTSET";
+		[OutputAttribute]
+		public string SecondBestMatchingHaplotype = "NOTSET";
+		[OutputAttribute]
+		public double BestHaplotypeScore = -1;
+		[OutputAttribute]
+		public double SecondBestHaplotypeScore = -1;
+		[OutputAttribute]
+		public int NumberOfEquallyGoodHaplotypes = -1;
+		[OutputAttribute]
+		public int PolymorphismsMatchingHaplotype = -1;
+		[OutputAttribute]
+		public int PolymorphismsMissingFromHaplotype = -1;
+		[OutputAttribute]
+		public int PolymorphismsMissingFromGenotype = -1;
 		[OutputAttribute]
 		public double PercentNodesPainted;
 		[OutputAttribute]
@@ -54,8 +77,6 @@ namespace MitoDataAssembler
 		[OutputAttribute]
 		public int DecidedAssemblyTotalLength;
 		[OutputAttribute]
-		public bool SuccessfulAssembly = false;
-		[OutputAttribute]
 		public int KmerCutOff;
 		[OutputAttribute]
 		public long ReadCount;
@@ -75,27 +96,7 @@ namespace MitoDataAssembler
 		public int SuccessfulAssemblyLength;
 		[OutputAttribute]
 		public double MinSplitPercentage = -1.0;
-		/// <summary>
-		/// The diagnostic file output prefix, if set a series of diagnostic files are created.
-		/// </summary>
-		[OutputAttribute]
-		public string DiagnosticFileOutputPrefix = null;
-		[OutputAttribute]
-		public string BestMatchingHaplotype = "NOTSET";
-		[OutputAttribute]
-		public string SecondBestMatchingHaplotype = "NOTSET";
-		[OutputAttribute]
-		public double BestHaplotypeScore = -1;
-		[OutputAttribute]
-		public double SecondBestHaplotypeScore = -1;
-		[OutputAttribute]
-		public int NumberOfEquallyGoodHaplotypes = -1;
-		[OutputAttribute]
-		public int PolymorphismsMatchingHaplotype = -1;
-		[OutputAttribute]
-		public int PolymorphismsMissingFromHaplotype = -1;
-		[OutputAttribute]
-		public int PolymorphismsMissingFromGenotype = -1;
+
 		#endregion
 
 		private HaploGrepSharp.NewSearchMethods.HaploTypeReport haplotypeReport;
@@ -244,19 +245,38 @@ namespace MitoDataAssembler
 			SkippedReadsAfterQCCount = Graph.SkippedSequencesCount;
 			ReadCount = Graph.ProcessedSequencesCount;
 
-			if (NodeCountAfterCreation < 10) {
+			if (NodeCountAfterCreation < 100) {
 				return null;
 			}
 
 			// Estimate and set default value for erosion and coverage thresholds
-			this.EstimateDefaultValuesStarted ();
+			//this.EstimateDefaultValuesStarted ();
 			this.EstimateDefaultThresholds ();
-			this.EstimateDefaultValuesEnded ();
+			//this.EstimateDefaultValuesEnded ();
 			int coverageCutOff = this.CalculateCoverageCutoff ();
 			KmerCutOff = coverageCutOff;
 			if (OutputDiagnosticInformation) {       
 				OutputNodeCountHistograms ("PreFiltered", coverageCutOff);
-			}            
+			}          
+
+			//TEMPORARY SECTION TO TRY REMOVING SINGLETONS
+			sw.Reset ();
+			sw.Start ();
+			long originalNodes2 = this.Graph.NodeCount;
+			ThresholdCoverageNodeRemover snr = new ThresholdCoverageNodeRemover (coverageCutOff);
+			snr.RemoveLowCoverageNodes (Graph);
+			PercentNodesRemovedByLowCoverageOrThreshold = originalNodes2 / (double)this.Graph.NodeCount;
+			sw.Stop ();
+			TaskTimeSpanReport (sw.Elapsed);
+			RaiseMessage ("Finished removing nodes with less than " + snr.CoverageCutOff.ToString () + " counts");
+			NodeCountReport ();
+			NodeCountAfterCoveragePurge = Graph.NodeCount;
+			sw.Reset ();
+			sw.Start ();
+			RaiseMessage ("Start removing unconnected nodes");
+
+		
+
 
 			//Step 2.1, Remove nodes that are not connected to the reference genome or are below coverage cutoff
 			sw.Reset ();
@@ -274,13 +294,14 @@ namespace MitoDataAssembler
 			sw.Start ();
 			RaiseMessage ("Start removing unconnected nodes");
 
+			//remove unlinked
 			UnlinkedToReferencePurger remover = new UnlinkedToReferencePurger ();
 			remover.RemoveUnconnectedNodes (Graph, referenceNodes);
 			RaiseMessage ("Finished removing unconnected nodes");
 			this.NodeCountReport ();
 			NodeCountAfterUndangle = Graph.NodeCount;
-			outputVisualization ("PostUnconnectedFilter");			           
-            
+			//outputVisualization ("PostUnconnectedFilter");			           
+
 			// Step 3: Remove dangling links from graph
 			///NIGEL: This also removes the low coverage nodes
 			sw.Reset ();
@@ -292,10 +313,12 @@ namespace MitoDataAssembler
 			this.TaskTimeSpanReport (sw.Elapsed);
 			this.NodeCountReport ();
 			outputVisualization ("PostUndangleFilter");
+
+	
+
 			// Perform dangling link purger step once more.
 			// This is done to remove any links created by redundant paths purger.
 			RaiseMessage (string.Format (CultureInfo.CurrentCulture, "Starting to remove redundant paths", DateTime.Now));
-
 			// Step 4: Remove redundant paths from graph
 			this.RemoveRedundancyStarted ();
 			this.RemoveRedundancy ();
@@ -340,7 +363,8 @@ namespace MitoDataAssembler
 			//Now find deletions
 			this.OutputGraphicAndFindDeletion (attemptedAssembly);            
 			PercentageOfScannedReadsUsed = Graph.GetNodes ().Sum (x => x.KmerCount * KmerLength) / (double)TotalSequencingBP;
-			RaiseMessage("Used a total of " + PercentageOfScannedReadsUsed.ToString ("p") + " scanned reads");
+			RaiseMessage("Used a total of " + PercentageOfScannedReadsUsed.ToString ("p") + " of basepairs in reads for assembly");
+
 
 			// Step 5: Build Contigs - This is essentially independent of deletion finding
 			this.BuildContigsStarted ();
@@ -490,7 +514,6 @@ namespace MitoDataAssembler
 			if (percentKmersSkipped > 95.0) {
 				throw new ArgumentException ("Reference Genome Skipped over 95% of Kmers");
 			}
-			RaiseMessage ("Painted: " + KmersPainted.ToString () + " nodes");
 			double percentHit = KmersPainted / (double)refKmerPositions.Count;
 			RaiseMessage ("A total of " + (100.0 * percentHit).ToString () + "% nodes in the reference were painted");
 			PercentNodesPainted = 100.0 * KmersPainted / (double)totalNodes;
