@@ -165,16 +165,20 @@ namespace MitoDataAssembler
 			parser.Parameter (ArgumentType.Optional, "AllowKmerLengthEstimation", ArgumentValueType.Bool, "a", "Whether to estimate kmer length.");
 			parser.Parameter (ArgumentType.Optional, "ContigCoverageThreshold", ArgumentValueType.Int, "c", "Threshold used for removing low-coverage contigs.");
 			parser.Parameter (ArgumentType.Optional, "Verbose", ArgumentValueType.Bool, "v", "Display verbose logging during processing.");
-			parser.Parameter (ArgumentType.Optional, "MakeDepthOfCoveragePlot", ArgumentValueType.Bool, "dp", "Make depth of coverage plot");
+			parser.Parameter (ArgumentType.Optional, "Skip_DepthOfCoveragePlot", ArgumentValueType.Bool, "skip_dp", "Skip depth of coverage plot");
 			//parser.Parameter (ArgumentType.Required, "ReferenceGenome", ArgumentValueType.String, "ref","Reference Genome File (Fasta");
-			parser.Parameter (ArgumentType.Optional, "ForceKmer", ArgumentValueType.Bool, "fk", "Force specified k-mer to be used without a warning prompt.");
-			parser.Parameter (ArgumentType.Optional, "DiagnosticFilePrefix", ArgumentValueType.String, "o", "Prefix to append to all diagnostic files, which will be output if set");
-			parser.Parameter (ArgumentType.Optional, "ChromosomeName", ArgumentValueType.String, "chr", "Only assemble sequences that align to this chromosome in a BAM File.");
+			parser.Parameter (ArgumentType.Optional, "DiagnosticFilePrefix", ArgumentValueType.String, "o", "Prefix to append to all diagnostic files.");
+			parser.Parameter (ArgumentType.Optional, "ChromosomeName", ArgumentValueType.String, "chr", "Name of mtDNA Chromsome (typicallly rCRS or MT).");
 			parser.Parameter (ArgumentType.Optional, "Skip_Pileup_Calling", ArgumentValueType.Bool, "skip_pileup", "Skip calling SNPs and haplotypes using a columnwise pile-up in addition to the de novo assembly");
 			parser.Parameter (ArgumentType.Optional, "Skip_EM_Frequency_Estimates", ArgumentValueType.Bool, "skip_em", "Estimate SNP frequencies by simple read counts.");
 			parser.Parameter (ArgumentType.Optional, "Skip_Assembly_Step", ArgumentValueType.Bool, "skip_asm", "Skip the de-novo assembly and indel finding step");
 			parser.Parameter (ArgumentType.Optional, "Skip_Peak_Finder", ArgumentValueType.Bool, "skip_pf", "Skip the peak finding step");
 
+            parser.Parameter(ArgumentType.Optional, "MinimumNodeCount", ArgumentValueType.Int, "min_node_count", "Erode graph nodes with coverage <= this value.");
+			parser.Parameter(ArgumentType.Optional, "OutputIntermediateGraphSteps", ArgumentValueType.Bool, "show_graphs", "Output graphs and coverage histograms at all assembly steps.");
+            parser.Parameter(ArgumentType.Optional, "NoContigOutput", ArgumentValueType.Bool, "no_contigs", "Skip output of assembly contigs.");
+
+            
         }
 
         private static DateTime RetrieveLinkerTimestamp()

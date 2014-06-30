@@ -97,7 +97,25 @@ namespace MitoDataAssembler
 		[OutputAttribute]
 		public double MinSplitPercentage = -1.0;
 
+        
 		#endregion
+
+        /// <summary>
+        /// The graph will remove all nodes less than this value for 
+        /// before looking for indels if this value is less than the sqrt
+        /// of median coverage.
+        /// </summary>
+        public int AlternateMinimumNodeCount = 0;
+
+        /// <summary>
+        /// Output histograms of node counts and graphs before the end of the assembly?
+        /// </summary>
+        public bool OutputIntermediateGraphSteps = false;
+
+        /// <summary>
+        /// Should contig output be skipped?
+        /// </summary>
+        public bool NoContigOutput = false;
 
 		private HaploGrepSharp.NewSearchMethods.HaploTypeReport haplotypeReport;
 
@@ -150,8 +168,10 @@ namespace MitoDataAssembler
 		/// </summary>
 		protected override void EstimateDefaultThresholds ()
 		{
+
 			if (this.AllowErosion || this.AllowLowCoverageContigRemoval) {
-				// In case of low coverage data, set default as 2.
+                this.EstimateDefaultValuesStarted ();
+                // In case of low coverage data, set default as 2.
 				// Reference: ABySS Release Notes 1.0.15
 				// Before calculating median, discard thresholds less than 2.
 				List<long> kmerCoverage = this.Graph.GetNodes ().AsParallel ().Aggregate (
@@ -185,11 +205,13 @@ namespace MitoDataAssembler
 					// Erosion threshold is an int, so round it off
 					this.ErosionThreshold = (int)Math.Round (threshold);
 				}
+                this.EstimateDefaultValuesEnded();
+				
 			}
 		}
 
 
-		private int CalculateCoverageCutoff ()
+		private int CalculateSqrtOfMedianCoverageCutoff ()
 		{
 			var counts = Graph.GetNodes ().Where (x => x.IsInReference).Select (y => y.KmerCount).ToList ();
 			counts.Sort ();
@@ -248,39 +270,20 @@ namespace MitoDataAssembler
 			if (NodeCountAfterCreation < 100) {
 				return null;
 			}
-
-			// Estimate and set default value for erosion and coverage thresholds
-			//this.EstimateDefaultValuesStarted ();
-			this.EstimateDefaultThresholds ();
-			//this.EstimateDefaultValuesEnded ();
-			int coverageCutOff = this.CalculateCoverageCutoff ();
-			KmerCutOff = coverageCutOff;
-			if (OutputDiagnosticInformation) {       
-				OutputNodeCountHistograms ("PreFiltered", coverageCutOff);
-			}          
-
-			//TEMPORARY SECTION TO TRY REMOVING SINGLETONS
+            
+			//Step 2.1, Remove nodes are below coverage cutoff
 			sw.Reset ();
 			sw.Start ();
-			long originalNodes2 = this.Graph.NodeCount;
-			ThresholdCoverageNodeRemover snr = new ThresholdCoverageNodeRemover (coverageCutOff);
-			snr.RemoveLowCoverageNodes (Graph);
-			PercentNodesRemovedByLowCoverageOrThreshold = originalNodes2 / (double)this.Graph.NodeCount;
-			sw.Stop ();
-			TaskTimeSpanReport (sw.Elapsed);
-			RaiseMessage ("Finished removing nodes with less than " + snr.CoverageCutOff.ToString () + " counts");
-			NodeCountReport ();
-			NodeCountAfterCoveragePurge = Graph.NodeCount;
-			sw.Reset ();
-			sw.Start ();
-			RaiseMessage ("Start removing unconnected nodes");
-
-		
-
-
-			//Step 2.1, Remove nodes that are not connected to the reference genome or are below coverage cutoff
-			sw.Reset ();
-			sw.Start ();
+            // Estimate and set default value for erosion and coverage thresholds
+            this.EstimateDefaultThresholds();
+            int sqrtCoverageCutOff = this.CalculateSqrtOfMedianCoverageCutoff();
+            var coverageCutOff = Math.Min(sqrtCoverageCutOff, AlternateMinimumNodeCount);
+            //var coverageCutOff = sqrtCoverageCutOff;
+            KmerCutOff = coverageCutOff;
+            if (OutputIntermediateGraphSteps)
+            {
+                OutputNodeCountHistograms("PreFiltered", coverageCutOff);
+            }          
 			long originalNodes = this.Graph.NodeCount;
 			ThresholdCoverageNodeRemover snr = new ThresholdCoverageNodeRemover (coverageCutOff);
 			snr.RemoveLowCoverageNodes (Graph);
@@ -294,7 +297,7 @@ namespace MitoDataAssembler
 			sw.Start ();
 			RaiseMessage ("Start removing unconnected nodes");
 
-			//remove unlinked
+            //Step 2.2 Remove nodes that are not connected to the reference genome 
 			UnlinkedToReferencePurger remover = new UnlinkedToReferencePurger ();
 			remover.RemoveUnconnectedNodes (Graph, referenceNodes);
 			RaiseMessage ("Finished removing unconnected nodes");
@@ -302,7 +305,7 @@ namespace MitoDataAssembler
 			NodeCountAfterUndangle = Graph.NodeCount;
 			//outputVisualization ("PostUnconnectedFilter");			           
 
-			// Step 3: Remove dangling links from graph
+			// Step 2.3: Remove dangling links from graph
 			///NIGEL: This also removes the low coverage nodes
 			sw.Reset ();
 			sw.Restart ();
@@ -312,9 +315,11 @@ namespace MitoDataAssembler
 			sw.Stop ();
 			this.TaskTimeSpanReport (sw.Elapsed);
 			this.NodeCountReport ();
-			outputVisualization ("PostUndangleFilter");
-
-	
+            if (OutputIntermediateGraphSteps)
+            {
+                outputVisualization("PostUndangleFilter");
+            }
+            
 
 			// Perform dangling link purger step once more.
 			// This is done to remove any links created by redundant paths purger.
@@ -333,11 +338,14 @@ namespace MitoDataAssembler
 			this.RemoveRedundancyEnded ();
 			this.NodeCountReport ();
 			NodeCountAfterRedundancyRemoval = Graph.NodeCount;
-			FinalMegaNodeCount = outputVisualization ("Post-redundant-path-removal");
-
+            if (OutputIntermediateGraphSteps)
+            {
+                outputVisualization("Post-redundant-path-removal");
+            }
 			//Now attempt to assemble and find deletions
 			var attemptedAssembly = new MitochondrialAssembly (Graph, DiagnosticFileOutputPrefix);
-			SuccessfulAssembly = attemptedAssembly.SuccessfulAssembly;
+            FinalMegaNodeCount = attemptedAssembly.AllNodesInGraph.Count;
+            SuccessfulAssembly = attemptedAssembly.SuccessfulAssembly;
 			if (SuccessfulAssembly) {
 				SuccessfulAssemblyLength = attemptedAssembly.AssemblyLength;
 				MinSplitPercentage = attemptedAssembly.MinimumGreedySplit;
@@ -360,6 +368,7 @@ namespace MitoDataAssembler
 			} else {
 				RaiseMessage ("Greedy assembly skipped as assembly failed.");               
 			}
+
 			//Now find deletions
 			this.OutputGraphicAndFindDeletion (attemptedAssembly);            
 			PercentageOfScannedReadsUsed = Graph.GetNodes ().Sum (x => x.KmerCount * KmerLength) / (double)TotalSequencingBP;
@@ -367,11 +376,13 @@ namespace MitoDataAssembler
 
 
 			// Step 5: Build Contigs - This is essentially independent of deletion finding
+
 			this.BuildContigsStarted ();
 			List<ISequence> contigSequences = this.BuildContigs ().ToList ();
 			contigSequences.ForEach (x => ReferenceGenome.AssignContigToMTDNA (x));
 			contigSequences.Sort ((x, y) => -x.Count.CompareTo (y.Count));
 			this.BuildContigsEnded ();
+
 			PadenaAssembly result = new PadenaAssembly ();
 			result.AddContigs (contigSequences);
 			long totalLength = contigSequences.Sum (x => x.Count);
@@ -391,7 +402,10 @@ namespace MitoDataAssembler
 			if (attemptedAssembly.SuccessfulAssembly) {
 				MitochondrialAssemblyPlotMaker plotMaker = new MitochondrialAssemblyPlotMaker (attemptedAssembly);
 				#if !NO_R
-				plotMaker.Render (rInt, DiagnosticFileOutputPrefix + "_AssemblyView.pdf");
+                if (OutputIntermediateGraphSteps)
+                {
+                    plotMaker.Render(rInt, DiagnosticFileOutputPrefix + "_AssemblyView.pdf");
+                }
 				#endif
 				DecidedAssemblyTotalLength = plotMaker.Assembly.AssemblyLength;
 

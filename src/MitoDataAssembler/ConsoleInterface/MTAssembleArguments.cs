@@ -42,6 +42,18 @@ namespace MitoDataAssembler
 		/// Bool to do erosion or not.
 		/// </summary>
 		public bool AllowErosion = false;
+
+        /// <summary>
+        /// The minimum number of times a k-mer must appear before it is considered for the 
+        /// assembly and indel finding.  (or the Sqrt of the median coverage).
+        /// </summary>
+        public int MinimumNodeCount = 11;
+
+        /// <summary>
+        /// Should contig output be skipped?
+        /// </summary>
+        public bool NoContigOutput = false;
+
 		/// <summary>
 		/// Whether to estimate kmer length.
 		/// </summary>
@@ -50,10 +62,7 @@ namespace MitoDataAssembler
 		/// Threshold used for removing low-coverage contigs.
 		/// </summary>
 		public int ContigCoverageThreshold = -1;
-		/// <summary>
-		/// Force specified kmer (no warning prompt)
-		/// </summary>
-		public bool ForceKmer = false;
+
 		/// <summary>
 		/// Help.
 		/// </summary>
@@ -99,7 +108,13 @@ namespace MitoDataAssembler
         /// <summary>
         /// Make a depth of coverage plot.
         /// </summary>
-        public bool MakeDepthOfCoveragePlot = true;
+        public bool Skip_DepthOfCoveragePlot = false;
+
+
+        /// <summary>
+        /// Output histograms of node counts and graphs before the end of the assembly?
+        /// </summary>
+        public bool OutputIntermediateGraphSteps = false;
 
 		/// <summary>
 		/// Display verbose logging during processing.
@@ -206,32 +221,38 @@ namespace MitoDataAssembler
 				return new AssemblyReport ();
 			}
 
-            Output.WriteLine(OutputLevel.Verbose, "\nAssemblying mtDNA and obtaining depth of coverage (if asked).");
-			MitoPaintedAssembler assembler = new MitoPaintedAssembler ();
-			DepthOfCoverageGraphMaker coveragePlotter = MakeDepthOfCoveragePlot ? 
-														new DepthOfCoverageGraphMaker() : null;
+            DepthOfCoverageGraphMaker coveragePlotter = !Skip_DepthOfCoveragePlot ?
+                                                        new DepthOfCoverageGraphMaker() : null;
+
+            IEnumerable<ISequence> reads = this.createSequenceProducer(this.Filename, coveragePlotter);
+            TimeSpan algorithmSpan = new TimeSpan();
+            Stopwatch runAlgorithm = new Stopwatch();
 		
-			IEnumerable<ISequence> reads = this.createSequenceProducer (this.Filename,coveragePlotter);
 
-			TimeSpan algorithmSpan = new TimeSpan ();
-			Stopwatch runAlgorithm = new Stopwatch ();
-
-			//Step 1: Initialize assembler.
-			assembler.DiagnosticFileOutputPrefix = DiagnosticFilePrefix;				
-			MitoPaintedAssembler.StatusChanged += this.StatusChanged;
-			assembler.AllowErosion = this.AllowErosion;
-			assembler.AllowKmerLengthEstimation = this.AllowKmerLengthEstimation;
-			if (ContigCoverageThreshold != -1) {
-				assembler.AllowLowCoverageContigRemoval = true;
-				assembler.ContigCoverageThreshold = ContigCoverageThreshold;
-			}
-			assembler.DanglingLinksThreshold = this.DangleThreshold;
-			assembler.ErosionThreshold = this.ErosionThreshold;
-			if (!this.AllowKmerLengthEstimation) {
-				assembler.KmerLength = this.KmerLength;
-			}
-			assembler.RedundantPathLengthThreshold = this.RedundantPathLengthThreshold;
-
+            //Step 1: Initialize assembler.	
+            Output.WriteLine(OutputLevel.Verbose, "\nAssemblying mtDNA and obtaining depth of coverage (if asked).");
+            MitoPaintedAssembler.StatusChanged += this.StatusChanged;
+            MitoPaintedAssembler assembler = new MitoPaintedAssembler() { 
+                DiagnosticFileOutputPrefix = DiagnosticFilePrefix,
+                AllowErosion = AllowErosion,
+                AlternateMinimumNodeCount = MinimumNodeCount,
+                DanglingLinksThreshold = DangleThreshold,
+                ErosionThreshold = ErosionThreshold,
+                AllowKmerLengthEstimation = AllowKmerLengthEstimation,
+                RedundantPathLengthThreshold = RedundantPathLengthThreshold,
+                OutputIntermediateGraphSteps = OutputIntermediateGraphSteps,
+                NoContigOutput = NoContigOutput
+            };
+            if (ContigCoverageThreshold != -1)
+            {
+                assembler.AllowLowCoverageContigRemoval = true;
+                assembler.ContigCoverageThreshold = ContigCoverageThreshold;
+            }
+            if (!this.AllowKmerLengthEstimation)
+            {
+                assembler.KmerLength = this.KmerLength;
+            }
+            
 			//Step 2: Assemble
 			runAlgorithm.Restart ();
 			var assembly = assembler.Assemble (reads);
@@ -243,9 +264,12 @@ namespace MitoDataAssembler
 			}
 
 			//Step 3: Report
-			runAlgorithm.Restart ();
-			this.writeContigs (assembly);
-			runAlgorithm.Stop ();
+            if (!NoContigOutput)
+            {
+                runAlgorithm.Restart();
+                this.writeContigs(assembly);
+                runAlgorithm.Stop();
+            }
 			algorithmSpan = algorithmSpan.Add (runAlgorithm.Elapsed);
 
 			if (this.Verbose) {
@@ -303,9 +327,6 @@ namespace MitoDataAssembler
 			var reads = this.createSequenceProducer (this.Filename);
 			Bio.Variant.ContinuousGenotypeCaller.DO_EM_ESTIMATION = !Skip_EM_Frequency_Estimates;
 			var res = SNPCaller.CallSNPs (reads );
-			if (res.Result == AlgorithmResult.Success) {
-				res.OutputHaploReport (DiagnosticFilePrefix);
-			}
 			time.Stop ();
 			if (this.Verbose) {
 				Output.WriteLine (OutputLevel.Verbose, "\tTime Elapsed: {0}", time.Elapsed);
@@ -394,9 +415,9 @@ namespace MitoDataAssembler
 		/// <returns>Enumerable set of ISequence elements</returns>
 		private IEnumerable<CompactSAMSequence> createSequenceProducer (string fileName, DepthOfCoverageGraphMaker coveragePlotter = null)
 		{
-            if (MakeDepthOfCoveragePlot && !Helper.IsBAM(fileName))
+            if (!Skip_DepthOfCoveragePlot && !Helper.IsBAM(fileName))
             {
-                MakeDepthOfCoveragePlot = false;
+                Skip_DepthOfCoveragePlot = true;
                 Output.WriteLine(OutputLevel.Error, "Warning: No coverage plots can be made without an input BAM File");
             }
 

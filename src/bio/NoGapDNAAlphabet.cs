@@ -19,20 +19,8 @@ namespace Bio
     /// Symbol - Name
     /// A - Adenine
     /// C - Cytosine
-    /// M - A or C
     /// G - Guanine
-    /// R - G or A
-    /// S - G or C
-    /// V - G or V or A
     /// T - Thymine
-    /// W - A or T
-    /// Y - T or C
-    /// H - A or C or T
-    /// K - G or T
-    /// D - G or A or T
-    /// B - G or T or C
-    /// - - Gap
-    /// N - A or G or T or C.
     /// </para>
     /// </summary>
     public class NoGapDnaAlphabet : IAlphabet
