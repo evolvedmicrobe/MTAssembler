@@ -66,6 +66,8 @@ namespace MitoDataAssembler
                 contigSequence = new List<byte>(LargeDeletionFinder.graph.GetNodeSequence(start).GetReverseComplementedSequence());
             }            
         }
+
+
         /// <summary>
         /// Combines two assemblies derived from going different directions from the same start node.
         /// </summary>
@@ -168,8 +170,8 @@ namespace MitoDataAssembler
                 value = value2;
             }
             return value;
-
         }
+
         /// <summary>
         /// Follow a chain along a path link a bifurcation or no additional nodes appear.   
         /// </summary>

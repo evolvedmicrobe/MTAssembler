@@ -144,7 +144,7 @@ namespace Bio.Algorithms.Assembly.Padena
                                 lock (paths)
                                 {
 								    var seq=_graph.GetNodeSequence(node);
-								seq.ID=" Avg K-mer Coverage  = "+node.KmerCount.ToString();
+								    seq.ID=" Avg K-mer Coverage  = "+node.KmerCount.ToString();
                                     paths.Add(seq);
                                 }
                             }
@@ -159,12 +159,12 @@ namespace Bio.Algorithms.Assembly.Padena
                     }
                     else if (validLeftExtensionsCount == 1 && validRightExtensionsCount == 0)
                     {
-                        TraceSimplePath(paths, node, false, createContigSequences,true);
+                        TraceSimplePath(paths, node, false, createContigSequences, true);
                        
                     }
                     else if (validRightExtensionsCount == 1 && validLeftExtensionsCount == 0)
                     {
-                        TraceSimplePath(paths, node, true, createContigSequences,true);
+                        TraceSimplePath(paths, node, true, createContigSequences, true);
                     }
                 });
 			//All paths starting from ends have now been found, however graph nodes entirely enclosed in a 

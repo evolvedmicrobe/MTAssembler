@@ -92,6 +92,7 @@
     <Compile Include="Assembly\AllAssemblyFinder.cs" />
     <Compile Include="DeletionReport.cs" />
     <Compile Include="Assembly\MitochondrialAssembly.cs" />
+    <Compile Include="IndelCaller\ContinuousGenotypeIndelCaller.cs" />
     <Compile Include="PileUpCaller\SNPCaller.cs" />
     <Compile Include="PileUpCaller\SNPCallerReport.cs" />
     <Compile Include="Utils\DepthOfCoverageGraphMaker.cs" />

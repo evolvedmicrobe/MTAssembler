@@ -174,7 +174,7 @@ namespace Bio.Algorithms.Assembly.Graph
 #endif
                         // if the sequence alphabet is not of type DNA then ignore it.
                         bool skipSequence = false;
-                        if (sequence.Alphabet != Alphabets.NoGapDNA || sequence.Count<_kmerLength)
+                        if (sequence.Alphabet != Alphabets.NoGapDNA || sequence.Count < _kmerLength)
                         {
                             skipSequence = true;
 #if FALSE
@@ -231,6 +231,7 @@ namespace Bio.Algorithms.Assembly.Graph
                     kmerDataCollection.CompleteAdding();
                 }
             });
+
             if(true)// (!Bio.CrossPlatform.Environment.RunningInMono)
             {
                 // Consume k-mers by adding them to binary tree structure as nodes

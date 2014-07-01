@@ -18,6 +18,7 @@ using MitoDataAssembler.Visualization;
 using System.IO;
 using System.Reflection;
 using HaploGrepSharp;
+using MitoDataAssembler.IndelCaller;
 
 namespace MitoDataAssembler
 {
@@ -319,17 +320,19 @@ namespace MitoDataAssembler
             {
                 outputVisualization("PostUndangleFilter");
             }
-            
+
+
+            CallIndels();
 
 			// Perform dangling link purger step once more.
 			// This is done to remove any links created by redundant paths purger.
 			RaiseMessage (string.Format (CultureInfo.CurrentCulture, "Starting to remove redundant paths", DateTime.Now));
+
 			// Step 4: Remove redundant paths from graph
 			this.RemoveRedundancyStarted ();
 			this.RemoveRedundancy ();
 			this.UnDangleGraph ();
-			RaiseMessage (string.Format (CultureInfo.CurrentCulture, "Finished removing redundant paths", DateTime.Now));
-            
+			RaiseMessage (string.Format (CultureInfo.CurrentCulture, "Finished removing redundant paths", DateTime.Now));            
 
 			//STEP 4.2 Rerun the unlinked to reference purger after graph is cleaned
 			ChangeNodeVisitFlag (false);
@@ -554,5 +557,14 @@ namespace MitoDataAssembler
 			// Step 5.2: Build Contigs
 			return this.ContigBuilder.Build (this.Graph);
 		}
+
+        protected void CallIndels()
+        {
+            DeBruijnPathList redundantNodes;
+            ContinuousGenotypeIndelCaller indelCaller = new ContinuousGenotypeIndelCaller(400);
+                redundantNodes = indelCaller.DetectIndels(this.Graph);
+               // this.RedundantPathsPurger.RemoveErroneousNodes(this.Graph, redundantNodes);
+
+        }
 	}
 }

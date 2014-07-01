@@ -16,9 +16,9 @@ namespace Bio.Algorithms.Assembly.Graph
         /// <summary>
         /// Initializes a new instance of the DeBruijnPathList class.
         /// </summary>
-        public DeBruijnPathList()
+        public DeBruijnPathList(int initCapacity = 2)
         {
-            this.paths = new List<DeBruijnPath>();
+            this.paths = new List<DeBruijnPath>(initCapacity);
         }
 
         /// <summary>
@@ -52,5 +52,15 @@ namespace Bio.Algorithms.Assembly.Graph
         {
             this.paths.AddRange(pathsList);
         }
+
+        /// <summary>
+        /// Add the given list of paths to local variable.
+        /// </summary>
+        /// <param name="pathsList">List of paths to add.</param>
+        public void AddPath(DeBruijnPath path)
+        {
+            this.paths.Add(path);
+        }
+
     }
 }
