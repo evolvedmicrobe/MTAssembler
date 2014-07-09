@@ -8,7 +8,7 @@ namespace Bio.Algorithms.Assembly.Padena
     /// Structure that stores list of nodes in path, 
     /// along with path orientation.
     /// </summary>
-    public class PathWithOrientation
+	public class PathWithOrientation
     {
         /// <summary>
         /// List of nodes in path.
@@ -66,5 +66,6 @@ namespace Bio.Algorithms.Assembly.Padena
         /// with respect to the start node of the path.
         /// </summary>
         public bool IsSameOrientation { get; set; }
+
     }
 }

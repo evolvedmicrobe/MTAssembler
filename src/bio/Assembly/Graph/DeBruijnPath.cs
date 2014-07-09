@@ -106,7 +106,7 @@ namespace Bio.Algorithms.Assembly.Graph
                     // if we aren't done yet, decide which way we go next.
                     if (i < (PathNodes.Count - 1))
                     {
-                        byte nextSymbol = GetNextSymbol(next_node, kmerLength, grab_last_base);
+                        byte nextSymbol = GetNextSymbol(next_node, kmerLength, !grab_last_base);
                         sequence.Add(nextSymbol);
                         goingLeft = !grab_last_base;
                         var nextNodes = goingLeft ? next_node.GetLeftExtensionNodesWithOrientation() :
@@ -122,14 +122,13 @@ namespace Bio.Algorithms.Assembly.Graph
                     {
                         //add everything for the last base
                         var bytes = grab_last_base ? next_node.GetOriginalSymbols(kmerLength) : next_node.GetReverseComplementOfOriginalSymbols(kmerLength);
-
                     }
                 }
-                return new Sequence(Alphabets.NoGapDNA, sequence.ToArray());                
+                return new Sequence(Alphabets.DNA, sequence.ToArray());                
             }
         }
 
-        /// <summary>
+	    /// <summary>
         /// This gets the next symbol from a node while forming chains.  This can be made a lot more efficient if it turns in to a bottleneck.
         /// all chains are extended from either the first or last base present in the node, and this base is either forward
         /// or reverse complimented, this method reflects this.

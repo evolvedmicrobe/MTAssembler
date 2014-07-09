@@ -93,6 +93,7 @@
     <Compile Include="DeletionReport.cs" />
     <Compile Include="Assembly\MitochondrialAssembly.cs" />
     <Compile Include="IndelCaller\ContinuousGenotypeIndelCaller.cs" />
+    <Compile Include="IndelCaller\IndelVariant.cs" />
     <Compile Include="PileUpCaller\SNPCaller.cs" />
     <Compile Include="PileUpCaller\SNPCallerReport.cs" />
     <Compile Include="Utils\DepthOfCoverageGraphMaker.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="Utils\OutputColumn.cs" />
     <Compile Include="Assembly\AssemblyReport.cs" />
     <Compile Include="PairedEnd\PairedEndDeletionFinderReport.cs" />
+    <Compile Include="IndelCaller\IndelCalls.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -84,6 +84,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ReferenceGenome.cs" />
+    <Compile Include="SectionOfReferenceGenome.cs" />
     <Compile Include="Tests\TestPhyloTreeWithGenbank.cs" />
     <Compile Include="TestSample.cs" />
     <Compile Include="TreeUtilities\PhyloTreeNodev2.cs" />

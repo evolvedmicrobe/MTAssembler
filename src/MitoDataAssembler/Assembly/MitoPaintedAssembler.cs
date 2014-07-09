@@ -522,14 +522,18 @@ namespace MitoDataAssembler
 					KmersSkipped += locations.Count;
 				}
 			}
-			StreamWriter sw = new StreamWriter ("OutMissing.csv");
-			foreach (int i in missingLocs) {
-				sw.WriteLine (i.ToString ());
-			}
-			sw.Close ();
+            if (OutputDiagnosticInformation)
+            {
+                StreamWriter sw = new StreamWriter("OutMissing.csv");
+                foreach (int i in missingLocs)
+                {
+                    sw.WriteLine(i.ToString());
+                }
+                sw.Close();
+            }
 			double percentKmersSkipped = 100.0 * (KmersSkipped) / ((double)(KmersPainted + KmersSkipped));
 			if (percentKmersSkipped > 95.0) {
-				throw new ArgumentException ("Reference Genome Skipped over 95% of Kmers");
+				throw new InvalidProgramException ("Reference Genome Skipped over 95% of Kmers");
 			}
 			double percentHit = KmersPainted / (double)refKmerPositions.Count;
 			RaiseMessage ("A total of " + (100.0 * percentHit).ToString () + "% nodes in the reference were painted");
@@ -560,9 +564,9 @@ namespace MitoDataAssembler
 
         protected void CallIndels()
         {
-            DeBruijnPathList redundantNodes;
+            //DeBruijnPathList redundantNodes;
             ContinuousGenotypeIndelCaller indelCaller = new ContinuousGenotypeIndelCaller(400);
-                redundantNodes = indelCaller.DetectIndels(this.Graph);
+            var redundantNodes = indelCaller.CallIndels(this.Graph);
                // this.RedundantPathsPurger.RemoveErroneousNodes(this.Graph, redundantNodes);
 
         }

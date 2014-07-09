@@ -49,8 +49,7 @@ namespace MitoDataAssembler.Visualization
                 else
                 {
                     var megaNode = new MetaNode(node, _graph);
-                    MetaNodes.Add(megaNode);
-                    
+                    MetaNodes.Add(megaNode);                    
                 }
             }
         }
