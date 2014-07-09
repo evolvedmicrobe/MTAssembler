@@ -219,6 +219,15 @@ namespace Bio.Algorithms.Assembly.Padena
                             debruijnPaths.Add(link);
                         }
                     }
+					else if(node.ContainsSelfReference)
+					{
+						//does it have not self references?
+						if (node.ExtensionsCount == 1)
+						{
+							debruijnPaths.Add(new DeBruijnPath(node));
+						}
+
+					}
                 }
             );
             danglingNodesList = new DeBruijnPathList(debruijnPaths);
@@ -354,13 +363,19 @@ namespace Bio.Algorithms.Assembly.Padena
                 {
                     sameDirectionExtensionsCount = node.LeftExtensionNodesCount;
                     oppDirectionExtensionsCount = node.RightExtensionNodesCount;
-                    sameDirectionExtensions = node.GetLeftExtensionNodesWithOrientation();
+					//Avoid self references here and below
+					//TODO: We should force the k-mer to be large enough that there is no
+					sameDirectionExtensions = node.GetLeftExtensionNodesWithOrientation ().
+						Where (x => x.Key != node).
+						ToDictionary( x=> x.Key, y=> y.Value);
                 }
                 else
                 {
                     sameDirectionExtensionsCount = node.RightExtensionNodesCount;
                     oppDirectionExtensionsCount = node.LeftExtensionNodesCount;
-                    sameDirectionExtensions = node.GetRightExtensionNodesWithOrientation();
+					sameDirectionExtensions = node.GetRightExtensionNodesWithOrientation ().
+						Where (x => x.Key != node).
+						ToDictionary( x=> x.Key, y=> y.Value);
                 }
 
                 if (sameDirectionExtensionsCount == 0)
