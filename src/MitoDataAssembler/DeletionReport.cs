@@ -126,6 +126,8 @@ namespace MitoDataAssembler
                 Assembly.ReversePath();
                 movingUp=true;
             }
+			Assembly.Finalize ();
+			var resser = HaploGrepSharp.ReferenceGenome.GetDeltaAlignments (Assembly.Sequence).ToList();
             //Every node should be connected to a reference node, therefore all paths should be to.
             for(int i=0;i<Assembly.constituentNodes.Count;i++)
             {
@@ -139,7 +141,7 @@ namespace MitoDataAssembler
                         int deltaNodes=i-indexOfNodeWithLastKnownPosition.Value;
                         int delta=cur.ReferenceGenomePosition-previous.ReferenceGenomePosition;
                         //TODO: Very ad-hoc values here
-                        if(previous.ReferenceGenomePosition>15000 && currentPos<50)
+                        if(previous.ReferenceGenomePosition>16000 && currentPos<50)
                         {delta=MitoDataAssembler.Visualization.MetaNode.AssemblyLength-indexOfNodeWithLastKnownPosition.Value + currentPos;}
                         if (delta != deltaNodes)
                         {

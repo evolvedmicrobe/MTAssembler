@@ -110,10 +110,7 @@ namespace Bio.Algorithms.Assembly.Padena
         /// <param name="nodesList">Path nodes to be deleted.</param>
         public void RemoveErroneousNodes(DeBruijnGraph deBruijnGraph, DeBruijnPathList nodesList)
         {
-            if (this.graph == null)
-            {
-                throw new ArgumentNullException("deBruijnGraph");
-            }
+       
 
             DeBruijnGraph.ValidateGraph(deBruijnGraph);
 

@@ -19,6 +19,7 @@ using System.IO;
 using System.Reflection;
 using HaploGrepSharp;
 using MitoDataAssembler.IndelCaller;
+using Bio.Variant;
 
 namespace MitoDataAssembler
 {
@@ -100,6 +101,11 @@ namespace MitoDataAssembler
 
         
 		#endregion
+
+        /// <summary>
+        /// How far should we go looking for indels?
+        /// </summary>
+        public int MaxIndelPath = 150;
 
         /// <summary>
         /// The graph will remove all nodes less than this value for 
@@ -322,17 +328,26 @@ namespace MitoDataAssembler
             }
 
 
-            CallIndels();
-
-			// Perform dangling link purger step once more.
-			// This is done to remove any links created by redundant paths purger.
+            // Step 4: Remove redundant SNP and indel paths from graph
 			RaiseMessage (string.Format (CultureInfo.CurrentCulture, "Starting to remove redundant paths", DateTime.Now));
-
-			// Step 4: Remove redundant paths from graph
-			this.RemoveRedundancyStarted ();
+            this.RemoveRedundancyStarted ();
+            RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Starting to remove SNPs", DateTime.Now));
 			this.RemoveRedundancy ();
-			this.UnDangleGraph ();
-			RaiseMessage (string.Format (CultureInfo.CurrentCulture, "Finished removing redundant paths", DateTime.Now));            
+            RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Finished  removing SNPs", DateTime.Now));
+            this.NodeCountReport();
+            //Now remove redundant indel paths as well
+            //TODO: For historic reasons this is largely similar to the snp remover, which isn't so great...
+            RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Starting to call INDELs", DateTime.Now));
+            var indels = CallAndRemoveIndels();
+            RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Finished calling and removing small INDELs paths", DateTime.Now));
+            this.NodeCountReport();
+            // Perform dangling link purger step once more.
+            // This is done to remove any links created by redundant paths purger.
+            this.UnDangleGraph ();
+			RaiseMessage (string.Format (CultureInfo.CurrentCulture, "Finished removing all redundant paths", DateTime.Now));
+            this.NodeCountReport();
+
+
 
 			//STEP 4.2 Rerun the unlinked to reference purger after graph is cleaned
 			ChangeNodeVisitFlag (false);
@@ -562,13 +577,16 @@ namespace MitoDataAssembler
 			return this.ContigBuilder.Build (this.Graph);
 		}
 
-        protected void CallIndels()
+        /// <summary>
+        /// Calls indels up to a certain depth and removes redundant paths except those with the highest k-mer coverage.
+        /// </summary>
+        /// <returns></returns>
+        protected List<ContinuousFrequencyIndelGenotype> CallAndRemoveIndels()
         {
             //DeBruijnPathList redundantNodes;
-            ContinuousGenotypeIndelCaller indelCaller = new ContinuousGenotypeIndelCaller(400);
-            var redundantNodes = indelCaller.CallIndels(this.Graph);
-               // this.RedundantPathsPurger.RemoveErroneousNodes(this.Graph, redundantNodes);
-
+            ContinuousGenotypeIndelCaller indelCaller = new ContinuousGenotypeIndelCaller(MaxIndelPath);
+            return indelCaller.CallAndRemoveIndels(this.Graph);
+            
         }
 	}
 }

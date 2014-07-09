@@ -27,11 +27,11 @@ namespace MitoDataAssembler
 		get { return "Removes nodes thar are not connected to a kmer from the reference genome along any path."; }
 	}
 
-				/// <summary>
+		/// <summary>
 				/// Delete nodes marked for erosion. Update adjacent nodes to update their extension tables.
 				/// </summary>
 				/// <param name="graph">De Bruijn Graph.</param>
-	public void RemoveUnconnectedNodes(DeBruijnGraph graph, IEnumerable<DeBruijnNode> referenceNodes)
+	    public void RemoveUnconnectedNodes(DeBruijnGraph graph, IEnumerable<DeBruijnNode> referenceNodes)
 	{
 		//Basic strategy here, start at all reference nodes, go find everything that isn't in there
 		//and remove it.
@@ -67,7 +67,7 @@ namespace MitoDataAssembler
 		/// is not so big this leads to an OOM exception.
 		/// </summary>
 		/// <param name="startNode">Start node.</param>
-	private void visitAllConnectedNodes( DeBruijnNode startNode)
+    	private void visitAllConnectedNodes( DeBruijnNode startNode)
 	{
 			Stack<DeBruijnNode> toProcess = new Stack<DeBruijnNode> (16000);
 			toProcess.Push(startNode);
@@ -85,7 +85,5 @@ namespace MitoDataAssembler
 			}while(toProcess.Count>0);		
 
 		}
-	
-
 	}
 }
