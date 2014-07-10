@@ -56,7 +56,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
-    <Commandlineparameters>/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/data/sortedExomeDemoData.bam -v  -o:test_res</Commandlineparameters>
+    <Commandlineparameters>/Users/ndelaney/Documents/SkyDrive/Software/MTAssembler/data/HL1095_5Perc.bam -v  -k:21 -o:HL_1095 -show_graphs</Commandlineparameters>
     <DebugType>full</DebugType>
     <DebugSymbols>true</DebugSymbols>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -90,7 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assembly\AllAssemblyFinder.cs" />
-    <Compile Include="DeletionReport.cs" />
+    <Compile Include="Assembly\DeletionAnalysis.cs" />
     <Compile Include="Assembly\MitochondrialAssembly.cs" />
     <Compile Include="IndelCaller\ContinuousGenotypeIndelCaller.cs" />
     <Compile Include="IndelCaller\IndelVariant.cs" />
@@ -102,7 +102,6 @@
     <Compile Include="ReferenceGenome.cs" />
     <Compile Include="R\RInterfaceException.cs" />
     <Compile Include="Assembly\SingletonNodeRemover.cs" />
-    <Compile Include="ExportClasses.cs" />
     <Compile Include="Assembly\LargeDeletionFinder.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Assembly\PossibleAssembly.cs" />

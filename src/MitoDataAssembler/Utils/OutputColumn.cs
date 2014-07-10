@@ -9,17 +9,17 @@ using System.Diagnostics;
 
 namespace MitoDataAssembler
 {
-	public sealed class OutputColumn
+	public sealed class OutputColumn<T>
 	{
 		public readonly string Name;
-		public readonly Func<DeletionReport.UnAccountedForSpan, object> outFunc;
-		public OutputColumn(string name, Func<DeletionReport.UnAccountedForSpan, object> outputFunction)
+		public readonly Func<T, object> outFunc;
+		public OutputColumn(string name, Func<T, object> outputFunction)
 		{
 			this.Name = name;
 			this.outFunc = outputFunction;
 		}
 
-		public static string SafeGet(Func<DeletionReport.UnAccountedForSpan, object> func, DeletionReport.UnAccountedForSpan GC)
+		public static string SafeGet(Func<T, object> func, T GC)
 		{
 			try
 			{

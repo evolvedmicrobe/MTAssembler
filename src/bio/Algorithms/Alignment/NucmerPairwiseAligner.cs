@@ -508,7 +508,7 @@ namespace Bio.Algorithms.Alignment
         /// </summary>
         /// <param name="alignments">List of delta alignments.</param>
         /// <returns>List of Sequence alignment.</returns>
-        private static IList<PairwiseAlignedSequence> ConvertDeltaToAlignment(
+        public static IList<PairwiseAlignedSequence> ConvertDeltaToAlignment(
                 IEnumerable<DeltaAlignment> alignments)
         {
             if (alignments == null)

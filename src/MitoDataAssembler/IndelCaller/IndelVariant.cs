@@ -11,7 +11,5 @@ namespace MitoDataAssembler.IndelCaller
         public int ReferencePosition;
         public List<string> AltAlleles;
         public List<IndelPathCollection.IndelData> OriginalPaths;
-
-
     }
 }

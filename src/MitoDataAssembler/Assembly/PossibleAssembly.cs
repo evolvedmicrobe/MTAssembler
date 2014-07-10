@@ -52,8 +52,7 @@ namespace MitoDataAssembler
 
         const int NOTSETFLAG = -999;
         private int startGenomePosition = NOTSETFLAG;
-        
-        int referenceGenomeLength;
+
         public PossibleAssembly(DeBruijnNode start, bool startGoingRight)
         {
             this.constituentNodes.Add(start);
@@ -66,7 +65,6 @@ namespace MitoDataAssembler
                 contigSequence = new List<byte>(LargeDeletionFinder.graph.GetNodeSequence(start).GetReverseComplementedSequence());
             }            
         }
-
 
         /// <summary>
         /// Combines two assemblies derived from going different directions from the same start node.
@@ -201,32 +199,7 @@ namespace MitoDataAssembler
             constituentNodes.Add(newNode);
             contigSequence.Add(symbolFromNode);
         }
-        /// <summary>
-        /// Calculates distance between first and last node, not respecting orientation
-        /// </summary>
-        /// <returns>Distance, or null if last node not painted</returns>
-        public int? CalculateDistance()
-        {
-            if (constituentNodes.Count < 2 || !constituentNodes[constituentNodes.Count - 1].IsInReference)
-            {
-                return null;
-            }
-            else
-            {
-                //Two distances because of circle
-                int right = constituentNodes[constituentNodes.Count - 1].ReferenceGenomePosition;
-                int left = startGenomePosition;
-                if (left > right)
-                {
-                    left = right;
-                    right = startGenomePosition;
-                }
-                int rightLength = (referenceGenomeLength - right) + left;
-                int leftLength = right - left;
-                //report minimum distance
-                return rightLength > leftLength ? leftLength : rightLength;
-            }
-        }
+      
         public PossibleAssembly()
         {
             constituentNodes=new List<DeBruijnNode>();
@@ -261,7 +234,7 @@ namespace MitoDataAssembler
         /// <summary>
         /// Orient this sequence to the reference, give its MSA with it. 
         /// </summary>
-        public void Finalize()
+        public void FinalizeAndOrientToReference()
         {
             if (!finalized)
             {
@@ -271,9 +244,9 @@ namespace MitoDataAssembler
                 //will do a simple single flip
                 if (delts.Count > 1)
                 {
-                    //find the lowest value on the reference, go from there
+                    // Find the lowest value on the reference, go from there
                     var deltToUse = delts.MinBy(x => x.FirstSequenceStart);
-                    //okay, given the alignment will either be at start or at end, we are going to attempt one flip here, might be off slightly
+                    // Okay, given the alignment will either be at start or at end, we are going to attempt one flip here, might be off slightly
                     int moveBack = deltToUse.FirstSequenceStart != 0L ? 0 - (int)deltToUse.FirstSequenceStart : 0;
                     int start = moveBack + (int)deltToUse.SecondSequenceStart;
 					if (start > 0) {
@@ -292,7 +265,7 @@ namespace MitoDataAssembler
                         _sequence = _n;
                     }
                 }
-                //the underlying bytes should only be accessible from the sequence now
+                // The underlying bytes should only be accessible from the sequence now
                 contigSequence = null;
                 finalized = true;
             }

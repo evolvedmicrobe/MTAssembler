@@ -286,24 +286,24 @@ namespace MitoDataAssembler
             // Execute the alignment.
             //Now to go through and generate variants.
             Dictionary<IndelData, List<IndelLocation>> indels = new Dictionary<IndelData, List<IndelLocation>>();
-            System.IO.StreamWriter sw = new System.IO.StreamWriter("test.txt");
+            //System.IO.StreamWriter sw = new System.IO.StreamWriter("test.txt");
             foreach (var s in sequences)
             {
                 //Note, do not change alignment order here.
                 var aln = algo.Align(reference.Seq, s.Seq);
                 var res = aln[0].PairwiseAlignedSequences[0];
-                sw.WriteLine(reference.Seq.ConvertToString());
-                sw.WriteLine(s.Seq.ConvertToString());
-                sw.WriteLine(res.ToString());
-                sw.WriteLine();
-                Console.WriteLine(reference.Seq.ConvertToString());
-                Console.WriteLine(s.Seq.ConvertToString());
-                Console.WriteLine(res.ToString());
+                //sw.WriteLine(reference.Seq.ConvertToString());
+                //sw.WriteLine(s.Seq.ConvertToString());
+                //sw.WriteLine(res.ToString());
+                //sw.WriteLine();
+                //Console.WriteLine(reference.Seq.ConvertToString());
+                //Console.WriteLine(s.Seq.ConvertToString());
+                //Console.WriteLine(res.ToString());
                 var indels_locs = FindIndels(res);
                 indels[s] = indels_locs;
             }
 
-            sw.Close();
+            //sw.Close();
             //Now to get unique starts and run them.  
             var locations = indels.Values.SelectMany(z => z).ToList().Distinct().GroupBy(z => z.Start);
             var toReturn = new List<ContinuousFrequencyIndelGenotype>(10);

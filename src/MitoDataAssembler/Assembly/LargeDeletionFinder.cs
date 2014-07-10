@@ -32,8 +32,7 @@ namespace MitoDataAssembler
         public static DeBruijnGraph graph;
 
         public List<PossibleAssembly> PossibleDeletionPaths = new List<PossibleAssembly>();
-        public List<DeletionReport> DeletionReports;
-        public static MitochondrialAssembly putativeAssembly;
+        public List<DeletionAnalysis> DeletionReports;
         //public int MinUnExplainedDistance = 40;
 
         /// <summary>
@@ -52,23 +51,10 @@ namespace MitoDataAssembler
             get { return "Mito Deletion Finder"; }
         }
 
-        ///// <summary>
-        ///// Gets or sets the minimum distance between two painted nodes before it is reported
-        ///// </summary>
-        //public int MinimumDistanceThreshold
-        //{
-        //    get;
-        //    set;
-        //}
         #endregion
         private int KmerLength;
-        public List<DeletionReport> FindAllDeletions(MitochondrialAssembly assembly)
-        {
-            //look for sections weh
 
-            return null;
-        }
-        public List<DeletionReport> FindAllDeletions(DeBruijnGraph graph, MitochondrialAssembly assembly)
+        public List<DeletionAnalysis> FindAllDeletions(DeBruijnGraph graph, MitochondrialAssembly assembly)
         {
             LargeDeletionFinder.graph = graph;
             KmerLength = graph.KmerLength;
@@ -77,6 +63,7 @@ namespace MitoDataAssembler
             foreach (DeBruijnNode node in graph.GetNodes())
             {
                 //starting from any unused edges in the network, make any/all paths one can
+                //take
 				try
 				{
                     PossibleDeletionPaths.AddRange(ExtendFromStartNode(node));
@@ -85,8 +72,7 @@ namespace MitoDataAssembler
 					Console.WriteLine (thrown.Message);
 				}
             }
-            DeletionReport.CompleteAssembly = assembly;
-            DeletionReports = PossibleDeletionPaths.Select(x => new DeletionReport(x)).ToList();
+            DeletionReports = PossibleDeletionPaths.Select(x => new DeletionAnalysis(x)).ToList();
             return DeletionReports;
         }
 
@@ -135,6 +121,7 @@ namespace MitoDataAssembler
                 }
             }
         }
+
         private IEnumerable<PossibleAssembly> ExtendChain(PossibleAssembly currentPath, DeBruijnNode nextNeighbor, bool goingRight, bool sameOrientation)
         {   
             byte nextSymbol = MetaNode.GetNextSymbol(nextNeighbor, KmerLength, !goingRight);
@@ -216,10 +203,11 @@ namespace MitoDataAssembler
                 yield return currentPath;
             }
         }
+       
         public void OutputReport(string name)
         {
             StreamWriter sw = new StreamWriter(name);
-            sw.WriteLine(DeletionReport.DeletionReportHeaderLine());
+            sw.WriteLine(DeletionAnalysis.DeletionReportHeaderLine());
             foreach (string str in
             DeletionReports.SelectMany(x => x.DeletionReportDataLines()))
             { sw.WriteLine(str); }

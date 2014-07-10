@@ -21,17 +21,20 @@ namespace MitoDataAssembler.PairedEnd
 		/// If less than this number of read pairs are observed in the search range, skip the match.
 		/// </summary>
 		public const double MINIMUM_REQUIRED__READS_FOR_SEARCH=100;
+
 		/// <summary>
 		/// Local peaks are called at this level if there occurence is less than this value
 		/// across all tested sites.
 		/// </summary>
 		private double FamilyAlphaValue = 0.05;
+
 		/// <summary>
 		/// The poisson value used to test for the signficance level required for a peak.
 		/// </summary>
 		/// <value>The poisson lambda.</value>
 		[OutputAttribute]
 		public double PoissonLambda { get; private set; }
+
 		/// <summary>
 		/// Smoothing window size used for local minima detection.
 		/// </summary>
@@ -50,33 +53,39 @@ namespace MitoDataAssembler.PairedEnd
 		/// </summary>
 		[OutputAttribute]
 		public string FileName{ get; private set; }
+
 		/// <summary>
 		/// The mtDNA used for querying the BAM
 		/// </summary>
 		/// <value>The name of the mt DNA.</value>
 		[OutputAttribute]
 		public string mtDNAName{ get; private set; }
+
 		/// <summary>
 		/// How many total reads?
 		/// </summary>
 		[OutputAttribute]
 		public int TotalMTReads{ get; private set; }
+
 		/// <summary>
 		/// Count that had insert size over 0
 		/// </summary>
 		[OutputAttribute]
 		public int CountZero{ get; private set; }
+
 		/// <summary>
 		/// Those over the CRS in length
 		/// </summary>
 		[OutputAttribute]
 		public int CountOverMax{ get; private set; }
+
 		/// <summary>
 		/// The lowest value from the tail to look for deletions in.  This should be the tail of the 
 		/// distribution that corresponds to the "real" deletion sizes.
 		/// </summary>
 		[OutputAttribute]
 		public int? LowEndOfSearchRange { get; private set; }
+
 		/// <summary>
 		/// Gets the high end of search range.
 		/// </summary>
@@ -96,12 +105,14 @@ namespace MitoDataAssembler.PairedEnd
 		/// <value><c>true</c> if search was possible; otherwise, <c>false</c>.</value>
 		[OutputAttribute]
 		public bool SearchWasPossible { get; private set; }
+
 		/// <summary>
 		/// Size of the most frequently observed template length
 		/// </summary>
 		/// <value>The max inset size observed.</value>
 		[OutputAttribute]
 		public int MostFrequentInsetSizeObserved{ get; private set; }
+
 		/// <summary>
 		/// Number of times the maximally observed insert size appeared.
 		/// </summary>
@@ -114,7 +125,6 @@ namespace MitoDataAssembler.PairedEnd
         /// </summary>
         [OutputAttribute]
         public int PossibleDeletionCount { get { return DelectionCollection.Count; } }
-
 
         /// <summary>
         /// Cutoff used to find peaks, anything above or equal to this value counts.
@@ -186,7 +196,8 @@ namespace MitoDataAssembler.PairedEnd
                     Console.WriteLine("Ending deletion finding");
                 }
                 //make a plot with the values
-                makeTotalCoveragePlot();
+                makeTotalCoveragePlotOverSearchRange();
+				makeTotalCoveragePlot ();
                 //also do it for window averaged
                 makeSlidingWindowOccurencePlot();
                     
@@ -299,7 +310,7 @@ namespace MitoDataAssembler.PairedEnd
 			double max = countsOfSize.Max ();
 			int maxIndex;
 			//find the max value, and the first local minimum after it, assumes function is monotonic
-			for (maxIndex=0; maxIndex<countsOfSize.Length; maxIndex++) {
+			for (maxIndex=0; maxIndex < countsOfSize.Length; maxIndex++) {
 				if (countsOfSize[maxIndex] == max) {
 					break;
 				}
@@ -307,8 +318,7 @@ namespace MitoDataAssembler.PairedEnd
 			//proceed forward to find first local minima, go in windows of three to smooth somewhat.  This is the end of the
 			//bulk of the insert size distribution.
 			double lastVal = max;
-
-			for (int i=maxIndex+PeakEdgeWindowSize; i<(countsOfSize.Length-PeakEdgeWindowSize); i+=PeakEdgeWindowSize) {
+			for (int i=maxIndex+PeakEdgeWindowSize; i < (countsOfSize.Length-PeakEdgeWindowSize); i+=PeakEdgeWindowSize) {
 				double average = 0;
 				for (int j=0; j<PeakEdgeWindowSize; j++) {
 					average += countsOfSize [i+j];
@@ -329,6 +339,7 @@ namespace MitoDataAssembler.PairedEnd
 				MaximumObservedCounts = (int)max;
 			}
 		}
+
         /// <summary>
         /// Get just the interval of the genome to be covered by the mtDNA.
         /// </summary>
@@ -337,10 +348,11 @@ namespace MitoDataAssembler.PairedEnd
         {
             return countsOfSize.Skip(LowEndOfSearchRange.Value).Take(HighEndOfSearchRange.Value - LowEndOfSearchRange.Value + 1).ToList();
         }
+
         /// <summary>
         /// Plot the intervals and densities as we move along.
         /// </summary>
-        private void makeTotalCoveragePlot()
+        private void makeTotalCoveragePlotOverSearchRange()
         {
             var counts = GetRangeToEvaluate();
             var engine = rInt.CurrentEngine;
@@ -353,10 +365,32 @@ namespace MitoDataAssembler.PairedEnd
                 var scutoff = PoissonCoverageCutoffCount.ToString();
                 string line = "lines(c(0,16569),c(" + scutoff + "," + scutoff + "),col=\"red\",lwd=3)";
                 rInt.PlotPDF(xvals, yvals, fname, "Template Length Distribution", "Length", "Counts", new List<string>() { line });
-
             }
         }
 
+		private void makeTotalCoveragePlot()
+		{
+			var lowVal = LowEndOfSearchRange.Value;
+			var highVal = HighEndOfSearchRange.Value;
+			var y_high = (countsOfSize.Max () * 5).ToString(); 
+			var engine = rInt.CurrentEngine;
+			lock (engine)
+			{
+				var xvals = engine.CreateNumericVector(Enumerable.Range(1,countsOfSize.Length).Select(x=>(double)x));
+				var yvals = engine.CreateNumericVector(countsOfSize);
+				string fname = OutputFilePrefix + "_FullRange.pdf";
+				var scutoff = PoissonCoverageCutoffCount.ToString();
+				List<string> addCmds = new List<string> (3);
+				string line = "lines(c(0,16569),c(" + scutoff + "," + scutoff + "),col=\"red\",lwd=3)";
+				addCmds.Add (line);
+				line = "lines(rep("+lowVal.ToString()+",2),c(0, " + y_high + "),col=\"red\",lwd=3)";
+				addCmds.Add (line);
+				line = "lines(rep("+highVal.ToString()+",2),c(0, " + y_high + "),col=\"red\",lwd=3)";
+				addCmds.Add (line);
+				rInt.PlotPDF(xvals,yvals, fname,"Template Length Distribution", "Template Length", "Counts of Reads", addCmds);
+
+			}
+		}
         /// <summary>
 		/// Sets the threshold by assuming a poisson distribution over the "normal" values whose distribution is
 		/// assumed to be a poisson that is estimated robustly using the median of counts as values.

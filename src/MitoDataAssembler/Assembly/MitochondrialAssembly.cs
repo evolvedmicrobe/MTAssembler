@@ -120,7 +120,7 @@ namespace MitoDataAssembler
 				FastAFormatter fa = new FastAFormatter (fileNamePrefix + "_BestGreedyAssembly.fna");
 				StringBuilder sb = new StringBuilder (StaticResources.CRS_LENGTH);
 				var bestAssembly = GreedyPathAssembly;
-				bestAssembly.Finalize ();
+				bestAssembly.FinalizeAndOrientToReference ();
 				Bio.Sequence s = new Bio.Sequence (bestAssembly.Sequence);
 				s.ID = "GreedyAssembly - length=" + AssemblyLength.ToString ();// + bestAssembly.FirstReferencePosition.Value.ToString() + " - " + GreedyPathAssembly.LastReferencePosition.Value.ToString();
 				fa.Write (s);
@@ -190,7 +190,7 @@ namespace MitoDataAssembler
             if (FormsCompleteLoop || Math.Abs(length - AssemblyLength) < 100)
             {
                 SuccessfulAssembly = true;
-                _greedyPathAssembly.Finalize();
+                _greedyPathAssembly.FinalizeAndOrientToReference();
                 AssemblyLength = (int) _greedyPathAssembly.Sequence.Count;
 				//TODO: More sophisticated criteria than larger than 8 kb to validate assembly
                 if (AssemblyLength > 8000)

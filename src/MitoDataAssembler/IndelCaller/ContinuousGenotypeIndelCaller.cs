@@ -56,15 +56,18 @@ namespace MitoDataAssembler.IndelCaller
 				deBruijnGraph.GetNodes(),
 				node =>
 				{
-					// Need to check for both left and right extensions for ambiguity.
-					if (node.RightExtensionNodesCount > 1)
+					if(!node.ContainsSelfReference)
 					{
-						TraceDivergingExtensionPaths(node, node.GetRightExtensionNodesWithOrientation(), true, redundantPaths);
-					}
+						// Need to check for both left and right extensions for ambiguity.
+						if (node.RightExtensionNodesCount > 1)
+						{
+							TraceDivergingExtensionPaths(node, node.GetRightExtensionNodesWithOrientation(), true, redundantPaths);
+						}
 
-					if (node.LeftExtensionNodesCount > 1)
-					{
-						TraceDivergingExtensionPaths(node, node.GetLeftExtensionNodesWithOrientation(), false, redundantPaths);
+						if (node.LeftExtensionNodesCount > 1)
+						{
+							TraceDivergingExtensionPaths(node, node.GetLeftExtensionNodesWithOrientation(), false, redundantPaths);
+						}
 					}
 				}
 			);
@@ -81,7 +84,7 @@ namespace MitoDataAssembler.IndelCaller
         /// </summary>
         /// <returns>The indels.</returns>
         /// <param name="deBruijnGraph">De bruijn graph.</param>
-		public List<ContinuousFrequencyIndelGenotype> CallIndels(DeBruijnGraph deBruijnGraph) {
+		public List<ContinuousFrequencyIndelGenotype> CallAndRemoveIndels(DeBruijnGraph deBruijnGraph) {
 
 			if (deBruijnGraph == null)
 			{
@@ -91,9 +94,122 @@ namespace MitoDataAssembler.IndelCaller
 
 			var indelPaths = GetIndelPaths (graph);
             var collection = indelPaths.SelectMany(x => IndelPathCollection.CallIndelsFromPathCollection(x, deBruijnGraph)).ToList();
+
+            //now to clean out indels
+            //Stolen from redundant path purger, need to merge later.
+            var cleaned = DetachBestPath(indelPaths);
+            RemoveErroneousNodes(deBruijnGraph, cleaned);
             return collection;
 		}
+        /// <summary>
+        /// Extract best path from the list of paths in each cluster.
+        /// Take off the best path from list and return rest of the paths
+        /// for removal.
+        /// </summary>
+        /// <param name="pathClusters">List of path clusters.</param>
+        /// <returns>List of path nodes to be removed.</returns>
+        private static DeBruijnPathList DetachBestPath(List<DeBruijnPathList> pathClusters)
+        {
+            return new DeBruijnPathList(
+                pathClusters.AsParallel().SelectMany(paths => ExtractBestPath(paths).Paths));
+        }
 
+        /// <summary>
+        /// Gets the best path from the list of diverging paths.
+        /// Path that has the maximum of the minimum (highest min) 'count' of belonging k-mers is best.
+        /// In case there are multiple 'best' paths, we arbitrarily return one of them.
+        /// </summary>
+        /// <param name="divergingPaths">List of diverging paths.</param>
+        /// <returns>Index of the best path.</returns>
+        private static int GetBestPath(DeBruijnPathList divergingPaths)
+        {
+            // We find the index of the 'best' path.
+            long max = -1;
+            int maxIndex = -1;
+
+            // Path that has the maximum sum of 'count' of belonging k-mers is the winner
+            for (int i = 0; i < divergingPaths.Paths.Count; i++)
+            {
+                long lowest = divergingPaths.Paths[i].PathNodes.Min(n => n.KmerCount);
+                if (lowest > max)
+                {
+                    max = lowest;
+                    maxIndex = i;
+                }
+            }
+
+            return maxIndex;
+        }
+
+        /// <summary>
+        /// Extract best path from list of paths. For the current cluster 
+        /// of paths, return only those that should be removed.
+        /// </summary>
+        /// <param name="divergingPaths">List of redundant paths.</param>
+        /// <returns>List of paths nodes to be deleted.</returns>
+        private static DeBruijnPathList ExtractBestPath(DeBruijnPathList divergingPaths)
+        {
+            // Find "best" path. Except for best path, return rest for removal 
+            int bestPathIndex = GetBestPath(divergingPaths);
+
+            DeBruijnPath bestPath = divergingPaths.Paths[bestPathIndex];
+            divergingPaths.Paths.RemoveAt(bestPathIndex);
+
+            // There can be overlap between redundant paths.
+            // Remove path nodes that occur in best path
+            foreach (var path in divergingPaths.Paths)
+            {
+                path.RemoveAll(n => bestPath.PathNodes.Contains(n));
+            }
+
+            return divergingPaths;
+        }
+
+        /// <summary>
+        /// Removes nodes that are part of redundant paths. 
+        /// </summary>
+        /// <param name="deBruijnGraph">De Bruijn graph.</param>
+        /// <param name="nodesList">Path nodes to be deleted.</param>
+        public void RemoveErroneousNodes(DeBruijnGraph deBruijnGraph, DeBruijnPathList nodesList)
+        {
+
+
+            DeBruijnGraph.ValidateGraph(deBruijnGraph);
+
+            if (nodesList == null)
+            {
+                throw new ArgumentNullException("nodesList");
+            }
+
+            this.graph = deBruijnGraph;
+
+            // Neighbors of all nodes have to be updated.
+            HashSet<DeBruijnNode> deleteNodes = new HashSet<DeBruijnNode>(
+                nodesList.Paths.AsParallel().SelectMany(nl => nl.PathNodes));
+
+            // Update extensions for deletion
+            // No need for read-write lock as deleteNode's dictionary is being read, 
+            // and only other graph node's dictionaries are updated.
+            Parallel.ForEach(
+                deleteNodes,
+                node =>
+                {
+                    foreach (DeBruijnNode extension in node.GetExtensionNodes())
+                    {
+                        // If the neighbor is also to be deleted, there is no use of updation in that case
+                        if (!deleteNodes.Contains(extension))
+                        {
+                            extension.RemoveExtensionThreadSafe(node);
+                        }
+                    }
+                });
+
+            // Delete nodes from graph
+            this.graph.RemoveNodes(deleteNodes);
+        }
+
+
+        
         /// <summary>
         /// Gets start node of redundant path cluster
         /// All paths in input are part of a redundant path cluster
@@ -186,7 +302,6 @@ namespace MitoDataAssembler.IndelCaller
 			}
 			return uniquePaths;
 		}
-
 
         /// <summary>
         /// Traces diverging paths in given direction.
