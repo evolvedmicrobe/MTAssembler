@@ -17,7 +17,7 @@ namespace MitoDataAssembler
 	/// <summary>
 	/// Deletes any Kmer that only shows up once.
 	/// </summary>
-	public class ThresholdCoverageNodeRemover
+	public class ThresholdCoverageNodePurger
 	{
         string Name
         {
@@ -32,7 +32,7 @@ namespace MitoDataAssembler
         /// </summary>
         public int CoverageCutOff = -1;
 
-        public ThresholdCoverageNodeRemover(int cutoff)
+        public ThresholdCoverageNodePurger(int cutoff)
         {
             this.CoverageCutOff = cutoff;
         }

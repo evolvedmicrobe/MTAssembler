@@ -248,8 +248,6 @@ namespace MitoDataAssembler
 			if (inputSequences == null) {
 				throw new ArgumentNullException ("inputSequences");
 			}
-
-
 			// Step 0: Load the reference genome as a fasta file.
 			// Remove ambiguous reads and set up fields for assembler process
 			this.Initialize ();
@@ -292,7 +290,7 @@ namespace MitoDataAssembler
                 OutputNodeCountHistograms("PreFiltered", coverageCutOff);
             }          
 			long originalNodes = this.Graph.NodeCount;
-			ThresholdCoverageNodeRemover snr = new ThresholdCoverageNodeRemover (coverageCutOff);
+			ThresholdCoverageNodePurger snr = new ThresholdCoverageNodePurger (coverageCutOff);
 			snr.RemoveLowCoverageNodes (Graph);
 			PercentNodesRemovedByLowCoverageOrThreshold = originalNodes / (double)this.Graph.NodeCount;
 			sw.Stop ();
@@ -303,6 +301,13 @@ namespace MitoDataAssembler
 			sw.Reset ();
 			sw.Start ();
 			RaiseMessage ("Start removing unconnected nodes");
+
+            // Remove pathological nodes
+            var badNodes = PathologicalSequencePurger.RemovePathologicalNodes(Graph);
+            if (badNodes > 0)
+            {
+                RaiseMessage("WARNING!!!! Found and removed " + badNodes.ToString()+ " pathological nodes.  These were removed.",false);
+            }
 
             //Step 2.2 Remove nodes that are not connected to the reference genome 
 			UnlinkedToReferencePurger remover = new UnlinkedToReferencePurger ();
