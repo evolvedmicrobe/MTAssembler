@@ -108,7 +108,6 @@
     <Compile Include="Visualization\Arrow.cs" />
     <Compile Include="Visualization\GenomeSlice.cs" />
     <Compile Include="Visualization\GraphGenerator.cs" />
-    <Compile Include="Assembly\LowCoveragePurger.cs" />
     <Compile Include="Visualization\MetaNode.cs" />
     <Compile Include="Assembly\MitoPaintedAssembler.cs" />
     <Compile Include="ConsoleInterface\Program.cs" />

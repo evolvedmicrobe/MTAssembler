@@ -173,7 +173,7 @@ namespace MitoDataAssembler
 			parser.Parameter (ArgumentType.Optional, "Skip_EM_Frequency_Estimates", ArgumentValueType.Bool, "skip_em", "Estimate SNP frequencies by simple read counts.");
 			parser.Parameter (ArgumentType.Optional, "Skip_Assembly_Step", ArgumentValueType.Bool, "skip_asm", "Skip the de-novo assembly and indel finding step");
 			parser.Parameter (ArgumentType.Optional, "Skip_Peak_Finder", ArgumentValueType.Bool, "skip_pf", "Skip the peak finding step");
-            parser.Parameter (ArgumentType.Optional, "Force_Sqrt", ArgumentValueType.Bool, "force_sqrt", "Always uses Sqrt(Median Coverage) as cut-off");
+            parser.Parameter(ArgumentType.Optional, "ForceSqrtThreshold", ArgumentValueType.Bool, "force_sqrt", "Always uses Sqrt(Median Coverage) as cut-off");
             parser.Parameter(ArgumentType.Optional, "MinimumNodeCount", ArgumentValueType.Int, "min_node_count", "Erode graph nodes with coverage <= this value.");
 			parser.Parameter(ArgumentType.Optional, "OutputIntermediateGraphSteps", ArgumentValueType.Bool, "show_graphs", "Output graphs and coverage histograms at all assembly steps.");
             parser.Parameter(ArgumentType.Optional, "NoContigOutput", ArgumentValueType.Bool, "no_contigs", "Skip output of assembly contigs.");
