@@ -89,9 +89,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assembly\AllAssemblyFinder.cs" />
     <Compile Include="Assembly\DeletionAnalysis.cs" />
     <Compile Include="Assembly\MitochondrialAssembly.cs" />
+    <Compile Include="Assembly\PathologicalSequencePurger.cs" />
     <Compile Include="IndelCaller\ContinuousGenotypeIndelCaller.cs" />
     <Compile Include="IndelCaller\IndelVariant.cs" />
     <Compile Include="PileUpCaller\SNPCaller.cs" />
@@ -101,7 +101,7 @@
     <Compile Include="Utils\ReadFilter.cs" />
     <Compile Include="ReferenceGenome.cs" />
     <Compile Include="R\RInterfaceException.cs" />
-    <Compile Include="Assembly\SingletonNodeRemover.cs" />
+    <Compile Include="Assembly\ThresholdCoverageNodePurger.cs" />
     <Compile Include="Assembly\LargeDeletionFinder.cs" />
     <Compile Include="Utils\Extensions.cs" />
     <Compile Include="Assembly\PossibleAssembly.cs" />
