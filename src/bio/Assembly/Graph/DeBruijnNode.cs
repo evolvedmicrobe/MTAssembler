@@ -10,8 +10,8 @@ namespace Bio.Algorithms.Assembly.Graph
     /// A node is associated with a k-mer. 
     /// Also holds adjacency information with other nodes.
     /// </summary>
-    
-    [DebuggerDisplay("Value = {NodeValue.KmerData} ")]
+
+    [DebuggerDisplay("Value = {NodeValue.KmerData} Ref = {ReferenceGenomePosition} ")]
     public class DeBruijnNode
     {
 		#region NIGEL_ADDITIONS
@@ -24,8 +24,8 @@ namespace Bio.Algorithms.Assembly.Graph
 	    /// <summary>
 		///If the node is present in the reference genome only once, this records the position
 		/// </summary>
-		public int ReferenceGenomePosition=NO_GENOME_POSITION_SET_FLAG;
-		public const int NO_GENOME_POSITION_SET_FLAG = -999;
+		public short ReferenceGenomePosition=NO_GENOME_POSITION_SET_FLAG;
+		public const short NO_GENOME_POSITION_SET_FLAG = -999;
 		public bool IsInReference { get { return ReferenceGenomePosition > 0; } }
         /// <summary>
         /// Used to indicate if a node connects to itself.  These are troublesome sequences 

@@ -18,7 +18,7 @@ namespace MitoDataAssembler
     /// A Node that represents a contiguous path in a graph
     /// (that is several subnodes) that occur with no divergence. Used for building visualizations and assemblies of the graph.
     /// </summary>
-    public class PossibleAssembly
+    public class PossibleAssembly : IList<DeBruijnNode>
     {
         private bool finalized=false;
         public bool CircularLoop = false;
@@ -46,8 +46,14 @@ namespace MitoDataAssembler
             }
         }
         
-        //TODO: Take this private, as it needs to be kept in sync with the sequence of the assembly
-        public List<DeBruijnNode> constituentNodes = new List<DeBruijnNode>();
+        private List<DeBruijnNode> constituentNodes;
+        public IReadOnlyList<DeBruijnNode> ConstitutentNodes
+        {
+            get { return constituentNodes.AsReadOnly(); }
+        }
+
+        
+        private HashSet<DeBruijnNode> nodeHash;
         protected List<byte> contigSequence;
 
         const int NOTSETFLAG = -999;
@@ -55,7 +61,10 @@ namespace MitoDataAssembler
 
         public PossibleAssembly(DeBruijnNode start, bool startGoingRight)
         {
+            this.contigSequence = new List<byte>(); 
+            this.constituentNodes = new List<DeBruijnNode>();
             this.constituentNodes.Add(start);
+            this.nodeHash = new HashSet<DeBruijnNode>();
             if(startGoingRight)
             {
                 contigSequence = new List<byte>(LargeDeletionFinder.graph.GetNodeSequence(start));
@@ -170,24 +179,7 @@ namespace MitoDataAssembler
             return value;
         }
 
-        /// <summary>
-        /// Follow a chain along a path link a bifurcation or no additional nodes appear.   
-        /// </summary>
-        /// <param name="currentNode"></param>
-        /// <param name="goRight"></param>
-        /// <param name="graph"></param>
-        /// <returns></returns>
-            
-        public List<DeBruijnNode> GetPreviousWaysNodeWasLeft(DeBruijnNode nodeOfInterest)
-        {
-            List<DeBruijnNode> pastNodes=new List<DeBruijnNode>();
-            for(int i=0;i<(constituentNodes.Count-1);i++)
-            {
-                if(constituentNodes[i]==nodeOfInterest)
-                    pastNodes.Add(constituentNodes[i+1]);
-            }
-            return pastNodes;
-        }        
+          
         /// <summary>
         /// Adds the node to the path, if the node is a painted node, returns a value 
         /// indicating the distance between the two
@@ -197,6 +189,7 @@ namespace MitoDataAssembler
         public void Add(DeBruijnNode newNode, byte symbolFromNode)
         {
             constituentNodes.Add(newNode);
+            nodeHash.Add(newNode);
             contigSequence.Add(symbolFromNode);
         }
       
@@ -204,6 +197,14 @@ namespace MitoDataAssembler
         {
             constituentNodes=new List<DeBruijnNode>();
             contigSequence = new List<byte>();
+            nodeHash = new HashSet<DeBruijnNode>();
+        }
+        public PossibleAssembly(List<DeBruijnNode> nodes, List<byte> contigSequence)
+        {
+
+            this.constituentNodes = nodes.ToList();
+            this.contigSequence = contigSequence.ToList();
+            nodeHash = new HashSet<DeBruijnNode>(nodes);
         }
         /// <summary>
         /// Create a deep copy of the list and sorts it so that it is easy to identify redundant paths node comes first
@@ -211,9 +212,7 @@ namespace MitoDataAssembler
         /// <returns></returns>
         public PossibleAssembly Clone()
         {
-            PossibleAssembly pdb = new PossibleAssembly();
-            pdb.constituentNodes.AddRange(this.constituentNodes);
-            pdb.contigSequence=this.contigSequence.ToList();
+            PossibleAssembly pdb = new PossibleAssembly(this.constituentNodes,this.contigSequence);
             return pdb;
         }
 
@@ -270,9 +269,81 @@ namespace MitoDataAssembler
                 finalized = true;
             }
         }
-       
-        
 
+
+
+
+        public int IndexOf(DeBruijnNode item)
+        {
+            return constituentNodes.IndexOf(item);
+        }
+
+        public void Insert(int index, DeBruijnNode item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RemoveAt(int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DeBruijnNode this[int index]
+        {
+            get
+            {
+                return constituentNodes[index];
+            }
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public void Add(DeBruijnNode item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Clear()
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Contains(DeBruijnNode item)
+        {
+            return nodeHash.Contains(item);
+        }
+
+        public void CopyTo(DeBruijnNode[] array, int arrayIndex)
+        {
+            constituentNodes.CopyTo(array, arrayIndex);
+        }
+
+        public int Count
+        {
+            get { return constituentNodes.Count; }
+        }
+
+        public bool IsReadOnly
+        {
+            get { return true; }
+        }
+
+        public bool Remove(DeBruijnNode item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<DeBruijnNode> GetEnumerator()
+        {
+            return constituentNodes.GetEnumerator();
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return constituentNodes.GetEnumerator();
+        }
     }
 }
 

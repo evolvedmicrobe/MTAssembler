@@ -526,7 +526,7 @@ namespace MitoDataAssembler
 					kmerData.SetKmerData (seq, 0, this.KmerLength);
 					DeBruijnNode matchingNode = this.Graph.KmerManager.SetNewOrGetOld (kmerData, false);
 					if (matchingNode != null) {
-						matchingNode.ReferenceGenomePosition = (int)locations [0];
+						matchingNode.ReferenceGenomePosition = (short)locations [0];
 						KmersPainted++;
 						if (matchingNode.ReferenceGenomePosition < 0)
 							throw new Exception ();

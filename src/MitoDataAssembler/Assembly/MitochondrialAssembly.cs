@@ -162,11 +162,14 @@ namespace MitoDataAssembler
                     if (possibles.Count > 0)
                     {
                         SplitData sd = new SplitData(possibles);
-                        PathSplits.Add(sd);
-                        MitoPaintedAssembler.RaiseStatusEvent("\tPossible Paths: " + possibles.Count + "\tFrequency: " + sd.MaxFrequency.ToString());
-                        if (sd.MaxFrequency < MinimumGreedySplit)
+                        PathSplits.Add(sd);                        
+                        if (possibles.Count > 1)
                         {
-                            MinimumGreedySplit = sd.MaxFrequency;
+                            if (sd.MaxFrequency < MinimumGreedySplit)
+                            {
+                                MinimumGreedySplit = sd.MaxFrequency;
+                            }
+                            MitoPaintedAssembler.RaiseStatusEvent("\tPossible Paths: " + possibles.Count + "\tFrequency: " + sd.MaxFrequency.ToString());
                         }
                         curNode = sd.BestPath.NeighborNode;
                         if (assemblyNodes.Contains(curNode))

@@ -62,7 +62,7 @@ namespace MitoDataAssembler
         {
             bool movingUp;
 
-            var v=Assembly.constituentNodes.Where(x=>x.IsInReference).ToList();
+            var v=Assembly.Where(x=>x.IsInReference).ToList();
 
             var difs=Enumerable.Zip(v.Skip(1),v.Take(v.Count-1),
                                     (x,y)=> { 
@@ -71,7 +71,7 @@ namespace MitoDataAssembler
                                         else 
                                             return 0;}).Sum();
             // If monotonically changing, should only not change once (when it goes around the circle).
-            if (difs < 2 || difs > (v.Count - 2))
+            if (difs < 2 || difs > (v.Count - 3))
                 ReferenceValuesChangeMonotonically = true;
             // Now which way is it increasing, up (big sum) or down (small sum)
             if (difs > (v.Count / 2) )
@@ -116,27 +116,49 @@ namespace MitoDataAssembler
                     SizeOfDeletionsSeen = String.Join(";", DeletionSizes.Select(x => x.ToString()));
                 }
                 
-                //now see if we can get the fractional evidence for this.
-                var allSplits = this.Assembly.constituentNodes.Select(x => x.GetLeftExtensionNodes().ToList()).Where(z => z.Count > 2).ToList();
-                allSplits.AddRange(this.Assembly.constituentNodes.Select(x => x.GetRightExtensionNodes().ToList()).Where(z => z.Count > 2));
+                // Now see if we can get the fractional evidence for this.
+                // Note this code can get very nasty as it we have multiple
+                // nodes with 2, we can look for 
+                var totBifurcations = 0;
+               
                 double avg = 0.0;
-                if (allSplits.Count == 2)
+                var totL = Assembly.Where(x => x.LeftExtensionNodesCount == 2).ToList();
+                var torR = Assembly.Where(x => x.RightExtensionNodesCount == (byte)2).ToList();
+                var query = Assembly.Where(x => x.NodeValue.KmerData == 3206372062411L).FirstOrDefault();
+                if (query != null)
                 {
-                    SimpleBifurcation = true;
-                    foreach (var split in allSplits)
+                    var index = Assembly.IndexOf(query);
+                }
+                for (int i = 0; i < (Assembly.Count -1); i++)
+                {
+                    var cnode = Assembly[i];
+                    var lefts = cnode.GetLeftExtensionNodes().ToList();
+                    var rights = cnode.GetRightExtensionNodes().ToList();
+                    List<List<DeBruijnNode>> neighbors = new List<List<DeBruijnNode>>() { lefts, rights };
+                    foreach (var neighbor in neighbors)
                     {
-                        if (split.Count != 2)
+                        if (neighbor.Count == 2)
                         {
-                            SimpleBifurcation = false;
+                            var tot = neighbor.Sum(z => (double)z.KmerCount);
+                            var cur = (double)neighbor.Where(z => z == Assembly[i - 1] || z == Assembly[i + 1]).First().KmerCount;
+                            avg += cur / tot;
+                            totBifurcations++;
+                        }
+                        else if (neighbor.Count > 2)
+                        {
+                            totBifurcations = 100; //arbitrarily set to too high a value
                             break;
                         }
-                        var tot = split.Sum(z => (double)z.KmerCount);
-                        //TODO: Linear search, yuk...
-                        avg += split.Where( z => Assembly.constituentNodes.Contains(z)).First().KmerCount / tot;
                     }
+                }
+                if (totBifurcations == 2)
+                {
+                    SimpleBifurcation = true;
                     avg *= .5;// .5 * (a + b) = Average
+
                 }
                 AvgFractionBySplit = SimpleBifurcation ? avg : Double.NaN;
+                
             }            
         }
         public static string DeletionReportHeaderLine()
@@ -154,7 +176,7 @@ namespace MitoDataAssembler
 		/// Collection of columns to output with various summary statistics.
 		/// </summary>
 		public static List<OutputColumn> OutputColumnCollection = new List<OutputColumn>() {
-            new OutputColumn("PossibleAssemblyNumber", x => x.DeletionNumber.ToString()),
+            new OutputColumn("SequenceNumber", x => x.DeletionNumber.ToString()),
             new OutputColumn("HasDeletion", x => x.HasDeletion.ToString()),
             new OutputColumn("StartRef",x=>x.StartReference.ToString()),
             new OutputColumn("EndRef",x=>x.EndReference.ToString()),
