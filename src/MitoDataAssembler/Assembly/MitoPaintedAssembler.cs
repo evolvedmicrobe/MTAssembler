@@ -102,6 +102,12 @@ namespace MitoDataAssembler
         
 		#endregion
 
+
+        /// <summary>
+        /// Should we force the sqrt threshold to be used? (Rather than taking the minimum of that or 10?)
+        /// </summary>
+        public bool ForceSqrtThreshold = false;
+
         /// <summary>
         /// How far should we go looking for indels?
         /// </summary>
@@ -282,7 +288,7 @@ namespace MitoDataAssembler
             // Estimate and set default value for erosion and coverage thresholds
             this.EstimateDefaultThresholds();
             int sqrtCoverageCutOff = this.CalculateSqrtOfMedianCoverageCutoff();
-            var coverageCutOff = Math.Min(sqrtCoverageCutOff, AlternateMinimumNodeCount);
+            var coverageCutOff = ForceSqrtThreshold? sqrtCoverageCutOff : Math.Min(sqrtCoverageCutOff, AlternateMinimumNodeCount);
             //var coverageCutOff = sqrtCoverageCutOff;
             KmerCutOff = coverageCutOff;
             if (OutputIntermediateGraphSteps)

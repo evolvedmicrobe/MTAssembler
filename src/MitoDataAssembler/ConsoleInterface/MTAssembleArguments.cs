@@ -50,6 +50,11 @@ namespace MitoDataAssembler
         public int MinimumNodeCount = 11;
 
         /// <summary>
+        /// Should we force the sqrt threshold to be used? (Rather than taking the minimum of that or 10?)
+        /// </summary>
+        public bool ForceSqrtThreshold = false;
+
+        /// <summary>
         /// Should contig output be skipped?
         /// </summary>
         public bool NoContigOutput = false;
@@ -241,7 +246,8 @@ namespace MitoDataAssembler
                 AllowKmerLengthEstimation = AllowKmerLengthEstimation,
                 RedundantPathLengthThreshold = RedundantPathLengthThreshold,
                 OutputIntermediateGraphSteps = OutputIntermediateGraphSteps,
-                NoContigOutput = NoContigOutput
+                NoContigOutput = NoContigOutput,
+                ForceSqrtThreshold = ForceSqrtThreshold
             };
             if (ContigCoverageThreshold != -1)
             {
