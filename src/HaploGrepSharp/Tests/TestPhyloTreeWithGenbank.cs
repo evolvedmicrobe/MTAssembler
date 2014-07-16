@@ -30,8 +30,9 @@ namespace HaploGrepSharp.Tests
                 }
             }
             //now to grab all the trees 
-            var tree = TreeLoader.LoadTree(CONSTANTS.TREE_XML_FILE);
-            int FailedTests = 0;
+            //var tree = TreeLoader.LoadTree(CONSTANTS.TREE_XML_FILE);
+			var tree = TreeLoader.LoadTree();
+			int FailedTests = 0;
             int PassedTests = 0;
             int AmbiguousFail = 0;
             int SharedPolys = 0;

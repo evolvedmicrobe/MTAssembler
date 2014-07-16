@@ -17,7 +17,7 @@ namespace HaploGrepSharp
                 session = new Session();
                 FileInfo FI = new FileInfo(inFile);
                 importData(FI);
-                determineHG(CONSTANTS.TREE_XML_FILE, CONSTANTS.WEIGHT_FILE);
+			determineHG ();//CONSTANTS.TREE_XML_FILE, CONSTANTS.WEIGHT_FILE);
                 exportResults(outFile);
         }
         private void importData(FileInfo file)
@@ -33,9 +33,9 @@ namespace HaploGrepSharp
             SampleFile newSampleFile = new SampleFile(lines);
             session.CurrentSampleFile = newSampleFile;
         }
-        private void determineHG(string phylotree, string fluctrates)
+        private void determineHG()
         {
-            HaploSearchManager h1 = new HaploSearchManager(phylotree, fluctrates); //PhylotreeInstance.Instance.getPhylotree(phylotree, fluctrates);
+            HaploSearchManager h1 = new HaploSearchManager(); //PhylotreeInstance.Instance.getPhylotree(phylotree, fluctrates);
             HaploSearch haploSearch = new HaploSearch(h1);
             foreach (TestSample currentSample in session.CurrentSampleFile.TestSamples)
             {

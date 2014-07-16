@@ -21,8 +21,8 @@ namespace HaploGrepSharp.NewSearchMethods
 
 		public HaplotypeSearcher ()
 		{
-			treeRoot = TreeLoader.LoadTree (CONSTANTS.TREE_XML_FILE);
-			var skipped = HaploSearchManager.SetPhylogeneticWeights (CONSTANTS.WEIGHT_FILE);
+			treeRoot = TreeLoader.LoadTree ();//CONSTANTS.TREE_XML_FILE);
+			var skipped = HaploSearchManager.SetPhylogeneticWeights ();//CONSTANTS.WEIGHT_FILE);
 
 		}
 

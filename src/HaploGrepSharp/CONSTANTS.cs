@@ -19,6 +19,7 @@ namespace HaploGrepSharp
         /// <param name="polys"></param>
         /// <returns></returns>
         public delegate IEnumerable<Polymorphism> FilterPolymorphismDelegate(IEnumerable<Polymorphism> polys);
+
 		private static string addFileNameToEndOfDirectory(string fname)
 		{
 			string rFile = System.Reflection.Assembly.GetExecutingAssembly().Location;
@@ -31,9 +32,11 @@ namespace HaploGrepSharp
 			return rFile;
 
 		}
-		public static string TREE_XML_FILE { get { return addFileNameToEndOfDirectory ("phylotree15.xml"); } }
-		public static string WEIGHT_FILE { get { return addFileNameToEndOfDirectory ("fluctRates15.txt"); } }
-        /// <summary>
+
+		//public static string TREE_XML_FILE { get { return addFileNameToEndOfDirectory ("phylotree15.xml"); } }
+		//public static string WEIGHT_FILE { get { return addFileNameToEndOfDirectory ("fluctRates15.txt"); } }
+        
+		/// <summary>
         /// Applies the current best practices filters to a list of polymorphisms, to 
         /// avoid erroneous calls.  Currently removes indels and bad positions
         /// </summary>

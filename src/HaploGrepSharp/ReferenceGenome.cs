@@ -84,21 +84,22 @@ namespace HaploGrepSharp
             int alnCounts = delts.Count;
             if (alnCounts > 0)
             {
-                contig.Metadata[DELTA_ALIGNMENT_METADATAKEY] = delts;
+                var alns = NucmerPairwiseAligner.ConvertDeltaToAlignment(delts);
+                contig.Metadata[DELTA_ALIGNMENT_METADATAKEY] = alns;
                 sb.Append("ALNS=" + alnCounts.ToString());                
-                foreach (var d in delts)
+                foreach (var d in alns)
                 {
-                    if(d.IsReverseQueryDirection)
-                    {sb.Append("R;");}
-                    else{sb.Append("F;");}
-                    sb.Append(d.FirstSequenceStart.ToString() + "-" + d.FirstSequenceEnd + ";" + d.SecondSequenceStart.ToString() + "-" + d.SecondSequenceEnd.ToString() + ";" + d.SimilarityErrors.ToString());
+                    //if(d.IsReverseQueryDirection)
+                    //{sb.Append("R;");}
+                    //else{sb.Append("F;");}
+                    var alnLength = d.FirstSequence.Count;
+                    sb.Append(d.FirstOffset.ToString() + "-" + (d.FirstOffset+alnLength).ToString()+ ";" + d.SecondOffset.ToString() + "-" + (d.SecondOffset+alnLength).ToString() + ";" + d.Score.ToString());
                 }
             }
             else {
                 sb.Append("No Alignments");
             }
             contig.ID = contig.ID + " " + sb.ToString();
-            //see if assembly matches
         }
         /// <summary>
         /// Converts a 0 based position on the reference sequence without the N to

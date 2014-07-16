@@ -58,7 +58,6 @@
     <Compile Include="NewSearchMethods\GenomeToHaploGrepConverter.cs" />
     <Compile Include="NewSearchMethods\HaplotypeComparison.cs" />
     <Compile Include="NewSearchMethods\HaploTypeReport.cs" />
-    <Compile Include="NewSearchMethods\HaplotypeSearcher.cs" />
     <Compile Include="NewSearchMethods\PolymorphismFilter.cs" />
     <Compile Include="NewSearchMethods\SimpleSample.cs" />
     <Compile Include="OldSearchMethods\ClusteredSearchResult.cs" />
@@ -86,11 +85,14 @@
     <Compile Include="ReferenceGenome.cs" />
     <Compile Include="SectionOfReferenceGenome.cs" />
     <Compile Include="Tests\TestPhyloTreeWithGenbank.cs" />
-    <Compile Include="TestSample.cs" />
     <Compile Include="TreeUtilities\PhyloTreeNodev2.cs" />
     <Compile Include="TreeUtilities\PolymorphismCollection.cs" />
     <Compile Include="TreeUtilities\TreeLoader.cs" />
     <Compile Include="NucMerQueryable.cs" />
+    <Compile Include="DataFiles\PhyloTree15.cs" />
+    <Compile Include="DataFiles\FlucRates15.cs" />
+    <Compile Include="Tests\TestSample.cs" />
+    <Compile Include="NewSearchMethods\HaplotypeSearcher.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -104,12 +106,8 @@
     <Content Include="Annotation\mitomap_dz_mutations_110126.filtered_110916.confirmed_120126.txt" />
     <Content Include="Annotation\mitomap_dz_mutations_110126.filtered_110916.txt" />
     <Content Include="Annotation\mtDB.sorted.crs.rn.txt" />
-    <Content Include="fluctRates15.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="phylotree15.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="fluctRates15.txt" />
+    <Content Include="phylotree15.xml" />
     <Content Include="README.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -132,4 +130,7 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <Folder Include="DataFiles\" />
+  </ItemGroup>
 </Project>

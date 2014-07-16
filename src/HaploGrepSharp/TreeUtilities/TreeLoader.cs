@@ -16,18 +16,14 @@ namespace HaploGrepSharp.TreeUtilities
         /// </summary>
         /// <param name="xmlphyloTreeFile"></param>
         /// <returns></returns>
-        public static PhyloTreeNodev2 LoadTree(string xmlphyloTreeFile)
+        public static PhyloTreeNodev2 LoadTree()
         {
             //Arguments are the tree and the fluctation rates
-            if (String.IsNullOrEmpty(xmlphyloTreeFile) || !File.Exists(xmlphyloTreeFile))
-            {
-                var fname = xmlphyloTreeFile ?? "No file set";
-                throw new HaploGrepException("Could not load Tree XML File:" + fname);
-            }
             try
             {
                 var xmlDoc = new XmlDocument();
-                xmlDoc.Load(xmlphyloTreeFile);
+				var txtReader = new StringReader(PhyloTree15.TREE_STRING);
+                xmlDoc.Load(txtReader);
                 XmlNode node = xmlDoc.SelectSingleNode("/phylotree").SelectSingleNode("haplogroup"); ;//.RootElement;
                 return new PhyloTreeNodev2(node);
             }
@@ -37,9 +33,9 @@ namespace HaploGrepSharp.TreeUtilities
             }
         }
 
-        public static void OutputTreeAccessionNumbers(string outFile, string xmlphylTreeFile)
+        public static void OutputTreeAccessionNumbers(string outFile)
         {
-            var tree = LoadTree(xmlphylTreeFile);
+            var tree = LoadTree();
             StreamWriter sw = new StreamWriter(outFile);
             foreach (var node in tree.GetAllChildren())
             {

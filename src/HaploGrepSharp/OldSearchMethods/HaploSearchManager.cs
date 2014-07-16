@@ -11,38 +11,35 @@ namespace HaploGrepSharp
     {
         private List<Polymorphism> allPolysUsedinPhylotree = null;
         XmlDocument xmlDoc;
-        public HaploSearchManager(string phylotree, string weights)
+        public HaploSearchManager()
         {
             //Arguments are the tree and the fluctation rates
             this.allPolysUsedinPhylotree = new List<Polymorphism>();
             try {
                 xmlDoc = new XmlDocument();
-                xmlDoc.Load(phylotree);
-                //? What does this do?
-                var skipped=SetPhylogeneticWeights(weights);
+				var reader = new StringReader(PhyloTree15.TREE_STRING);
+                xmlDoc.Load(reader);
+                var skipped=SetPhylogeneticWeights();
                 extractAllPolysFromPhylotree();
             }
-            catch (Exception e)
-            {
+            catch (Exception e) {
                 throw e;
             }
         }
-       
         private void extractAllPolysFromPhylotree()
         {
             XmlNodeList nameList = xmlDoc.SelectNodes("//poly");
-            foreach (XmlNode a in nameList)
-            {
+            foreach (XmlNode a in nameList) {
                 this.allPolysUsedinPhylotree.Add(new Polymorphism(a.InnerText));
             }
         }
-        public static List<string> SetPhylogeneticWeights(string fileName)
+        public static List<string> SetPhylogeneticWeights()
         {
             var skippedPositions = new List<string>();
-            StreamReader value = new StreamReader(fileName);
+            //StreamReader value = new StreamReader(fileName);
+			var value = new StringReader(FlucRates15.FileAsString);
             string line = value.ReadLine();
-            while (line != null)
-            {
+            while (line != null) {
                 string[] tokens = line.Split('\t');
                 string polyString = tokens[0];
                 double phyloGeneticWeight = Convert.ToDouble(tokens[1]);
@@ -54,8 +51,7 @@ namespace HaploGrepSharp
                     //Console.WriteLine("Skipping: " + polyString);
                     skippedPositions.Add(polyString);
                 }
-                line = value.ReadLine();
-               
+                line = value.ReadLine();               
             }
             return skippedPositions;
         }
