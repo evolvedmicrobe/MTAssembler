@@ -13,6 +13,7 @@ using Bio.Algorithms.Kmer;
 using RDotNet;
 using RDotNet.Internals;
 using HaploGrepSharp;
+using System.IO;
 
 namespace MitoDataAssembler.Visualization
 {
@@ -154,8 +155,29 @@ namespace MitoDataAssembler.Visualization
 				var tempSplit=rFile.Split(splitChar);
                 rFile=String.Join("/",tempSplit.Take(tempSplit.Length-1))+"/Visualization/MakeGenomeAssemblyPlot.r";
                 rFile=rFile.Replace('\\','/');
-                string loadFile="source('"+rFile+"')";
-                e.Evaluate(loadFile);
+                //string loadFile="source('"+rFile+"')";
+                //e.Evaluate(loadFile);
+                try
+                {
+                    var fname = System.IO.Path.GetTempFileName();
+                    var sw = new StreamWriter(fname);
+                    sw.Write(VisualizationRScript.FILE_AS_STRING);
+                    sw.Close();
+                    string loadFile="source('"+rFile+"')";
+                    e.Evaluate(loadFile);
+                    File.Delete(fname);
+                }
+                catch (Exception thrown)
+                {
+                    Console.WriteLine("\n\nCould not render assembly graphic!\n" + thrown.Message);
+                    return;
+                }
+
+                var strings = VisualizationRScript.FILE_AS_STRING.Split(new char[] {'\n','\r'},StringSplitOptions.RemoveEmptyEntries);
+                foreach (var str in strings)
+                {
+                    e.Evaluate(str);
+                }
                 //TODO: THIS LOGIC REALLY NEEDS SOME CLEANING
                 var curMax = Math.Max(this.slices.Max(x => x.ActualLeftGraphicalPosition.Value), this.slices.Max(x => x.ActualRightGraphicalPosition.Value));
                 //e.Evaluate("assemblyLength="+Assembly.AssemblyLength.ToString());
@@ -207,8 +229,6 @@ namespace MitoDataAssembler.Visualization
             }
 //#endif
         }
-
-
 
 #if FALSE
                //Get a collection of all edges, and try to fill them with approximate coordinates,

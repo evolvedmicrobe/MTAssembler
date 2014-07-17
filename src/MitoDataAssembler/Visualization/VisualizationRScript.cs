@@ -1,8 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MitoDataAssembler.Visualization
+{
+    public static class VisualizationRScript
+    {
+        /// <summary>
+        /// A cut and paste version of the RSCript with '"' changed to '""'.  Always directly edit the R Script.
+        /// </summary>
+        public static string FILE_AS_STRING = @"
 ##Script to create a genome assembly from the whole thing
 library(grDevices)
 library(grid)
 ####GENERAL PARAMETERS
-filename="test.pdf"
+filename=""test.pdf""
 assemblyLength=16569
 #This value is hard coded in c#
 outerRadius=.45
@@ -24,7 +38,7 @@ drawTick<-function(x,mags) {
   xys=getTickCoords(x,mags)
   xys=xys
   grid.lines(x=xys[1:2,1],y=xys[1:2,2])
-  val=paste(format(x,big.mark=","),"bp",sep=" ")
+  val=paste(format(x,big.mark="",""),""bp"",sep="" "")
   grid.text(val,x=xys[3,1],y=xys[3,2])
 }
 
@@ -43,24 +57,24 @@ createPlot<-function(filename)
 {
   #windows()  
   
-  pdf(filename,paper="letter")
+  pdf(filename,paper=""letter"")
   grid.newpage()
   #create a two panel layout, forcing the middle viewport to be square
-  vlayout<-grid.layout(nrow=2,ncol=1,heights=unit(c(2,1),c("lines","null")),respect=c(0,1))
+  vlayout<-grid.layout(nrow=2,ncol=1,heights=unit(c(2,1),c(""lines"",""null"")),respect=c(0,1))
   vp1<-viewport(layout=vlayout)
   pushViewport(vp1)
   #add title bar
-  vp2<-viewport(layout.pos.row=1,name="Title")
+  vp2<-viewport(layout.pos.row=1,name=""Title"")
   pushViewport(vp2)
-  grid.text("Mitochondrial Genome Assembly")
+  grid.text(""Mitochondrial Genome Assembly"")
   popViewport()
   #Get Settings
   gps<-get.gpar()
   #change font size and fill
   gps$fontsize<-12
-  gps$fill<-"transparent"
+  gps$fill<-""transparent""
   #make new viewport
-  vp3<-viewport(layout.pos.row=2,name="Assembly",gp=gps)
+  vp3<-viewport(layout.pos.row=2,name=""Assembly"",gp=gps)
   pushViewport(vp3)
   grid.circle(r=outerRadius)
   
@@ -99,7 +113,7 @@ createRay<-function(ang,s,e) {
 drawSegment<-function(start,end,low,height) {
   #print(c(start,end,low,height))
   fill=get.gpar()
-  fill$fill="blue"
+  fill$fill=""blue""
   fill$lwd=2
   ray1=createRay(start,low,low+height)
   arc1=createArc(low+height,start,end)
@@ -130,7 +144,7 @@ drawLoopedArrow<-function(sMag,sAng,eMag,eAng,arrowEnd) {
   #Convert
   ndeg=360-degO
   #now make a viewpoint at this location
-  vpc=viewport(x=xy[1],y=xy[2],width=arrowLoopDif,height=arrowLoopDif,just=c("center","center"),angle=ndeg)
+  vpc=viewport(x=xy[1],y=xy[2],width=arrowLoopDif,height=arrowLoopDif,just=c(""center"",""center""),angle=ndeg)
   pushViewport(vpc)
   #now we have the viewport
   arc1=createArc(1,assemblyLength/2,assemblyLength)
@@ -166,7 +180,7 @@ drawStraightArrow<-function(sMag,sAng,eMag,eAng,arrowAtEnd) {
   last2=(n-1):n
   gp=get.gpar()
   gp$lwd=4
-  gp$col="red"
+  gp$col=""red""
   grid.lines(coords[last2,1],coords[last2,2],arrow=arr,gp=gp)
 }
 
@@ -211,7 +225,7 @@ drawArrow<-function(sMag,sAng,eMag,eAng) {
 
 demoDrawing<-function()
 {
-  createPlot("test.pdf")
+  createPlot(""test.pdf"")
   nsegs=rbinom(1,10,.5)
   inRad=.1
   out=outerRadius
@@ -249,3 +263,6 @@ demoDrawing<-function()
 
 
 #dev.off()
+        ";
+    }
+}

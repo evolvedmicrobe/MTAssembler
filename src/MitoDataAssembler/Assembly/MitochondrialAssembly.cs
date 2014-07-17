@@ -107,7 +107,7 @@ namespace MitoDataAssembler
         public MitochondrialAssembly(DeBruijnGraph graph,string Prefix)
         {
             gg = new GraphGenerator(graph);
-            gg.OutputDotGraph(Prefix+"_Graph.dot");
+            gg.OutputDotGraph(Prefix+"Graph.dot");
             if (gg.MetaNodes.Count > 0)
             {
                 attemptToCreateAssembly();
@@ -117,7 +117,7 @@ namespace MitoDataAssembler
         public HaploGrepSharp.NewSearchMethods.HaploTypeReport OutputAssembly(string fileNamePrefix)
         {
 			if (SuccessfulAssembly) {
-				FastAFormatter fa = new FastAFormatter (fileNamePrefix + "_BestGreedyAssembly.fna");
+				FastAFormatter fa = new FastAFormatter (fileNamePrefix + "BestGreedyAssembly.fna");
 				StringBuilder sb = new StringBuilder (StaticResources.CRS_LENGTH);
 				var bestAssembly = GreedyPathAssembly;
 				bestAssembly.FinalizeAndOrientToReference ();
@@ -126,7 +126,7 @@ namespace MitoDataAssembler
 				fa.Write (s);
 				fa.Close ();
 				//Now report all differences as well
-				StreamWriter sw = new StreamWriter (fileNamePrefix + "_Report.txt");
+				StreamWriter sw = new StreamWriter (fileNamePrefix + "Report.txt");
 				var searcher = new HaploGrepSharp.NewSearchMethods.HaplotypeSearcher ();
 				List<string> linesToWrite = new List<string> ();
 				var report = searcher.GetHaplotypeReport (s, linesToWrite, fileNamePrefix);

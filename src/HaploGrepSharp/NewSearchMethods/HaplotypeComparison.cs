@@ -53,8 +53,8 @@ namespace HaploGrepSharp.NewSearchMethods
 			NumberOfPolymorhpismsInHaplotype = (ushort)polysInNode.Count;
 			haplotypeWeightPoly = polysInNode.Sum (x => x.getMutationRate ());
 			MatchingPolymorphisms = polysInNode.Where (z => sample.Polymorphisms.Contains (z)).ToList ();
-			NumberOfPolymorphismsMissingFromHaplotype = (ushort)(polysInNode.Count - MatchingPolymorphisms.Count);
-			NumberOfPolymorphismsMissingFromGenotype = (ushort)(sample.Polymorphisms.Count - MatchingPolymorphisms.Count);
+            NumberOfPolymorphismsMissingFromGenotype = (ushort)(polysInNode.Count - MatchingPolymorphisms.Count); 
+            NumberOfPolymorphismsMissingFromHaplotype= (ushort)(sample.Polymorphisms.Count - MatchingPolymorphisms.Count);
 			matchingWeightPoly = MatchingPolymorphisms.Sum (x => x.getMutationRate ());
 			var CorrectInHaplotypeRatio = haplotypeWeightPoly == 0 ? 1.0 : (matchingWeightPoly / haplotypeWeightPoly);
 			var CorrectInSampleRatio = sample.TotalSampleWeight == 0 ? 1.0 : (matchingWeightPoly / sample.TotalSampleWeight);

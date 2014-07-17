@@ -209,7 +209,7 @@ namespace MitoDataAssembler.PairedEnd
             var list = GetAverageInSlidingCoverageWindows().ToList();
             double[] xvals = list.Select(x => (double)x.Key).ToArray();
             double[] yvals = list.Select(x => x.Value).ToArray();
-            rInt.PlotPDF(xvals, yvals, OutputFilePrefix + "_Windowed" + this.ScanningWindowSize.ToString() + ".pdf", "Windowed occurence", "Insert Size", "Window Average");
+            rInt.PlotPDF(xvals, yvals, OutputFilePrefix + "Windowed" + this.ScanningWindowSize.ToString() + ".pdf", "Windowed occurence", "Insert Size", "Window Average");
             MitoPaintedAssembler.RaiseStatusEvent("\tFinished sliding window plot");
             
         }
@@ -361,7 +361,7 @@ namespace MitoDataAssembler.PairedEnd
 
                 var yvals = engine.CreateNumericVector(counts);
                 var xvals = engine.CreateNumericVector(Enumerable.Range(LowEndOfSearchRange.Value, counts.Count).Select(x => (double)x));
-                string fname = OutputFilePrefix + "_SearchRange.pdf";
+                string fname = OutputFilePrefix + "SearchRange.pdf";
                 var scutoff = PoissonCoverageCutoffCount.ToString();
                 string line = "lines(c(0,16569),c(" + scutoff + "," + scutoff + "),col=\"red\",lwd=3)";
                 rInt.PlotPDF(xvals, yvals, fname, "Template Length Distribution", "Length", "Counts", new List<string>() { line });
@@ -378,7 +378,7 @@ namespace MitoDataAssembler.PairedEnd
 			{
 				var xvals = engine.CreateNumericVector(Enumerable.Range(1,countsOfSize.Length).Select(x=>(double)x));
 				var yvals = engine.CreateNumericVector(countsOfSize);
-				string fname = OutputFilePrefix + "_FullRange.pdf";
+				string fname = OutputFilePrefix + "FullRange.pdf";
 				var scutoff = PoissonCoverageCutoffCount.ToString();
 				List<string> addCmds = new List<string> (3);
 				string line = "lines(c(0,16569),c(" + scutoff + "," + scutoff + "),col=\"red\",lwd=3)";

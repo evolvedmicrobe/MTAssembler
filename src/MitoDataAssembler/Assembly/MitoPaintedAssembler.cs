@@ -243,9 +243,9 @@ namespace MitoDataAssembler
 
 			var refCounts = Graph.GetNodes ().Where (y => y.IsInReference).Select (x => (double)x.KmerCount);
 			#if !NO_R
-			rInt.HistPDF (refCounts, DiagnosticFileOutputPrefix + @"_Refcounts_" + FileSuffix + ".pdf", 125, FileSuffix, "Ref K-mer Occurence", "Count", additionalCommands);
+			rInt.HistPDF (refCounts, DiagnosticFileOutputPrefix + @"Refcounts_" + FileSuffix + ".pdf", 125, FileSuffix, "Ref K-mer Occurence", "Count", additionalCommands);
 			var allCounts = Graph.GetNodes ().Select (x => (double)x.KmerCount);
-			rInt.HistPDF (allCounts, DiagnosticFileOutputPrefix + @"_Allcounts_" + FileSuffix + ".pdf", 125, FileSuffix, "All K-mer Occurence", "Count", additionalCommands);
+			rInt.HistPDF (allCounts, DiagnosticFileOutputPrefix + @"Allcounts_" + FileSuffix + ".pdf", 125, FileSuffix, "All K-mer Occurence", "Count", additionalCommands);
 			#endif
 		}
 
@@ -405,7 +405,6 @@ namespace MitoDataAssembler
 
 
 			// Step 5: Build Contigs - This is essentially independent of deletion finding
-
 			this.BuildContigsStarted ();
 			List<ISequence> contigSequences = this.BuildContigs ().ToList ();
 			contigSequences.ForEach (x => ReferenceGenome.AssignContigToMTDNA (x));
@@ -433,7 +432,7 @@ namespace MitoDataAssembler
 				#if !NO_R
                 if (OutputIntermediateGraphSteps)
                 {
-                    plotMaker.Render(rInt, DiagnosticFileOutputPrefix + "_AssemblyView.pdf");
+                    plotMaker.Render(rInt, DiagnosticFileOutputPrefix + "AssemblyView.pdf");
                 }
 				#endif
 				DecidedAssemblyTotalLength = plotMaker.Assembly.AssemblyLength;
@@ -548,7 +547,7 @@ namespace MitoDataAssembler
 					KmersSkipped += locations.Count;
 				}
 			}
-            if (OutputDiagnosticInformation)
+            if (false && OutputDiagnosticInformation)
             {
                 StreamWriter sw = new StreamWriter("OutMissing.csv");
                 foreach (int i in missingLocs)
@@ -595,9 +594,22 @@ namespace MitoDataAssembler
         protected List<ContinuousFrequencyIndelGenotype> CallAndRemoveIndels()
         {
             //DeBruijnPathList redundantNodes;
-            ContinuousGenotypeIndelCaller indelCaller = new ContinuousGenotypeIndelCaller(MaxIndelPath);
-            return indelCaller.CallAndRemoveIndels(this.Graph);
-            
+            try
+            {
+                ContinuousGenotypeIndelCaller indelCaller = new ContinuousGenotypeIndelCaller(MaxIndelPath);
+                return indelCaller.CallAndRemoveIndels(this.Graph);
+            }
+            catch (Exception thrown)
+            {
+                throw new Exception(
+ @"Program failed attempting to call Indels.
+A likely cause is that there were so many nodes in the graph that it ran out of memory.
+Please check that the total nodes are near ~16,569 by this step, if the node count is high
+re-running the program with the -force_sqrt option may solve this.
+
+The exact error returned was:
+" + thrown.Message, thrown);  
+            }
         }
 	}
 }

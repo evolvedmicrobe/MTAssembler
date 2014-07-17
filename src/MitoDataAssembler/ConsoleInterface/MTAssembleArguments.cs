@@ -108,7 +108,7 @@ namespace MitoDataAssembler
 		/// <summary>
 		/// Prefix of the report output prefix file
 		/// </summary>
-		public string ReportOutputPrefix = "Report_";
+		public string ReportOutputSuffix = "Report";
 
         /// <summary>
         /// Make a depth of coverage plot.
@@ -149,7 +149,7 @@ namespace MitoDataAssembler
 		public string DiagnosticFilePrefix = string.Empty;
 
 
-		public string ContigFileName { get { return DiagnosticFilePrefix + "_contigs.fna"; } }
+		public string ContigFileName { get { return DiagnosticFilePrefix + "contigs.fna"; } }
 		#endregion
 
 		#region Public methods
@@ -204,9 +204,8 @@ namespace MitoDataAssembler
 			var pileupReport = RunSNPCaller ();
 			results.Add (pileupReport);
 
-
 			if (!String.IsNullOrEmpty (DiagnosticFilePrefix)) {
-				var outFile = new StreamWriter (ReportOutputPrefix + DiagnosticFilePrefix + ".csv");
+                var outFile = new StreamWriter(DiagnosticFilePrefix + ReportOutputSuffix + ".csv");
 				var header = String.Join (",", results.Select (z => z.HeaderLineForCSV ));
 				outFile.WriteLine (header);
 				var data = String.Join (",", results.Select (z => z.DataLineForCSV ));

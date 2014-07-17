@@ -40,8 +40,6 @@ namespace HaploGrepSharp.NewSearchMethods
 		public HaploTypeReport (List<HaplotypeComparison> Comparisons, SimpleSample sample)
 		{
 			Sample = sample;
-			var temp = Comparisons.Where (x => x.node.haplogroup.id == "U5b").First ();
-
 			Comparisons.Sort ((x, y) => -x.Rank.CompareTo (y.Rank));
 			BestHit = Comparisons [0];
 			NumberOfEquallyGoodBestHits = Comparisons.TakeWhile (x => x.Rank == BestHit.Rank).Count ();

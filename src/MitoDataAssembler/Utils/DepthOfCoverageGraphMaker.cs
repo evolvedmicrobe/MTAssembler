@@ -79,8 +79,8 @@ namespace MitoDataAssembler
             //Now to make the plot
             var r = new RInterface();
             List<RInterface.OptionalArgument> args = new List<RInterface.OptionalArgument>() { new RInterface.OptionalArgument("type", "l") };
-			r.PlotPDF(Enumerable.Range(0, StaticResources.CRS_LENGTH).Select(x => (double)(x+1)), depthCounts, outputFilePrefix+"_Coverage.pdf", "Depth of Coverage", "mtDNA Position", "Depth",null,args);
-            StreamWriter sw = new StreamWriter(outputFilePrefix + "_Coverage.csv");
+			r.PlotPDF(Enumerable.Range(0, StaticResources.CRS_LENGTH).Select(x => (double)(x+1)), depthCounts, outputFilePrefix+"Coverage.pdf", "Depth of Coverage", "mtDNA Position", "Depth",null,args);
+            StreamWriter sw = new StreamWriter(outputFilePrefix + "Coverage.csv");
             sw.WriteLine("Pos,Depth");
             for (int i = 0; i < depthCounts.Length; i++)
             {

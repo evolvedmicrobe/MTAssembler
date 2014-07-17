@@ -13,6 +13,10 @@ namespace MitoDataAssembler
 	{
 		public readonly string Name;
 		public readonly Func<T, object> outFunc;
+        public string GetValue(T input)
+        {
+            return SafeGet(outFunc, input);
+        }
 		public OutputColumn(string name, Func<T, object> outputFunction)
 		{
 			this.Name = name;

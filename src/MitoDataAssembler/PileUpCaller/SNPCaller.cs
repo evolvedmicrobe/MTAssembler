@@ -54,14 +54,11 @@ namespace MitoDataAssembler
 					}
 				}
 			}
-
-
 			//Now assign haplotype
 			HaplotypeSearcher hts = new HaplotypeSearcher ();
 			PolymorphismFilter pf = new PolymorphismFilter (p => p.IsSNP && genotypedPositions.Contains (p.Position));
 			var simpSample = new SimpleSample ("Pileup", polys, pf);
 			var hap_report = hts.GetHaplotypeReport (simpSample);
-
 			return new SNPCallerReport (genotypes, hap_report);
 		}
     }

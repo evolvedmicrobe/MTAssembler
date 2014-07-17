@@ -30,7 +30,7 @@ namespace MitoDataAssembler
         }
 
 		public void OutputHaploReport(string prefix) {
-			var sw = new StreamWriter(prefix +"_SNP_Haplotypes.csv");
+			var sw = new StreamWriter(prefix +"SNP_Haplotypes.csv");
 			sw.WriteLine (HeaderLineForCSV);
 			sw.WriteLine (DataLineForCSV);
 			sw.Close ();

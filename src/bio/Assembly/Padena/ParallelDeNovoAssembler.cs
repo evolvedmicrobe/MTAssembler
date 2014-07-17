@@ -828,7 +828,7 @@ namespace Bio.Algorithms.Assembly.Padena
         /// </summary>
         protected void BuildScaffoldsStarted()
         {
-			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Start building scaffolds", DateTime.Now));
+			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Start building scaffolds", DateTime.Now),true);
             this._currentStep = 6;
             this._progressTimer.Start();
         }
@@ -840,15 +840,18 @@ namespace Bio.Algorithms.Assembly.Padena
         {
             this._progressTimer.Stop();
             this._currentStep = 0;
-			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "BuildScaffolds - End time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now));
+			RaiseMessage(string.Format(CultureInfo.CurrentCulture, "BuildScaffolds - End time: {0:yyyy-MM-dd-HH:mm:ss.fff}", DateTime.Now),true);
         }
         /// <summary>
         /// Raise a message
         /// </summary>
         /// <param name="msg"></param>
-        public void RaiseMessage(string msg)
+        public void RaiseMessage(string msg, bool indent = true)
         {
-            msg = "\t"+msg;
+            if (indent)
+            {
+                msg = "\t" + msg;
+            }
             RaiseStatusEvent(msg);
         }
         #endregion

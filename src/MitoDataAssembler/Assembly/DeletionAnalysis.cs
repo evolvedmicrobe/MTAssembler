@@ -54,6 +54,7 @@ namespace MitoDataAssembler
 
         public DeletionAnalysis(PossibleAssembly assemblyToCheck )
         {
+
             DeletionNumber=DeletionReportCounter++;
             Assembly = assemblyToCheck;
             LookForDeletion();
@@ -167,9 +168,7 @@ namespace MitoDataAssembler
         }
         public IEnumerable<string> DeletionReportDataLines()
         {
-            //TODO Problem here
-            //foreach(UnAccountedForSpan span in this.MissingSpans)
-            yield return String.Join(",", OutputColumnCollection.Select(x => x.outFunc(this)).ToArray());
+            yield return String.Join(",", OutputColumnCollection.Select(x => x.GetValue(this)).ToArray());
         }
 
 		/// <summary>

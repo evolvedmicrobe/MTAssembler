@@ -125,12 +125,11 @@
     <Compile Include="Assembly\AssemblyReport.cs" />
     <Compile Include="PairedEnd\PairedEndDeletionFinderReport.cs" />
     <Compile Include="IndelCaller\IndelCalls.cs" />
+    <Compile Include="Visualization\VisualizationRScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Visualization\MakeGenomeAssemblyPlot.r">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="Visualization\MakeGenomeAssemblyPlot.r" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\bio\Bio.csproj">
