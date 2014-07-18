@@ -73,7 +73,7 @@ namespace MitoDataAssembler
 		[OutputAttribute]
 		public long NodeCountAfterCoveragePurge;
 		[OutputAttribute]
-		public int FinalMegaNodeCount;
+		public int FinalMetaNodeCount;
 		[OutputAttribute]
 		public long N50;
 		[OutputAttribute]
@@ -349,7 +349,7 @@ namespace MitoDataAssembler
             //Now remove redundant indel paths as well
             //TODO: For historic reasons this is largely similar to the snp remover, which isn't so great...
             RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Starting to call INDELs", DateTime.Now));
-            var indels = CallAndRemoveIndels();
+            //var indels = CallAndRemoveIndels();
             RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Finished calling and removing small INDELs paths", DateTime.Now));
             this.NodeCountReport();
             // Perform dangling link purger step once more.
@@ -373,7 +373,7 @@ namespace MitoDataAssembler
             }
 			//Now attempt to assemble and find deletions
 			var attemptedAssembly = new MitochondrialAssembly (Graph, DiagnosticFileOutputPrefix);
-            FinalMegaNodeCount = attemptedAssembly.AllNodesInGraph.Count;
+            FinalMetaNodeCount = attemptedAssembly.AllNodesInGraph.Count;
             SuccessfulAssembly = attemptedAssembly.SuccessfulAssembly;
 			if (SuccessfulAssembly) {
 				SuccessfulAssemblyLength = attemptedAssembly.AssemblyLength;
@@ -603,9 +603,7 @@ namespace MitoDataAssembler
             {
                 throw new Exception(
  @"Program failed attempting to call Indels.
-A likely cause is that there were so many nodes in the graph that it ran out of memory.
-Please check that the total nodes are near ~16,569 by this step, if the node count is high
-re-running the program with the -force_sqrt option may solve this.
+A likely cause is that there were so many nodes in the graph that it ran out of memory. Please check that the total nodes are near ~16,569 by this step, if the node count is high re-running the program with the -force_sqrt option may solve this.
 
 The exact error returned was:
 " + thrown.Message, thrown);  

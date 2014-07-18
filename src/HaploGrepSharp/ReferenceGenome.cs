@@ -42,7 +42,7 @@ namespace HaploGrepSharp
             }
             else
             {
-                var seq1 = ReferenceSequence.GetSubSequence(start, ReferenceSequence.Count - start + 1);
+                var seq1 = ReferenceSequence.GetSubSequence(start, ReferenceSequence.Count - start);
                 var seq2 = ReferenceSequence.GetSubSequence(0, end);
                 List<byte> seqs = new List<byte>(seq1);
                 seqs.AddRange(seq2);
@@ -110,6 +110,10 @@ namespace HaploGrepSharp
         /// <returns>adjusted value in one based index</returns>
         public static int ConvertTorCRSPosition(int pos)
         {
+            if (pos >= ReferenceSequence.Count)
+            {
+                return ConvertTorCRSPosition(pos - (int) ReferenceSequence.Count);
+            }
             return pos >= 3106 ? pos + 2 : pos + 1;
         }
 

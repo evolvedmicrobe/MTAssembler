@@ -21,8 +21,9 @@ namespace MitoDataAssembler
     public class PossibleAssembly : IList<DeBruijnNode>
     {
         private bool finalized=false;
+
         public bool CircularLoop = false;
-        //TODO: Remove these
+        
         public int? FirstReferencePosition
         {
             get
@@ -47,15 +48,14 @@ namespace MitoDataAssembler
         }
         
         private List<DeBruijnNode> constituentNodes;
+
         public IReadOnlyList<DeBruijnNode> ConstitutentNodes
         {
             get { return constituentNodes.AsReadOnly(); }
-        }
-
-        
+        }       
+ 
         private HashSet<DeBruijnNode> nodeHash;
         protected List<byte> contigSequence;
-
         const int NOTSETFLAG = -999;
         private int startGenomePosition = NOTSETFLAG;
 
@@ -215,7 +215,6 @@ namespace MitoDataAssembler
             PossibleAssembly pdb = new PossibleAssembly(this.constituentNodes,this.contigSequence);
             return pdb;
         }
-
         /// <summary>
         /// Adds a meganode to the current assembly by adding it's constituent nodes and
         /// discarding any information form the meganode itself.
@@ -269,9 +268,7 @@ namespace MitoDataAssembler
                 finalized = true;
             }
         }
-
-
-
+        #region IList
 
         public int IndexOf(DeBruijnNode item)
         {
@@ -344,6 +341,7 @@ namespace MitoDataAssembler
         {
             return constituentNodes.GetEnumerator();
         }
+        #endregion
     }
 }
 

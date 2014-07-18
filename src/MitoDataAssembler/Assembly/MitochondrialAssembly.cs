@@ -169,7 +169,9 @@ namespace MitoDataAssembler
                             {
                                 MinimumGreedySplit = sd.MaxFrequency;
                             }
-                            MitoPaintedAssembler.RaiseStatusEvent("\tPossible Paths: " + possibles.Count + "\tFrequency: " + sd.MaxFrequency.ToString());
+                            MitoPaintedAssembler.RaiseStatusEvent("\tPossible Paths: " + possibles.Count 
+                                                                + "  Frequency: " + sd.MaxFrequency.ToString("P1") 
+                                                                + "  Range: "+curNode.Lowest_Reference_Position.ToString()+"-"+curNode.Highest_Reference_Position.ToString());
                         }
                         curNode = sd.BestPath.NeighborNode;
                         if (assemblyNodes.Contains(curNode))

@@ -8,23 +8,43 @@ using Bio.Algorithms.Alignment;
 using Bio.Variant;
 using Bio;
 using Bio.SimilarityMatrices;
+using MitoDataAssembler;
+using MitoDataAssembler.Utils;
 
-namespace MitoDataAssembler
+namespace MitoDataAssembler.IndelCaller
 {
 	public class IndelPathCollection
 	{
 		public class IndelData
 		{
-            public double MinKmerCount;
+            /// <summary>
+            /// Certain pathological cases can prevent this from being mapped to the reference.  In this case an error
+            /// is reported to the Global Reporting position and the value is removed from the reference.
+            /// </summary>
+            public bool OkayData { get; private set; }
+            /// <summary>
+            /// What is the minimum k-mer count of a node in this path?
+            /// </summary>
+            public double MinKmerCount {get;private set;}
 			
             public Sequence Seq;
-			
+
+            public ushort SeqLength;
+
+            /// <summary>
+            /// Does this indel alignment span over the origin of the sequence? (e.g. 16500 - 50).
+            /// </summary>
+            public bool Loops;
+
             public List<DeBruijnNode> NodesInPath;
 			
             public int LikelyStart, LikelyEnd;
 
 			public IndelData(DeBruijnPath originalPath, int kmerSize)
 			{
+                OkayData = true;
+                SeqLength = (ushort)(kmerSize + (originalPath.PathNodes.Count - 1));
+                
 				MinKmerCount = originalPath.PathNodes.Min(v => v.KmerCount);
                 NodesInPath = originalPath.PathNodes.ToList();
 				//Now to decide the rough start and end of this sequence, also need to orient it.
@@ -32,12 +52,38 @@ namespace MitoDataAssembler
                 var path = new DeBruijnPath(NodesInPath);
 				Seq = path.ConvertToSequence(kmerSize);                
 			}
+            /// <summary>
+            /// Is this a sensible value?
+            /// </summary>
             private void CheckStartEndForSanity()
             {
-                if ((LikelyEnd - LikelyStart) > (200 + NodesInPath.Count) || (LikelyEnd < LikelyStart))
+                // First check if this sequence is pathological
+                var directionChanges = Utils.CircularGenomeCaseHandlers.CountNumberOfTimesDirectionChanges(this.NodesInPath);
+                if (directionChanges > 1)
                 {
-                    throw new InvalidProgramException("Failed to accurately define indel region based on matches");
+                    OkayData = false;
+                    Utils.GlobalTriageReport.ReportError(ContinuousGenotypeIndelCaller.Name, "A path in the indel caller was highly abberant.  Was of length: " +
+                        NodesInPath.Count.ToString() + " and appeared to start at position " + LikelyStart.ToString() + " and end at position " + LikelyEnd.ToString()
+                        + ".  Path was skipped, but this may indicate a flaw in the data or algorithm");    
+
                 }
+                Loops = CircularGenomeCaseHandlers.SegmentLoopsAround((double)LikelyStart, (double)LikelyEnd, SeqLength);
+                if (Loops)
+                {
+                    NodesInPath.Reverse();
+                    Extensions.Extensions.Swap(ref LikelyEnd, ref LikelyStart);
+
+                }
+                var refSpan = CircularGenomeCaseHandlers.CalculateReferenceSpan(LikelyStart, LikelyEnd, Loops);
+                if (Math.Abs(refSpan - SeqLength) > StaticResources.SIZE_DIF_BETWEEN_LARGE_AND_SMALL_DELETION)
+                {
+                    OkayData = false;
+                    Utils.GlobalTriageReport.ReportError(ContinuousGenotypeIndelCaller.Name, "A path in the indel caller was highly abberant.  Was of length: " +
+                        NodesInPath.Count.ToString() + " and appeared to start at position " + LikelyStart.ToString() + " and end at position " + LikelyEnd.ToString()
+                        + ".  Path was skipped, but this may indicate a flaw in the data or algorithm");    
+
+                }               
+
             }
             /// <summary>
             /// This code sets the "region" the read aligns to based on the neighboring nodes
@@ -136,7 +182,7 @@ namespace MitoDataAssembler
             /// <param name="grabRightSide"></param>
             /// <param name="curDistance">How far removed from node we are at present</param>
             /// <returns></returns>
-            public DistanceLocation FollowNode(DeBruijnNode node, bool grabRightSide, int curDistance)
+            private DistanceLocation FollowNode(DeBruijnNode node, bool grabRightSide, int curDistance)
             {
                  var nextNodes =
                     grabRightSide ? node.GetRightExtensionNodesWithOrientation() : node.GetLeftExtensionNodesWithOrientation();
@@ -159,7 +205,7 @@ namespace MitoDataAssembler
                  return null;
             }
            
-            public DistanceLocation GetLeftSide()
+            private DistanceLocation GetLeftSide()
             {            
                 //  For the first node we add its sequence, and the neighbor could be on the left or right side
                 var cur_node = NodesInPath[0];
@@ -168,12 +214,12 @@ namespace MitoDataAssembler
                 var goingLeft = leftNodes.Count == 1;
                 if (!((leftNodes.Count == 1) ^ (rightNodes.Count == 1)))
                 {
-                    throw new InvalidProgramException();
+                    throw new InvalidProgramException("Letf neighboring node did not exist, or existed on both sides");
                 }
                 return FollowNode(cur_node, goingLeft, 0);
             }
 
-            public DistanceLocation GetRightSide()
+            private DistanceLocation GetRightSide()
             {
                 //  For the first node we add its sequence, and the neighbor could be on the left or right side
                 var last_node = NodesInPath.Last();
@@ -183,15 +229,12 @@ namespace MitoDataAssembler
                 var goingToLeft = leftNodes.Count == 1;
                 if (!((leftNodes.Count == 1) ^ (rightNodes.Count == 1)))
                 {
-                    throw new InvalidProgramException();
+                    throw new InvalidProgramException("Right neighboring node did not exist, or existed on both sides");
                 }
                 var next_direction = goingToLeft ? leftNodes.First() : rightNodes.First();
                 var nextSideRight = !(next_direction.Value ^ !goingToLeft);
                 return FollowNode(last_node, nextSideRight, 0);
             }
-
-
-
 		}
         /// <summary>
         /// A struct that is useful for assessing where a node is.
@@ -220,7 +263,7 @@ namespace MitoDataAssembler
                 Start = start;
                 Length = length;
             }
-
+            #region IComparableIEquatable
             public override bool Equals(object obj)
             {
                 var no = obj as IndelLocation;
@@ -241,9 +284,6 @@ namespace MitoDataAssembler
                     Start == other.Start &&
                     Length == other.Length;
             }
-
-
-
             public int CompareTo(IndelLocation other)
             {
                 if (other == this || this.Equals(other))
@@ -260,63 +300,59 @@ namespace MitoDataAssembler
                         return this.Length.CompareTo(other.Length);
                 }
             }
-
             bool IEquatable<IndelLocation>.Equals(IndelLocation other)
             {
                 return Equals(other);
             }
+            #endregion
         }
 
+        /// <summary>
+        /// How many bases in addition to the k-mer length to pad on to each side before aligning it.
+        /// </summary>
         public const int AlignmentPadding = 5;
 
 		public static List<ContinuousFrequencyIndelGenotype> CallIndelsFromPathCollection (DeBruijnPathList paths, DeBruijnGraph graph)
 		{
-			var sequences = paths.Paths.Select(z => new IndelData(z, graph.KmerLength)).ToList();
+			var sequences = paths.Paths.Select(z => new IndelData(z, graph.KmerLength)).Where(z =>z.OkayData).ToList();
+            if (sequences.Count == 0)
+            {
+                return new List<ContinuousFrequencyIndelGenotype>();
+            }
+            // Get the reference sequence.
             var regionStart = sequences.Min(x => x.LikelyStart) - IndelPathCollection.AlignmentPadding - graph.KmerLength;
             var regionEnd = sequences.Max(x => x.LikelyEnd) + IndelPathCollection.AlignmentPadding + graph.KmerLength;
             var reference = HaploGrepSharp.ReferenceGenome.GetReferenceSequenceSection(regionStart, regionEnd);
-
+            
+            // Setup the aligner with appropriate parameters.
             var algo = new Bio.Algorithms.Alignment.SmithWatermanAligner();
-
-            // Setup the aligner with appropriate parameters
             algo.SimilarityMatrix = new Bio.SimilarityMatrices.DiagonalSimilarityMatrix (1, -1);
             algo.GapOpenCost = -2;
             algo.GapExtensionCost = -1;
 
-            // Execute the alignment.
-            //Now to go through and generate variants.
+            // Execute the alignment and go through and generate variants.
             Dictionary<IndelData, List<IndelLocation>> indels = new Dictionary<IndelData, List<IndelLocation>>();
-            //System.IO.StreamWriter sw = new System.IO.StreamWriter("test.txt");
             foreach (var s in sequences)
             {
                 //Note, do not change alignment order here.
                 var aln = algo.Align(reference.Seq, s.Seq);
                 var res = aln[0].PairwiseAlignedSequences[0];
-                //sw.WriteLine(reference.Seq.ConvertToString());
-                //sw.WriteLine(s.Seq.ConvertToString());
-                //sw.WriteLine(res.ToString());
-                //sw.WriteLine();
-                //Console.WriteLine(reference.Seq.ConvertToString());
-                //Console.WriteLine(s.Seq.ConvertToString());
-                //Console.WriteLine(res.ToString());
                 var indels_locs = FindIndels(res);
                 indels[s] = indels_locs;
             }
-
-            //sw.Close();
-            //Now to get unique starts and run them.  
+            // Now to group indels by unique starts and collect them.  
             var locations = indels.Values.SelectMany(z => z).ToList().Distinct().GroupBy(z => z.Start);
             var toReturn = new List<ContinuousFrequencyIndelGenotype>(10);
-            //typcially there will only be one of these
+            // Note: Typically there will only be one Indel location per alignment
             foreach (var g in locations)
             {
                 var g2 = g.ToList();
-                var lspots = g2.Select(x=>x.DeletionOnReference).Distinct().Count();
+                var lspots = g2.Select(x => x.DeletionOnReference).Distinct().Count();
                 if(lspots > 1)
                 {
                     throw new NotImplementedException("Same location had indels present on both reference and reads.  This is an edge case not handled");
                 }
-                //add a fake null.
+                // Add a fake reference allele.
                 var first = g2[0];
                 var no_indel = new IndelLocation(first.DeletionOnReference, first.Start, 0);
                 no_indel.InsertedSequence = String.Empty;
@@ -393,7 +429,6 @@ namespace MitoDataAssembler
                 }
             }
             return curIndels;
-
         }
 
         private static List<IndelLocation> FindIndels(PairwiseAlignedSequence aln)

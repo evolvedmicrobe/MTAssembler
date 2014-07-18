@@ -12,7 +12,7 @@ namespace MitoDataAssembler
 	public sealed class OutputColumn<T>
 	{
 		public readonly string Name;
-		public readonly Func<T, object> outFunc;
+		private readonly Func<T, object> outFunc;
         public string GetValue(T input)
         {
             return SafeGet(outFunc, input);
@@ -22,7 +22,6 @@ namespace MitoDataAssembler
 			this.Name = name;
 			this.outFunc = outputFunction;
 		}
-
 		public static string SafeGet(Func<T, object> func, T GC)
 		{
 			try

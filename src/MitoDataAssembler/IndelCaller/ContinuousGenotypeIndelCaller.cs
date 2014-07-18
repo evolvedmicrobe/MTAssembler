@@ -17,6 +17,7 @@ namespace MitoDataAssembler.IndelCaller
 
         #region Fields, Constructor, Properties
 
+        public static string Name = "IndelCaller";
         /// <summary>
         /// Holds reference to assembler graph.
         /// </summary>
@@ -172,10 +173,7 @@ namespace MitoDataAssembler.IndelCaller
         /// <param name="nodesList">Path nodes to be deleted.</param>
         public void RemoveErroneousNodes(DeBruijnGraph deBruijnGraph, DeBruijnPathList nodesList)
         {
-
-
             DeBruijnGraph.ValidateGraph(deBruijnGraph);
-
             if (nodesList == null)
             {
                 throw new ArgumentNullException("nodesList");
@@ -207,8 +205,6 @@ namespace MitoDataAssembler.IndelCaller
             // Delete nodes from graph
             this.graph.RemoveNodes(deleteNodes);
         }
-
-
         
         /// <summary>
         /// Gets start node of redundant path cluster

@@ -48,8 +48,8 @@ namespace MitoDataAssembler.Visualization
                 if (node.IsVisited) continue;
                 else
                 {
-                    var megaNode = new MetaNode(node, _graph);
-                    MetaNodes.Add(megaNode);                    
+                    var metaNode = new MetaNode(node, _graph);
+                    MetaNodes.Add(metaNode);                    
                 }
             }
         }

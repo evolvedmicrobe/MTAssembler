@@ -64,7 +64,7 @@ namespace MitoDataAssembler
             bool movingUp;
 
             var v=Assembly.Where(x=>x.IsInReference).ToList();
-
+            
             var difs=Enumerable.Zip(v.Skip(1),v.Take(v.Count-1),
                                     (x,y)=> { 
                                         if (x.ReferenceGenomePosition > y.ReferenceGenomePosition) 

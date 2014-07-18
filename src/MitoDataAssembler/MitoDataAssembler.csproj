@@ -96,8 +96,10 @@
     <Compile Include="IndelCaller\IndelVariant.cs" />
     <Compile Include="PileUpCaller\SNPCaller.cs" />
     <Compile Include="PileUpCaller\SNPCallerReport.cs" />
+    <Compile Include="Utils\CircularGenomeCaseHandlers.cs" />
     <Compile Include="Utils\DepthOfCoverageGraphMaker.cs" />
     <Compile Include="PairedEnd\PossibleDeletion.cs" />
+    <Compile Include="Utils\GlobalTriageReport.cs" />
     <Compile Include="Utils\ReadFilter.cs" />
     <Compile Include="ReferenceGenome.cs" />
     <Compile Include="R\RInterfaceException.cs" />
@@ -114,7 +116,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ConsoleInterface\Output.cs" />
     <Compile Include="ConsoleInterface\MTAssembleArguments.cs" />
-    <Compile Include="ConsoleInterface\StaticResources.cs" />
+    <Compile Include="Utils\StaticResources.cs" />
     <Compile Include="Assembly\UnlinkedToReferencePurger.cs" />
     <Compile Include="Visualization\MitochondrialAssemblyPlotMaker.cs" />
     <Compile Include="PairedEnd\PairedEndPeakFinder.cs" />

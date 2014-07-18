@@ -4,6 +4,9 @@ namespace MitoDataAssembler
 {
 	public static class StaticResources
 	{
+        /// <summary>
+        /// Out of date, and not currently used.
+        /// </summary>
 		public const string ASSEMBLE_HELP = @"Usage:	 MTAssembler.exe assemble [options] -ref:<ReferenceGenome(fasta)> <Read File> 		
 Description: Assemble reads into contigs (No matepair information required.) 
 
@@ -32,11 +35,8 @@ Infrequently Used Parameters:
 ";
 
 		
-
-	
 		public const string ContinuePrompt = "Are you sure you want to continue (Y/N)?";
-				
-
+		
 		public const string PeakPagedMemorySize64 = "Peak memory in the virtual memory paging file used: {0}";
 			
 		public const string PeakVirtualMemorySize64 = "Peak virtual memory used: {0}";
@@ -57,8 +57,12 @@ Infrequently Used Parameters:
         /// <summary>
         /// The length of the CRS chromosome.
         /// </summary>
-        public const int CRS_LENGTH = 16569;
+        public const int CRS_LENGTH = 16568;
 
+        /// <summary>
+        /// Deletions less than this value are considered indels, above this value are large deletions.
+        /// </summary>
+        public const int SIZE_DIF_BETWEEN_LARGE_AND_SMALL_DELETION = 150;
 	}
 }
 

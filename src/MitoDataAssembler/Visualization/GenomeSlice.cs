@@ -65,10 +65,10 @@ namespace MitoDataAssembler.Visualization
                     double center = calculateCenter();
                     double midlength = pnode.LengthOfNode / 2.0;
                     var left = center - midlength;
-                    if (left > MetaNode.AssemblyLength)
-                        return left - MetaNode.AssemblyLength;
+                    if (left > Utils.CircularGenomeCaseHandlers.MT_Genome_Length)
+                        return left - Utils.CircularGenomeCaseHandlers.MT_Genome_Length;
                     else if (left < 0)
-                        return MetaNode.AssemblyLength + left;
+                        return Utils.CircularGenomeCaseHandlers.MT_Genome_Length + left;
                     else
                         return left;
                 }
@@ -87,8 +87,8 @@ namespace MitoDataAssembler.Visualization
                     double center = calculateCenter();
                     double midlength = this.pnode.LengthOfNode / 2.0;
                     var right = center + midlength;
-                    if (right > MetaNode.AssemblyLength)
-                        return right - MetaNode.AssemblyLength;
+                    if (right > Utils.CircularGenomeCaseHandlers.MT_Genome_Length)
+                        return right - Utils.CircularGenomeCaseHandlers.MT_Genome_Length;
                     else
                         return right;
                 }
@@ -103,12 +103,11 @@ namespace MitoDataAssembler.Visualization
         /// <returns></returns>
         public bool SegmentLoopsAround()
         {
-            return pnode.SegmentLoopsAround(_suggestedLeftSidePosition.Value, _suggestedRightSidePosition.Value);
-
+            return Utils.CircularGenomeCaseHandlers.SegmentLoopsAround(_suggestedLeftSidePosition.Value, _suggestedRightSidePosition.Value,Node.LengthOfNode );
         }
         public bool GraphSegmentsLoopAround()
         {
-            return pnode.SegmentLoopsAround(this.ActualLeftGraphicalPosition.Value, this.ActualRightGraphicalPosition.Value);
+            return Utils.CircularGenomeCaseHandlers.SegmentLoopsAround(this.ActualLeftGraphicalPosition.Value, this.ActualRightGraphicalPosition.Value, Node.LengthOfNode);
         }
 
         private double? pActualCenter;
@@ -128,11 +127,11 @@ namespace MitoDataAssembler.Visualization
                 }
                 else
                 {
-                    var temp = (MetaNode.AssemblyLength - ActualLeftGraphicalPosition) + ActualRightGraphicalPosition;
+                    var temp = (Utils.CircularGenomeCaseHandlers.MT_Genome_Length - ActualLeftGraphicalPosition) + ActualRightGraphicalPosition;
                     temp = temp / 2.0;
                     temp = temp + ActualLeftGraphicalPosition;
-                    if (temp > MetaNode.AssemblyLength)
-                        temp = temp - MetaNode.AssemblyLength;
+                    if (temp > Utils.CircularGenomeCaseHandlers.MT_Genome_Length)
+                        temp = temp - Utils.CircularGenomeCaseHandlers.MT_Genome_Length;
                     pActualCenter = temp;
                 }
             }
@@ -147,10 +146,10 @@ namespace MitoDataAssembler.Visualization
             else
             {
                 //Otherwise, might be in the middle somewhere
-                bool leftLow = _suggestedLeftSidePosition.Value > MetaNode.AssemblyLength / 2.0;
+                bool leftLow = _suggestedLeftSidePosition.Value > Utils.CircularGenomeCaseHandlers.MT_Genome_Length / 2.0;
                 double left = leftLow ? _suggestedLeftSidePosition.Value : _suggestedRightSidePosition.Value;
                 double right = leftLow ? _suggestedRightSidePosition.Value : _suggestedLeftSidePosition.Value;
-                right = right + MetaNode.AssemblyLength;
+                right = right + Utils.CircularGenomeCaseHandlers.MT_Genome_Length;
                 //should always be the length of the guy
                 return (left + right) / 2.0;
             }

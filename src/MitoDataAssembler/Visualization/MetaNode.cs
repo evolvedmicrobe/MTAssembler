@@ -9,7 +9,7 @@ using Bio;
 using Bio.Algorithms.Kmer;
 using System.Diagnostics;
 using MitoDataAssembler.Extensions;
-
+using MitoDataAssembler.Utils;
 
 namespace MitoDataAssembler.Visualization
 {      
@@ -17,15 +17,10 @@ namespace MitoDataAssembler.Visualization
     /// A Node that represents a contiguous path in a graph
     /// (that is several subnodes) that occur with no divergence. Used for building visualizations and assemblies of the graph.
     /// </summary>
-    [DebuggerDisplay("Value = {NodeNumber} ")]
+    [DebuggerDisplay("Value = {NodeNumber}")]
     public class MetaNode
     {
-        /// <summary>
-        /// The length of the assembly, set to 16569 for now
-        /// TODO: Perhaps refactor to use the assembly this is part of?
-        /// </summary>
-        public static int AssemblyLength=16569;
-        /// <summary>
+         /// <summary>
         /// The K-mer length used for the data
         /// </summary>
         public static int KmerLength;
@@ -205,22 +200,22 @@ namespace MitoDataAssembler.Visualization
             var last = ConstituentNodes.Last();
             foreach (var neighbor in GetNodesLeavingBottom())// nextNodes)
             {
-                var neighborMegaNode = neighbor.ParentMegaNode as MetaNode;
+                var neighborMetaNode = neighbor.ParentMetaNode as MetaNode;
                 //TODO: The sequence can be palindromic, allowing the same k-mer to appear in the front and back.
-                bool startsFront=neighborMegaNode.Sequence.StartsWith(SearchSequence);
-                bool startsBack = neighborMegaNode.ReverseComplementedSequence.StartsWith(SearchSequence);
+                bool startsFront=neighborMetaNode.Sequence.StartsWith(SearchSequence);
+                bool startsBack = neighborMetaNode.ReverseComplementedSequence.StartsWith(SearchSequence);
                     if (startsFront && !startsBack)
                     {
-                        yield return new Edge() { FromNode=this, ToNode = neighborMegaNode, Weight = CalculateConnectionWeight(last, neighborMegaNode.ConstituentNodes[0]), DifferentOrientation = false,GoingRight=true };
+                        yield return new Edge() { FromNode=this, ToNode = neighborMetaNode, Weight = CalculateConnectionWeight(last, neighborMetaNode.ConstituentNodes[0]), DifferentOrientation = false,GoingRight=true };
                     }
                     else if(startsBack && !startsFront)
                     {
-                        yield return new Edge() { FromNode=this, ToNode = neighborMegaNode, Weight = CalculateConnectionWeight(last, neighborMegaNode.ConstituentNodes.Last()), DifferentOrientation = true, GoingRight=true };
+                        yield return new Edge() { FromNode=this, ToNode = neighborMetaNode, Weight = CalculateConnectionWeight(last, neighborMetaNode.ConstituentNodes.Last()), DifferentOrientation = true, GoingRight=true };
                     }
                     else
                     {
-                              yield return new Edge() { FromNode=this, ToNode = neighborMegaNode, Weight = CalculateConnectionWeight(last, neighborMegaNode.ConstituentNodes[0]), DifferentOrientation = false,GoingRight=true };
-                              yield return new Edge() { FromNode=this, ToNode = neighborMegaNode, Weight = CalculateConnectionWeight(last, neighborMegaNode.ConstituentNodes.Last()), DifferentOrientation = true, GoingRight=true };
+                              yield return new Edge() { FromNode=this, ToNode = neighborMetaNode, Weight = CalculateConnectionWeight(last, neighborMetaNode.ConstituentNodes[0]), DifferentOrientation = false,GoingRight=true };
+                              yield return new Edge() { FromNode=this, ToNode = neighborMetaNode, Weight = CalculateConnectionWeight(last, neighborMetaNode.ConstituentNodes.Last()), DifferentOrientation = true, GoingRight=true };
 #if !DEBUG
     throw new Exception("GRR!!! a meganode connects to both the front and back of another meganode, palindrome problems.");
 #endif
@@ -233,7 +228,7 @@ namespace MitoDataAssembler.Visualization
             var SearchSequence = this.LeadingKmer;
             foreach (var neighbor in GetNodesLeavingTop())
             {
-                var neighborMegaNode = neighbor.ParentMegaNode as MetaNode;
+                var neighborMegaNode = neighbor.ParentMetaNode as MetaNode;
                 if (neighborMegaNode.Sequence.EndsWith(SearchSequence))
                 {
                     yield return new Edge()
@@ -363,7 +358,7 @@ namespace MitoDataAssembler.Visualization
             this.NodeNumber = GraphGenerator.NodeCount++;
             KmerLength=graph.KmerLength;            
             if (startNode.IsVisited)
-            {throw new Exception("If a node has been visited it should not form a meganode, suggests an infinite recursion problem");}
+            {throw new Exception("If a node has been visited it should not form a metanode, suggests an infinite recursion problem");}
             NODE_TYPE type = ClassifyNode(startNode);
             startNode.IsVisited=true;
             //Either of these become their own thing
@@ -648,8 +643,8 @@ namespace MitoDataAssembler.Visualization
         {
             Debug.Assert(this.ConstituentNodes.Count != 0);
             Debug.Assert(this.contigSequence.Count != 0);
-            this.ConstituentNodes[0].ParentMegaNode = this;
-            this.ConstituentNodes.Last().ParentMegaNode = this;
+            this.ConstituentNodes[0].ParentMetaNode = this;
+            this.ConstituentNodes.Last().ParentMetaNode = this;
             if (ConstituentNodes.Count > 0 && ConstituentNodes.Any(x => x.IsInReference))
             {
                 //first to flip values if need be.
@@ -657,7 +652,7 @@ namespace MitoDataAssembler.Visualization
                 short high = (short)ConstituentNodes.Where(x => x.IsInReference).Last().ReferenceGenomePosition;
                 short ahigh = Math.Max(high, low);
                 short alow = Math.Min(high, low);
-                bool wrapsAround = SegmentLoopsAround(alow, ahigh);
+                bool wrapsAround = Utils.CircularGenomeCaseHandlers.SegmentLoopsAround(alow, ahigh, LengthOfNode);
                 bool needFlip = (high < low && !wrapsAround) || wrapsAround && low < high;
                 if (needFlip)
                 {
@@ -696,25 +691,6 @@ namespace MitoDataAssembler.Visualization
             }
             this.AvgKmerCoverage = ConstituentNodes.Average(x => (double)x.KmerCount);
         }
-        internal bool SegmentLoopsAround(double putativeLeft, double putatitiveRight)
-        {
-            //space across span
-            double right = Math.Min(putativeLeft, putatitiveRight);
-            double left = Math.Max(putativeLeft, putatitiveRight);
-            double side1 = Math.Abs(AssemblyLength - left) + right;
-            //space on other side
-            double side2 = Math.Abs(putatitiveRight - putativeLeft);
-            side1 = Math.Abs(this.LengthOfNode - side1);
-            side2 = Math.Abs(this.LengthOfNode - side2);
-            if (side1 < side2)
-                return true;
-            else
-                return false;
-        }
-
-
-      
-
     }
        
 }
