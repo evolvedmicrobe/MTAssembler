@@ -272,7 +272,6 @@ namespace Bio.IO.BAM
             // 4-8 bytes
             int Pos = Helper.GetInt32(alignmentBlock, 4) + 1;
 
-
             // 8 - 12 bytes "bin<<16|mapQual<<8|read_name_len"
             UnsignedValue = Helper.GetUInt32(alignmentBlock, 8);
             int queryNameLen = (int)(UnsignedValue & 0x000000FF);
@@ -479,11 +478,27 @@ namespace Bio.IO.BAM
         {
             throw new NotImplementedException();
         }
-#if WANT_OLD_VERSION
-        public IEnumerable<SAMAlignedSequence> ParseRangeAsEnumerableSequences(string fileName, string refSeqName, int start, int end)
-#else
-		public IEnumerable<CompactSAMSequence> ParseRangeAsEnumerableSequences(string fileName, string refSeqName)
-#endif
+        public SAMAlignmentHeader GetFileHeader() 
+        {
+            SAMAlignmentHeader header;
+            using (FileStream bamStream = new FileStream(_fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                string bamIndexFileName = getBAMIndexFileName(_fileName);
+                using (BAMIndexFile bamIndexFile = new BAMIndexFile(bamIndexFileName, FileMode.Open, FileAccess.Read))
+                {
+                    readStream = bamStream;
+                    if (readStream == null || readStream.Length == 0)
+                    {
+                        throw new FileFormatException(Properties.Resource.BAM_InvalidBAMFile);
+                    }
+                    ValidateReader();
+                    header = GetHeader();
+                }
+            }
+            return header;
+        }
+
+		public IEnumerable<CompactSAMSequence> ParseRangeAsEnumerableSequences(string fileName, string refSeqName, int start = 0, int end = Int32.MaxValue)
         {
             if (refSeqName == null)
             {
@@ -494,13 +509,11 @@ namespace Bio.IO.BAM
                 string bamIndexFileName = getBAMIndexFileName(fileName);
                 using (BAMIndexFile bamIndexFile = new BAMIndexFile(bamIndexFileName, FileMode.Open, FileAccess.Read))
                 {
-
                     readStream = bamStream;
                     if (readStream == null || readStream.Length == 0)
                     {
                         throw new FileFormatException(Properties.Resource.BAM_InvalidBAMFile);
                     }
-
                     ValidateReader();
                     SAMAlignmentHeader header = GetHeader();
                     // verify whether there is any reads related to chromosome.
@@ -512,18 +525,19 @@ namespace Bio.IO.BAM
                     }
                     BAMIndex bamIndexInfo = bamIndexFile.Read();
                     BAMReferenceIndexes refIndex = bamIndexInfo.RefIndexes[refSeqIndex];
-                    IList<Chunk> chunks = GetChunks(refIndex, 0, Int32.MaxValue);
+                    IList<Chunk> chunks = GetChunks(refIndex, start, end);
                     foreach (var s in EnumerateAlignedSequences(chunks))
-                    { yield return s; }
+                    {
+                        if (s != null &&  (s.RName == "*" || (s.Pos >= (start - 1) && s.RefEndPos < end) ))
+                        {
+                            yield return s;
+                        }
+                    }
                     readStream = null;
                 }
             }
         }
-#if WANT_OLD_VERSION
-        private IEnumerable<SAMAlignedSequence> EnumerateAlignedSequences(IList<Chunk> chunks, int start, int end)
-#else
 		private IEnumerable<CompactSAMSequence> EnumerateAlignedSequences(IList<Chunk> chunks)
-#endif
         {
             foreach (Chunk chunk in chunks)
             {

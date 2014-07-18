@@ -82,7 +82,6 @@ namespace Bio.IO.BAM
 			if (!BitConverter.IsLittleEndian) {
 				throw new Exception ("The BAM Parser is optimized to work on machines that are little endian, and will fail on this architecture");
 			}
-			RefSequences = new List<ISequence> ();
 			refSeqNames = new RegexValidatedStringList (SAMAlignedSequenceHeader.RNameRegxExprPattern);
 			refSeqLengths = new List<int> ();            
 		}
@@ -141,12 +140,6 @@ namespace Bio.IO.BAM
 		public string SupportedFileTypes {
 			get { return Properties.Resource.BAM_FILEEXTENSION; }
 		}
-
-		/// <summary>
-		/// Reference sequences, used to resolve "=" symbol in the sequence data.
-		/// </summary>
-		public IList<ISequence> RefSequences { get; private set; }
-
 		#endregion
 
 		#region Private Static Methods
@@ -828,7 +821,6 @@ namespace Bio.IO.BAM
 					lastOffSet = new FileOffset ((ulong)currentCompressedBlockStartPos, (ushort)deCompressedStream.Position);
                
 				}
-
 				SAMAlignedSequence alignedSeq = GetAlignedSequence (0, int.MaxValue);
 
 				#region BAM indexing

@@ -228,7 +228,7 @@ namespace MitoDataAssembler
             DepthOfCoverageGraphMaker coveragePlotter = !Skip_DepthOfCoveragePlot ?
                                                         new DepthOfCoverageGraphMaker() : null;
 
-            IEnumerable<ISequence> reads = this.createSequenceProducer(this.Filename, coveragePlotter);
+            IEnumerable<ISequence> reads = this.createSequenceProducer(this.Filename, coveragePlotter , true);
             TimeSpan algorithmSpan = new TimeSpan();
             Stopwatch runAlgorithm = new Stopwatch();
 		
@@ -418,26 +418,31 @@ namespace MitoDataAssembler
 		/// </summary>
 		/// <param name="fileName">Filename to load data from</param>
 		/// <returns>Enumerable set of ISequence elements</returns>
-		private IEnumerable<CompactSAMSequence> createSequenceProducer (string fileName, DepthOfCoverageGraphMaker coveragePlotter = null)
+		private IEnumerable<CompactSAMSequence> createSequenceProducer (string fileName, DepthOfCoverageGraphMaker coveragePlotter = null, bool alsoGetNuclearHits = false)
 		{
             if (!Skip_DepthOfCoveragePlot && !Helper.IsBAM(fileName))
             {
                 Skip_DepthOfCoveragePlot = true;
                 Output.WriteLine(OutputLevel.Error, "Warning: No coverage plots can be made without an input BAM File");
             }
-
-			var parser = new BAMSequenceParser (Filename);
-			IEnumerable<CompactSAMSequence> sequences;
-			if (ChromosomeName != string.Empty)
+            IEnumerable<CompactSAMSequence> sequences;
+            if (!alsoGetNuclearHits)
             {
-				parser.ChromosomeToGet = ChromosomeName;
-				sequences = parser.Parse();
-            }            
+                var parser = new BAMSequenceParser(Filename);
+                if (ChromosomeName != string.Empty)
+                {
+                    parser.ChromosomeToGet = ChromosomeName;
+                    sequences = parser.Parse();
+                }
+                else
+                {
+                    sequences = parser.Parse();
+                }
+            }
             else
             {
-                sequences = parser.Parse();
+                sequences = BAMNuclearChromosomeReadGenerator.GetNuclearAndMitochondrialReads(fileName);
             }
-            
             //Filter by quality
             return ReadFilter.FilterReads(sequences,coveragePlotter);
 		}
