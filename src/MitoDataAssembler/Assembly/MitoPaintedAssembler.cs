@@ -218,11 +218,9 @@ namespace MitoDataAssembler
 					// Erosion threshold is an int, so round it off
 					this.ErosionThreshold = (int)Math.Round (threshold);
 				}
-                this.EstimateDefaultValuesEnded();
-				
+                this.EstimateDefaultValuesEnded();				
 			}
 		}
-
 
 		private int CalculateSqrtOfMedianCoverageCutoff ()
 		{
@@ -240,7 +238,6 @@ namespace MitoDataAssembler
 				string cmd = "lines(c(" + cutoff.Value.ToString () + "," + cutoff.Value.ToString () + "),c(0,1000000),lwd=4,col=\"red\")";
 				additionalCommands.Add (cmd);
 			}
-
 			var refCounts = Graph.GetNodes ().Where (y => y.IsInReference).Select (x => (double)x.KmerCount);
 			#if !NO_R
 			rInt.HistPDF (refCounts, DiagnosticFileOutputPrefix + @"Refcounts_" + FileSuffix + ".pdf", 125, FileSuffix, "Ref K-mer Occurence", "Count", additionalCommands);
@@ -265,8 +262,7 @@ namespace MitoDataAssembler
 			this.CreateGraphEnded ();
 			sw.Stop ();
 			this.NodeCountReport ();
-			this.TaskTimeSpanReport (sw.Elapsed);
-           
+			this.TaskTimeSpanReport (sw.Elapsed);           
             
 			int count = this.Graph.GetNodes ().Where (x => x.IsInReference).Count ();
 			ReferenceNodeCountAfterCreation = count;
@@ -278,7 +274,7 @@ namespace MitoDataAssembler
 			SkippedReadsAfterQCCount = Graph.SkippedSequencesCount;
 			ReadCount = Graph.ProcessedSequencesCount;
 
-			if (NodeCountAfterCreation < 100) {
+            if (NodeCountAfterCreation < 100) {
 				return null;
 			}
             
@@ -288,7 +284,11 @@ namespace MitoDataAssembler
             // Estimate and set default value for erosion and coverage thresholds
             this.EstimateDefaultThresholds();
             int sqrtCoverageCutOff = this.CalculateSqrtOfMedianCoverageCutoff();
-            var coverageCutOff = ForceSqrtThreshold? sqrtCoverageCutOff : Math.Min(sqrtCoverageCutOff, AlternateMinimumNodeCount);
+            var coverageCutOff = ForceSqrtThreshold ? sqrtCoverageCutOff : Math.Min(sqrtCoverageCutOff, AlternateMinimumNodeCount);
+            if (MTAssembleArguments.MinNodeCountSet)
+            {
+                coverageCutOff = AlternateMinimumNodeCount;
+            }
             //var coverageCutOff = sqrtCoverageCutOff;
             KmerCutOff = coverageCutOff;
             if (OutputIntermediateGraphSteps)
@@ -300,6 +300,7 @@ namespace MitoDataAssembler
 			snr.RemoveLowCoverageNodes (Graph);
 			PercentNodesRemovedByLowCoverageOrThreshold = originalNodes / (double)this.Graph.NodeCount;
 			sw.Stop ();
+            
 			TaskTimeSpanReport (sw.Elapsed);
 			RaiseMessage ("Finished removing nodes with less than " + snr.CoverageCutOff.ToString () + " counts");
 			NodeCountReport ();
@@ -314,7 +315,7 @@ namespace MitoDataAssembler
             {
                 RaiseMessage("WARNING!!!! Found and removed " + badNodes.ToString()+ " pathological nodes.  These were removed.",false);
             }
-
+                        
             //Step 2.2 Remove nodes that are not connected to the reference genome 
 			UnlinkedToReferencePurger remover = new UnlinkedToReferencePurger ();
 			remover.RemoveUnconnectedNodes (Graph, referenceNodes);
@@ -322,8 +323,8 @@ namespace MitoDataAssembler
 			this.NodeCountReport ();
 			NodeCountAfterUndangle = Graph.NodeCount;
 			//outputVisualization ("PostUnconnectedFilter");			           
-
-			// Step 2.3: Remove dangling links from graph
+           
+            // Step 2.3: Remove dangling links from graph
 			///NIGEL: This also removes the low coverage nodes
 			sw.Reset ();
 			sw.Restart ();
@@ -331,13 +332,13 @@ namespace MitoDataAssembler
 			this.UnDangleGraph ();
 			this.UndangleGraphEnded ();
 			sw.Stop ();
-			this.TaskTimeSpanReport (sw.Elapsed);
+           
+            this.TaskTimeSpanReport (sw.Elapsed);
 			this.NodeCountReport ();
             if (OutputIntermediateGraphSteps)
             {
                 outputVisualization("PostUndangleFilter");
             }
-
 
             // Step 4: Remove redundant SNP and indel paths from graph
 			RaiseMessage (string.Format (CultureInfo.CurrentCulture, "Starting to remove redundant paths", DateTime.Now));
@@ -349,7 +350,8 @@ namespace MitoDataAssembler
             //Now remove redundant indel paths as well
             //TODO: For historic reasons this is largely similar to the snp remover, which isn't so great...
             RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Starting to call INDELs", DateTime.Now));
-            //var indels = CallAndRemoveIndels();
+            var indels = CallAndRemoveIndels();
+            
             RaiseMessage(string.Format(CultureInfo.CurrentCulture, "Finished calling and removing small INDELs paths", DateTime.Now));
             this.NodeCountReport();
             // Perform dangling link purger step once more.
@@ -357,15 +359,14 @@ namespace MitoDataAssembler
             this.UnDangleGraph ();
 			RaiseMessage (string.Format (CultureInfo.CurrentCulture, "Finished removing all redundant paths", DateTime.Now));
             this.NodeCountReport();
-
-
-
+            
 			//STEP 4.2 Rerun the unlinked to reference purger after graph is cleaned
 			ChangeNodeVisitFlag (false);
 			remover = new UnlinkedToReferencePurger ();
 			remover.RemoveUnconnectedNodes (Graph, referenceNodes);
 			this.RemoveRedundancyEnded ();
-			this.NodeCountReport ();
+			this.NodeCountReport ();            
+
 			NodeCountAfterRedundancyRemoval = Graph.NodeCount;
             if (OutputIntermediateGraphSteps)
             {
@@ -402,8 +403,7 @@ namespace MitoDataAssembler
 			this.OutputGraphicAndFindDeletion (attemptedAssembly);            
 			PercentageOfScannedReadsUsed = Graph.GetNodes ().Sum (x => x.KmerCount * KmerLength) / (double)TotalSequencingBP;
 			RaiseMessage("Used a total of " + PercentageOfScannedReadsUsed.ToString ("p") + " of basepairs in reads for assembly");
-
-
+            
 			// Step 5: Build Contigs - This is essentially independent of deletion finding
 			this.BuildContigsStarted ();
 			List<ISequence> contigSequences = this.BuildContigs ().ToList ();

@@ -43,11 +43,17 @@ namespace MitoDataAssembler
 		/// </summary>
 		public bool AllowErosion = false;
 
+
         /// <summary>
         /// The minimum number of times a k-mer must appear before it is considered for the 
         /// assembly and indel finding.  (or the Sqrt of the median coverage).
         /// </summary>
         public int MinimumNodeCount = 11;
+
+        /// <summary>
+        /// HACK: This is a value to check if the user has set the node count, in which case WE MUST go with it!
+        /// </summary>
+        public static bool MinNodeCountSet = false;
 
         /// <summary>
         /// Should we force the sqrt threshold to be used? (Rather than taking the minimum of that or 10?)

@@ -72,8 +72,10 @@ namespace MitoDataAssembler.IndelCaller
 					}
 				}
 			);
+            RedundantPathsPurger.ValidatePathsAreFromSameDirection(redundantPaths, deBruijnGraph.KmerLength);
 
 			var indelPaths = redundantPaths.Where(x => x.Paths.Select(z => z.PathNodes.Count).Distinct().Count()!=1).ToList();
+
 			//TODO: Could merge the two filters here
 			indelPaths = RemoveDuplicates(indelPaths);
 			indelPaths = RemoveEmbeddedPaths (indelPaths);

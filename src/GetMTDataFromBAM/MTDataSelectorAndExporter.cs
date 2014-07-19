@@ -25,7 +25,7 @@ namespace GetMTDataFromBAM
             }
         }
         public const string BAM_FILE_SUFFIX=".bam";
-        public const string DEFAULT_EXPORT_SUFFIX = "_MT.fa";
+        public const string DEFAULT_EXPORT_SUFFIX = "MT.fa";
         public MTDataSelectorAndExporter()
         {
         }

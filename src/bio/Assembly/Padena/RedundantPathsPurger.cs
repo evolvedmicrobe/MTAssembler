@@ -98,9 +98,61 @@ namespace Bio.Algorithms.Assembly.Padena
                         TraceDivergingExtensionPaths(node, node.GetLeftExtensionNodesWithOrientation(), false, redundantPaths);
                     }
                 });
-
+            // Now to check that for each path they all go in the same way.
+            ValidatePathsAreFromSameDirection(redundantPaths,graph.KmerLength);
             redundantPaths = RemoveDuplicates(redundantPaths);
             return DetachBestPath(redundantPaths);
+        }
+
+        /// <summary>
+        /// This is a method that detects an edge case.
+        /// Most of the time a redundant path goes the same direction, that is A->B->D vs. A->C->D, 
+        /// However, sometimes the path goes to the node D from two directions, that is one path implies
+        /// A->C->D->B, which is not redundant but looping, this is pathological.  We detect and throw an error in this
+        /// case.
+        /// </summary>
+        /// <param name="pathLists"></param>
+        public static void ValidatePathsAreFromSameDirection(List<DeBruijnPathList> pathLists, int kmerSize)
+        {
+            foreach (var pl in pathLists)
+            {
+                //all nodes have to be on the side of the end node.
+                var endNodes = pl.Paths.Select(z => z.PathNodes.Last()).Distinct().ToList();
+                if (endNodes.Count != 1)
+                {
+                    throw new InvalidProgramException("Redundant paths did not all end the same node.");
+                }
+                var endNode = endNodes[0];
+                var penultimates = new HashSet<DeBruijnNode>(pl.Paths.Select(u => u.PathNodes[u.PathNodes.Count - 2]));
+                // Verify penultimates are a subset of left or right nodes.
+                var leftSides =  new HashSet<DeBruijnNode>(endNode.GetLeftExtensionNodes());
+                if (penultimates.IsSubsetOf(leftSides))
+                {
+                    return;
+                }
+                var rightSides = new HashSet<DeBruijnNode>(endNode.GetRightExtensionNodes());
+                if (!penultimates.IsSubsetOf(rightSides))
+                {
+                    var sequences = pl.Paths.Select(p => p.ConvertToSequence(kmerSize));
+                    int i =0;
+                    Console.WriteLine("Problem Paths:");
+                    foreach(var s in sequences) {
+                        Console.WriteLine(i.ToString()+": "+s.ConvertToString());
+                        i++;
+                    }
+
+                    var freqs = pl.Paths.Select(z => z.PathNodes.Min(p => (double)p.KmerCount)).ToList();
+                    Console.WriteLine("Counts: " + String.Join("\t", freqs.Select(o => o.ToString())));
+                    var tot = freqs.Sum();
+                    var perc = freqs.Select(l => l / tot);
+                    Console.WriteLine("Frequencies: " + String.Join("\t", perc.Select(o => o.ToString("P1"))));
+                    throw new InvalidProgramException("Novel Case Detected: A path in the graph appears to travel back on itself. " +
+                        "This indicates that the possibility of a duplication of DNA rather than a deletion. " +
+                        "This can also be caused by a high percentage of chimeric reads in the library that exceed a percentage filted out by "+
+                        "the coverage cutoff.  This should be examined to decide if these sequences are really in the DNA or just chimeras." +
+                        "The problematic paths and frequencies have been output to the console.");
+                }
+            }
         }
 
         /// <summary>

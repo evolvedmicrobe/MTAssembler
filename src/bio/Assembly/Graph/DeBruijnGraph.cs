@@ -339,7 +339,7 @@ namespace Bio.Algorithms.Assembly.Graph
             Parallel.ForEach(_nodes, node =>
             {
                 node.IsVisited = stateToSet;
-                node.ParentMegaNode = null;
+                node.ParentMetaNode = null;
             }
                 );
         }

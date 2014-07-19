@@ -5,6 +5,9 @@ using System.Text;
 
 namespace HaploGrepSharp
 {
+	/// <summary>
+	/// The exception for haplogrep classes
+	/// </summary>
     public class HaploGrepException : Exception
     {
         public HaploGrepException(string message) : base(message) { }

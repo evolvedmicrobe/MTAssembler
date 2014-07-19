@@ -148,7 +148,17 @@ namespace MitoDataAssembler
 						Output.TraceLevel = OutputLevel.Information | OutputLevel.Verbose;
 					else if (!options.Quiet)
 						Output.TraceLevel = OutputLevel.Information;
-					options.ProcessMTDNA();
+
+                    //TODO: Replace strings in two places with variables in one
+                    var nodeSet = args.Any( z=>z.Contains("min_node_count"));
+                    var forceKmer = args.Any(z=>z.Contains("force_sqrt"));
+                    if (nodeSet && forceKmer)
+                    {
+                        Console.WriteLine("You cannot set both min_node_count and force_sqrt, as the arguments both alter the same setting.");
+                        return;
+                    }
+                    MTAssembleArguments.MinNodeCountSet = nodeSet;
+                    options.ProcessMTDNA();
 				}
 			}				
 		}

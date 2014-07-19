@@ -20,7 +20,7 @@ namespace Bio.Algorithms.Assembly.Graph
         /// NOTE: Smartest thing probably to derive an instance of this class and add this field, that way
         /// only nodes at the end of a linear chain need to store this extra information.
         /// </summary>
-        public object ParentMegaNode;
+        public object ParentMetaNode;
 	    /// <summary>
 		///If the node is present in the reference genome only once, this records the position
 		/// </summary>
