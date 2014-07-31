@@ -110,7 +110,6 @@ namespace MitoDataAssembler
                         sb.Append("-");
                         sb.Append(e.ToString());
                         sb.Append(";");
-
                         DeletionSizes.Add(e - s + 1);
                     }
                     DeletedRegions = sb.ToString();
@@ -125,11 +124,6 @@ namespace MitoDataAssembler
                 double avg = 0.0;
                 var totL = Assembly.Where(x => x.LeftExtensionNodesCount == 2).ToList();
                 var torR = Assembly.Where(x => x.RightExtensionNodesCount == (byte)2).ToList();
-                var query = Assembly.Where(x => x.NodeValue.KmerData == 3206372062411L).FirstOrDefault();
-                if (query != null)
-                {
-                    var index = Assembly.IndexOf(query);
-                }
                 for (int i = 0; i < (Assembly.Count -1); i++)
                 {
                     var cnode = Assembly[i];

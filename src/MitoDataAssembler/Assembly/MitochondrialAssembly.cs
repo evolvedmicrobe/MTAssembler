@@ -198,7 +198,7 @@ namespace MitoDataAssembler
                 _greedyPathAssembly.FinalizeAndOrientToReference();
                 AssemblyLength = (int) _greedyPathAssembly.Sequence.Count;
 				//TODO: More sophisticated criteria than larger than 8 kb to validate assembly
-                if (AssemblyLength > 8000)
+                if (AssemblyLength > StaticResources.SIZE_DIF_BETWEEN_LARGE_AND_SMALL_DELETION)
                 {
                     SuccessfulAssembly = true;
                     MitoPaintedAssembler.RaiseStatusEvent("\tSuccessful assembly of length: " + AssemblyLength.ToString());

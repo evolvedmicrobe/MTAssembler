@@ -97,7 +97,7 @@ namespace MitoDataAssembler.PairedEnd
         public string ReasonForFailure { get; private set; }
 
         [OutputAttribute]
-        public PossibleDeletionCollection DelectionCollection {get; private set;}
+        public PossibleDeletionCollection DeletionSizesFromPeakFinding {get; private set;}
 
 		/// <summary>
 		/// A value determines if the search could feasably be done.
@@ -124,7 +124,7 @@ namespace MitoDataAssembler.PairedEnd
         /// Number of possible deletions found
         /// </summary>
         [OutputAttribute]
-        public int PossibleDeletionCount { get { return DelectionCollection.Count; } }
+        public int PossibleDeletionCount { get { return DeletionSizesFromPeakFinding.Count; } }
 
         /// <summary>
         /// Cutoff used to find peaks, anything above or equal to this value counts.
@@ -173,7 +173,7 @@ namespace MitoDataAssembler.PairedEnd
 		/// </summary>
 		public void FindDeletionPeaks()
 		{
-            DelectionCollection = new PossibleDeletionCollection();
+            DeletionSizesFromPeakFinding = new PossibleDeletionCollection();
             SearchWasPossible = true;
 			//Load the distribution
 			loadDistribution ();
@@ -191,8 +191,8 @@ namespace MitoDataAssembler.PairedEnd
                 {
                     //set poisson threshold out 
                     setPoissonThreshold();
-                   Console.WriteLine("Attempting deletion finding");
-                    DelectionCollection.AddRange(ScanForDeletions());
+                    Console.WriteLine("Attempting deletion finding");
+                    DeletionSizesFromPeakFinding.AddRange(ScanForDeletions());
                     Console.WriteLine("Ending deletion finding");
                 }
                 //make a plot with the values
@@ -203,16 +203,7 @@ namespace MitoDataAssembler.PairedEnd
                     
             }
 		}
-        private void makeSlidingWindowOccurencePlot()
-        {
-            MitoPaintedAssembler.RaiseStatusEvent("\tStarting sliding window plot");
-            var list = GetAverageInSlidingCoverageWindows().ToList();
-            double[] xvals = list.Select(x => (double)x.Key).ToArray();
-            double[] yvals = list.Select(x => x.Value).ToArray();
-            rInt.PlotPDF(xvals, yvals, OutputFilePrefix + "Windowed" + this.ScanningWindowSize.ToString() + ".pdf", "Windowed occurence", "Insert Size", "Window Average");
-            MitoPaintedAssembler.RaiseStatusEvent("\tFinished sliding window plot");
-            
-        }
+   
 
         /// <summary>
         /// Scan sliding windows, merge all overlapping windows that contain a peak, then return these intervals.
@@ -220,13 +211,14 @@ namespace MitoDataAssembler.PairedEnd
         /// <returns></returns>
         IEnumerable<PossibleDeletion> ScanForDeletions()
         {
-            //Calculate amount to merge non-overlapping windows, use the width of the observed template size distribution as amount
-            
+            /* Calculate amount to merge non-overlapping windows, 
+             * use the width of the observed template size distribution
+             * is used as the amount
+             */
             var MergeDistance = LowEndOfSearchRange.Value - MostFrequentInsetSizeObserved;
 
-
             //get list of all windows with average coverage above the threshold
-            var windows = GetAverageInSlidingCoverageWindows().Where(z=>z.Value>PoissonCoverageCutoffCount).ToList();
+            var windows = GetAverageInSlidingCoverageWindows().Where(z => z.Value > PoissonCoverageCutoffCount).ToList();
             PossibleDeletion toRet = null;
             int lastPos = -10;
             foreach (var win in windows)
@@ -237,7 +229,7 @@ namespace MitoDataAssembler.PairedEnd
                     toRet = new PossibleDeletion() { Start = win.Key };
                     lastPos = win.Key;
                 }
-                else if ((win.Key -lastPos)<MergeDistance)
+                else if ((win.Key - lastPos) < MergeDistance)
                 {
                     toRet.End = win.Key;
                     lastPos = win.Key;
@@ -260,16 +252,16 @@ namespace MitoDataAssembler.PairedEnd
         public IEnumerable<KeyValuePair<int, double>> GetAverageInSlidingCoverageWindows()
         {
             int curPos = LowEndOfSearchRange.Value;
-            var values = GetRangeToEvaluate();
-            var avg=values.Skip(curPos).Take(ScanningWindowSize).Sum();
-            var delta=ScanningWindowSize/2;
+            int high = HighEndOfSearchRange.Value;
+            var avg = countsOfSize.Skip(curPos).Take(ScanningWindowSize).Sum();
+            var delta = ScanningWindowSize/2;
             var dwin = (double)ScanningWindowSize;
             yield return new KeyValuePair<int,double>(curPos+delta,avg/dwin);
             curPos++;
-            while(curPos<(values.Count-ScanningWindowSize))
+            while(curPos<(HighEndOfSearchRange-ScanningWindowSize))
             {
                 //remove the last value, add the next one
-                avg = avg - values[curPos - 1] + values[curPos + ScanningWindowSize-1];
+                avg = avg - countsOfSize[curPos - 1] + countsOfSize[curPos + ScanningWindowSize-1];
                 yield return new KeyValuePair<int, double>(curPos + delta, avg / dwin);
                 curPos++;
             }
@@ -391,6 +383,18 @@ namespace MitoDataAssembler.PairedEnd
 
 			}
 		}
+        private void makeSlidingWindowOccurencePlot()
+        {
+            MitoPaintedAssembler.RaiseStatusEvent("\tStarting sliding window plot");
+            var list = GetAverageInSlidingCoverageWindows().ToList();
+            double[] xvals = list.Select(x => (double)x.Key).ToArray();
+            double[] yvals = list.Select(x => x.Value).ToArray();
+            var scutoff = PoissonCoverageCutoffCount.ToString();
+            string line = "lines(c(0,16569),c(" + scutoff + "," + scutoff + "),col=\"red\",lwd=3)";
+            rInt.PlotPDF(xvals, yvals, OutputFilePrefix + "Windowed" + this.ScanningWindowSize.ToString() + ".pdf", "Windowed occurence", "Insert Size", "Window Average", new List<string>() { line });
+            MitoPaintedAssembler.RaiseStatusEvent("\tFinished sliding window plot");
+
+        }
         /// <summary>
 		/// Sets the threshold by assuming a poisson distribution over the "normal" values whose distribution is
 		/// assumed to be a poisson that is estimated robustly using the median of counts as values.

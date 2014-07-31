@@ -111,7 +111,7 @@ namespace MitoDataAssembler
         /// <summary>
         /// How far should we go looking for indels?
         /// </summary>
-        public int MaxIndelPath = 150;
+        public int MaxIndelPath = StaticResources.SIZE_DIF_BETWEEN_LARGE_AND_SMALL_DELETION;
 
         /// <summary>
         /// The graph will remove all nodes less than this value for 
@@ -443,7 +443,8 @@ namespace MitoDataAssembler
 					DeletionSearchAttempted = true;
 					LargeDeletionFinder ldf = new LargeDeletionFinder ();
 					var deletions = ldf.FindAllDeletions (this.Graph, plotMaker.Assembly);
-					DeletionsFound = deletions.Count;
+                    // Check to see if any sections 
+					DeletionsFound = deletions.Where(z => z.HasDeletion).Count();
 					PossibleAssemblyCount = ldf.PossibleDeletionPaths.Count;
 					RaiseMessage ("Found a total of: " + deletions.Count + " possible mutations in " + ldf.PossibleDeletionPaths.Count.ToString () + " possible assembly paths");
 					//throw error as not finalized here

@@ -41,8 +41,15 @@ namespace MitoDataAssembler.Visualization
                 {
                     if(Assembly.NodesInCompleteAssembly.Contains(s.Node)) {s.InMainAssembly=true;}
                 }
-                assemblyAligner=new NucMerQueryable(Assembly.GreedyPathAssembly.Sequence);
-                assignLeftRightPositionsToSlices();
+                if (Assembly.GreedyPathAssembly.Sequence.Count > StaticResources.CRS_LENGTH)
+                {
+                    assemblyAligner = new NucMerQueryable(Assembly.GreedyPathAssembly.Sequence);
+                }
+                else
+                {
+                    assemblyAligner = new NucMerQueryable(ReferenceGenome.ReferenceSequence);
+                }
+                    assignLeftRightPositionsToSlices();
                 assignHeightPositionsToSlices();
                 arrows = Assembly.AllNodesInGraph.SelectMany(x => x.GetAllEdges()).Where(z => !z.IsInferiorEdge).Select(x=>new Arrow(x)).ToList();
             }
@@ -147,14 +154,14 @@ namespace MitoDataAssembler.Visualization
                     return;
                 }
                 //load the file
-                string rFile = System.Reflection.Assembly.GetExecutingAssembly().Location;
-				char splitChar = '\\';
-				if (Bio.CrossPlatform.Environment.RunningInMono) {
-					splitChar = '/';
-				}
-				var tempSplit=rFile.Split(splitChar);
-                rFile=String.Join("/",tempSplit.Take(tempSplit.Length-1))+"/Visualization/MakeGenomeAssemblyPlot.r";
-                rFile=rFile.Replace('\\','/');
+               // string rFile = System.Reflection.Assembly.GetExecutingAssembly().Location;
+				//char splitChar = '\\';
+				//if (Bio.CrossPlatform.Environment.RunningInMono) {
+				//	splitChar = '/';
+				//}
+				//var tempSplit=rFile.Split(splitChar);
+                //rFile=String.Join("/",tempSplit.Take(tempSplit.Length-1))+"/Visualization/MakeGenomeAssemblyPlot.r";
+                //rFile=rFile.Replace('\\','/');
                 //string loadFile="source('"+rFile+"')";
                 //e.Evaluate(loadFile);
                 try
@@ -163,6 +170,7 @@ namespace MitoDataAssembler.Visualization
                     var sw = new StreamWriter(fname);
                     sw.Write(VisualizationRScript.FILE_AS_STRING);
                     sw.Close();
+                    var rFile = fname.Replace('\\', '/');
                     string loadFile="source('"+rFile+"')";
                     e.Evaluate(loadFile);
                     File.Delete(fname);
@@ -173,11 +181,11 @@ namespace MitoDataAssembler.Visualization
                     return;
                 }
 
-                var strings = VisualizationRScript.FILE_AS_STRING.Split(new char[] {'\n','\r'},StringSplitOptions.RemoveEmptyEntries);
-                foreach (var str in strings)
-                {
-                    e.Evaluate(str);
-                }
+                //var strings = VisualizationRScript.FILE_AS_STRING.Split(new char[] {'\n','\r'},StringSplitOptions.RemoveEmptyEntries);
+                //foreach (var str in strings)
+                //{
+                //    e.Evaluate(str);
+                //}
                 //TODO: THIS LOGIC REALLY NEEDS SOME CLEANING
                 var curMax = Math.Max(this.slices.Max(x => x.ActualLeftGraphicalPosition.Value), this.slices.Max(x => x.ActualRightGraphicalPosition.Value));
                 //e.Evaluate("assemblyLength="+Assembly.AssemblyLength.ToString());

@@ -98,6 +98,7 @@ namespace MitoDataAssembler
 			if (ex.InnerException == null || string.IsNullOrEmpty(ex.InnerException.Message))
 			{
 				Output.WriteLine(OutputLevel.Error, "Error: " + ex.Message);
+                Output.WriteLine(OutputLevel.Error, "");
                 Output.WriteLine(OutputLevel.Error, ex.StackTrace);
 		        throw ex;
 			}

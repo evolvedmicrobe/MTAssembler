@@ -316,7 +316,9 @@ namespace MitoDataAssembler
 					report = new PairedEndDeletionFinderReport ("NOT BAM");
 				}
 			} catch (Exception thrown) {
-				Output.WriteLine (OutputLevel.Error, "\tFailed to run peak finder: " + thrown.Message);
+                var msg = "Failed to run peak finder: " + thrown.Message;
+				Output.WriteLine (OutputLevel.Error, "\t"+msg);
+                Utils.GlobalTriageReport.ReportError("PeakFinder", msg);
 				report = new PairedEndDeletionFinderReport ("Failure");
 			}
             time.Stop();
