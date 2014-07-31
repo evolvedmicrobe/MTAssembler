@@ -136,8 +136,10 @@ namespace Bio.Algorithms.Assembly.Padena
                     var sequences = pl.Paths.Select(p => p.ConvertToSequence(kmerSize));
                     int i =0;
                     Console.WriteLine("Problem Paths:");
+                    List<string> seqs = new List<string>();
                     foreach(var s in sequences) {
-                        Console.WriteLine(i.ToString()+": "+s.ConvertToString());
+                        seqs.Add(s.ConvertToString());
+                        Console.WriteLine(i.ToString()+": "+seqs.Last());
                         i++;
                     }
 

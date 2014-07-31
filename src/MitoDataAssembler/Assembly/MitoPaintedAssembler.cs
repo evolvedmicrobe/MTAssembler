@@ -85,7 +85,7 @@ namespace MitoDataAssembler
 		[OutputAttribute]
 		public long SkippedReadsAfterQCCount;
 		[OutputAttribute]
-		public int DeletionsFound;
+		public int DeletionsFoundInAssemblyGraph;
 		[OutputAttribute]
 		public int PossibleAssemblyCount;
 		[OutputAttribute]
@@ -444,7 +444,7 @@ namespace MitoDataAssembler
 					LargeDeletionFinder ldf = new LargeDeletionFinder ();
 					var deletions = ldf.FindAllDeletions (this.Graph, plotMaker.Assembly);
                     // Check to see if any sections 
-					DeletionsFound = deletions.Where(z => z.HasDeletion).Count();
+					DeletionsFoundInAssemblyGraph = deletions.Where(z => z.HasDeletion).Count();
 					PossibleAssemblyCount = ldf.PossibleDeletionPaths.Count;
 					RaiseMessage ("Found a total of: " + deletions.Count + " possible mutations in " + ldf.PossibleDeletionPaths.Count.ToString () + " possible assembly paths");
 					//throw error as not finalized here
