@@ -81,7 +81,7 @@ namespace HaploGrepSharp
                     BreakLength = BreakLength,
                     LengthOfMUM = MinMatch,
                     MaximumSeparation = MaxGap,
-                    MinimumScore = MinCluster,
+                    MinimumScore = 22,
                     SeparationFactor = (float) DiagFactor
                 };
         }
