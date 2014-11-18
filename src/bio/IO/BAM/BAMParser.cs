@@ -253,10 +253,11 @@ namespace Bio.IO.BAM
 			if (refIndex.LinearIndex.Count > 0) {
 				var binStart = start >> 14;
 				FileOffset minStart;
-				if (refIndex.Bins.Count <= binStart) {
+				if (refIndex.LinearIndex.Count > binStart) {
 					minStart = refIndex.LinearIndex [binStart];
 				} else {
-					minStart = refIndex.LinearIndex.Last ();
+                    throw new FileFormatException("Eff Bam format, the index should not be allowed to be out of range...");
+					//minStart = refIndex.LinearIndex.Last ();
 				}
 				chunks = chunks.Where (x => x.ChunkEnd >= minStart).ToList ();
 			}
